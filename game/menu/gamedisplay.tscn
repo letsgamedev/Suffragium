@@ -1,0 +1,101 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://menu/gamedisplay.gd" type="Script" id=1]
+
+[node name="Gamedisplay" type="MarginContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 200, 250 )
+script = ExtResource( 1 )
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 270.0
+margin_bottom = 250.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 270.0
+margin_bottom = 250.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+margin_right = 270.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 54.0
+margin_right = 270.0
+margin_bottom = 68.0
+autowrap = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+margin_top = 72.0
+margin_right = 270.0
+margin_bottom = 226.0
+size_flags_vertical = 3
+
+[node name="loadbutton" type="Button" parent="VBoxContainer"]
+margin_top = 230.0
+margin_right = 270.0
+margin_bottom = 250.0
+text = "Load"
+
+[node name="InfoButton" type="Button" parent="."]
+margin_left = 254.0
+margin_right = 270.0
+margin_bottom = 20.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "i"
+
+[node name="InfoDialog" type="AcceptDialog" parent="."]
+visible = true
+margin_right = 270.0
+margin_bottom = 250.0
+window_title = "Info"
+resizable = true
+
+[node name="Container" type="VBoxContainer" parent="InfoDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 262.0
+margin_bottom = 214.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="InfoDialog/Container"]
+margin_right = 254.0
+margin_bottom = 92.0
+size_flags_vertical = 3
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="InfoDialog/Container"]
+margin_top = 96.0
+margin_right = 254.0
+margin_bottom = 110.0
+
+[node name="descCont" type="HBoxContainer" parent="InfoDialog/Container"]
+margin_top = 114.0
+margin_right = 254.0
+margin_bottom = 206.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="desclab" type="RichTextLabel" parent="InfoDialog/Container/descCont"]
+margin_right = 50.0
+margin_bottom = 92.0
+rect_min_size = Vector2( 50, 50 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+
+[node name="Statslab" type="RichTextLabel" parent="InfoDialog/Container/descCont"]
+margin_left = 54.0
+margin_right = 254.0
+margin_bottom = 92.0
+rect_min_size = Vector2( 200, 50 )
+size_flags_vertical = 3
+
+[connection signal="pressed" from="VBoxContainer/loadbutton" to="." method="_on_loadbutton_pressed"]
