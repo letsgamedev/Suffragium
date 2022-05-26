@@ -8,7 +8,7 @@ onready var _main := $mainmenu
 
 func _ready():
 	_find_games()
-	build_menu()
+	_build_menu()
 
 
 func load_game(game_cfg:ConfigFile):
@@ -22,7 +22,30 @@ func load_game(game_cfg:ConfigFile):
 	_main.hide()
 
 
+# return to the level select
+func end_game(message:="", _status=null):
+	get_tree().change_scene("res://menu/emptySzene.tscn")
+	_main.show()
+	# this behavior is subject to change
+	if !message.empty(): 
+		OS.alert(message)
 
+
+# build the menu from configs in _games
+func _build_menu():
+	for c in _grid.get_children():
+		c.queue_free()
+	_main.show()
+	
+	#making the buttons
+	for game in _games:
+		var display = _preview_scene.instance()
+		display.setup(game)
+		display.connect("pressed", self, "load_game")
+		_grid.add_child(display)
+
+
+# go through every folder inside res://games/ and try to load the game.cfg into _games
 func _find_games():
 	_games.clear()
 	var dir = Directory.new()
@@ -33,25 +56,12 @@ func _find_games():
 			if dir.current_is_dir():
 				var game_path = "res://games/" + file_name + "/game.cfg"
 				
-				load_game_cfg_file(game_path)
+				_load_game_cfg_file(game_path)
 			file_name = dir.get_next()
 
-func build_menu():
-	for c in _grid.get_children():
-		c.queue_free()
-	_main.show()
-	
-	#making the buttons
-	for game in _games:
-		var display = _preview_scene.instance()
-		display.setup(game)
-		display.connect("pressed", self, "load_game", [game])
-		_grid.add_child(display)
 
-
-
-
-func load_game_cfg_file(path:String):
+# load a config file into _games
+func _load_game_cfg_file(path:String):
 	var f := ConfigFile.new()
 	if f.load(path) != OK: return
 	f.set_meta("folder_path", path.get_base_dir()+"/")

@@ -1,18 +1,18 @@
 extends MarginContainer
 
-var game_file
-signal pressed
+var game_file : ConfigFile
+signal pressed(game_file)
 
 
 func setup(game_cfg:ConfigFile):
+	game_file = game_cfg
 	
 	$VBoxContainer/Label.text = game_cfg.get_value("game", "name")
 	$VBoxContainer/RichTextLabel.bbcode_text = game_cfg.get_value("game", "desc")
-	print(game_cfg.get_meta_list())
+	
 	var icon : Texture = load(str(game_cfg.get_meta("folder_path"), game_cfg.get_value("game", "icon")))
 	if icon == null: icon = load("res://icon.png")
 	$VBoxContainer/TextureRect.texture = icon
-	game_file = game_cfg
 	
 	#setup of info Dialog
 	##setup buttons
@@ -31,11 +31,5 @@ func setup(game_cfg:ConfigFile):
 	
 
 
-
-
-
-
-
-
 func _on_loadbutton_pressed():
-	emit_signal("pressed")
+	emit_signal("pressed", game_file)
