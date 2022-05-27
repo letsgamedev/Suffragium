@@ -56,18 +56,18 @@ func _find_games():
 			if dir.current_is_dir():
 				var game_path = "res://games/" + file_name + "/game.cfg"
 				
-				_load_game_cfg_file(game_path)
+				var err := _load_game_cfg_file(game_path)
+				if err != OK:
+					prints("Error loading game cfg:", err)
+				
 			file_name = dir.get_next()
 
 
 # load a config file into _games
-func _load_game_cfg_file(path:String):
+func _load_game_cfg_file(path:String)->int:
 	var f := ConfigFile.new()
-	if f.load(path) != OK: return
+	var err := f.load(path)
+	if err != OK: return err
 	f.set_meta("folder_path", path.get_base_dir()+"/")
 	_games.push_back(f)
-	return false
-
-
-
-
+	return OK
