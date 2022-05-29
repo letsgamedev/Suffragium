@@ -20,6 +20,7 @@ And also we should take a brainstorm with ideas about the genre and so on.
 
 So ill start with a example template modify it if you have upgrades. So dont forget its a democratic process so vote! =) 
 Lets do a nice game! 
+Greetings S3R43o3
 
 
 ### Game Vote ###
