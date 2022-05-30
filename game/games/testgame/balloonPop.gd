@@ -20,7 +20,7 @@ var stage := 0
 var search_color: Color
 
 onready var _timer := $Timer
-onready var _respawn_timer := $respawnTimer
+onready var _respawn_timer := $RespawnTimer
 onready var _color_label := $VBoxContainer/HBoxContainer/ColorLabel
 onready var _status_label := $VBoxContainer/HBoxContainer/StatusLabel
 onready var _area := $VBoxContainer/balloonArea
