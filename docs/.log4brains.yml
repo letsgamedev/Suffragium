@@ -1,0 +1,8 @@
+project:
+  name: Suffragium
+  tz: Europe/Berlin
+  adrFolder: ./adr
+  packages: []
+  repository:
+    url: https://github.com/BjoernAkAManf/Suffragium
+    provider: github

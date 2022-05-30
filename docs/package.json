@@ -1,0 +1,12 @@
+{
+  "name": "documentation-generator",
+  "scripts": {
+    "adr": "log4brains"
+  },
+  "dependencies": {
+    "log4brains": "^1.0.0-beta.11"
+  },
+  "resolutions": {
+    "cheerio": "1.0.0-rc.10"
+  }
+}
