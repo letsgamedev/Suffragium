@@ -28,10 +28,18 @@ jobs:
           yarn install
           NODE_OPTIONS=--openssl-legacy-provider yarn adr build --basePath /${GITHUB_REPOSITORY#*/}/log4brains
 
+      - name: Prepare Deployment
+        run: |
+          cd docs
+          mkdir github-pages
+          mv .log4brains/out/ github-pages/log4brains/
+          # Disables running Jekyll
+          touch github-pages/.nojekyll
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: docs/.log4brains/out
-          TARGET_FOLDER: log4brains
+          FOLDER: docs/github-pages
+          TARGET_FOLDER: .
