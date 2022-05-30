@@ -15,7 +15,7 @@ func _ready():
 func load_game(game_cfg: ConfigFile):
 	# load the games main scene
 	var scene = load(game_cfg.get_meta("folder_path") + game_cfg.get_value("game", "main_scene"))
-	
+
 	var err := get_tree().change_scene_to(scene)
 	if err != OK:
 		prints("Error", err)
@@ -37,7 +37,7 @@ func _build_menu():
 	for c in _grid.get_children():
 		c.queue_free()
 	_main.show()
-	
+
 	#making the buttons
 	for game in _games:
 		var display = _preview_scene.instance()
@@ -56,11 +56,11 @@ func _find_games():
 		while file_name != "":
 			if dir.current_is_dir():
 				var game_path = "res://games/" + file_name + "/game.cfg"
-				
+
 				var err := _load_game_cfg_file(game_path)
 				if err != OK:
 					prints("Error loading game cfg:", err)
-			
+
 			file_name = dir.get_next()
 
 

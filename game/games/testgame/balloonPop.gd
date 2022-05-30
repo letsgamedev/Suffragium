@@ -28,7 +28,6 @@ onready var _rng := RandomNumberGenerator.new()
 onready var _particles := $VBoxContainer/Particles2D
 
 
-
 func _ready():
 	_rng.randomize()
 	start()
@@ -52,15 +51,15 @@ func _process(_delta):
 func _spawn():
 	var possible := colors.values()
 	possible.erase(search_color)
-	
+
 	#spawn 1-3 balloons with the search color
 	for _i in range(_rng.randi_range(1, 3)):
 		_spawn_color(search_color)
-	
+
 	#spawn 3-7 balloons of any color exept the search color
 	for _i in range(_rng.randi_range(3, 7)):
 		_spawn_color(possible[_rng.randi_range(0, possible.size() - 1)])
-	
+
 	stage += 1
 	_update_status()
 
@@ -73,7 +72,7 @@ func _spawn_color(color: Color):
 	var max_pos: Vector2 = _area.rect_size - b.rect_size * b.rect_scale
 	b.rect_position.x = _rng.randf_range(0, max_pos.x)
 	b.rect_position.y = _rng.randf_range(0, max_pos.y)
-	
+
 	# signals
 	b.connect("pressed", self, "_on_destroy", [color, b])
 	b.connect("pressed", b, "queue_free")
@@ -105,7 +104,7 @@ func _delete_all():
 
 
 # timer leaves a little time between stage end and the next stage start or game end
-func _on_respawnTimer_timeout():
+func _on_RespawnTimer_timeout():
 	if stage >= 10:
 		GameManager.end_game(END_MESSAGE % points)
 		return
