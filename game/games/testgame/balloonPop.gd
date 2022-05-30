@@ -2,6 +2,7 @@
 extends MarginContainer
 
 const END_MESSAGE := "You got %s points!"
+const COLOR_MESSAGE := "Pop a %s balloon"
 const STATUS_MESSAGE := "You'r in stage %s/10 and have %s points!"
 
 var balloon_scene := preload("res://games/testgame/balloon.tscn")
@@ -35,7 +36,7 @@ func _ready():
 
 func start():
 	var i = _rng.randi_range(0, colors.size() - 1)
-	_color_label.text = "Pop the %s balloon" % colors.keys()[i]
+	_color_label.text = COLOR_MESSAGE % colors.keys()[i]
 	search_color = colors.values()[i]
 	call_deferred("_spawn")
 
