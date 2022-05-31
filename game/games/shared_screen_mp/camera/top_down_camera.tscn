@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://games/shared_screen_mp/camera/top_down_camera.gd" type="Script" id=1]
+
+[node name="TopDownCamera" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Pivot" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.897197, -0.441631, 0, 0.441631, 0.897197, 0, 0, 0 )
+
+[node name="Camera" type="Camera" parent="Pivot"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0 )
+current = true

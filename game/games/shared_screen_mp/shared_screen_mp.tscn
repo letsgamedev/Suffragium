@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://games/shared_screen_mp/shared_screen_mp.gd" type="Script" id=1]
+[ext_resource path="res://games/shared_screen_mp/maps/test_map.tscn" type="PackedScene" id=2]
+[ext_resource path="res://games/shared_screen_mp/input_manager/input_manager.gd" type="Script" id=3]
+[ext_resource path="res://games/shared_screen_mp/camera/top_down_camera.tscn" type="PackedScene" id=4]
+
+[node name="SharedScreenMp" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="InputManager" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="TopDownCamera2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.11094, 0, 3.31958 )
+
+[node name="Map" parent="." instance=ExtResource( 2 )]
+
+[node name="Ui" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Help" type="VBoxContainer" parent="Ui"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -220.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = 48.0
+
+[node name="Join_Leave" type="Label" parent="Ui/Help"]
+margin_right = 212.0
+margin_bottom = 14.0
+text = "SELECT/SHARE to join/leave"
+align = 2
+valign = 1
+
+[node name="Controlls" type="Label" parent="Ui/Help"]
+margin_top = 18.0
+margin_right = 212.0
+margin_bottom = 32.0
+text = "WASD/DPad to move"
+align = 2
+valign = 1
