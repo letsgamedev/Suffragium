@@ -11,7 +11,7 @@ script = ExtResource( 1 )
 [node name="InputManager" type="Node" parent="."]
 script = ExtResource( 3 )
 
-[node name="TopDownCamera2" parent="." instance=ExtResource( 4 )]
+[node name="Camera" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.11094, 0, 3.31958 )
 
 [node name="Map" parent="." instance=ExtResource( 2 )]

@@ -9,5 +9,5 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 0.897197, -0.441631, 0, 0.441631, 0.897197, 0, 0, 0 )
 
 [node name="Camera" type="Camera" parent="Pivot"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 40, 0 )
 current = true

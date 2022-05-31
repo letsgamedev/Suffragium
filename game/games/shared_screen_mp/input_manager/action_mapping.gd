@@ -33,3 +33,13 @@ func find_button_action(button_index: int):
 			return "move_right"
 		_:
 			return ""
+
+
+func find_axis_action(axis: int):
+	match axis:
+		JOY_AXIS_0:
+			return ["move_right", "move_left"]
+		JOY_AXIS_1:
+			return ["move_down", "move_up"]
+		_:
+			return []

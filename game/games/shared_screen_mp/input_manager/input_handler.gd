@@ -45,7 +45,7 @@ func _on_action_just_released(action_name: String, value: float, device_id: int)
 			return
 	match action_name:
 		"menu":
-			print("close menu")
+			pass
 		"join_leave":
 			pass
 		"move_up":

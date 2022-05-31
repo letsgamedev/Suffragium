@@ -4,11 +4,11 @@ var player_pawns: Array = []
 
 
 func _ready():
-	add_player()  # spawn player one
+	add_player(-1)  # spawn player one
 
 
-func add_player(device_id: int = -1):
-	var pawn = spawn_pawn()
+func add_player(device_id: int, spawn_translation: Vector3 = Vector3(0, 0, 0)):
+	var pawn = spawn_pawn(spawn_translation)
 	pawn.input_handler.assigned_device_id = device_id
 	player_pawns.append(pawn)
 
@@ -22,7 +22,12 @@ func remove_player(pawn):
 	pawn.queue_free()
 
 
-func spawn_pawn():
+func spawn_pawn(spawn_translation: Vector3):
 	var pawn = load("res://games/shared_screen_mp/pawn/pawn.tscn").instance()
+	var offset_range: float = 0.2
+	var offset: Vector3 = Vector3(
+		rand_range(-offset_range, offset_range), 0, rand_range(-offset_range, offset_range)
+	)
+	pawn.translation = spawn_translation + offset
 	$Map.add_child(pawn)
 	return pawn
