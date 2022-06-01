@@ -1,15 +1,20 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://games/shared_screen_mp/shared_screen_mp.gd" type="Script" id=1]
 [ext_resource path="res://games/shared_screen_mp/maps/test_map.tscn" type="PackedScene" id=2]
 [ext_resource path="res://games/shared_screen_mp/input_manager/input_manager.gd" type="Script" id=3]
 [ext_resource path="res://games/shared_screen_mp/camera/top_down_camera.tscn" type="PackedScene" id=4]
+[ext_resource path="res://games/shared_screen_mp/network/network.gd" type="Script" id=5]
+[ext_resource path="res://games/shared_screen_mp/network/network_ui.tscn" type="PackedScene" id=6]
 
 [node name="SharedScreenMp" type="Spatial"]
 script = ExtResource( 1 )
 
 [node name="InputManager" type="Node" parent="."]
 script = ExtResource( 3 )
+
+[node name="Network" type="Node" parent="."]
+script = ExtResource( 5 )
 
 [node name="Camera" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.11094, 0, 3.31958 )
@@ -39,6 +44,8 @@ valign = 1
 margin_top = 18.0
 margin_right = 212.0
 margin_bottom = 32.0
-text = "WASD/DPad to move"
+text = "WASD/DPad/Left Stick to move"
 align = 2
 valign = 1
+
+[node name="NetworkUi" parent="Ui" instance=ExtResource( 6 )]

@@ -1,6 +1,8 @@
 extends Spatial
 
 var player_pawns: Array = []
+onready var input_manager = $InputManager
+onready var network = $Network
 
 
 func _ready():

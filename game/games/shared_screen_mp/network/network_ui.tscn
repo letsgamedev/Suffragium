@@ -1,0 +1,85 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://games/shared_screen_mp/network/network_ui.gd" type="Script" id=1]
+
+[node name="NetworkUi" type="Control"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 48.0
+margin_bottom = 48.0
+script = ExtResource( 1 )
+
+[node name="VBox" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="IpContainer" type="HBoxContainer" parent="VBox"]
+margin_right = 192.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="VBox/IpContainer"]
+margin_top = 3.0
+margin_right = 30.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 30, 0 )
+text = "IP"
+
+[node name="Ip" type="TextEdit" parent="VBox/IpContainer"]
+margin_left = 34.0
+margin_right = 154.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 120, 20 )
+text = "localhost"
+
+[node name="PortContainer" type="HBoxContainer" parent="VBox"]
+margin_top = 24.0
+margin_right = 192.0
+margin_bottom = 44.0
+
+[node name="Label" type="Label" parent="VBox/PortContainer"]
+margin_top = 3.0
+margin_right = 30.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 30, 0 )
+text = "Port"
+
+[node name="Port" type="TextEdit" parent="VBox/PortContainer"]
+margin_left = 34.0
+margin_right = 94.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 60, 20 )
+text = "1234"
+
+[node name="Buttons" type="HBoxContainer" parent="VBox"]
+margin_top = 48.0
+margin_right = 192.0
+margin_bottom = 68.0
+
+[node name="Host" type="Button" parent="VBox/Buttons"]
+margin_right = 42.0
+margin_bottom = 20.0
+text = "Host"
+
+[node name="Join" type="Button" parent="VBox/Buttons"]
+margin_left = 46.0
+margin_right = 81.0
+margin_bottom = 20.0
+text = "Join"
+
+[node name="Leave" type="Button" parent="VBox/Buttons"]
+margin_left = 85.0
+margin_right = 134.0
+margin_bottom = 20.0
+text = "Leave"
+
+[node name="Status" type="Label" parent="VBox/Buttons"]
+margin_left = 138.0
+margin_top = 3.0
+margin_right = 192.0
+margin_bottom = 17.0
+text = "offline"
+uppercase = true
+
+[connection signal="pressed" from="VBox/Buttons/Host" to="." method="_on_Host_pressed"]
+[connection signal="pressed" from="VBox/Buttons/Join" to="." method="_on_Join_pressed"]
+[connection signal="pressed" from="VBox/Buttons/Leave" to="." method="_on_Leave_pressed"]
