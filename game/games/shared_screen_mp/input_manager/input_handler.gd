@@ -1,12 +1,16 @@
 extends Node
 
+## Listens for relevant action signals from InputManager.
+
+# If -1, than listen to keyboard/mouse actions and all unassigned joypads.
+# If 0 and up, listen only to one joypad
 var assigned_device_id: int = -1
 var move_up: float = 0.0
 var move_down: float = 0.0
 var move_left: float = 0.0
 var move_right: float = 0.0
 var move_direction: Vector2 = Vector2.ZERO setget , _get_move_direction
-onready var main = get_tree().current_scene
+onready var _main = get_tree().current_scene
 
 
 func _get_move_direction():
@@ -14,8 +18,8 @@ func _get_move_direction():
 
 
 func _ready():
-	main.get_node("InputManager").connect("action_just_pressed", self, "_on_action_just_pressed")
-	main.get_node("InputManager").connect("action_just_released", self, "_on_action_just_released")
+	_main.get_node("InputManager").connect("action_just_pressed", self, "_on_action_just_pressed")
+	_main.get_node("InputManager").connect("action_just_released", self, "_on_action_just_released")
 
 
 func _on_action_just_pressed(action_name: String, value: float, device_id: int):
@@ -61,7 +65,7 @@ func _on_action_just_released(action_name: String, value: float, device_id: int)
 
 
 func _is_device_id_assigned(device_id: int) -> bool:
-	for player_pawn in main.player_manager.local_player_pawns:
+	for player_pawn in _main.player_manager.local_player_pawns:
 		if player_pawn.input_handler.assigned_device_id == device_id:
 			return true
 	return false
@@ -69,6 +73,6 @@ func _is_device_id_assigned(device_id: int) -> bool:
 
 func _join_leave(device_id: int):
 	if !_is_device_id_assigned(device_id):
-		main.player_manager.add_player(device_id)
+		_main.player_manager.add_player(device_id)
 	elif device_id == assigned_device_id:
-		main.player_manager.remove_player(get_parent())
+		_main.player_manager.remove_player(get_parent())

@@ -1,8 +1,10 @@
 extends KinematicBody
 
+## All player or ai controlled character/creatures inherit from this scene
+
 var color: Color = Color(0, 0, 0, 1) setget set_color, get_color
 var speed: float = 5.0
-onready var main = get_tree().current_scene
+onready var _main = get_tree().current_scene
 onready var input_handler = $InputHandler
 
 
@@ -25,12 +27,15 @@ func _process(_delta):
 # warning-ignore:return_value_discarded
 	move_and_slide(move_velocity, Vector3(0, 1, 0))
 
-	if main.network.is_own_pawn(self):
+	if _main.network.is_own_pawn(self):
 		rpc_unreliable("update_translation", translation)
-
-
-#		rset_unreliable("translation", translation)
 
 
 puppet func update_translation(_translation: Vector3):
 	translation = _translation
+
+
+func get_info() -> Dictionary:
+	return {
+		"color": get_color(),
+	}

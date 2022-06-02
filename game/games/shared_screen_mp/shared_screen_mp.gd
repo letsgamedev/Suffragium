@@ -12,7 +12,16 @@ func _ready():
 
 
 func load_map(map_name: String):
-	assert(map_name != "")
+	assert(map_name != "", "map_name is empty")
 	var map = load("res://games/shared_screen_mp/maps/" + map_name + ".tscn").instance()
 	map.name = "Map"
 	add_child(map)
+
+
+func close():
+	network.leave()
+	GameManager.end_game("")
+
+
+func _on_Close_pressed():
+	close()

@@ -1,4 +1,7 @@
 extends Node
+
+## Basic functionality for networking.
+
 signal peer_connected(id)
 signal peer_disconnected(id)
 signal connection_succeeded

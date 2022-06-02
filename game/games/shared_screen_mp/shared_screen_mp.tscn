@@ -52,3 +52,14 @@ align = 2
 valign = 1
 
 [node name="NetworkUi" parent="Ui" instance=ExtResource( 6 )]
+
+[node name="Close" type="Button" parent="Ui"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -23.5
+margin_top = 8.0
+margin_right = 23.5
+margin_bottom = 28.0
+text = "Close"
+
+[connection signal="pressed" from="Ui/Close" to="." method="_on_Close_pressed"]
