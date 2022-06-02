@@ -23,6 +23,9 @@ hue_variation_random = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
@@ -61,5 +64,4 @@ amount = 80
 one_shot = true
 explosiveness = 0.64
 process_material = SubResource( 1 )
-
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]

@@ -8,8 +8,14 @@ margin_right = 1024.0
 margin_bottom = 1024.0
 rect_scale = Vector2( 0.1, 0.1 )
 texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="String" type="TextureRect" parent="."]
 modulate = Color( 0.423529, 0.423529, 0.423529, 1 )
 show_behind_parent = true
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

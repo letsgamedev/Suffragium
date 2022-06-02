@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/balloon.png-a4cb4cec73bb2954300b057639860f49.stex"
+path="res://.import/walls.png-a03fbcc9e4a0d09913b67efd4fc6c1fc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://games/testgame/balloon.png"
-dest_files=[ "res://.import/balloon.png-a4cb4cec73bb2954300b057639860f49.stex" ]
+source_file="res://games/flappybird/walls.png"
+dest_files=[ "res://.import/walls.png-a03fbcc9e4a0d09913b67efd4fc6c1fc.stex" ]
 
 [params]
 

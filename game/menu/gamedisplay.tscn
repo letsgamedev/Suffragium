@@ -7,6 +7,9 @@ margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 200, 250 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Panel" type="Panel" parent="."]
 margin_right = 200.0
@@ -97,5 +100,4 @@ margin_right = 254.0
 margin_bottom = 92.0
 rect_min_size = Vector2( 200, 50 )
 size_flags_vertical = 3
-
 [connection signal="pressed" from="VBoxContainer/loadbutton" to="." method="_on_loadbutton_pressed"]
