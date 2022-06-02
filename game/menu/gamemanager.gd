@@ -60,7 +60,7 @@ func _find_games():
 				var err := _load_game_cfg_file(game_path)
 				if err != OK:
 					prints("Error loading game cfg:", err)
-			
+
 			file_name = dir.get_next()
 
 

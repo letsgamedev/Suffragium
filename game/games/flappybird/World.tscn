@@ -52,6 +52,7 @@ margin_bottom = -72.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="area_entered" from="PlayerNode/Player/Hitbox" to="PlayerNode/Player" method="_on_Hitbox_area_entered"]
 [connection signal="body_entered" from="PlayerNode/Player/Hitbox" to="PlayerNode/Player" method="_on_Hitbox_body_entered"]
 [connection signal="body_entered" from="PlayerNode/Player/Reset" to="PlayerNode/Player" method="_on_Reset_body_entered"]
