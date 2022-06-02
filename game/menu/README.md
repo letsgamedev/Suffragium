@@ -1,16 +1,6 @@
-# Infos for making Minigames
+# Info for Contributers
 
-## usefull functions
-* **`end_game(message:String="", _status=null)`** <br>
-  Ends the game and displays the message. This behaviour will change in the future.<br>
-  `_status` isn't used at the moment. It is meant for the score the player achived.
-* `load_game(game_cfg:ConfigFile)` <br>
-  Loads the game specified by the config file.
-
-
-# Infos for Contributers
-
-## Gamemanager
+## GameManager
 The Gamemanager keeps track of all minigames and starts/stops them when needed.
 It also has a rudimentary game selection menu that uses the Gamedisplays.
 
@@ -20,13 +10,13 @@ It has a button to load the game & a popup for more detailed infos but no logic 
 
 
 # API
-## Gamemanager
+## GameManager
 
 * **`load_game(game_cfg:ConfigFile)`** <br>
   Loads the game specified by the config file.
 
 * **`end_game(message:String="", _status=null)`** <br>
-  Ends the game and displays the message. This behaviour will change in the future.<br>
+  Ends the game and displays `message`. This behaviour will change in the future.<br>
   `_status` isn't used at the moment. It is meant for the score the player achived.
 
 * **`_build_menu()`** <br>
