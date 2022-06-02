@@ -21,6 +21,7 @@ func _on_Host_pressed():
 
 func _on_Join_pressed():
 	_connect_net_signals()
+	status.text = "connecting ..."
 	main.network.join(ip_node.text, int(port_node.text))
 
 

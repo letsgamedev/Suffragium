@@ -6,13 +6,26 @@ enum Direction { UP, DOWN, LEFT, RIGHT }
 
 const ACTION_MAPPING_PATH: String = "res://games/shared_screen_mp/input_manager/action_mapping.gd"
 
+var disable_input: bool = false
+
 var joypad_deadzone: float = 0.2
 var joypad_stick_left_reseted: Array = [true, true, true, true]
 
 onready var action_mapping = preload(ACTION_MAPPING_PATH).new()
 
 
+# Disable input when window out of focus, for network debuging.
+func _notification(what):
+	match what:
+		NOTIFICATION_WM_FOCUS_OUT:
+			disable_input = true
+		NOTIFICATION_WM_FOCUS_IN:
+			disable_input = false
+
+
 func _input(event):
+	if disable_input:
+		return
 	if event is InputEventMouseMotion:
 		return
 

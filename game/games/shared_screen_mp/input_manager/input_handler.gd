@@ -61,7 +61,7 @@ func _on_action_just_released(action_name: String, value: float, device_id: int)
 
 
 func _is_device_id_assigned(device_id: int) -> bool:
-	for player_pawn in main.player_pawns:
+	for player_pawn in main.player_manager.local_player_pawns:
 		if player_pawn.input_handler.assigned_device_id == device_id:
 			return true
 	return false
@@ -69,6 +69,6 @@ func _is_device_id_assigned(device_id: int) -> bool:
 
 func _join_leave(device_id: int):
 	if !_is_device_id_assigned(device_id):
-		main.add_player(device_id)
+		main.player_manager.add_player(device_id)
 	elif device_id == assigned_device_id:
-		main.remove_player(get_parent())
+		main.player_manager.remove_player(get_parent())
