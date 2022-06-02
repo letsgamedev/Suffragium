@@ -3,7 +3,7 @@ Please select the type of issue you are reporting:
 - [ ] Feature Request
 - [ ] Bug Report
 
-Please describe your issue:
+Please describe your issue or feature request:
 
 # Failure Information (for Bugs only)
 ## Steps to reproduce the issue
