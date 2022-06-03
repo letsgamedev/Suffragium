@@ -8,7 +8,7 @@ Related to # (issue)
 ## Type of change
 - [ ] Bug fix (non breaking change that fixes an issue)
 - [ ] New feature (non breaking change that adds functionality)
-- [ ] Tooling (non breaking change that adds funktionality to the workflow)
+- [ ] Tooling (non breaking change that adds functionality to the workflow)
 - [ ] Breaking change (fix or feature that causes existing functionality to not work as expected)
 
 ## Environment
