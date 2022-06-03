@@ -30,7 +30,7 @@ It will always contain all required and optional settings clearly marked.
   * Put your name here. Has no effect.<br>
     `creator="ASecondGuy"` <br>
 
-# Usefull functions
+# Useful functions
 * **`end_game(message:String="", _status=null)`** <br>
   Ends the game and displays the message. This behaviour will change in the future.<br>
   `_status` isn't used at the moment. It is meant for the score the player achived.
