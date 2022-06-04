@@ -1,8 +1,11 @@
 extends StaticBody2D
 
+const MOVEMENT_VECTOR = Vector2(-120, 0)
+
 
 func _ready():
-	pass 
+	pass
+
 
 func _physics_process(delta):
-	position += Vector2(-2, 0)
+	position += delta * MOVEMENT_VECTOR
