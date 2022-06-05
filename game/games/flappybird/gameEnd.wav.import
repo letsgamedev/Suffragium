@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/gameEnd.wav-dc8c22a6eabadf8c62c25d84950e9048.sample"
+
+[deps]
+
+source_file="res://games/flappybird/gameEnd.wav"
+dest_files=[ "res://.import/gameEnd.wav-dc8c22a6eabadf8c62c25d84950e9048.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
