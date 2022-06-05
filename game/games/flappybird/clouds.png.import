@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background.png-d10d70b6a4e26f9fc0f62cebd2ceb622.stex"
+path="res://.import/clouds.png-a1768ae14cfca2bae04fddf5af9f6dee.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://games/flappybird/background.png"
-dest_files=[ "res://.import/background.png-d10d70b6a4e26f9fc0f62cebd2ceb622.stex" ]
+source_file="res://games/flappybird/clouds.png"
+dest_files=[ "res://.import/clouds.png-a1768ae14cfca2bae04fddf5af9f6dee.stex" ]
 
 [params]
 
