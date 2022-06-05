@@ -2,7 +2,7 @@
 
 [ext_resource path="res://games/flappybird/bird.png" type="Texture" id=1]
 [ext_resource path="res://games/flappybird/Player.gd" type="Script" id=2]
-[ext_resource path="res://games/flappybird/background.jpg" type="Texture" id=3]
+[ext_resource path="res://games/flappybird/background.png" type="Texture" id=3]
 [ext_resource path="res://games/flappybird/jump.wav" type="AudioStream" id=4]
 [ext_resource path="res://games/flappybird/passWall.wav" type="AudioStream" id=5]
 [ext_resource path="res://games/flappybird/gameEnd.wav" type="AudioStream" id=6]
@@ -20,7 +20,7 @@ extents = Vector2( 10, 112 )
 
 [node name="background" type="Sprite" parent="."]
 position = Vector2( 0.918718, -1.59513 )
-scale = Vector2( 0.661601, 0.646783 )
+scale = Vector2( 0.819991, 0.717778 )
 texture = ExtResource( 3 )
 
 [node name="PlayerNode" type="Node2D" parent="."]
