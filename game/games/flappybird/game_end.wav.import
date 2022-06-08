@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/jump.wav-05a4dc414bd11e985728ce8cc67f0391.sample"
+path="res://.import/game_end.wav-3f3ca88d99102705db62d673f0decb72.sample"
 
 [deps]
 
-source_file="res://games/flappybird/jump.wav"
-dest_files=[ "res://.import/jump.wav-05a4dc414bd11e985728ce8cc67f0391.sample" ]
+source_file="res://games/flappybird/game_end.wav"
+dest_files=[ "res://.import/game_end.wav-3f3ca88d99102705db62d673f0decb72.sample" ]
 
 [params]
 

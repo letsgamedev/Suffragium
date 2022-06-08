@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/UpperWall.png-91c9b034f793aac87efa9f2ce6ec36a0.stex"
+path="res://.import/upper_wall.png-20d13502ffbe80f125fee572854363fd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://games/flappybird/UpperWall.png"
-dest_files=[ "res://.import/UpperWall.png-91c9b034f793aac87efa9f2ce6ec36a0.stex" ]
+source_file="res://games/flappybird/upper_wall.png"
+dest_files=[ "res://.import/upper_wall.png-20d13502ffbe80f125fee572854363fd.stex" ]
 
 [params]
 

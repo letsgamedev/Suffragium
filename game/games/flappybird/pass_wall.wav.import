@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/gameEnd.wav-dc8c22a6eabadf8c62c25d84950e9048.sample"
+path="res://.import/pass_wall.wav-9202aa987429a3a693b800174359633d.sample"
 
 [deps]
 
-source_file="res://games/flappybird/gameEnd.wav"
-dest_files=[ "res://.import/gameEnd.wav-dc8c22a6eabadf8c62c25d84950e9048.sample" ]
+source_file="res://games/flappybird/pass_wall.wav"
+dest_files=[ "res://.import/pass_wall.wav-9202aa987429a3a693b800174359633d.sample" ]
 
 [params]
 
