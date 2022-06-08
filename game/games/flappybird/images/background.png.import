@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/LowerWall.png-bc8e10198f0f014c7b7b849bd0348e63.stex"
+path="res://.import/background.png-e4c756ceca0c88f2bf286be5f2aa5849.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://games/flappybird/LowerWall.png"
-dest_files=[ "res://.import/LowerWall.png-bc8e10198f0f014c7b7b849bd0348e63.stex" ]
+source_file="res://games/flappybird/images/background.png"
+dest_files=[ "res://.import/background.png-e4c756ceca0c88f2bf286be5f2aa5849.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=1
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false

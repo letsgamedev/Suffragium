@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/game_end.wav-cd3623a9689433d32303d6dc9a5d8201.sample"
+
+[deps]
+
+source_file="res://games/flappybird/sounds/sfx/game_end.wav"
+dest_files=[ "res://.import/game_end.wav-cd3623a9689433d32303d6dc9a5d8201.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

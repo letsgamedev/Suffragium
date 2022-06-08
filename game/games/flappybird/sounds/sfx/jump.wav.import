@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/passWall.wav-1022b367adeff96d546c1d95331c3c4a.sample"
+path="res://.import/jump.wav-2ee27a721f22ba0cc2bf9e4b496d601c.sample"
 
 [deps]
 
-source_file="res://games/flappybird/passWall.wav"
-dest_files=[ "res://.import/passWall.wav-1022b367adeff96d546c1d95331c3c4a.sample" ]
+source_file="res://games/flappybird/sounds/sfx/jump.wav"
+dest_files=[ "res://.import/jump.wav-2ee27a721f22ba0cc2bf9e4b496d601c.sample" ]
 
 [params]
 
