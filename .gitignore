@@ -10,3 +10,6 @@ data_*/
 # OS-specific ignores
 .DS_Store
 Thumbs.db
+
+# Blender
+*.blend1
