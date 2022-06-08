@@ -15,6 +15,21 @@ onready var input_map = $"../../".input_map as Dictionary
 onready var _pedestals = $"../Pedestals"
 
 
+func set_player_colors_on_ground_plane():
+	var ground_material: ShaderMaterial = $"../Map/Mesh".mesh.surface_get_material(0)
+	# Set the colors of the floor grid lines based on the player colors
+	for i in range(len(player_colors)):
+		var color: Color = player_colors[i]
+		var is_color_used = player_count > i
+		if not is_color_used:
+			# Desaturate and lighten quadrants on map, that are not used by a player
+			color = Color.from_hsv(color.h, color.s * 0.4, color.v * 1.2, color.a)
+		else:
+			# Slightly desaturate grid lines to avoid drawing to much attention away
+			color = Color.from_hsv(color.h, color.s * 0.8, color.v, color.a)
+		ground_material.set_shader_param("player_color_" + str(i), color)
+
+
 func spawn_players():
 	# First dissable all pedestals
 	for pedestal in _pedestals.get_children():
@@ -39,6 +54,7 @@ func spawn_players():
 		player_pedestals.set_color(player_color)
 		# Only enable pedestals, that are assigned to a player
 		player_pedestals.enable()
+	set_player_colors_on_ground_plane()
 
 
 # Returns the best player index and the highest score

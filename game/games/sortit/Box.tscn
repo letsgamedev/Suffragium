@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://games/sortit/box.gd" type="Script" id=1]
-[ext_resource path="res://games/sortit/assets/Box Color.material" type="Material" id=2]
-[ext_resource path="res://games/sortit/assets/Box Body.material" type="Material" id=3]
+[ext_resource path="res://games/sortit/assets/materials/Box Color.material" type="Material" id=2]
+[ext_resource path="res://games/sortit/assets/materials/Box Body.material" type="Material" id=3]
 
 [sub_resource type="SpatialMaterial" id=6]
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://games/sortit/pedestal.gd" type="Script" id=1]
-[ext_resource path="res://games/sortit/assets/Pedestal Accent.material" type="Material" id=2]
-[ext_resource path="res://games/sortit/assets/Pedestal.material" type="Material" id=3]
-[ext_resource path="res://games/sortit/assets/Pedestal Screen.material" type="Material" id=4]
+[ext_resource path="res://games/sortit/assets/materials/Pedestal Accent.material" type="Material" id=2]
+[ext_resource path="res://games/sortit/assets/materials/Pedestal.material" type="Material" id=3]
+[ext_resource path="res://games/sortit/assets/materials/Pedestal Screen.material" type="Material" id=4]
 
 [sub_resource type="SpatialMaterial" id=11]
 params_billboard_mode = 3
