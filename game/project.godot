@@ -8,6 +8,34 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "RigidBody",
+"class": "Box",
+"language": "GDScript",
+"path": "res://games/sortit/box.gd"
+}, {
+"base": "StaticBody",
+"class": "SortItPedestal",
+"language": "GDScript",
+"path": "res://games/sortit/pedestal.gd"
+}, {
+"base": "KinematicBody",
+"class": "SortItPlayer",
+"language": "GDScript",
+"path": "res://games/sortit/player.gd"
+}, {
+"base": "MarginContainer",
+"class": "SortItRoot",
+"language": "GDScript",
+"path": "res://games/sortit/sortIt.gd"
+} ]
+_global_script_class_icons={
+"Box": "",
+"SortItPedestal": "",
+"SortItPlayer": "",
+"SortItRoot": ""
+}
+
 [application]
 
 config/name="Suffragium"
@@ -18,10 +46,15 @@ config/icon="res://icon.png"
 
 GameManager="*res://menu/gamemanager.tscn"
 
+[global]
+
+control=false
+
 [physics]
 
 common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/directional_shadow/size=8192
 environment/default_environment="res://default_env.tres"

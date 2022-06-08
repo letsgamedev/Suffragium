@@ -1,0 +1,221 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://shared/fonts/Roboto-Black.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://games/sortit/ui/PlayerSelect.tscn" type="PackedScene" id=2]
+[ext_resource path="res://games/sortit/ui/player_selector.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.156863, 0.176471, 0.239216, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxEmpty" id=17]
+
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0.419608, 0.537255, 0.894118, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 0.0
+bg_color = Color( 0.419608, 0.537255, 0.894118, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.219608, 0.392157, 0.909804, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 3.0
+expand_margin_right = 3.0
+
+[sub_resource type="DynamicFont" id=11]
+size = 25
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="Theme" id=7]
+Button/colors/font_color = Color( 1, 1, 1, 1 )
+Button/colors/font_color_focus = Color( 1, 1, 1, 1 )
+Button/colors/font_color_hover = Color( 1, 1, 1, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/fonts/font = SubResource( 1 )
+Button/styles/disabled = SubResource( 2 )
+Button/styles/focus = SubResource( 17 )
+Button/styles/hover = SubResource( 18 )
+Button/styles/normal = SubResource( 5 )
+Button/styles/pressed = SubResource( 6 )
+Label/fonts/font = SubResource( 11 )
+PanelContainer/styles/panel = SubResource( 13 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.117647, 0.117647, 0.141176, 1 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=19]
+
+[sub_resource type="StyleBoxEmpty" id=20]
+
+[sub_resource type="StyleBoxEmpty" id=21]
+
+[sub_resource type="DynamicFont" id=9]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.894118, 0.419608, 0.419608, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 3.0
+expand_margin_right = 3.0
+
+[node name="PlayerSelector" type="PanelContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 7 )
+custom_styles/panel = SubResource( 8 )
+script = ExtResource( 3 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 590.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_right = 1004.0
+margin_bottom = 36.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 12 )
+text = "Setup Players"
+align = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 40.0
+margin_right = 1004.0
+margin_bottom = 545.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 100
+custom_constants/margin_top = 10
+custom_constants/margin_left = 100
+custom_constants/margin_bottom = -20
+
+[node name="Players" type="GridContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 100.0
+margin_top = 10.0
+margin_right = 904.0
+margin_bottom = 525.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 20
+custom_constants/hseparation = 20
+columns = 2
+
+[node name="Player 1" parent="MarginContainer/VBoxContainer/MarginContainer/Players" instance=ExtResource( 2 )]
+get_input = true
+display = true
+
+[node name="Player 2" parent="MarginContainer/VBoxContainer/MarginContainer/Players" instance=ExtResource( 2 )]
+margin_left = 412.0
+margin_right = 804.0
+custom_styles/panel = SubResource( 19 )
+
+[node name="Player 3" parent="MarginContainer/VBoxContainer/MarginContainer/Players" instance=ExtResource( 2 )]
+margin_top = 267.0
+margin_bottom = 514.0
+custom_styles/panel = SubResource( 20 )
+
+[node name="Player 4" parent="MarginContainer/VBoxContainer/MarginContainer/Players" instance=ExtResource( 2 )]
+margin_left = 412.0
+margin_top = 267.0
+margin_right = 804.0
+margin_bottom = 514.0
+custom_styles/panel = SubResource( 21 )
+
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 549.0
+margin_right = 1004.0
+margin_bottom = 580.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Buttons"]
+margin_right = 500.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer"]
+visible = false
+margin_right = 45.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 80, 0 )
+custom_fonts/font = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+text = "Back"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Buttons"]
+margin_left = 504.0
+margin_right = 1004.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer2"]
+margin_left = 420.0
+margin_right = 500.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 80, 0 )
+disabled = true
+text = "Play"
+
+[connection signal="button_up" from="MarginContainer/VBoxContainer/Buttons/HBoxContainer/BackButton" to="." method="_on_back_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/Buttons/HBoxContainer2/PlayButton" to="." method="_on_play_button_up"]
