@@ -24,10 +24,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://games/sortit/player.gd"
 }, {
-"base": "MarginContainer",
+"base": "Reference",
 "class": "SortItRoot",
 "language": "GDScript",
-"path": "res://games/sortit/sortIt.gd"
+"path": "res://games/sortit/sort_it.gd"
 } ]
 _global_script_class_icons={
 "Box": "",
@@ -56,5 +56,4 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-quality/directional_shadow/size=8192
 environment/default_environment="res://default_env.tres"
