@@ -2,11 +2,15 @@ extends MarginContainer
 
 signal pressed(game_file)
 
-var game_file: ConfigFile
+class_name GameDisplay
 
+var game_file: ConfigFile
+var loadbtn: Button
+var loadbtn2: Button
 
 func setup(game_cfg: ConfigFile):
 	game_file = game_cfg
+	loadbtn2 = $VBoxContainer/loadbutton
 
 	$VBoxContainer/Label.text = game_cfg.get_value("game", "name")
 	$VBoxContainer/RichTextLabel.bbcode_text = game_cfg.get_value("game", "desc")
@@ -20,10 +24,10 @@ func setup(game_cfg: ConfigFile):
 
 	#setup of info Dialog
 	##setup buttons
-	$InfoButton.connect("pressed", $InfoDialog, "popup_centered_minsize", [Vector2(500, 250)])
-	var loadbtn = $InfoDialog.add_button("load")
-	loadbtn.connect("pressed", $InfoDialog, "hide")
-	loadbtn.connect("pressed", self, "_on_loadbutton_pressed")
+	_handle_error($InfoButton.connect("pressed", $InfoDialog, "popup_centered_minsize", [Vector2(500, 250)]))
+	loadbtn = $InfoDialog.add_button("load")
+	_handle_error(loadbtn.connect("pressed", $InfoDialog, "hide"))
+	_handle_error(loadbtn.connect("pressed", self, "_on_loadbutton_pressed"))
 	##setup text
 	$InfoDialog/Container/Label.text = game_cfg.get_value("game", "name")
 	$InfoDialog/Container/TextureRect.texture = icon
@@ -34,5 +38,15 @@ func setup(game_cfg: ConfigFile):
 	$InfoDialog/Container/descCont/Statslab.text = text
 
 
+func disable():
+	loadbtn.disabled = true
+	loadbtn2.disabled = true
+
+# TODO: Maybe put this somewhere more central for reuse or smth
+func _handle_error(err):
+	if err != OK:
+		prints("Error", err)
+		return
+
 func _on_loadbutton_pressed():
-	emit_signal("pressed", game_file)
+	emit_signal("pressed", game_file, self)
