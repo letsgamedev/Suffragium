@@ -1,7 +1,7 @@
 # Information for Contributers
 
 ## GameManager
-The Gamemanager keeps track of all minigames and starts/stops them when needed.  
+The GameManager keeps track of all minigames and starts/stops them when needed.  
 It also has a rudimentary game selection menu that uses the Gamedisplays.  
 
 ## GameDisplay
