@@ -30,7 +30,7 @@ It has a button to load the game & a popup for more detailed infos but no logic 
     Loads any config file into `_games`.  
     Any valid .cfg will be loaded. There are no checks to prevent incorect data from loading.  
 
-## Gamedisplay
+## GameDisplay
 * signal **`pressed(game_file)`**  
     Is emitted when any load buttons of the display are pressed.  
     `game_file` is the config used when setup was called.  
