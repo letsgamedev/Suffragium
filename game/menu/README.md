@@ -2,10 +2,10 @@
 
 ## GameManager
 The GameManager keeps track of all minigames and starts/stops them when needed.  
-It also has a rudimentary game selection menu that uses the Gamedisplays.  
+It also has a rudimentary game selection menu that uses the GameDisplays.  
 
 ## GameDisplay
-Is used my the Gamemanagers game menu to show what the game is about.  
+Is used my the GameManagers game menu to show what the game is about.  
 It has a button to load the game & a popup for more detailed infos but no logic beyond that.  
 
 
@@ -20,10 +20,10 @@ It has a button to load the game & a popup for more detailed infos but no logic 
   `_status` isn't used at the moment. It is meant for the score the player achived.  
 
 * **`_build_menu()`**  
-  Creates a menu using Gamedisplays for the cached `game.cfg` files in `_games`  
+  Creates a menu using GameDisplays for the cached `game.cfg` files in `_games`  
 
 * **`_find_games()`**   
-  Searches every folder inside "res://games/" for files called `game.cfg` and caches them in   `_games` using `_load_game_cfg_file()`.  
+  Searches every folder inside "res://games/" for files called `game.cfg` and caches them in `_games` using `_load_game_cfg_file()`.  
   `_games` is cleared at the start.  
 
 * **`_load_game_cfg_file(path: String)`**  
