@@ -1,8 +1,10 @@
+class_name GameDisplay
+
 extends MarginContainer
 
-signal pressed(game_file)
-
 var game_file: ConfigFile
+onready var _load_btn_main: Button = $VBoxContainer/loadbutton
+onready var _load_btn_dialog: Button = $InfoDialog.add_button("load")
 
 
 func setup(game_cfg: ConfigFile):
@@ -20,10 +22,12 @@ func setup(game_cfg: ConfigFile):
 
 	#setup of info Dialog
 	##setup buttons
-	$InfoButton.connect("pressed", $InfoDialog, "popup_centered_minsize", [Vector2(500, 250)])
-	var loadbtn = $InfoDialog.add_button("load")
-	loadbtn.connect("pressed", $InfoDialog, "hide")
-	loadbtn.connect("pressed", self, "_on_loadbutton_pressed")
+	_handle_error(
+		$InfoButton.connect("pressed", $InfoDialog, "popup_centered_minsize", [Vector2(500, 250)])
+	)
+
+	_handle_error(_load_btn_dialog.connect("pressed", $InfoDialog, "hide"))
+	_handle_error(_load_btn_dialog.connect("pressed", self, "_on_loadbutton_pressed"))
 	##setup text
 	$InfoDialog/Container/Label.text = game_cfg.get_value("game", "name")
 	$InfoDialog/Container/TextureRect.texture = icon
@@ -34,5 +38,18 @@ func setup(game_cfg: ConfigFile):
 	$InfoDialog/Container/descCont/Statslab.text = text
 
 
+func disable():
+	_load_btn_main.disabled = true
+	_load_btn_dialog.disabled = true
+
+
+# TODO: Maybe put this somewhere more central for reuse or smth
+func _handle_error(err):
+	if err != OK:
+		prints("Error", err)
+		return
+
+
 func _on_loadbutton_pressed():
-	emit_signal("pressed", game_file)
+	if GameManager.load_game(game_file)!=OK:
+		disable()

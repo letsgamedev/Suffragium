@@ -14,18 +14,30 @@ func _ready():
 
 func load_game(game_cfg: ConfigFile):
 	# load the games main scene
-	var scene = load(game_cfg.get_meta("folder_path") + game_cfg.get_value("game", "main_scene"))
+	var folder = game_cfg.get_meta("folder_path")
+	var main = game_cfg.get_value("game", "main_scene")
+	var scene = load(folder + main)
+
+	if scene == null:
+		# TODO: Error handling could be better
+		prints("Error: Game should specify correct main_scene, but was: ", folder, main)
+		return ERR_FILE_BAD_PATH
 
 	var err := get_tree().change_scene_to(scene)
 	if err != OK:
 		prints("Error", err)
-		return
+		return err
 	_main.hide()
+	return OK
 
 
 # return to the level select
 func end_game(message := "", _status = null):
-	get_tree().change_scene("res://menu/emptySzene.tscn")
+	var err = get_tree().change_scene("res://menu/emptySzene.tscn")
+	if err != OK:
+		prints("Error", err)
+		return
+
 	_main.show()
 	# this behavior is subject to change
 	if !message.empty():
@@ -41,9 +53,8 @@ func _build_menu():
 	#making the buttons
 	for game in _games:
 		var display = _preview_scene.instance()
-		display.setup(game)
-		display.connect("pressed", self, "load_game")
 		_grid.add_child(display)
+		display.setup(game)
 
 
 # go through every folder inside res://games/ and try to load the game.cfg into _games
