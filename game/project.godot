@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "SortItRoot",
 "language": "GDScript",
 "path": "res://games/sortit/sort_it.gd"
+}, {
+"base": "MarginContainer",
+"class": "GameDisplay",
+"language": "GDScript",
+"path": "res://menu/gamedisplay.gd"
 } ]
 _global_script_class_icons={
 "Box": "",
 "SortItPedestal": "",
 "SortItPlayer": "",
-"SortItRoot": ""
+"SortItRoot": "",
+"GameDisplay": ""
 }
 
 [application]
