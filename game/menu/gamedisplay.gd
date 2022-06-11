@@ -11,23 +11,26 @@ func setup(game_cfg: ConfigFile):
 	game_file = game_cfg
 
 	$VBoxContainer/Label.text = game_cfg.get_value("game", "name")
-	$VBoxContainer/RichTextLabel.bbcode_text = game_cfg.get_value("game", "desc")
+	update_text()
 
-	var icon: Texture = load(
-		str(game_cfg.get_meta("folder_path"), game_cfg.get_value("game", "icon"))
+	var icon_path = (
+		GameManager.GAME_FILE
+		% [game_cfg.get_meta("folder_name"), game_cfg.get_value("game", "icon")]
 	)
+	var icon: Texture = load(icon_path)
 	if icon == null:
+		prints("Game icon with path '", icon_path, "' could not be found.")
 		icon = load("res://icon.png")
 	$VBoxContainer/TextureRect.texture = icon
 
 	#setup of info Dialog
 	##setup buttons
-	_handle_error(
+	GameManager.handle_error(
 		$InfoButton.connect("pressed", $InfoDialog, "popup_centered_minsize", [Vector2(500, 250)])
 	)
 
-	_handle_error(_load_btn_dialog.connect("pressed", $InfoDialog, "hide"))
-	_handle_error(_load_btn_dialog.connect("pressed", self, "_on_loadbutton_pressed"))
+	GameManager.handle_error(_load_btn_dialog.connect("pressed", $InfoDialog, "hide"))
+	GameManager.handle_error(_load_btn_dialog.connect("pressed", self, "_on_loadbutton_pressed"))
 	##setup text
 	$InfoDialog/Container/Label.text = game_cfg.get_value("game", "name")
 	$InfoDialog/Container/TextureRect.texture = icon
@@ -43,11 +46,22 @@ func disable():
 	_load_btn_dialog.disabled = true
 
 
-# TODO: Maybe put this somewhere more central for reuse or smth
-func _handle_error(err):
-	if err != OK:
-		prints("Error", err)
-		return
+func update_text():
+	var game_id = game_file.get_meta("folder_name")
+	var text = game_file.get_value("game", "desc")
+
+	text += ("\n\nPlayed: %.3f s" % GameManager.get_played_time(game_id))
+
+	var last_played = GameManager.get_last_played(game_id)
+	if last_played != null:
+		text += "\nLast played: %s" % last_played
+
+	var high_score = GameManager.get_high_score(game_id)
+	if high_score != null:
+		text += "\nHighscore: %d" % high_score
+
+	# update the high_score displayed in $VBoxContainer/RichTextLabel
+	$VBoxContainer/RichTextLabel.bbcode_text = text
 
 
 func _on_loadbutton_pressed():

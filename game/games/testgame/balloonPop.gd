@@ -1,9 +1,8 @@
-# warning-ignore-all:return_value_discarded
 extends MarginContainer
 
-const END_MESSAGE := "You got %s points!"
+const END_MESSAGE := "You got %d points!"
 const COLOR_MESSAGE := "Pop a %s balloon"
-const STATUS_MESSAGE := "You'r in stage %s/10 and have %s points!"
+const STATUS_MESSAGE := "You're in stage %d/10 and have %s points! (Your highscore is: %d)"
 
 var balloon_scene := preload("res://games/testgame/balloon.tscn")
 
@@ -31,6 +30,13 @@ onready var _particles := $VBoxContainer/Particles2D
 
 func _ready():
 	_rng.randomize()
+	### start --- Data saving demo ---
+	# var data = GameManager.get_game_data()
+	# print("Loaded: ", data["num"] if "num" in data else null)
+	# data["num"] = _rng.randi()
+	# print("Saved: ", data["num"])
+	# GameManager.end_game("", -data["num"])  # end game here to quickly test saving
+	#### end  --- Data saving demo ---
 	start()
 
 
@@ -107,10 +113,13 @@ func _delete_all():
 # timer leaves a little time between stage end and the next stage start or game end
 func _on_RespawnTimer_timeout():
 	if stage >= 10:
-		GameManager.end_game(END_MESSAGE % points)
+		GameManager.end_game(END_MESSAGE % points, points)
 		return
 	_spawn()
 
 
 func _update_status():
-	_status_label.text = STATUS_MESSAGE % [stage, points]
+	var high_score = GameManager.get_high_score()
+	if high_score == null:
+		high_score = points
+	_status_label.text = STATUS_MESSAGE % [stage, points, max(points, high_score)]
