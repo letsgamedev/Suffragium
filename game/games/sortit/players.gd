@@ -73,7 +73,7 @@ func get_action_strength(action: String, player_index: int) -> float:
 	var player_input = player_inputs[player_index]
 	var input_type = player_input[0]
 	var input_device = player_input[1]
-	var player_mapping = input_map[input_type]
+	var player_mapping = input_map[input_type]["actions"]
 	match input_type:
 		SortItRoot.InputType.JOY:
 			var button = player_mapping[action]
@@ -116,7 +116,7 @@ func is_action_pressed(action: String, player_index: int) -> bool:
 	var player_input = player_inputs[player_index]
 	var input_type = player_input[0]
 	var input_device = player_input[1]
-	var input_key_or_button = input_map[input_type][action]
+	var input_key_or_button = input_map[input_type]["actions"][action]
 	match input_type:
 		SortItRoot.InputType.JOY:
 			return _just_pressed.has(["joypad", input_key_or_button, input_device])
@@ -128,7 +128,7 @@ func is_action_just_pressed(action: String, player_index: int) -> bool:
 	var player_input = player_inputs[player_index]
 	var input_type = player_input[0]
 	var input_device = player_input[1]
-	var input_key_or_button = input_map[input_type][action]
+	var input_key_or_button = input_map[input_type]["actions"][action]
 	match input_type:
 		SortItRoot.InputType.JOY:
 			var key = ["joypad", input_key_or_button, input_device]

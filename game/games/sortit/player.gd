@@ -27,12 +27,13 @@ var right_box = null
 onready var _left_anchor = $LeftMagnet/Anchor
 onready var _right_anchor = $RightMagnet/Anchor
 onready var _players = get_parent()
+onready var _main_body_mesh = $Mesh/MainBody
 
 
 func set_color(color: Color):
-	var material: SpatialMaterial = $Mesh/MainBody.mesh.surface_get_material(0).duplicate()
+	var material: SpatialMaterial = _main_body_mesh.mesh.surface_get_material(0).duplicate()
 	material.albedo_color = color
-	$Mesh/MainBody.mesh.surface_set_material(0, material)
+	_main_body_mesh.mesh.surface_set_material(0, material)
 
 
 func _input(_event):
@@ -131,18 +132,18 @@ func _stick_boxes():
 # (important for sorting black boxes)
 func _update_comperators():
 	if left_box == null or right_box == null:
-		$Mesh/MainBody.set_surface_material(2, normal_compare_material)
-		$Mesh/MainBody.set_surface_material(1, normal_compare_material)
+		_main_body_mesh.set_surface_material(2, normal_compare_material)
+		_main_body_mesh.set_surface_material(1, normal_compare_material)
 		return
 	if (left_box as Box).number > (right_box as Box).number:
-		$Mesh/MainBody.set_surface_material(2, greater_compare_material)
-		$Mesh/MainBody.set_surface_material(1, normal_compare_material)
+		_main_body_mesh.set_surface_material(2, greater_compare_material)
+		_main_body_mesh.set_surface_material(1, normal_compare_material)
 	elif (left_box as Box).number < (right_box as Box).number:
-		$Mesh/MainBody.set_surface_material(2, normal_compare_material)
-		$Mesh/MainBody.set_surface_material(1, greater_compare_material)
+		_main_body_mesh.set_surface_material(2, normal_compare_material)
+		_main_body_mesh.set_surface_material(1, greater_compare_material)
 	else:
-		$Mesh/MainBody.set_surface_material(2, greater_compare_material)
-		$Mesh/MainBody.set_surface_material(1, greater_compare_material)
+		_main_body_mesh.set_surface_material(2, greater_compare_material)
+		_main_body_mesh.set_surface_material(1, greater_compare_material)
 
 
 func _physics_process(delta):

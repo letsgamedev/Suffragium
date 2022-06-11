@@ -10,13 +10,12 @@ var _box_count = 0
 
 onready var _rng := RandomNumberGenerator.new()
 onready var _spaw_areas = $BoxSpawnAreas.get_children()
-onready var _pedestals = $Pedestals
 onready var _players = $Players
 
 
 func _ready():
 	_rng.randomize()
-	$Players.spawn_players()
+	_players.spawn_players()
 	$Viewports.create_viewports()
 	# Start with 6 boxes
 	for _i in range(0, 6):
@@ -49,7 +48,7 @@ func _spawn_box():
 
 
 func _end_game():
-	var best_player_index = $Players.get_best_player()[0]
+	var best_player_index = _players.get_best_player()[0]
 	GameManager.end_game("Player %d won" % (best_player_index + 1))
 
 
@@ -60,7 +59,7 @@ func _on_box_despawn(_number: int):
 func _on_spawn_timer_timeout():
 	_spawn_box()
 	# Check the highest score every couple of seconds and end the game, if the maximum score is reached
-	var highest_score = $Players.get_best_player()[1]
+	var highest_score = _players.get_best_player()[1]
 	if highest_score == MAX_SCORE:
 		_end_game()
 

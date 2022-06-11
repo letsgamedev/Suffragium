@@ -3,8 +3,8 @@ extends Label
 export(NodePath) var root_game_path
 export(Gradient) var color_gradient
 onready var _end_timer = get_node(root_game_path).get_node("EndTimer")
-onready var _hbox_cotainer = $"../../../"
-onready var _vbox_cotainer = $"../../../.."
+onready var _hbox_container = $"../../../"
+onready var _vbox_container = $"../../../.."
 
 
 func _ready():
@@ -16,16 +16,16 @@ func _ready():
 func set_timer_location(player_count: int):
 	if player_count == 1:
 		# Top Left
-		_hbox_cotainer.alignment = BoxContainer.ALIGN_BEGIN
+		_hbox_container.alignment = BoxContainer.ALIGN_BEGIN
 	else:
-		_hbox_cotainer.alignment = BoxContainer.ALIGN_CENTER
+		_hbox_container.alignment = BoxContainer.ALIGN_CENTER
 
 	if player_count > 2:
 		# Top middel
-		_vbox_cotainer.alignment = BoxContainer.ALIGN_CENTER
+		_vbox_container.alignment = BoxContainer.ALIGN_CENTER
 	else:
 		# Center
-		_vbox_cotainer.alignment = BoxContainer.ALIGN_BEGIN
+		_vbox_container.alignment = BoxContainer.ALIGN_BEGIN
 
 
 func _process(_delta):

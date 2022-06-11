@@ -59,3 +59,7 @@ func _on_back_button_up():
 
 func _on_play_button_up():
 	emit_signal("start_game", _player_inputs)
+
+
+func _on_help_button_up():
+	$HelpPopup.popup_centered_ratio(0.85)

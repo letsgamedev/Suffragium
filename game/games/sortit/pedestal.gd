@@ -22,16 +22,16 @@ var _current_attract_total_error = Vector3.ZERO
 var _current_attract_last_error = Vector3.ZERO
 
 onready var index = int(name)
-onready var _pedestal_group = get_parent()
 onready var _box_anchor: Spatial = $BoxAnchor
 onready var _particels: Particles = $Particles
+onready var _mesh_instance = $Mesh
 
 
 func set_color(color: Color):
-	var mesh = $Mesh.mesh
+	var mesh = _mesh_instance.mesh
 	var material: SpatialMaterial = mesh.surface_get_material(2).duplicate()  # Get accent material
 	material.albedo_color = color
-	$Mesh.mesh.surface_set_material(2, material)
+	_mesh_instance.mesh.surface_set_material(2, material)
 
 
 func set_correct(is_correct: bool):
