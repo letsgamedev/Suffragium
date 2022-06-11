@@ -44,6 +44,7 @@ region_rect = Rect2( 0, 0, 723, 79 )
 [node name="PlayerNode" type="Node2D" parent="."]
 
 [node name="Player" type="KinematicBody2D" parent="PlayerNode"]
+position = Vector2( -151, 0 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNode/Player"]
@@ -61,16 +62,19 @@ shape = SubResource( 2 )
 [node name="Reset" type="Area2D" parent="PlayerNode/Player"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNode/Player/Reset"]
-position = Vector2( -257, 0 )
+position = Vector2( -137, 0 )
 shape = SubResource( 3 )
 
 [node name="Sound_Jump" type="AudioStreamPlayer2D" parent="PlayerNode/Player"]
+position = Vector2( 151, 0 )
 stream = ExtResource( 4 )
 
 [node name="Sound_Wall" type="AudioStreamPlayer2D" parent="PlayerNode/Player"]
+position = Vector2( 151, 0 )
 stream = ExtResource( 7 )
 
 [node name="Sound_GameEnd" type="AudioStreamPlayer2D" parent="PlayerNode/Player"]
+position = Vector2( 151, 0 )
 stream = ExtResource( 8 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
