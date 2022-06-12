@@ -17,13 +17,14 @@ var player_index: int
 var camera: Camera
 var status_display: Control
 
-var last_direction = Vector3.ZERO
-var velocity = Vector3.ZERO
 var left_magnet_active = false
 var right_magnet_active = false
 
 var left_box = null
 var right_box = null
+
+var _last_direction = Vector3.ZERO
+var _velocity = Vector3.ZERO
 onready var _left_anchor = $LeftMagnet/Anchor
 onready var _right_anchor = $RightMagnet/Anchor
 onready var _players = get_parent()
@@ -64,21 +65,21 @@ func _move_and_rotate(delta):
 	var direction = Vector3(0, 0, 0)
 	direction.x = _players.get_action_strength("right", player_index)
 	direction.z = _players.get_action_strength("down", player_index)
-
-	# This could be improved
-	velocity *= friction
-	velocity = Vector3(
-		clamp(direction.x + velocity.x, -max_speed, max_speed),
+	direction = direction.normalized()
+	# This could be improved (Either fully embrace smooth rotation or just use snappy movements)
+	var actual_direction = lerp(_last_direction, direction, delta * direction_change_speed)
+	_velocity *= friction
+	_velocity = Vector3(
+		clamp(actual_direction.x + _velocity.x, -max_speed, max_speed),
 		0,
-		clamp(direction.z + velocity.z, -max_speed, max_speed)
+		clamp(actual_direction.z + _velocity.z, -max_speed, max_speed)
 	)
-	var look_at_pos_rel = lerp(last_direction, velocity, delta * direction_change_speed)
-	if (look_at_pos_rel - last_direction).length() > 0.01:
-		look_at(look_at_pos_rel + transform.origin, Vector3.UP)
-
-	last_direction = look_at_pos_rel
-	move_and_slide(Vector3(-look_at_pos_rel.z, -0.5, look_at_pos_rel.x) * delta * move_speed)
+	if direction != Vector3.ZERO:
+		# Look in movement direction
+		rotation.y = atan2(-_velocity.x, -_velocity.z)
+	move_and_slide(Vector3(-_velocity.z, -0.5, _velocity.x) * delta * move_speed)
 	camera.transform.origin = transform.origin + camera_offset
+	_last_direction = actual_direction
 
 
 func _attract_block(magnet: Spatial, delta: float):

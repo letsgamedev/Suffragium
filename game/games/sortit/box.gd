@@ -62,14 +62,24 @@ func _get_number_mesh_instance() -> MeshInstance:
 
 
 func _add_number_at(mesh_instance: MeshInstance, pos: Vector3):
-	# TODO: Apply correct rotation too (not important for numbers on top)
 	mesh_instance.transform.origin = pos - mesh_instance.transform.origin
-	mesh_instance.name = "number-up"
+	if pos.x > 0:
+		mesh_instance.rotation_degrees.z = -90
+	elif pos.x < 0:
+		mesh_instance.rotation_degrees.z = 90
+	elif pos.z > 0:
+		mesh_instance.rotation_degrees.x = 90
+	elif pos.z < 0:
+		mesh_instance.rotation_degrees.x = -90
+	elif pos.y < 0:
+		mesh_instance.rotation_degrees.y = 180
+	else:
+		pass
 	add_child(mesh_instance)
 
 
 func _ready():
-	self.number = int(floor(rand_range(0, max_number)))
+	self.number = int(floor(rand_range(0, max_number + 1)))
 	self.is_black = randf() < black_box_chance
 	if self.is_black:
 		$mesh.set_surface_material(0, black_material)
@@ -77,6 +87,7 @@ func _ready():
 		$mesh.set_surface_material(0, normal_material)
 	if not is_black:
 		var mesh_instance = _get_number_mesh_instance()
+		# Add other rotations too (non trival with current version of _get_number_mesh_instance)
 		_add_number_at(mesh_instance, $Up.transform.origin)
 
 

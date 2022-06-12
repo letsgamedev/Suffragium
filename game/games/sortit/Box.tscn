@@ -54,7 +54,7 @@ one_shot = true
 autostart = true
 
 [node name="mesh" type="MeshInstance" parent="."]
-transform = Transform( 0.413697, 0, 0, 0, 0.413697, 0, 0, 0, 0.413697, 0, 0, 0 )
+transform = Transform( 0.413697, 0, 0, 0, 0.413697, 0, 0, 0, 0.413697, 0.000241756, 0.00388888, 0.00389987 )
 mesh = SubResource( 7 )
 material/0 = null
 material/1 = null
