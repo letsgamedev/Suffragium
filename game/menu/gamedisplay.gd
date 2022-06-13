@@ -46,6 +46,14 @@ func disable():
 	_load_btn_dialog.disabled = true
 
 
+func format_date(unix_time: int):
+	var dt = OS.get_datetime_from_unix_time(unix_time)
+	return (
+		"%04d-%02d-%02d %02d:%02d:%02d UTC"
+		% [dt["year"], dt["month"], dt["day"], dt["hour"], dt["minute"], dt["second"]]
+	)
+
+
 func update_text():
 	var game_id = game_file.get_meta("folder_name")
 	var text = game_file.get_value("game", "desc")
@@ -54,13 +62,19 @@ func update_text():
 
 	var last_played = GameManager.get_last_played(game_id)
 	if last_played != null:
-		text += "\nLast played: %s" % last_played
+		text += "\nLast played: %s" % format_date(last_played)
 
-	var high_score = GameManager.get_high_score(game_id)
-	if high_score != null:
-		text += "\nHighscore: %d" % high_score
+	var highscore_dict = GameManager.get_highscore(game_id)
+	if highscore_dict["score"] != null:
+		if "_time" in highscore_dict:
+			text += (
+				"\nHighscore: %s (%s)"
+				% [highscore_dict["score"], format_date(highscore_dict["_time"])]
+			)
+		else:
+			text += "\nHighscore: %s" % highscore_dict["score"]
 
-	# update the high_score displayed in $VBoxContainer/RichTextLabel
+	# update the highscore displayed in $VBoxContainer/RichTextLabel
 	$VBoxContainer/RichTextLabel.bbcode_text = text
 
 

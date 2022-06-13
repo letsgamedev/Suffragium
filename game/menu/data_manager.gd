@@ -74,38 +74,52 @@ func save_game_data(player: String, game_id: String):
 	)
 
 
+class ScoreSorter:
+	static func sort_scores_descending(a, b):
+		if a["score"] == b["score"]:
+			if "_time" in a and "_time" in b:
+				# later time first
+				return a["_time"] > b["_time"]
+			return true  # doesn't matter
+		# higher score first
+		return a["score"] > b["score"]
+
+
 ## Handle data for the game that ended.
-func game_ended(player: String, game_id: String, start_time: int, score: int):
+func game_ended(player: String, game_id: String, start_time: int, score: Dictionary):
 	save_game_data(player, game_id)
 
 	var data = _load_data(player, "game_meta_data", game_id)
 
-	data["last_played"] = OS.get_unix_time()
+	var current_time := OS.get_unix_time()
+
+	data["last_played"] = current_time
 
 	if not "played_time" in data:
 		data["played_time"] = 0
 	data["played_time"] += (OS.get_ticks_msec() - start_time) / 1000.0
 
 	if score != null:
-		if not "scores" in data:
-			data["scores"] = []
-		data["scores"].append([score, data["last_played"]])
-		data["scores"].sort()
+		if not "score" in score:
+			push_error("No 'score' in score Dictionary.")
+		else:
+			score["_time"] = current_time
+			if not "scores" in data:
+				data["scores"] = []
+			data["scores"].append(score)
+			data["scores"].sort_custom(ScoreSorter, "sort_scores_descending")
 
 	GameManager.handle_error(_save_data(player, "game_meta_data", data, game_id))
 
 
-## Get the high_score of the player for the game.
-func get_high_score(player: String, game_id: String):
+## Get the highscore of the player for the game.
+func get_highscore(player: String, game_id: String):
 	var data = _load_data(player, "game_meta_data", game_id)
 
-	if not "scores" in data:
+	if not "scores" in data or data["scores"].size() == 0:
 		return null
 
-	if data["scores"].size() == 0:
-		return null
-
-	return data["scores"][-1][0]
+	return data["scores"][0]
 
 
 ## Get time the player played the game.
@@ -121,8 +135,4 @@ func get_last_played(player: String, game_id: String):
 	var data = _load_data(player, "game_meta_data", game_id)
 	if not "last_played" in data:
 		return null
-	var dt = OS.get_datetime_from_unix_time(data["last_played"])
-	return (
-		"%04d-%02d-%02d %02d:%02d:%02d UTC"
-		% [dt["year"], dt["month"], dt["day"], dt["hour"], dt["minute"], dt["second"]]
-	)
+	return data["last_played"]

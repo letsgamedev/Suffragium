@@ -90,16 +90,20 @@ func get_played_time(game_id = null) -> float:
 	return _data_manager.get_played_time(get_current_player(), game_id)
 
 
-## Get the high_score of the current player for the currently running game.
-func get_high_score(game_id = null):
+## Get the highscore of the current player for the currently running game.
+## The score you would expect is available under the "score" key in the returned Dictionary.
+func get_highscore(game_id = null) -> Dictionary:
 	game_id = _last_loaded_game if game_id == null else game_id
 	if not game_id:  # game_id should be the folder_name, not null or ""
-		return null
-	return _data_manager.get_high_score(get_current_player(), game_id)
+		return {"score": null}
+	var highscore = _data_manager.get_highscore(get_current_player(), game_id)
+	if highscore == null:
+		return {"score": null}
+	return highscore
 
 
-# return to the level select
-func end_game(message := "", score = null, _status = null):
+##_ return to the level select
+func end_game(message := "", score = null):
 	var err = get_tree().change_scene("res://menu/emptySzene.tscn")
 	if err != OK:
 		prints("Error", err)
@@ -108,6 +112,9 @@ func end_game(message := "", score = null, _status = null):
 	_main.show()
 
 	assert(_last_loaded_game != null)  # should always be set here
+
+	if not score is Dictionary:
+		score = {"score": score}
 
 	_data_manager.game_ended(get_current_player(), _last_loaded_game, _started_playing_game, score)
 

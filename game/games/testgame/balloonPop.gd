@@ -81,8 +81,8 @@ func _spawn_color(color: Color):
 	b.rect_position.y = _rng.randf_range(0, max_pos.y)
 
 	# signals
-	b.connect("pressed", self, "_on_destroy", [color, b])
-	b.connect("pressed", b, "queue_free")
+	GameManager.handle_error(b.connect("pressed", self, "_on_destroy", [color, b]))
+	GameManager.handle_error(b.connect("pressed", b, "queue_free"))
 	# modulate
 	b.self_modulate = color
 
@@ -119,7 +119,7 @@ func _on_RespawnTimer_timeout():
 
 
 func _update_status():
-	var high_score = GameManager.get_high_score()
-	if high_score == null:
-		high_score = points
-	_status_label.text = STATUS_MESSAGE % [stage, points, max(points, high_score)]
+	var highscore = GameManager.get_highscore()["score"]
+	if highscore == null:
+		highscore = points
+	_status_label.text = STATUS_MESSAGE % [stage, points, max(points, highscore)]
