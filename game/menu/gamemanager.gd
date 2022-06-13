@@ -9,7 +9,7 @@ var _game_displays := {}  # type: Dictionary[String, gamedisplay]
 
 var _preview_scene := preload("res://menu/gamedisplay.tscn")
 var _last_loaded_game = null
-var _started_playing_game: int = 0
+var _started_playing_game = null
 
 onready var _grid := $mainmenu/ScrollContainer/GridContainer
 onready var _main := $mainmenu
@@ -21,9 +21,11 @@ func _ready():
 	_build_menu()
 
 
+func get_current_game():
+	return null if _last_loaded_game == null else _games[_last_loaded_game]
+
+
 func load_game(game_cfg: ConfigFile):
-	_last_loaded_game = game_cfg.get_meta("folder_name")
-	_started_playing_game = OS.get_ticks_msec()
 	# load the games main scene
 	var scene_path := (
 		GAME_FILE
@@ -42,7 +44,7 @@ func load_game(game_cfg: ConfigFile):
 	if err != OK:
 		prints("Error", err)
 		return err
-	last_loaded_game = game_cfg
+	game_started(game_cfg.get_meta("folder_name"))
 	_main.hide()
 	return OK
 
@@ -56,6 +58,11 @@ func handle_error(err: int, err_msg: String = "", formats: Array = []) -> void:
 	if formats:
 		err_msg = err_msg % formats
 	push_error("Error %s - %s" % [err, err_msg])
+
+
+func game_started(game_id):
+	_last_loaded_game = game_id
+	_started_playing_game = OS.get_ticks_msec()
 
 
 ## Save the changes to the Dictionary returned by get_game_data()
@@ -102,14 +109,23 @@ func get_highscore(game_id = null) -> Dictionary:
 	return highscore
 
 
-##_ return to the level select
-func end_game(message := "", score = null):
-	var err = get_tree().change_scene("res://menu/emptySzene.tscn")
-	if err != OK:
-		prints("Error", err)
+func pause_game():
+	if _last_loaded_game == null or _started_playing_game == null:
 		return
+	_data_manager.game_ended(
+		get_current_player(), _last_loaded_game, _started_playing_game, {"score": null}
+	)  # save everything except the score
+	_started_playing_game = null
 
-	_main.show()
+
+##  return to the level select (if _change_scene is true)
+func end_game(message := "", score = null, _change_scene := true):
+	if _change_scene:
+		var err = get_tree().change_scene("res://menu/emptySzene.tscn")
+		if err != OK:
+			prints("Error", err)
+			return
+		_main.show()
 
 	assert(_last_loaded_game != null)  # should always be set here
 
@@ -121,7 +137,7 @@ func end_game(message := "", score = null):
 	_game_displays[_last_loaded_game].update_text()
 
 	_last_loaded_game = null
-	_started_playing_game = 0
+	_started_playing_game = null
 
 	# this behavior is subject to change
 	if message:
