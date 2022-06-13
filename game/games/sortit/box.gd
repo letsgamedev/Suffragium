@@ -1,4 +1,4 @@
-class_name Box
+class_name SortItBox
 extends RigidBody
 
 signal despawn(number)

@@ -47,7 +47,7 @@ func _ready():
 	_particels.draw_pass_1.size = particle_size
 
 
-func _attract_box(to_attract_box: Box, strength: float, delta: float):
+func _attract_box(to_attract_box: SortItBox, strength: float, delta: float):
 	# Reset PID Controller every new box
 	if to_attract_box != _current_attracting_box:
 		_current_attracting_box = to_attract_box
@@ -80,11 +80,11 @@ func _physics_process(delta):
 	for body in $Area.get_overlapping_bodies():
 		# Ensure that the box is not currently grabbed by the player
 		if not player.left_box == null:
-			var player_box = player.left_box as Box
+			var player_box = player.left_box as SortItBox
 			if player_box.get_instance_id() == body.get_instance_id():
 				return
 		if not player.right_box == null:
-			var player_box = player.right_box as Box
+			var player_box = player.right_box as SortItBox
 			if player_box.get_instance_id() == body.get_instance_id():
 				return
 
@@ -92,14 +92,14 @@ func _physics_process(delta):
 		# Check if the box is close enught to be "held". Only one box can be held at once
 		var distance = body.global_transform.origin.distance_to(_box_anchor.global_transform.origin)
 		if (distance <= attracted_distance) == true:
-			box = body as Box
+			box = body as SortItBox
 			box.stop_despawn()
 			box.add_collision_exception_with(player)
 			emit_signal("box_held", index, box.number)
 
 
 # Stop holding box, if it leaves the area
-func _on_Area_body_exited(body: Box):
+func _on_Area_body_exited(body: SortItBox):
 	if box == null:
 		return
 	# Reset PID Controller if box leaves the area

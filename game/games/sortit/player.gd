@@ -1,6 +1,7 @@
 class_name SortItPlayer
 extends KinematicBody
 
+export(bool) var experimental_rotational_controls = false
 export(float) var direction_change_speed = 4
 export(int) var move_speed = 1000
 export(float) var max_speed = 5
@@ -49,12 +50,12 @@ func _input(_event):
 	if last_left_magnet_active and not left_magnet_active and left_box != null:
 		left_box.linear_velocity = Vector3.ZERO
 		left_box.angular_velocity = Vector3.ZERO
-		(left_box as Box).reset_despawn()
+		(left_box as SortItBox).reset_despawn()
 		left_box = null
 	if last_right_magnet_active and not right_magnet_active and right_box != null:
 		right_box.linear_velocity = Vector3.ZERO
 		right_box.angular_velocity = Vector3.ZERO
-		(right_box as Box).reset_despawn()
+		(right_box as SortItBox).reset_despawn()
 		right_box = null
 
 	$LeftMagnet/Particles.emitting = left_magnet_active
@@ -62,22 +63,38 @@ func _input(_event):
 
 
 func _move_and_rotate(delta):
+	# Create direction vector
 	var direction = Vector3(0, 0, 0)
-	direction.x = _players.get_action_strength("right", player_index)
+	var left_right_strength = _players.get_action_strength("right", player_index)
+	if not experimental_rotational_controls:
+		direction.x = left_right_strength
 	direction.z = _players.get_action_strength("down", player_index)
 	direction = direction.normalized()
 	# This could be improved (Either fully embrace smooth rotation or just use snappy movements)
-	var actual_direction = lerp(_last_direction, direction, delta * direction_change_speed)
+	# Rotate direction
+	var actual_direction : Vector3
+	if experimental_rotational_controls:
+		# Calulate rotation speed
+		var rotation_speed_mult = 0.7 if direction == Vector3.ZERO else 1.0
+		var rotation_speed = direction_change_speed * rotation_speed_mult * delta
+		# Apply rotation speed to direction and rotate player
+		rotate_y(-left_right_strength * rotation_speed)
+		actual_direction = direction.rotated(Vector3.UP, rotation.y)
+		actual_direction = actual_direction / (abs(left_right_strength) * 0.2 + 1)
+	else:
+		actual_direction = lerp(_last_direction, direction, delta * direction_change_speed)
+	# Calculate new velocity, calculate friction and apply velocity
 	_velocity *= friction
 	_velocity = Vector3(
 		clamp(actual_direction.x + _velocity.x, -max_speed, max_speed),
 		0,
 		clamp(actual_direction.z + _velocity.z, -max_speed, max_speed)
 	)
-	if direction != Vector3.ZERO:
-		# Look in movement direction
-		rotation.y = atan2(-_velocity.x, -_velocity.z)
 	move_and_slide(Vector3(-_velocity.z, -0.5, _velocity.x) * delta * move_speed)
+	# Look in movement direction
+	if direction != Vector3.ZERO and not experimental_rotational_controls:
+		rotation.y = atan2(-_velocity.x, -_velocity.z)
+	# Update camerea position
 	camera.transform.origin = transform.origin + camera_offset
 	_last_direction = actual_direction
 
@@ -105,7 +122,7 @@ func _attract_block(magnet: Spatial, delta: float):
 		)
 		# If the box is close enougth attach it
 		if (min_distance <= attracted_distance) == true:
-			(nearest as Box).stop_despawn()
+			(nearest as SortItBox).stop_despawn()
 			return nearest
 
 
@@ -136,10 +153,10 @@ func _update_comperators():
 		_main_body_mesh.set_surface_material(2, normal_compare_material)
 		_main_body_mesh.set_surface_material(1, normal_compare_material)
 		return
-	if (left_box as Box).number > (right_box as Box).number:
+	if (left_box as SortItBox).number > (right_box as SortItBox).number:
 		_main_body_mesh.set_surface_material(2, greater_compare_material)
 		_main_body_mesh.set_surface_material(1, normal_compare_material)
-	elif (left_box as Box).number < (right_box as Box).number:
+	elif (left_box as SortItBox).number < (right_box as SortItBox).number:
 		_main_body_mesh.set_surface_material(2, normal_compare_material)
 		_main_body_mesh.set_surface_material(1, greater_compare_material)
 	else:
