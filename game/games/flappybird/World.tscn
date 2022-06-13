@@ -1,0 +1,104 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://games/flappybird/images/ground.png" type="Texture" id=1]
+[ext_resource path="res://games/flappybird/Player.gd" type="Script" id=2]
+[ext_resource path="res://games/flappybird/images/background.png" type="Texture" id=3]
+[ext_resource path="res://games/flappybird/sounds/sfx/jump.wav" type="AudioStream" id=4]
+[ext_resource path="res://games/flappybird/images/bird.png" type="Texture" id=5]
+[ext_resource path="res://games/flappybird/images/clouds.png" type="Texture" id=6]
+[ext_resource path="res://games/flappybird/sounds/sfx/pass_wall.wav" type="AudioStream" id=7]
+[ext_resource path="res://games/flappybird/sounds/sfx/game_end.wav" type="AudioStream" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9, 9 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 9.5, 9.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 112 )
+
+[node name="World" type="Node2D"]
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 8, -13 )
+scale = Vector2( 3.28, 1.47 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 200, 200 )
+
+[node name="Clouds" type="Sprite" parent="."]
+position = Vector2( 27, -60 )
+scale = Vector2( 1.1475, 1 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 623, 70 )
+
+[node name="Ground" type="Sprite" parent="."]
+position = Vector2( 12.25, 91.3513 )
+scale = Vector2( 0.9625, 1 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 723, 79 )
+
+[node name="PlayerNode" type="Node2D" parent="."]
+
+[node name="Player" type="KinematicBody2D" parent="PlayerNode"]
+position = Vector2( -151, 0 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNode/Player"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="PlayerNode/Player"]
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 5 )
+
+[node name="Hitbox" type="Area2D" parent="PlayerNode/Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNode/Player/Hitbox"]
+shape = SubResource( 2 )
+
+[node name="Reset" type="Area2D" parent="PlayerNode/Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNode/Player/Reset"]
+position = Vector2( -137, 0 )
+shape = SubResource( 3 )
+
+[node name="Sound_Jump" type="AudioStreamPlayer2D" parent="PlayerNode/Player"]
+position = Vector2( 151, 0 )
+stream = ExtResource( 4 )
+
+[node name="Sound_Wall" type="AudioStreamPlayer2D" parent="PlayerNode/Player"]
+position = Vector2( 151, 0 )
+stream = ExtResource( 7 )
+
+[node name="Sound_GameEnd" type="AudioStreamPlayer2D" parent="PlayerNode/Player"]
+position = Vector2( 151, 0 )
+stream = ExtResource( 8 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.4, 0.4 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = -192.0
+margin_top = -112.0
+margin_right = -152.0
+margin_bottom = -72.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = -64.0
+margin_top = 40.0
+margin_right = 72.0
+margin_bottom = 80.0
+text = "Press ,,space\" to flap"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="area_entered" from="PlayerNode/Player/Hitbox" to="PlayerNode/Player" method="_on_Hitbox_area_entered"]
+[connection signal="body_entered" from="PlayerNode/Player/Hitbox" to="PlayerNode/Player" method="_on_Hitbox_body_entered"]
+[connection signal="body_entered" from="PlayerNode/Player/Reset" to="PlayerNode/Player" method="_on_Reset_body_entered"]
