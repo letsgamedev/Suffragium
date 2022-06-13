@@ -1,5 +1,7 @@
 extends Node
 
+var last_loaded_game
+
 var _games = []
 var _preview_scene := preload("res://menu/gamedisplay.tscn")
 
@@ -27,6 +29,7 @@ func load_game(game_cfg: ConfigFile):
 	if err != OK:
 		prints("Error", err)
 		return err
+	last_loaded_game = game_cfg
 	_main.hide()
 	return OK
 
@@ -39,6 +42,7 @@ func end_game(message := "", _status = null):
 		return
 
 	_main.show()
+	last_loaded_game = null
 	# this behavior is subject to change
 	if !message.empty():
 		OS.alert(message)
