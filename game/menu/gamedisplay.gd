@@ -51,5 +51,5 @@ func _handle_error(err):
 
 
 func _on_loadbutton_pressed():
-	if GameManager.load_game(game_file)!=OK:
+	if GameManager.load_game(game_file) != OK:
 		disable()
