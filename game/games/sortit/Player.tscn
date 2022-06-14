@@ -217,13 +217,14 @@ extents = Vector3( 0.363222, 0.441026, 0.437548 )
 collision_layer = 4
 collision_mask = 7
 script = ExtResource( 6 )
-direction_change_speed = 6.5
+direction_change_speed = 2.05
 move_speed = 600
 max_speed = 4.0
 atrract_speed = 1000.0
 friction = 0.65
 max_box_distance = 4.0
 attracted_distance = 0.65
+camera_rotate_speed = 5.0
 greater_compare_material = SubResource( 9 )
 normal_compare_material = SubResource( 15 )
 

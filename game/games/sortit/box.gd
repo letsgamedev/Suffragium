@@ -62,20 +62,24 @@ func _get_number_mesh_instance() -> MeshInstance:
 
 
 func _add_number_at(mesh_instance: MeshInstance, pos: Vector3):
-	mesh_instance.transform.origin = pos - mesh_instance.transform.origin
+	# Create parent node to act as a centered pivot point
+	var parent = Spatial.new()
+	parent.transform.origin = pos
+	# Add number mesh to pivot with offset position
+	mesh_instance.transform.origin = -mesh_instance.transform.origin
+	parent.add_child(mesh_instance)
+	# Rotate number to point according to the anchor position (corresponding to the sides)
 	if pos.x > 0:
-		mesh_instance.rotation_degrees.z = -90
+		parent.rotation_degrees.z = -90
 	elif pos.x < 0:
-		mesh_instance.rotation_degrees.z = 90
+		parent.rotation_degrees.z = 90
 	elif pos.z > 0:
-		mesh_instance.rotation_degrees.x = 90
+		parent.rotation_degrees.x = 90
 	elif pos.z < 0:
-		mesh_instance.rotation_degrees.x = -90
+		parent.rotation_degrees.x = -90
 	elif pos.y < 0:
-		mesh_instance.rotation_degrees.y = 180
-	else:
-		pass
-	add_child(mesh_instance)
+		parent.rotation_degrees.y = 180
+	add_child(parent)
 
 
 func _ready():
@@ -88,7 +92,12 @@ func _ready():
 	if not is_black:
 		var mesh_instance = _get_number_mesh_instance()
 		# Add other rotations too (non trival with current version of _get_number_mesh_instance)
-		_add_number_at(mesh_instance, $Up.transform.origin)
+		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANCING), $Up.transform.origin)
+		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANCING), $Down.transform.origin)
+		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANCING), $Left.transform.origin)
+		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANCING), $Right.transform.origin)
+		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANCING), $Forward.transform.origin)
+		_add_number_at(mesh_instance, $Backward.transform.origin)
 
 
 func _on_despawn_timer_timeout():

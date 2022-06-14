@@ -1,14 +1,16 @@
 class_name SortItPlayer
 extends KinematicBody
 
-export(bool) var experimental_rotational_controls = false
+export(bool) var old_rotational_controls = false
 export(float) var direction_change_speed = 4
 export(int) var move_speed = 1000
 export(float) var max_speed = 5
 export(float) var atrract_speed = 500
 export(float) var friction = 0.7
+export(float) var angular_friction = 0.5
 export(float) var max_box_distance = 5.0
 export(float) var attracted_distance = 2.7
+export(float) var camera_rotate_speed = 0.8
 export(Vector3) var camera_offset = Vector3(-8, 20, 0)
 export(Material) var greater_compare_material
 export(Material) var normal_compare_material
@@ -26,6 +28,7 @@ var right_box = null
 
 var _last_direction = Vector3.ZERO
 var _velocity = Vector3.ZERO
+var _angular_velocity = 0.0
 onready var _left_anchor = $LeftMagnet/Anchor
 onready var _right_anchor = $RightMagnet/Anchor
 onready var _players = get_parent()
@@ -66,23 +69,30 @@ func _move_and_rotate(delta):
 	# Create direction vector
 	var direction = Vector3(0, 0, 0)
 	var left_right_strength = _players.get_action_strength("right", player_index)
-	if not experimental_rotational_controls:
+	if old_rotational_controls:
 		direction.x = left_right_strength
 	direction.z = _players.get_action_strength("down", player_index)
 	direction = direction.normalized()
-	# This could be improved (Either fully embrace smooth rotation or just use snappy movements)
 	# Rotate direction
-	var actual_direction : Vector3
-	if experimental_rotational_controls:
+	var actual_direction: Vector3
+	if not old_rotational_controls:
 		# Calulate rotation speed
-		var rotation_speed_mult = 0.7 if direction == Vector3.ZERO else 1.0
-		var rotation_speed = direction_change_speed * rotation_speed_mult * delta
-		# Apply rotation speed to direction and rotate player
-		rotate_y(-left_right_strength * rotation_speed)
+		var rotation_speed_mult = 0.8 if direction == Vector3.ZERO else 1.0
+		var rotation_speed = direction_change_speed * rotation_speed_mult
+		# Add rotation speed to angluar velocity
+		_angular_velocity *= angular_friction
+		_angular_velocity += -left_right_strength * rotation_speed
+		# Apply angular velocity speed to direction and rotate player
+		rotate_y(_angular_velocity * delta)
 		actual_direction = direction.rotated(Vector3.UP, rotation.y)
 		actual_direction = actual_direction / (abs(left_right_strength) * 0.2 + 1)
+		# Update camera rotation smoothly
+		var camera_rotation_speed = rotation_speed * camera_rotate_speed * delta
+		var camera_angle = lerp_angle(camera.rotation.y, rotation.y - PI / 2, camera_rotation_speed)
+		camera.rotation.y = camera_angle
 	else:
-		actual_direction = lerp(_last_direction, direction, delta * direction_change_speed)
+		var real_direction_change_speed = delta * (direction_change_speed / angular_friction)
+		actual_direction = lerp(_last_direction, direction, real_direction_change_speed)
 	# Calculate new velocity, calculate friction and apply velocity
 	_velocity *= friction
 	_velocity = Vector3(
@@ -91,11 +101,14 @@ func _move_and_rotate(delta):
 		clamp(actual_direction.z + _velocity.z, -max_speed, max_speed)
 	)
 	move_and_slide(Vector3(-_velocity.z, -0.5, _velocity.x) * delta * move_speed)
-	# Look in movement direction
-	if direction != Vector3.ZERO and not experimental_rotational_controls:
+	# Look in movement direction (old controls only)
+	if direction != Vector3.ZERO and old_rotational_controls:
 		rotation.y = atan2(-_velocity.x, -_velocity.z)
-	# Update camerea position
-	camera.transform.origin = transform.origin + camera_offset
+	# Update camerea position with correctly rotated offset
+	camera.transform.origin = (
+		transform.origin
+		+ camera_offset.rotated(Vector3.UP, camera.rotation.y + PI / 2)
+	)
 	_last_direction = actual_direction
 
 
@@ -136,7 +149,7 @@ func _attract_boxes(delta: float):
 func _stick_box(box: RigidBody, anchor: Vector3):
 	box.global_transform.origin = anchor  # Keep box at anchor position
 	# Keep box rotation in line with the magnet direction (1, 0, 0)
-	box.look_at(anchor - (Vector3(1, 0, 0)).rotated(Vector3.UP, rotation.y), Vector3.UP)
+	box.look_at(anchor - (Vector3(-1, 0, 0)).rotated(Vector3.UP, rotation.y), Vector3.UP)
 
 
 func _stick_boxes():
