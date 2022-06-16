@@ -112,7 +112,7 @@ func get_action_strength(action: String, player_index: int) -> float:
 			return value
 
 
-func is_action_pressed(action: String, player_index: int) -> bool:
+func is_action_just_pressed(action: String, player_index: int) -> bool:
 	var player_input = player_inputs[player_index]
 	var input_type = player_input[0]
 	var input_device = player_input[1]
@@ -124,7 +124,7 @@ func is_action_pressed(action: String, player_index: int) -> bool:
 			return _just_pressed.has(["keyboard", input_key_or_button, -1])
 
 
-func is_action_just_pressed(action: String, player_index: int) -> bool:
+func is_action_pressed(action: String, player_index: int) -> bool:
 	var player_input = player_inputs[player_index]
 	var input_type = player_input[0]
 	var input_device = player_input[1]
@@ -138,9 +138,9 @@ func is_action_just_pressed(action: String, player_index: int) -> bool:
 			return false if not _pressed.has(key) else _pressed[key] > 0.0
 
 
-func _input(event):
+func _input(event: InputEvent):
 	_just_pressed.clear()
-	if event is InputEventKey:
+	if event is InputEventKey and not event.echo:
 		var key = ["keyboard", event.scancode, -1]
 		if event.pressed:
 			_pressed[key] = 1.0
