@@ -28,7 +28,7 @@ func create_viewports():
 		var viewport = _add_viewport_container()
 		# Create camerea and status display for player
 		var camera = Camera.new()
-		camera.fov = 40
+		camera.fov = 50
 		camera.rotation_degrees.x = -70
 		camera.rotation_degrees.y = -90
 		viewport.add_child(camera)
