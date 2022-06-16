@@ -1,0 +1,4 @@
+[gd_scene format=2]
+
+[node name="Spawn" type="Node2D"]
+position = Vector2( -95, 0 )
