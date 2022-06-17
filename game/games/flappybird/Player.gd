@@ -1,58 +1,49 @@
 extends KinematicBody2D
 
-const UP = Vector2(0, -1)
-const FLAP_HEIGHT = 200  # flap time
-const MAXFALLSPEED = 200
-const GRAVITY = 10
-const END_MESSAGE := "You got %s point(s)!"
+const UP: Vector2 = Vector2(0, -1)
+const FLAP_HEIGHT: float = 200.0  # flap time
+const WALL_DISTANCE: float = 1.2  # time between wall spawns
+const MAXFALLSPEED: float = 200.0
+const GRAVITY: float = 10.0
+const END_MESSAGE: String = "You got %s point(s)!"
 
-var timer = 0  # timer; spawning walls
+var timer: float = 0.0  # timer; spawning walls
 
-var motion = Vector2()
-var wall = preload("res://games/flappybird/WallNode.tscn")
-var score = 0
-var gameRunning = false
+var motion: Vector2 = Vector2()
+var wall: PackedScene = preload("res://games/flappybird/WallNode.tscn")
+var score: int = 0
+var started: bool = false
 
-onready var _score_label := $"../../CanvasLayer/RichTextLabel"
-onready var _rng := RandomNumberGenerator.new()
-
-func ready():
-	pass
+onready var _score_label: RichTextLabel = $"../../CanvasLayer/RichTextLabel"
+onready var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 
-# called every frame
 func _physics_process(delta):
-	
 	# handle game start
-	if not gameRunning and Input.is_action_just_pressed("flap"):
-		start_game()
-	
-	# handle player physics behaviour
-	if gameRunning:
-		addToTimer(delta)
-
-		motion.y += GRAVITY
-		if motion.y > MAXFALLSPEED:
-			motion.y = MAXFALLSPEED
-
+	if not started:
 		if Input.is_action_just_pressed("flap"):
-			flap()
-	
-	
+			start_game()
+		return
+
 	if position.y > 130:
 		GameManager.end_game(END_MESSAGE % score)
 		return
 
-	motion = move_and_slide(delta * 60 * motion, UP)
+	if Input.is_action_just_pressed("flap"):
+		flap()
 
-	_score_label.text = str(score)
+	add_to_timer(delta)
+	motion.y += GRAVITY
+	if motion.y > MAXFALLSPEED:
+		motion.y = MAXFALLSPEED
+	motion = move_and_slide(delta * 60 * motion, UP)
 
 
 # start the game
 func start_game():
 	get_parent().get_parent().get_node("CanvasLayer/RichTextLabel2").visible = false
 	_rng.randomize()
-	gameRunning = true
+	started = true
 
 
 # flap when player presses ,,space"
@@ -63,10 +54,10 @@ func flap():
 
 
 # add delta to the timer
-func addToTimer(delta):
+func add_to_timer(delta):
 	timer += delta
-	
-	if timer >= 1.2:
+
+	if timer >= WALL_DISTANCE:
 		timer = 0
 		spawn_wall()
 
@@ -74,8 +65,8 @@ func addToTimer(delta):
 # spawn a new wall when timer hits 1.2
 func spawn_wall():
 	var instance = wall.instance()
-	
-	instance.position = Vector2(500, _rng.randi_range(-60, 60))
+
+	instance.position = Vector2(300, _rng.randi_range(-60, 60))
 	get_parent().call_deferred("add_child", instance)
 
 
@@ -89,11 +80,13 @@ func _on_Reset_body_entered(body):
 func _on_Hitbox_area_entered(area):
 	if area.name == "PointHitbox":
 		score += 1
+		_score_label.text = str(score)
 		$Sound_Wall.play()
 
 
 # reload scene if player hits wall body
 func _on_Hitbox_body_entered(body):
 	if body.name == "Wall":
-		# here would come a death sound when player dies (which is already fully implemented ($Sound_GameEnd)) / when the gamemanager is evolved enough to handle that, ill add it
+		# here would come a death sound when player dies ($Sound_GameEnd)
+		# when the gamemanager is evolved enough to handle that, ill add it
 		GameManager.end_game(END_MESSAGE % score)
