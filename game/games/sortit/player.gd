@@ -1,6 +1,8 @@
 class_name SortItPlayer
 extends KinematicBody
 
+const SQRT2 = sqrt(2)
+
 export(bool) var old_rotational_controls = false
 export(float) var direction_change_speed = 4
 export(int) var move_speed = 1000
@@ -11,12 +13,13 @@ export(float) var angular_friction = 0.5
 export(float) var max_box_distance = 5.0
 export(float) var attracted_distance = 2.7
 export(float) var camera_rotate_speed = 0.8
+export(float) var pedestal_arrow_display_distance = 200
 export(Vector3) var camera_offset = Vector3(-8, 20, 0)
 export(Material) var greater_compare_material
 export(Material) var normal_compare_material
 
 # Needs to be set by parrent class
-var player_index: int
+var player_index setget set_player_index, get_player_index
 var camera: Camera
 var status_display: Control
 
@@ -26,13 +29,25 @@ var right_magnet_active = false
 var left_box = null
 var right_box = null
 
+var _player_index: int
 var _last_direction = Vector3.ZERO
 var _velocity = Vector3.ZERO
 var _angular_velocity = 0.0
+var _pedestal_position: Vector3
 onready var _left_anchor = $LeftMagnet/Anchor
 onready var _right_anchor = $RightMagnet/Anchor
 onready var _players = get_parent()
 onready var _main_body_mesh = $Mesh/MainBody
+
+
+func set_player_index(new_player_index: int):
+	_player_index = new_player_index
+	# Grab the correct pedestal position
+	_pedestal_position = $"../../Pedestals".get_child(_player_index).global_transform.origin
+
+
+func get_player_index() -> int:
+	return _player_index
 
 
 func set_color(color: Color):
@@ -44,9 +59,9 @@ func set_color(color: Color):
 func _input(_event):
 	var last_left_magnet_active = left_magnet_active
 	var last_right_magnet_active = right_magnet_active
-	if _players.is_action_just_pressed("left_magnet", player_index):
+	if _players.is_action_just_pressed("left_magnet", _player_index):
 		left_magnet_active = !left_magnet_active
-	elif _players.is_action_just_pressed("right_magnet", player_index):
+	elif _players.is_action_just_pressed("right_magnet", _player_index):
 		right_magnet_active = !right_magnet_active
 
 	# Handel dropping off attached boxes, when dissabeling magnets
@@ -65,14 +80,32 @@ func _input(_event):
 	$RightMagnet/Particles.emitting = right_magnet_active
 
 
+# Gets the angle, that points to the assigned pedestal start (the first pedestal)
+func _get_pedestal_direction_angle() -> float:
+	# Get plane positions
+	var current_pos = global_transform.origin
+	var target_pos = _pedestal_position
+	current_pos = Vector3(current_pos.x, 0, current_pos.z)
+	target_pos = Vector3(target_pos.x, 0, target_pos.z)
+	var dir = target_pos - current_pos
+	# Calculate angle based on positions
+	var pedestal_angle = Vector3.FORWARD.angle_to(dir)
+	if dir.x < 0:
+		pedestal_angle = (2 * PI) - pedestal_angle
+	# Return and incorporate 90deg rotated camera and player rotation
+	return pedestal_angle - PI / 2 + rotation.y
+
+
 func _move_and_rotate(delta):
 	# Create direction vector
 	var direction = Vector3(0, 0, 0)
-	var left_right_strength = _players.get_action_strength("right", player_index)
+	var left_right_strength = _players.get_action_strength("right", _player_index)
 	if old_rotational_controls:
 		direction.x = left_right_strength
-	direction.z = _players.get_action_strength("down", player_index)
-	direction = direction.normalized()
+	direction.z = _players.get_action_strength("down", _player_index)
+	# Stop faster movement when moving diagonally (only applies to old_rotational_controls)
+	if direction.length() > SQRT2:
+		direction = direction.normalized()
 	# Rotate direction
 	var actual_direction: Vector3
 	if not old_rotational_controls:
@@ -104,7 +137,20 @@ func _move_and_rotate(delta):
 	# Look in movement direction (old controls only)
 	if direction != Vector3.ZERO and old_rotational_controls:
 		rotation.y = atan2(-_velocity.x, -_velocity.z)
-	# Update camerea position with correctly rotated offset
+	# Point arrow in status display to assigned pedestal, if far away and holding boxes
+	if (
+		(
+			global_transform.origin.distance_squared_to(_pedestal_position)
+			> pedestal_arrow_display_distance
+		)
+		&& (left_box != null or right_box != null)
+	):
+		var pedestal_angle = _get_pedestal_direction_angle()
+		status_display.set_pedestal_direction_angle(pedestal_angle)
+		status_display.set_display_pointing_arrow(true)
+	else:
+		status_display.set_display_pointing_arrow(false)
+	# Update camera position with correctly rotated offset
 	camera.transform.origin = (
 		transform.origin
 		+ camera_offset.rotated(Vector3.UP, camera.rotation.y + PI / 2)

@@ -1,8 +1,8 @@
 extends GridContainer
 
-const STATUS_DISPLAY_SCENE = preload("res://games/sortit/StatusDisplay.tscn")
+const STATUS_DISPLAY_SCENE = preload("res://games/sortit/ui/StatusDisplay.tscn")
 onready var _players: Node = $"../Players"
-onready var _minimap_camera: Camera = $MiniMapCamera
+onready var _minimap = $MiniMap
 
 
 func _add_viewport_container() -> Viewport:
@@ -31,6 +31,7 @@ func create_viewports():
 		camera.fov = 50
 		camera.rotation_degrees.x = -70
 		camera.rotation_degrees.y = -90
+		camera.set_cull_mask_bit(2, false)
 		viewport.add_child(camera)
 		var status_display = STATUS_DISPLAY_SCENE.instance()
 		viewport.add_child(status_display)
@@ -41,8 +42,9 @@ func create_viewports():
 	if player_count == 3:
 		# Move minimap camera into new viewport to fill empty spot
 		var viewport = _add_viewport_container()
-		viewport.shadow_atlas_size = 0  # Dissable shadows for mini map
-		remove_child(_minimap_camera)
-		viewport.add_child(_minimap_camera)
+		viewport.shadow_atlas_size = 0  # Disable shadows for mini map
+		remove_child(_minimap)
+		_minimap.set_players($"../Players".get_children())
+		viewport.add_child(_minimap)
 	else:
-		_minimap_camera.hide()
+		_minimap.set_process(false)

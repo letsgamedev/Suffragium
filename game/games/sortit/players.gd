@@ -81,7 +81,7 @@ func get_action_strength(action: String, player_index: int) -> float:
 			if not _pressed.has(key):
 				return 0.0
 			var value = _pressed[key]
-			return 0.0 if value < MIN_JOY_STRENGTH else value
+			return 0.0 if abs(value) < MIN_JOY_STRENGTH else value
 		_:
 			var button = player_mapping[action]
 			var key = ["keyboard", button, -1]
@@ -132,7 +132,7 @@ func is_action_pressed(action: String, player_index: int) -> bool:
 	match input_type:
 		SortItRoot.InputType.JOY:
 			var key = ["joypad", input_key_or_button, input_device]
-			return false if not _pressed.has(key) else _pressed[key] > MIN_JOY_STRENGTH
+			return false if not _pressed.has(key) else abs(_pressed[key]) > MIN_JOY_STRENGTH
 		_:
 			var key = ["keyboard", input_key_or_button, -1]
 			return false if not _pressed.has(key) else _pressed[key] > 0.0
