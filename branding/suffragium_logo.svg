@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="914.67389"
+   height="158.52499"
+   viewBox="0 0 242.00746 41.943071"
+   version="1.1"
+   id="svg5"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2">
+    <rect
+       x="505.71069"
+       y="76.526367"
+       width="130.94214"
+       height="51.905792"
+       id="rect7370" />
+    <rect
+       x="285.96136"
+       y="43.179108"
+       width="880.75824"
+       height="233.89603"
+       id="rect6638" />
+    <rect
+       x="-54.485043"
+       y="8.3950729"
+       width="107.28605"
+       height="165.85509"
+       id="rect1067" />
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(-13.229167,-13.229167)">
+    <path
+       id="path3305"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 26.458334,13.229167 13.229167,26.458334 24.961784,38.190951 49.923051,13.229167 Z M 41.18405,27.954883 16.222782,52.916667 H 39.6875 L 52.916667,39.6875 Z" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-10.427476,-0.32535458)"
+       id="text6636"
+       style="font-style:normal;font-weight:normal;font-size:150px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect6638);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="285.96094"
+         y="182.67969"
+         id="tspan9733"><tspan
+           style="font-weight:bold;font-family:Lato;-inkscape-font-specification:'Lato Bold'"
+           id="tspan9731">Suffragium</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text7368"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect7370);fill:#000000;fill-opacity:1;stroke:none" />
+  </g>
+</svg>
