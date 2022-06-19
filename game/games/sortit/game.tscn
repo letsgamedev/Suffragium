@@ -7,7 +7,7 @@
 [ext_resource path="res://games/sortit/players.gd" type="Script" id=5]
 [ext_resource path="res://games/sortit/assets/materials/floor.material" type="Material" id=6]
 [ext_resource path="res://games/sortit/assets/materials/building_top.material" type="Material" id=7]
-[ext_resource path="res://shared/fonts/Roboto/roboto_black.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://shared/fonts/roboto/roboto_black.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://games/sortit/ui/remaining_time.gd" type="Script" id=9]
 [ext_resource path="res://games/sortit/ui/mini_map.tscn" type="PackedScene" id=10]
 

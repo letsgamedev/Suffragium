@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=2]
 
-[ext_resource path="res://shared/fonts/Roboto/roboto_black.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://shared/fonts/roboto/roboto_black.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://games/sortit/ui/player_select.tscn" type="PackedScene" id=2]
 [ext_resource path="res://games/sortit/ui/player_selector.gd" type="Script" id=3]
 [ext_resource path="res://games/sortit/ui/help.tscn" type="PackedScene" id=4]
