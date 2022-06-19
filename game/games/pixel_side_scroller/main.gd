@@ -11,10 +11,10 @@ func _ready():
 	spawn_player()
 
 
-func load_map(name_name:String):
+func load_map(name_name: String):
 	if current_map:
 		current_map.queue_free()
-	var new_map = load("res://games/pixel_side_scroller/maps/"+name_name+".tscn").instance()
+	var new_map = load("res://games/pixel_side_scroller/maps/" + name_name + ".tscn").instance()
 	current_map = new_map
 	add_child(new_map)
 

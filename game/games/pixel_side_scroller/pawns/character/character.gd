@@ -1,6 +1,6 @@
 extends "res://games/pixel_side_scroller/pawns/pawn.gd"
 
-onready var animation_player:AnimationPlayer = $AnimationPlayer
+onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _process(_delta):
