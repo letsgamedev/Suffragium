@@ -1,3 +1,4 @@
+![Suffragium logo](branding/suffragium_logo_sp.png)
 # Suffragium
 A game developed in a democratic cycle.
 
