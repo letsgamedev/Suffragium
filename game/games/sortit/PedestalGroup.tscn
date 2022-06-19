@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://games/sortit/pedestal group.gd" type="Script" id=1]
+[ext_resource path="res://games/sortit/Pedestal.tscn" type="PackedScene" id=2]
+
+[node name="PedestalGroup" type="Spatial"]
+script = ExtResource( 1 )
+spacing = 3.0
+
+[node name="0" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.054, 0 )
+
+[node name="1" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -1.054, 0 )
+
+[node name="2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -1.054, 0 )
+
+[node name="3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -1.054, 0 )
+
+[node name="4" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -1.054, 0 )
+
+[node name="5" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -1.054, 0 )
+
+[node name="6" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, -1.054, 0 )
+
+[node name="7" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -1.054, 0 )
+
+[node name="8" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -1.054, 0 )
+
+[node name="9" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, -1.054, 0 )

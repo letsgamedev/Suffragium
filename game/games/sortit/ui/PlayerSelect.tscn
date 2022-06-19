@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://games/sortit/ui/player_select.gd" type="Script" id=1]
+[ext_resource path="res://shared/fonts/Roboto-Black.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=21]
+
+[sub_resource type="StyleBoxFlat" id=20]
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.262745, 0.262745, 0.262745, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="DynamicFont" id=22]
+size = 20
+font_data = ExtResource( 2 )
+
+[node name="PlayerInput" type="PanelContainer"]
+margin_right = 392.0
+margin_bottom = 247.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 21 )
+script = ExtResource( 1 )
+get_input_style = SubResource( 20 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 385.0
+margin_bottom = 240.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 152.0
+margin_top = 86.0
+margin_right = 225.0
+margin_bottom = 146.0
+
+[node name="PlayerText" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 73.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0.694118, 0.698039, 0.709804, 1 )
+text = "PlayerInput"
+align = 1
+
+[node name="DescriptionText" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 73.0
+margin_bottom = 32.0
+align = 1
+
+[node name="ControllText" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 73.0
+margin_bottom = 32.0
+custom_colors/font_color = Color( 0.313726, 0.313726, 0.34902, 1 )
+custom_fonts/font = SubResource( 22 )
+align = 1

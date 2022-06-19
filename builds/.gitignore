@@ -1,0 +1,4 @@
+# This directory contains build artifacts, that are not version controlled.
+# For documentation purposes this directory is empty
+*
+!.gitignore
