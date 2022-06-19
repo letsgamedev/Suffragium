@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://games/sortit/ui/status_display.gd" type="Script" id=1]
+[ext_resource path="res://shared/fonts/Roboto-Black.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://games/sortit/assets/images/arrow.png" type="Texture" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "New Anim"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("PoinitingArrow:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="StatusDisplay" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 24.0
+
+[node name="StatusLabel" type="Label" parent="HBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+align = 1
+
+[node name="PoinitingArrow" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 81.4161, 527.26 )
+scale = Vector2( 0.147467, 0.147467 )
+texture = ExtResource( 3 )
+
+[node name="Fader" type="AnimationPlayer" parent="PoinitingArrow"]
+root_node = NodePath("../..")
+anims/Fade = SubResource( 2 )
