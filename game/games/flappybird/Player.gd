@@ -14,7 +14,8 @@ var wall: PackedScene = preload("res://games/flappybird/WallNode.tscn")
 var score: int = 0
 var started: bool = false
 
-onready var _score_label: RichTextLabel = $"../../CanvasLayer/RichTextLabel"
+onready var _score_label: Label = $"../../CanvasLayer/ScoreLabel"
+onready var _start_label: Label = $"../../CanvasLayer/StartLabel"
 onready var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 
@@ -41,7 +42,7 @@ func _physics_process(delta):
 
 # start the game
 func start_game():
-	get_parent().get_parent().get_node("CanvasLayer/RichTextLabel2").visible = false
+	_start_label.visible = false
 	_rng.randomize()
 	started = true
 
