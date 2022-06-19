@@ -10,7 +10,7 @@ const END_MESSAGE: String = "You got %s point(s)!"
 var timer: float = 0.0  # timer; spawning walls
 
 var motion: Vector2 = Vector2()
-var wall: PackedScene = preload("res://games/flappybird/WallNode.tscn")
+var wall: PackedScene = preload("res://games/flappybird/wall_node.tscn")
 var score: int = 0
 var started: bool = false
 

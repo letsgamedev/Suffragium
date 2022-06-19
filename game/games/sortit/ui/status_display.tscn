@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://games/sortit/ui/status_display.gd" type="Script" id=1]
-[ext_resource path="res://shared/fonts/Roboto-Black.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://shared/fonts/Roboto/roboto_black.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://games/sortit/assets/images/arrow.png" type="Texture" id=3]
 
 [sub_resource type="DynamicFont" id=1]

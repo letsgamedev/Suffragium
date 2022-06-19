@@ -45,7 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Suffragium"
-run/main_scene="res://menu/emptySzene.tscn"
+run/main_scene="res://menu/empty_szene.tscn"
 config/icon="res://icon.png"
 
 [autoload]

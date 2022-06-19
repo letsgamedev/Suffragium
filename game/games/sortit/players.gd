@@ -1,6 +1,6 @@
 extends Node
 
-const PLAYER_SCENE = preload("res://games/sortit/Player.tscn")
+const PLAYER_SCENE = preload("res://games/sortit/player.tscn")
 const MIN_JOY_STRENGTH = 0.05
 
 export(Array, Color) var player_colors

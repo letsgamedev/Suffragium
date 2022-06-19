@@ -1,6 +1,6 @@
 extends GridContainer
 
-const STATUS_DISPLAY_SCENE = preload("res://games/sortit/ui/StatusDisplay.tscn")
+const STATUS_DISPLAY_SCENE = preload("res://games/sortit/ui/status_display.tscn")
 onready var _players: Node = $"../Players"
 onready var _minimap = $MiniMap
 

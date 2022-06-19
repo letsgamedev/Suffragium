@@ -1,6 +1,6 @@
 extends MarginContainer
 
-const BLOCK_SCENE: PackedScene = preload("res://games/sortit/Box.tscn")
+const BLOCK_SCENE: PackedScene = preload("res://games/sortit/box.tscn")
 const MAX_SCORE = 10
 
 export(Vector2) var spawn_height = Vector2(40, 100)

@@ -36,7 +36,7 @@ func load_game(game_cfg: ConfigFile):
 
 # return to the level select
 func end_game(message := "", _status = null):
-	var err = get_tree().change_scene("res://menu/emptySzene.tscn")
+	var err = get_tree().change_scene("res://menu/empty_szene.tscn")
 	if err != OK:
 		prints("Error", err)
 		return
