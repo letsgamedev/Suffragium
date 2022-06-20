@@ -14,12 +14,12 @@ export(float) var p_gain = 0.8
 export(float) var i_gain = 0.004
 export(float) var d_gain = 2.0
 
-var player: SortItPlayer
 var box
 
 var _current_attracting_box
 var _current_attract_total_error = Vector3.ZERO
 var _current_attract_last_error = Vector3.ZERO
+var _players = []
 
 onready var index = int(name)
 onready var _box_anchor: Spatial = $BoxAnchor
@@ -39,6 +39,10 @@ func set_correct(is_correct: bool):
 		_particels.draw_pass_1.surface_set_material(0, particle_right_material)
 	else:
 		_particels.draw_pass_1.surface_set_material(0, particle_wrong_material)
+
+
+func set_players(players: Array):
+	_players = players
 
 
 func _ready():
@@ -78,15 +82,17 @@ func _physics_process(delta):
 		return
 	$Particles.emitting = false
 	for body in $Area.get_overlapping_bodies():
-		# Ensure that the box is not currently grabbed by the player
-		if not player.left_box == null:
-			var player_box = player.left_box as SortItBox
-			if player_box.get_instance_id() == body.get_instance_id():
-				return
-		if not player.right_box == null:
-			var player_box = player.right_box as SortItBox
-			if player_box.get_instance_id() == body.get_instance_id():
-				return
+		# Ensure that the box is not currently grabbed by a player
+		var body_instance_id = body.get_instance_id()
+		for player in _players:
+			if not player.left_box == null:
+				var player_box = player.left_box as SortItBox
+				if player_box.get_instance_id() == body_instance_id:
+					return
+			if not player.right_box == null:
+				var player_box = player.right_box as SortItBox
+				if player_box.get_instance_id() == body_instance_id:
+					return
 
 		_attract_box(body, attract_strength, delta)
 		# Check if the box is close enught to be "held". Only one box can be held at once
@@ -94,7 +100,10 @@ func _physics_process(delta):
 		if (distance <= attracted_distance) == true:
 			box = body as SortItBox
 			box.stop_despawn()
-			box.add_collision_exception_with(player)
+			# Stop all players from colliding with the box to make griefing harder
+			for player in _players:
+				box.add_collision_exception_with(player)
+			# Emit signal to recalculate the players score and mark pedestal as occupied
 			emit_signal("box_held", index, box.number)
 
 
@@ -108,6 +117,9 @@ func _on_Area_body_exited(body: SortItBox):
 			_current_attracting_box = null
 	if box.get_instance_id() == body.get_instance_id():
 		box.reset_despawn()
-		box.remove_collision_exception_with(player)
+		# Activate collision with players when the box is dropped
+		for player in _players:
+			box.remove_collision_exception_with(player)
+		# Emit signal to recalculate the player score am mark pedestal as empty
 		emit_signal("box_dropped", index, box.number)
 		box = null

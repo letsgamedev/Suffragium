@@ -53,8 +53,10 @@ func set_color(color: Color):
 
 func set_assigned_player(assigned_player: SortItPlayer):
 	_assigned_player = assigned_player
+	# Give each pedestal a reference to all players
+	var players = get_node("../../Players").get_children()
 	for pedestal in get_children():
-		pedestal.player = assigned_player
+		pedestal.set_players(players)
 
 
 func _ready():
