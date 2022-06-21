@@ -31,6 +31,7 @@ func _input(event):
 
 func show():
 	_main.show()
+	GameManager.pause_game()
 	emit_signal("pause_menu_opened")
 	get_tree().paused = true
 	_update_menu()
@@ -40,6 +41,9 @@ func hide():
 	_main.hide()
 	emit_signal("pause_menu_closed")
 	get_tree().paused = false
+	var curr_game = GameManager.get_current_game()
+	if curr_game != null:
+		GameManager.game_started(curr_game.get_meta("folder_name"))
 
 
 func is_open():
@@ -47,24 +51,25 @@ func is_open():
 
 
 func _update_menu():
-	var game: ConfigFile = GameManager.last_loaded_game
+	var game: ConfigFile = GameManager.get_current_game()
 	# true if a game is loaded
-	var in_game: bool = is_instance_valid(game)
+	var in_game: bool = game != null
 
 	_reset_btn.visible = in_game
 	_quit_game_btn.visible = in_game
 
 
 func _on_restartbtn_pressed():
-	GameManager.load_game(GameManager.last_loaded_game)
+	var current_game = GameManager.get_current_game()
+	GameManager.load_game(current_game)
 	hide()
 
 
 func _on_quitgamebtn_pressed():
-	GameManager.end_game("")
+	GameManager.end_game("")  # TODO: save score here
 	hide()
 
 
 func _on_quittodesctopbtn_pressed():
-	GameManager.end_game("")
+	GameManager.end_game("")  # TODO: save score here
 	get_tree().quit()
