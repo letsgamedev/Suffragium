@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://games/pixel_side_scroller/pawns/pawn.tscn" type="PackedScene" id=1]
+[ext_resource path="res://games/pixel_side_scroller/pawns/character/character.png" type="Texture" id=2]
+[ext_resource path="res://games/pixel_side_scroller/pawns/character/character.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 4, 7.5 )
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 16, 16 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "run"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 16, 0, 16, 16 ), Rect2( 32, 0, 16, 16 ), Rect2( 48, 0, 16, 16 ), Rect2( 64, 0, 16, 16 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "stand"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 16, 16 ) ]
+}
+
+[node name="Character" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2( 0, -7.5 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+position = Vector2( 0, -8 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 16, 16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+anims/RESET = SubResource( 1 )
+anims/run = SubResource( 2 )
+anims/stand = SubResource( 3 )
