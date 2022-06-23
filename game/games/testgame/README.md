@@ -2,10 +2,10 @@
 
 ## 1. Choose a folder for your minigame
 All files related to your game only go into a folder inside `res://games/` with a random name you choose. You shouldn't rename it after the game is first merged.  
-There are no rules what to call it. A good idea is to use your name and the name of your game (ex. `asecondguy_assimilator`) to avoid any accidental collisions.  
+There are no rules what to call it. A good idea is to use your name and the name of your game (ex. `asecondguy_assimilator`) to avoid any accidental collisions.
 
 ## 2. Make a game.cfg
-The game.cfg file resides in your minigame folder. It defines how your game is loaded and displayed in the game selection menu.  
+The game.cfg file resides in your minigame folder. It defines how your game is loaded and displayed in the game selection menu.
 You can find all relevant keys in this document.  
 If you are unsure copy the game.cfg from the testgame and change the values to your need.
 It will always contain all required and optional settings clearly marked.
@@ -14,26 +14,28 @@ It will always contain all required and optional settings clearly marked.
 * GameManager is always available in every script and has useful functions(like `end_game()`). A list of these functions can be found in this document or the full list with all functions in [this README](../../menu/README.md)
 * Don't add `Autoload` scripts. They are loaded on startup and run all the time so it is bad practice to use one in a minigame.
 * The scene you defined in `game.cfg` will be loaded with `get_tree().change_scene()`. So It'll work like it is the main scene.
-* To return to the game selection use `GameManager.end_game("This is the end message")`
+* To return to the game selection use `GameManager.end_game("This is the end message", score)`
 * The PauseMenu will work immediately. It will pause the game using `get_tree().paused` so make sure none of your gameplay nodes have the pause mode on PROCESS.
 
 # game.cfg keys
 * Section: `game`
   * Choose a memorable name  
-    `name="Balloon pop"`  
+    `name="Balloon pop"`
   * Description supports bbcode. Say what your game is about.  
     `desc="Pop the balloons of the right [color=blue]color[/color]"`  
   * These paths are relative to the game folder.  
     `main_scene="balloonPop.tscn"`  
-    `icon="balloon.png"`  
+    `icon="balloon.png"`
   * Version has no effect. But it might be shown in debug menus.  
-    `version="1.0"`  
+    `version="1.0"`
   * Put your name here. Has no effect.  
-    `creator="ASecondGuy"`  
+    `creator="ASecondGuy"`
 
 # Useful functions
-* **`end_game(message: String="", _status=null)`**  
+* **`end_game(message: String = "", score = null)`**  
   Ends the game and displays the message. This behaviour will change in the future.  
-  `_status` isn't used at the moment. It is meant for the score the player achived.  
-* `load_game(game_cfg: ConfigFile)`  
-  Loads the game specified by the config file.  
+  If your game has a score representet by a comperable constant type, then pass it as `score`.  
+  If the score is more complex you can even pass a Dictionary with a `"score"` key that has a comperable value and constant type.
+
+* **`load_game(game_cfg: ConfigFile)`**  
+  Loads the game specified by the config file.
