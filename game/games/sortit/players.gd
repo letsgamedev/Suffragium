@@ -49,11 +49,14 @@ func spawn_players():
 		player.player_index = i
 		var player_color = player_colors[i]
 		player.set_color(player_color)
-		# Setup pedestals for player
-		player_pedestals.set_assigned_player(player)
+		# Set pedestals player color
 		player_pedestals.set_color(player_color)
 		# Only enable pedestals, that are assigned to a player
 		player_pedestals.enable()
+	# Assign the player to the pedestal once every player has been initialized
+	for i in range(player_count):
+		var player_pedestals = _pedestals.get_child(i)
+		player_pedestals.set_assigned_player(get_child(i))
 	set_player_colors_on_ground_plane()
 
 
