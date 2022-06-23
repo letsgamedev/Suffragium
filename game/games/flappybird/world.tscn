@@ -9,7 +9,7 @@
 [ext_resource path="res://games/flappybird/sounds/sfx/pass_wall.wav" type="AudioStream" id=7]
 [ext_resource path="res://games/flappybird/sounds/sfx/game_end.wav" type="AudioStream" id=8]
 [ext_resource path="res://games/flappybird/camera.gd" type="Script" id=9]
-[ext_resource path="res://shared/fonts/pressStart2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://shared/fonts/press_start2p/press_start2p_regular.ttf" type="DynamicFontData" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 9, 9 )
