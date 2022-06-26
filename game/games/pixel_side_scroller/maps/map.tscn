@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://shared/fonts/pressStart2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://shared/fonts/press_start2p/press_start2p_regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://games/pixel_side_scroller/entitys/goal.tscn" type="PackedScene" id=2]
 [ext_resource path="res://games/pixel_side_scroller/entitys/spawn.tscn" type="PackedScene" id=3]
 

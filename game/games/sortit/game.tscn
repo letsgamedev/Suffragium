@@ -1,15 +1,15 @@
 [gd_scene load_steps=21 format=2]
 
-[ext_resource path="res://games/sortit/PedestalGroup.tscn" type="PackedScene" id=1]
-[ext_resource path="res://games/sortit/assets/materials/Building Sides.material" type="Material" id=2]
+[ext_resource path="res://games/sortit/pedestal_group.tscn" type="PackedScene" id=1]
+[ext_resource path="res://games/sortit/assets/materials/building_sides.material" type="Material" id=2]
 [ext_resource path="res://games/sortit/viewports.gd" type="Script" id=3]
 [ext_resource path="res://games/sortit/game.gd" type="Script" id=4]
 [ext_resource path="res://games/sortit/players.gd" type="Script" id=5]
-[ext_resource path="res://games/sortit/assets/materials/Floor.material" type="Material" id=6]
-[ext_resource path="res://games/sortit/assets/materials/Building Top.material" type="Material" id=7]
-[ext_resource path="res://shared/fonts/Roboto-Black.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://games/sortit/assets/materials/floor.material" type="Material" id=6]
+[ext_resource path="res://games/sortit/assets/materials/building_top.material" type="Material" id=7]
+[ext_resource path="res://shared/fonts/roboto/roboto_black.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://games/sortit/ui/remaining_time.gd" type="Script" id=9]
-[ext_resource path="res://games/sortit/ui/MiniMap.tscn" type="PackedScene" id=10]
+[ext_resource path="res://games/sortit/ui/mini_map.tscn" type="PackedScene" id=10]
 
 [sub_resource type="StyleBoxFlat" id=16]
 bg_color = Color( 0.129412, 0.129412, 0.160784, 0.462745 )

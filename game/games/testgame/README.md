@@ -24,8 +24,8 @@ It will always contain all required and optional settings clearly marked.
   * Description supports bbcode. Say what your game is about.  
     `desc="Pop the balloons of the right [color=blue]color[/color]"`  
   * These paths are relative to the game folder.  
-    `main_scene="balloonPop.tscn"`  
-    `icon="balloon.png"`
+    `main_scene="balloon_pop.tscn"`  
+    `icon="balloon.png"`  
   * Version has no effect. But it might be shown in debug menus.  
     `version="1.0"`
   * Put your name here. Has no effect.  

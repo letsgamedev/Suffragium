@@ -3,7 +3,7 @@ extends MarginContainer
 
 enum InputType { WASD_KEYS, IJKL_KEYS, NUMPAD_KEYS, ARROW_KEYS, JOY }
 
-var game_scene = load("res://games/sortit/Game.tscn")
+var game_scene = load("res://games/sortit/game.tscn")
 var input_map = {
 	InputType.WASD_KEYS:
 	{

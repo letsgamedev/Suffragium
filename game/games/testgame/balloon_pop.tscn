@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://games/testgame/balloonPop.gd" type="Script" id=1]
+[ext_resource path="res://games/testgame/balloon_pop.gd" type="Script" id=1]
 
 [sub_resource type="ParticlesMaterial" id=1]
 lifetime_randomness = 0.05

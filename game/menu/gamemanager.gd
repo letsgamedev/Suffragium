@@ -121,7 +121,7 @@ func pause_game():
 ##  return to the level select (if _change_scene is true)
 func end_game(message := "", score = null, _change_scene := true):
 	if _change_scene:
-		var err = get_tree().change_scene("res://menu/emptySzene.tscn")
+		var err = get_tree().change_scene("res://menu/empty_szene.tscn")
 		if err != OK:
 			prints("Error", err)
 			return
