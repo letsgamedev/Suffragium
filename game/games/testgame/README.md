@@ -21,7 +21,7 @@ It will always contain all required and optional settings clearly marked.
 * Section: `game`
   * Choose a memorable name  
     `name="Balloon pop"`
-  * Description supports bbcode. Say what your game is about.  
+  * Say what your game is about.  
     `desc="Pop the balloons of the right [color=blue]color[/color]"`  
   * These paths are relative to the game folder.  
     `main_scene="balloon_pop.tscn"`  

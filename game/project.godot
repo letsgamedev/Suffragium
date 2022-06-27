@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "MarginContainer",
-"class": "GameDisplay",
-"language": "GDScript",
-"path": "res://menu/gamedisplay.gd"
-}, {
 "base": "RigidBody",
 "class": "SortItBox",
 "language": "GDScript",
@@ -29,13 +24,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://games/sortit/player.gd"
 }, {
-"base": "MarginContainer",
+"base": "Reference",
 "class": "SortItRoot",
 "language": "GDScript",
 "path": "res://games/sortit/sort_it.gd"
 } ]
 _global_script_class_icons={
-"GameDisplay": "",
 "SortItBox": "",
 "SortItPedestal": "",
 "SortItPlayer": "",
@@ -45,13 +39,19 @@ _global_script_class_icons={
 [application]
 
 config/name="Suffragium"
-run/main_scene="res://menu/empty_szene.tscn"
+run/main_scene="res://app/scenes/splashed_menu.tscn"
+boot_splash/image="res://app/images/black_square_100.png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 
 [autoload]
 
-GameManager="*res://menu/gamemanager.tscn"
-PauseMenu="*res://menu/pausemenu/pausemenu.tscn"
+GameManager="*res://app/singleton/game_manager.gd"
+UserSettings="*res://app/singleton/user_settings.gd"
+Utils="*res://app/singleton/utils.gd"
+PlayerManager="*res://app/singleton/player_manager.gd"
 
 [global]
 
@@ -61,9 +61,13 @@ control=false
 
 flap={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[locale]
+
+translations=PoolStringArray( "res://translations/tr.de.translation", "res://translations/tr.en.translation" )
 
 [physics]
 

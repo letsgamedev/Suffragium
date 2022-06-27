@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://shared/fonts/roboto/roboto_regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://app/shader/blur.shader" type="Shader" id=2]
+[ext_resource path="res://app/images/white_square_64.png" type="Texture" id=3]
+[ext_resource path="res://app/pause_menu/pause_menu.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 2 )
+shader_param/amount = 2.0
+
+[node name="PauseMenu" type="CanvasLayer"]
+pause_mode = 2
+layer = 128
+script = ExtResource( 4 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlurShader" type="TextureRect" parent="Control"]
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.501961 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CC" type="CenterContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VC" type="VBoxContainer" parent="Control/CC"]
+margin_left = 479.0
+margin_top = 247.0
+margin_right = 544.0
+margin_bottom = 353.0
+
+[node name="Label" type="Label" parent="Control/CC/VC"]
+margin_right = 65.0
+margin_bottom = 19.0
+text = "T_0012"
+align = 1
+
+[node name="ButtonResume" type="Button" parent="Control/CC/VC"]
+margin_top = 23.0
+margin_right = 65.0
+margin_bottom = 48.0
+text = "T_0013"
+
+[node name="ButtonRestart" type="Button" parent="Control/CC/VC"]
+margin_top = 52.0
+margin_right = 65.0
+margin_bottom = 77.0
+text = "T_0014"
+
+[node name="ButtonMenu" type="Button" parent="Control/CC/VC"]
+margin_top = 81.0
+margin_right = 65.0
+margin_bottom = 106.0
+text = "T_0015"
+
+[connection signal="pressed" from="Control/CC/VC/ButtonResume" to="." method="_on_ButtonResume_pressed"]
+[connection signal="pressed" from="Control/CC/VC/ButtonRestart" to="." method="_on_ButtonRestart_pressed"]
+[connection signal="pressed" from="Control/CC/VC/ButtonMenu" to="." method="_on_ButtonMenu_pressed"]
