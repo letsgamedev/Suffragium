@@ -5,8 +5,8 @@ T_PARTICIPATE,Mitmachen,Participate
 T_REPORT_A_BUG,Fehler melden,Report a bug
 T_SETTINGS,Einstellungen,Settings
 T_SORTING,Sortierung:,Sorting:
-T_LONGST_PLAYTIME,längste Spielzeit,longst playtime
-T_ALPHABETICAL,alphabetisch,alphabetical
+T_LONGST_PLAYTIME,Längste Spielzeit,Longst playtime
+T_ALPHABETICAL,Alphabetisch,Alphabetical
 T_PLAYTIME,Spielzeit:,Playtime:
 T_MINUTE,Minute,minute
 T_MINUTES,Minuten,minutes
@@ -32,12 +32,12 @@ T_REPORT_A_BUG_1,Hier kannst du einen Fehler melden. Du kannst auch eine Verbess
 T_LANGUAGE,Sprache,Language
 T_000V,"Drücke die Leertaste, um über die Mauern zu springen",Press the spacebar to jump over the walls
 T_SMOOTH_SCROLLING,Weicher Bildlauf,Smooth scrolling
-T_RESET_TO_DEFAULTS,auf Voreinstellungen zurücksetzen,reset to defaults
+T_RESET_TO_DEFAULTS,Auf Voreinstellungen zurücksetzen,Reset to defaults
 T_AUTHOR,Autor,Author
 T_VERSION,Version,Version
 T_HIGHSCORE,Highscore,Highscore
-T_LAST_PLAYED,zuletzt gespielt,last played
+T_LAST_PLAYED,Zuletzt gespielt,Last played
 T_PAUSED,PAUSIERT,PAUSED
 T_RESUME,Fortsetzen,Resume
 T_RESTART,Neustarten,Restart
-T_BACK_TO_MENU,zurück zum Menü,back to menu
+T_BACK_TO_MENU,Zurück zum Menü,Back to menu

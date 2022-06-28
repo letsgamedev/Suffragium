@@ -14,3 +14,8 @@ func handle_error(err: int, err_msg: String = "", formats: Array = []) -> void:
 	if formats:
 		err_msg = err_msg % formats
 	push_error("Error %s - %s" % [err, err_msg])
+
+
+func handle_tween_fail(success: bool):
+	if not success:
+		push_error("Tween returned false")

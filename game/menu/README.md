@@ -3,7 +3,7 @@
 ## Game-Id
 If in the code a `game_id` is mentioned, this is the name of the folder where the game is in.
 
-## GameManger
+## GameManager
 The GameManager keeps track of all minigames and starts/stops them when needed.  
 It also has a rudimentary game selection menu that uses the GameDisplays.
 

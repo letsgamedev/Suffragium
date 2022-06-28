@@ -33,7 +33,7 @@ func _ready():
 
 
 func _setup_tween_fade_in():
-	_tween_fade_in.interpolate_property(
+	Utils.handle_tween_fail(_tween_fade_in.interpolate_property(
 		_overlay,
 		"color",
 		Color(0, 0, 0, 1),
@@ -41,23 +41,23 @@ func _setup_tween_fade_in():
 		0.25,
 		Tween.TRANS_QUAD,
 		Tween.EASE_IN
-	)
+	))
 
 
 func _setup_tween_part_1():
-	_tween_part_1.interpolate_property(
+	Utils.handle_tween_fail(_tween_part_1.interpolate_property(
 		_part_1, "rect_position:x", -347, -849, 0.5, Tween.TRANS_QUAD, Tween.EASE_IN_OUT
-	)
+	))
 
 
 func _setup_tween_part_2():
-	_tween_part_2.interpolate_property(
+	Utils.handle_tween_fail(_tween_part_2.interpolate_property(
 		_part_2, "rect_position:x", -347, 238, 0.5, Tween.TRANS_QUAD, Tween.EASE_IN_OUT
-	)
+	))
 
 
 func _setup_tween_fade_out():
-	_tween_fade_out.interpolate_property(
+	Utils.handle_tween_fail(_tween_fade_out.interpolate_property(
 		_overlay,
 		"color",
 		Color(0, 0, 0, 0),
@@ -65,11 +65,11 @@ func _setup_tween_fade_out():
 		0.16,
 		Tween.TRANS_QUAD,
 		Tween.EASE_OUT
-	)
+	))
 
 
 func _setup_tween_scene_fade_out():
-	_tween_scene_fade_out.interpolate_property(
+	Utils.handle_tween_fail(_tween_scene_fade_out.interpolate_property(
 		_overlay,
 		"color",
 		Color(0, 0, 0, 1),
@@ -77,11 +77,11 @@ func _setup_tween_scene_fade_out():
 		0.5,
 		Tween.TRANS_QUAD,
 		Tween.EASE_OUT
-	)
+	))
 
 
 func _on_Wait250_timeout():
-	_tween_fade_in.start()
+	Utils.handle_tween_fail(_tween_fade_in.start())
 
 
 func _on_TweenFadeIn_tween_completed(_object, _key):
@@ -90,8 +90,8 @@ func _on_TweenFadeIn_tween_completed(_object, _key):
 
 func _on_Wait500_timeout():
 	_audio_player.play()
-	_tween_part_1.start()
-	_tween_part_2.start()
+	Utils.handle_tween_fail(_tween_part_1.start())
+	Utils.handle_tween_fail(_tween_part_2.start())
 
 
 func _on_TweenPart2_tween_completed(_object, _key):
@@ -99,13 +99,13 @@ func _on_TweenPart2_tween_completed(_object, _key):
 
 
 func _on_Wait1000_timeout():
-	_tween_fade_out.start()
+	Utils.handle_tween_fail(_tween_fade_out.start())
 
 
 func _on_TweenFadeOut_tween_completed(_object, _key):
 	_background.visible = false
 	_splash_logo.visible = false
-	_tween_scene_fade_out.start()
+	Utils.handle_tween_fail(_tween_scene_fade_out.start())
 
 
 func _on_TweenSceneFadeOut_tween_completed(_object, _key):
