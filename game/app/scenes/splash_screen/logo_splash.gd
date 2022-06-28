@@ -34,61 +34,49 @@ func _ready():
 
 func _setup_tween_fade_in():
 	_tween_fade_in.interpolate_property(
-			_overlay,
-			"color",
-			Color(0, 0, 0, 1),
-			Color(0, 0, 0, 0),
-			0.25,
-			Tween.TRANS_QUAD,
-			Tween.EASE_IN
+		_overlay,
+		"color",
+		Color(0, 0, 0, 1),
+		Color(0, 0, 0, 0),
+		0.25,
+		Tween.TRANS_QUAD,
+		Tween.EASE_IN
 	)
 
 
 func _setup_tween_part_1():
 	_tween_part_1.interpolate_property(
-			_part_1,
-			"rect_position:x",
-			-347,
-			-849,
-			0.5,
-			Tween.TRANS_QUAD,
-			Tween.EASE_IN_OUT
+		_part_1, "rect_position:x", -347, -849, 0.5, Tween.TRANS_QUAD, Tween.EASE_IN_OUT
 	)
 
 
 func _setup_tween_part_2():
 	_tween_part_2.interpolate_property(
-			_part_2,
-			"rect_position:x",
-			-347,
-			238,
-			0.5,
-			Tween.TRANS_QUAD,
-			Tween.EASE_IN_OUT
+		_part_2, "rect_position:x", -347, 238, 0.5, Tween.TRANS_QUAD, Tween.EASE_IN_OUT
 	)
 
 
 func _setup_tween_fade_out():
 	_tween_fade_out.interpolate_property(
-			_overlay,
-			"color",
-			Color(0, 0, 0, 0),
-			Color(0, 0, 0, 1),
-			0.16,
-			Tween.TRANS_QUAD,
-			Tween.EASE_OUT
+		_overlay,
+		"color",
+		Color(0, 0, 0, 0),
+		Color(0, 0, 0, 1),
+		0.16,
+		Tween.TRANS_QUAD,
+		Tween.EASE_OUT
 	)
 
 
 func _setup_tween_scene_fade_out():
 	_tween_scene_fade_out.interpolate_property(
-			_overlay,
-			"color",
-			Color(0, 0, 0, 1),
-			Color(0, 0, 0, 0),
-			0.5,
-			Tween.TRANS_QUAD,
-			Tween.EASE_OUT
+		_overlay,
+		"color",
+		Color(0, 0, 0, 1),
+		Color(0, 0, 0, 0),
+		0.5,
+		Tween.TRANS_QUAD,
+		Tween.EASE_OUT
 	)
 
 

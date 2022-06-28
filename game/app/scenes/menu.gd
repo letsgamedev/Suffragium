@@ -12,10 +12,10 @@ onready var _games_grid: GridContainer = $TabContainer/Games/MC/VC/HC2/GC
 func _ready():
 	# add all the games
 	var games = GameManager.get_games()
-	for game_config in games:
+	for game_id in games.keys():
 		var game_card = _res_game_card.instance()
 		_games_grid.add_child(game_card)
-		game_card.setup(game_config)
+		game_card.setup(games[game_id])
 	# add contribute card
 	var game_card_add_yours = _res_game_card_add_yours.instance()
 	game_card_add_yours.set_menu_node(self)
@@ -38,13 +38,13 @@ func _scroll_to(previous_tab: int, pos_y: float):
 		var max_y = $TabContainer/About/MC.rect_size.y - $TabContainer/About.rect_size.y
 		var scroll_y = clamp(pos_y, 0, max_y)
 		tween.interpolate_property(
-				$TabContainer/About,
-				"scroll_vertical",
-				$TabContainer/About.scroll_vertical,
-				scroll_y,
-				0.4,
-				Tween.TRANS_QUAD,
-				Tween.EASE_IN_OUT
+			$TabContainer/About,
+			"scroll_vertical",
+			$TabContainer/About.scroll_vertical,
+			scroll_y,
+			0.4,
+			Tween.TRANS_QUAD,
+			Tween.EASE_IN_OUT
 		)
 		tween.start()
 	else:
@@ -123,7 +123,6 @@ func _gather_game_card_sort_entries() -> Array:
 			"last_played": game_card.get_last_played(),
 		}
 		game_cards.push_back(card_entry)
-	print(game_cards)
 	return game_cards
 
 

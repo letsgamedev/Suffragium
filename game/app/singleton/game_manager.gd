@@ -6,7 +6,7 @@ const GAME_FILE_PATH_TEMPLATE = "res://games/%s/%s"
 
 var _menu_path = "res://app/scenes/menu.tscn"
 var _games_folder_path = "res://games"
-var _games = []
+var _games = {}
 
 var _current_game = null
 var _current_game_config = null
@@ -33,7 +33,7 @@ func make_game_file_path(game_id: String, file_name: String) -> String:
 	return GAME_FILE_PATH_TEMPLATE % [game_id, file_name]
 
 
-func get_games() -> Array:
+func get_games() -> Dictionary:
 	return _games.duplicate()
 
 
@@ -53,7 +53,7 @@ func end_game(message: String = "", score = null):
 		push_error("called end_game, but no game loaded")
 		return
 	_data_manager.game_ended(
-			PlayerManager.get_current_player(), _current_game, _current_game_start_time, score
+		PlayerManager.get_current_player(), _current_game, _current_game_start_time, score
 	)
 	_current_game = null
 	_current_game_config = null
@@ -147,7 +147,7 @@ func _load_game_config_file(folder_name: String):
 		push_error("Could not load game config at path '%s'" % config_path)
 		return
 	config_file.set_meta("folder_name", folder_name)
-	_games.push_back(config_file)
+	_games[folder_name] = config_file
 
 
 func _change_scene(scene_path: String):
