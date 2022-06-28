@@ -102,9 +102,6 @@ margin_bottom = 180.0
 rect_min_size = Vector2( 320, 180 )
 color = Color( 0.2, 0.2, 0.2, 1 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BackgroundImage" type="TextureRect" parent="."]
 visible = false
@@ -159,21 +156,21 @@ __meta__ = {
 
 [node name="VC" type="VBoxContainer" parent="MC/VC/HC"]
 margin_left = 74.0
-margin_right = 237.0
+margin_right = 277.0
 margin_bottom = 64.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MC" type="MarginContainer" parent="MC/VC/HC/VC"]
-margin_right = 163.0
+margin_right = 203.0
 margin_bottom = 31.0
 custom_constants/margin_top = 10
 custom_constants/margin_bottom = 2
 
 [node name="LabelTitle" type="Label" parent="MC/VC/HC/VC/MC"]
 margin_top = 10.0
-margin_right = 163.0
+margin_right = 203.0
 margin_bottom = 29.0
 custom_fonts/font = SubResource( 1 )
 text = "<game title>"
@@ -183,7 +180,7 @@ __meta__ = {
 
 [node name="HC" type="HBoxContainer" parent="MC/VC/HC/VC"]
 margin_top = 35.0
-margin_right = 163.0
+margin_right = 203.0
 margin_bottom = 54.0
 custom_constants/separation = 4
 __meta__ = {
@@ -191,17 +188,17 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="MC/VC/HC/VC/HC"]
-margin_right = 53.0
+margin_right = 93.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 9 )
-text = "T_0008"
+text = "T_PLAYTIME"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LabelPlaytimeNumber" type="Label" parent="MC/VC/HC/VC/HC"]
-margin_left = 57.0
-margin_right = 81.0
+margin_left = 97.0
+margin_right = 121.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 9 )
 text = "<x>"
@@ -210,8 +207,8 @@ __meta__ = {
 }
 
 [node name="LabelPlaytimeUnit" type="Label" parent="MC/VC/HC/VC/HC"]
-margin_left = 85.0
-margin_right = 163.0
+margin_left = 125.0
+margin_right = 203.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 9 )
 text = "<time unit>"
@@ -274,13 +271,13 @@ __meta__ = {
 }
 
 [node name="FancyButton" type="PanelContainer" parent="MC/VC/HC2"]
-margin_left = 153.0
+margin_left = 154.0
 margin_right = 224.0
 margin_bottom = 28.0
 custom_styles/panel = SubResource( 3 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MC/VC/HC2/FancyButton"]
-margin_right = 71.0
+margin_right = 70.0
 margin_bottom = 28.0
 custom_constants/margin_right = 12
 custom_constants/margin_left = 12
@@ -290,18 +287,18 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MC/VC/HC2/FancyButton/MarginContainer"]
 margin_left = 12.0
-margin_right = 59.0
+margin_right = 58.0
 margin_bottom = 28.0
 custom_constants/separation = 6
 
 [node name="Label" type="Label" parent="MC/VC/HC2/FancyButton/MarginContainer/HBoxContainer"]
 margin_top = 7.0
-margin_right = 47.0
+margin_right = 46.0
 margin_bottom = 21.0
-text = "T_000D"
+text = "T_INFO"
 
 [node name="ButtonInfo" type="Button" parent="MC/VC/HC2/FancyButton"]
-margin_right = 71.0
+margin_right = 70.0
 margin_bottom = 28.0
 custom_styles/hover = SubResource( 4 )
 custom_styles/pressed = SubResource( 5 )
@@ -334,7 +331,7 @@ custom_constants/separation = 6
 margin_top = 7.0
 margin_right = 44.0
 margin_bottom = 21.0
-text = "T_000E"
+text = "T_PLAY"
 
 [node name="ButtonPlay" type="Button" parent="MC/VC/HC2/FancyButton2"]
 margin_right = 68.0
@@ -416,17 +413,17 @@ expand = true
 
 [node name="MC" type="MarginContainer" parent="PopupDialogInfo/VC/PC/MC/HC"]
 margin_left = 64.0
-margin_right = 237.0
+margin_right = 277.0
 margin_bottom = 64.0
 custom_constants/margin_left = 10
 
 [node name="VC" type="VBoxContainer" parent="PopupDialogInfo/VC/PC/MC/HC/MC"]
 margin_left = 10.0
-margin_right = 173.0
+margin_right = 213.0
 margin_bottom = 64.0
 
 [node name="MC" type="MarginContainer" parent="PopupDialogInfo/VC/PC/MC/HC/MC/VC"]
-margin_right = 163.0
+margin_right = 203.0
 margin_bottom = 31.0
 custom_constants/margin_top = 10
 custom_constants/margin_bottom = 2
@@ -436,29 +433,29 @@ __meta__ = {
 
 [node name="LabelTitle" type="Label" parent="PopupDialogInfo/VC/PC/MC/HC/MC/VC/MC"]
 margin_top = 10.0
-margin_right = 163.0
+margin_right = 203.0
 margin_bottom = 29.0
 custom_fonts/font = SubResource( 10 )
 text = "<game title>"
 
 [node name="HC" type="HBoxContainer" parent="PopupDialogInfo/VC/PC/MC/HC/MC/VC"]
 margin_top = 35.0
-margin_right = 163.0
+margin_right = 203.0
 margin_bottom = 54.0
 custom_constants/separation = 4
 
 [node name="Label" type="Label" parent="PopupDialogInfo/VC/PC/MC/HC/MC/VC/HC"]
-margin_right = 53.0
+margin_right = 93.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 11 )
-text = "T_0008"
+text = "T_PLAYTIME"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LabelPlaytimeNumber" type="Label" parent="PopupDialogInfo/VC/PC/MC/HC/MC/VC/HC"]
-margin_left = 57.0
-margin_right = 81.0
+margin_left = 97.0
+margin_right = 121.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 11 )
 text = "<x>"
@@ -467,8 +464,8 @@ __meta__ = {
 }
 
 [node name="LabelPlaytimeUnit" type="Label" parent="PopupDialogInfo/VC/PC/MC/HC/MC/VC/HC"]
-margin_left = 85.0
-margin_right = 163.0
+margin_left = 125.0
+margin_right = 203.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 11 )
 text = "<time unit>"
@@ -477,7 +474,7 @@ __meta__ = {
 }
 
 [node name="VC" type="VBoxContainer" parent="PopupDialogInfo/VC/PC/MC/HC"]
-margin_left = 237.0
+margin_left = 277.0
 margin_right = 578.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
@@ -488,11 +485,11 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="PopupDialogInfo/VC/PC/MC/HC/VC"]
 margin_top = 11.0
-margin_right = 341.0
+margin_right = 301.0
 margin_bottom = 30.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 11 )
-text = "T_0010"
+text = "T_HIGHSCORE"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -500,7 +497,7 @@ __meta__ = {
 
 [node name="LabelHighscore" type="Label" parent="PopupDialogInfo/VC/PC/MC/HC/VC"]
 margin_top = 34.0
-margin_right = 341.0
+margin_right = 301.0
 margin_bottom = 53.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 11 )
@@ -612,7 +609,7 @@ size_flags_horizontal = 3
 margin_right = 194.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 11 )
-text = "T_000Y"
+text = "T_AUTHOR"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -642,7 +639,7 @@ margin_top = 58.0
 margin_right = 194.0
 margin_bottom = 77.0
 custom_fonts/font = SubResource( 11 )
-text = "T_000Z"
+text = "T_VERSION"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -705,7 +702,7 @@ custom_constants/separation = 6
 margin_top = 7.0
 margin_right = 44.0
 margin_bottom = 21.0
-text = "T_000E"
+text = "T_PLAY"
 
 [node name="ButtonPlay" type="Button" parent="PopupDialogInfo/VC/PC3/MC/HC/FancyButton"]
 margin_right = 68.0

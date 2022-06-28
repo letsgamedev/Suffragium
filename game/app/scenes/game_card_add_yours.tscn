@@ -17,9 +17,6 @@ rect_min_size = Vector2( 320, 180 )
 theme = SubResource( 2 )
 color = Color( 0.2, 0.2, 0.2, 1 )
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -39,9 +36,9 @@ margin_right = 304.0
 margin_bottom = 164.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
-margin_left = 117.0
+margin_left = 70.0
 margin_top = 36.0
-margin_right = 170.0
+margin_right = 218.0
 margin_bottom = 111.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -51,16 +48,16 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/CenterContainer/VBoxContainer"]
-margin_right = 53.0
+margin_right = 148.0
 margin_bottom = 40.0
 texture = ExtResource( 1 )
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
 margin_top = 56.0
-margin_right = 53.0
+margin_right = 148.0
 margin_bottom = 75.0
-text = "T_000F"
+text = "T_ADD_YOUR_GAME"
 
 [node name="Button" type="Button" parent="."]
 margin_right = 320.0

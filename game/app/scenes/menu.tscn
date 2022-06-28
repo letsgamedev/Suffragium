@@ -127,9 +127,6 @@ anchor_bottom = 1.0
 theme = SubResource( 11 )
 custom_constants/separation = 0
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MenuBar" type="PanelContainer" parent="."]
 margin_right = 1024.0
@@ -151,7 +148,7 @@ margin_right = 1016.0
 margin_bottom = 44.0
 
 [node name="HC" type="HBoxContainer" parent="MenuBar/MC/HC"]
-margin_right = 905.0
+margin_right = 866.0
 margin_bottom = 36.0
 size_flags_horizontal = 3
 
@@ -170,7 +167,7 @@ __meta__ = {
 
 [node name="FancyMenuButton4" type="PanelContainer" parent="MenuBar/MC/HC/HC"]
 margin_left = 44.0
-margin_right = 121.0
+margin_right = 139.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 0, 36 )
 custom_styles/panel = SubResource( 4 )
@@ -179,7 +176,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuBar/MC/HC/HC/FancyMenuButton4"]
-margin_right = 77.0
+margin_right = 95.0
 margin_bottom = 36.0
 custom_constants/margin_right = 12
 custom_constants/margin_left = 12
@@ -189,19 +186,19 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuBar/MC/HC/HC/FancyMenuButton4/MarginContainer"]
 margin_left = 12.0
-margin_right = 65.0
+margin_right = 83.0
 margin_bottom = 36.0
 custom_constants/separation = 6
 
 [node name="Label" type="Label" parent="MenuBar/MC/HC/HC/FancyMenuButton4/MarginContainer/HBoxContainer"]
 margin_top = 8.0
-margin_right = 53.0
+margin_right = 71.0
 margin_bottom = 27.0
 custom_fonts/font = SubResource( 12 )
-text = "T_0000"
+text = "T_GAMES"
 
 [node name="ButtonGames" type="Button" parent="MenuBar/MC/HC/HC/FancyMenuButton4"]
-margin_right = 77.0
+margin_right = 95.0
 margin_bottom = 36.0
 custom_styles/hover = SubResource( 5 )
 custom_styles/pressed = SubResource( 6 )
@@ -210,8 +207,8 @@ custom_styles/disabled = SubResource( 7 )
 custom_styles/normal = SubResource( 8 )
 
 [node name="FancyMenuButton" type="PanelContainer" parent="MenuBar/MC/HC/HC"]
-margin_left = 125.0
-margin_right = 202.0
+margin_left = 143.0
+margin_right = 339.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 0, 36 )
 custom_styles/panel = SubResource( 4 )
@@ -220,7 +217,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuBar/MC/HC/HC/FancyMenuButton"]
-margin_right = 77.0
+margin_right = 196.0
 margin_bottom = 36.0
 custom_constants/margin_right = 12
 custom_constants/margin_left = 12
@@ -230,19 +227,19 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuBar/MC/HC/HC/FancyMenuButton/MarginContainer"]
 margin_left = 12.0
-margin_right = 65.0
+margin_right = 184.0
 margin_bottom = 36.0
 custom_constants/separation = 6
 
 [node name="Label" type="Label" parent="MenuBar/MC/HC/HC/FancyMenuButton/MarginContainer/HBoxContainer"]
 margin_top = 8.0
-margin_right = 53.0
+margin_right = 172.0
 margin_bottom = 27.0
 custom_fonts/font = SubResource( 12 )
-text = "T_0001"
+text = "T_ABOUT_SUFFRAGIUM"
 
 [node name="ButtonAbout" type="Button" parent="MenuBar/MC/HC/HC/FancyMenuButton"]
-margin_right = 77.0
+margin_right = 196.0
 margin_bottom = 36.0
 custom_styles/hover = SubResource( 5 )
 custom_styles/pressed = SubResource( 6 )
@@ -251,14 +248,14 @@ custom_styles/disabled = SubResource( 7 )
 custom_styles/normal = SubResource( 8 )
 
 [node name="FancyMenuButton2" type="PanelContainer" parent="MenuBar/MC/HC/HC"]
-margin_left = 206.0
-margin_right = 283.0
+margin_left = 343.0
+margin_right = 481.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 0, 36 )
 custom_styles/panel = SubResource( 13 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuBar/MC/HC/HC/FancyMenuButton2"]
-margin_right = 77.0
+margin_right = 138.0
 margin_bottom = 36.0
 custom_constants/margin_right = 12
 custom_constants/margin_left = 12
@@ -268,18 +265,18 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuBar/MC/HC/HC/FancyMenuButton2/MarginContainer"]
 margin_left = 12.0
-margin_right = 65.0
+margin_right = 126.0
 margin_bottom = 36.0
 custom_constants/separation = 6
 
 [node name="Label" type="Label" parent="MenuBar/MC/HC/HC/FancyMenuButton2/MarginContainer/HBoxContainer"]
 margin_top = 8.0
-margin_right = 53.0
+margin_right = 114.0
 margin_bottom = 27.0
-text = "T_0002"
+text = "T_PARTICIPATE"
 
 [node name="ButtonParticipate" type="Button" parent="MenuBar/MC/HC/HC/FancyMenuButton2"]
-margin_right = 77.0
+margin_right = 138.0
 margin_bottom = 36.0
 custom_styles/hover = SubResource( 14 )
 custom_styles/pressed = SubResource( 15 )
@@ -288,14 +285,14 @@ custom_styles/disabled = SubResource( 17 )
 custom_styles/normal = SubResource( 18 )
 
 [node name="FancyMenuButton3" type="PanelContainer" parent="MenuBar/MC/HC/HC"]
-margin_left = 287.0
-margin_right = 364.0
+margin_left = 485.0
+margin_right = 641.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 0, 36 )
 custom_styles/panel = SubResource( 13 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuBar/MC/HC/HC/FancyMenuButton3"]
-margin_right = 77.0
+margin_right = 156.0
 margin_bottom = 36.0
 custom_constants/margin_right = 12
 custom_constants/margin_left = 12
@@ -305,18 +302,18 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuBar/MC/HC/HC/FancyMenuButton3/MarginContainer"]
 margin_left = 12.0
-margin_right = 65.0
+margin_right = 144.0
 margin_bottom = 36.0
 custom_constants/separation = 6
 
 [node name="Label" type="Label" parent="MenuBar/MC/HC/HC/FancyMenuButton3/MarginContainer/HBoxContainer"]
 margin_top = 8.0
-margin_right = 53.0
+margin_right = 132.0
 margin_bottom = 27.0
-text = "T_0003"
+text = "T_REPORT_A_BUG"
 
 [node name="ButtonReportBug" type="Button" parent="MenuBar/MC/HC/HC/FancyMenuButton3"]
-margin_right = 77.0
+margin_right = 156.0
 margin_bottom = 36.0
 custom_styles/hover = SubResource( 14 )
 custom_styles/pressed = SubResource( 15 )
@@ -325,14 +322,14 @@ custom_styles/disabled = SubResource( 17 )
 custom_styles/normal = SubResource( 18 )
 
 [node name="FancyMenuButton" type="PanelContainer" parent="MenuBar/MC/HC"]
-margin_left = 909.0
+margin_left = 870.0
 margin_right = 1008.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 0, 36 )
 custom_styles/panel = SubResource( 13 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuBar/MC/HC/FancyMenuButton"]
-margin_right = 99.0
+margin_right = 138.0
 margin_bottom = 36.0
 custom_constants/margin_right = 12
 custom_constants/margin_left = 12
@@ -342,7 +339,7 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuBar/MC/HC/FancyMenuButton/MarginContainer"]
 margin_left = 12.0
-margin_right = 87.0
+margin_right = 126.0
 margin_bottom = 36.0
 custom_constants/separation = 6
 
@@ -355,12 +352,12 @@ stretch_mode = 4
 [node name="Label" type="Label" parent="MenuBar/MC/HC/FancyMenuButton/MarginContainer/HBoxContainer"]
 margin_left = 22.0
 margin_top = 8.0
-margin_right = 75.0
+margin_right = 114.0
 margin_bottom = 27.0
-text = "T_0004"
+text = "T_SETTINGS"
 
 [node name="ButtonSettings" type="Button" parent="MenuBar/MC/HC/FancyMenuButton"]
-margin_right = 99.0
+margin_right = 138.0
 margin_bottom = 36.0
 custom_styles/hover = SubResource( 14 )
 custom_styles/pressed = SubResource( 15 )
@@ -405,29 +402,29 @@ margin_bottom = 29.0
 alignment = 2
 
 [node name="Label" type="Label" parent="TabContainer/Games/MC/VC/HC"]
-margin_right = 849.0
+margin_right = 742.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 20 )
-text = "T_0000"
+text = "T_GAMES"
 
 [node name="Label2" type="Label" parent="TabContainer/Games/MC/VC/HC"]
-margin_left = 853.0
+margin_left = 746.0
 margin_top = 5.0
-margin_right = 906.0
+margin_right = 830.0
 margin_bottom = 24.0
-text = "T_0005"
+text = "T_SORTING"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="OptionButtonSorting" type="OptionButton" parent="TabContainer/Games/MC/VC/HC"]
-margin_left = 910.0
+margin_left = 834.0
 margin_right = 992.0
 margin_bottom = 29.0
-text = "T_0006"
-items = [ "T_0006", null, false, 0, null, "T_0007", null, false, 1, null, "T_0011", null, false, 2, null ]
-selected = 0
+text = "T_ALPHABETICAL"
+items = [ "T_LONGST_PLAYTIME", null, false, 0, null, "T_ALPHABETICAL", null, false, 1, null, "T_LAST_PLAYED", null, false, 2, null ]
+selected = 1
 
 [node name="HC2" type="HBoxContainer" parent="TabContainer/Games/MC/VC"]
 margin_top = 45.0
@@ -472,7 +469,7 @@ custom_constants/separation = 16
 margin_right = 980.0
 margin_bottom = 29.0
 custom_fonts/font = SubResource( 21 )
-text = "T_0001"
+text = "T_ABOUT_SUFFRAGIUM"
 
 [node name="VC" type="VBoxContainer" parent="TabContainer/About/MC/VC/SectionAbout"]
 margin_top = 45.0
@@ -482,7 +479,7 @@ margin_bottom = 87.0
 [node name="Label" type="Label" parent="TabContainer/About/MC/VC/SectionAbout/VC"]
 margin_right = 980.0
 margin_bottom = 19.0
-text = "T_000G"
+text = "T_ABOUT_SUFFRAGIUM_1"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -491,7 +488,7 @@ __meta__ = {
 margin_top = 23.0
 margin_right = 980.0
 margin_bottom = 42.0
-text = "T_000H"
+text = "T_ABOUT_SUFFRAGIUM_2"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -506,7 +503,7 @@ custom_constants/separation = 16
 margin_right = 980.0
 margin_bottom = 29.0
 custom_fonts/font = SubResource( 21 )
-text = "T_0002"
+text = "T_PARTICIPATE"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/About/MC/VC/SectionParticipate"]
 margin_top = 45.0
@@ -519,7 +516,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_right = 980.0
 margin_bottom = 19.0
-text = "T_000I"
+text = "T_PARTICIPATE_1"
 autowrap = true
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
@@ -535,28 +532,28 @@ __meta__ = {
 margin_top = 44.0
 margin_right = 980.0
 margin_bottom = 63.0
-text = "T_000J"
+text = "T_PARTICIPATE_PLEASE_NOTE"
 autowrap = true
 
 [node name="Label3" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 67.0
 margin_right = 980.0
 margin_bottom = 86.0
-text = "T_000K"
+text = "T_PARTICIPATE_PLEASE_NOTE_1"
 autowrap = true
 
 [node name="Label4" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 90.0
 margin_right = 980.0
 margin_bottom = 109.0
-text = "T_000L"
+text = "T_PARTICIPATE_PLEASE_NOTE_2"
 autowrap = true
 
 [node name="Label5" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 113.0
 margin_right = 980.0
 margin_bottom = 132.0
-text = "T_000M"
+text = "T_PARTICIPATE_PLEASE_NOTE_3"
 autowrap = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
@@ -572,35 +569,35 @@ __meta__ = {
 margin_top = 157.0
 margin_right = 980.0
 margin_bottom = 176.0
-text = "T_000N"
+text = "T_PARTICIPATE_POSSIBILITIES"
 autowrap = true
 
 [node name="Label7" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 180.0
 margin_right = 980.0
 margin_bottom = 199.0
-text = "T_000O"
+text = "T_PARTICIPATE_POSSIBILITIES_1"
 autowrap = true
 
 [node name="Label8" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 203.0
 margin_right = 980.0
 margin_bottom = 222.0
-text = "T_000P"
+text = "T_PARTICIPATE_POSSIBILITIES_2"
 autowrap = true
 
 [node name="Label9" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 226.0
 margin_right = 980.0
 margin_bottom = 245.0
-text = "T_000Q"
+text = "T_PARTICIPATE_POSSIBILITIES_3"
 autowrap = true
 
 [node name="Label10" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 249.0
 margin_right = 980.0
 margin_bottom = 268.0
-text = "T_000R"
+text = "T_PARTICIPATE_POSSIBILITIES_4"
 autowrap = true
 
 [node name="MarginContainer3" type="MarginContainer" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
@@ -616,7 +613,7 @@ __meta__ = {
 margin_top = 293.0
 margin_right = 980.0
 margin_bottom = 312.0
-text = "T_000S"
+text = "T_PARTICIPATE_GUIDES"
 autowrap = true
 
 [node name="LinkContribute" type="LinkButton" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
@@ -653,7 +650,7 @@ custom_constants/separation = 16
 margin_right = 980.0
 margin_bottom = 29.0
 custom_fonts/font = SubResource( 21 )
-text = "T_0003"
+text = "T_REPORT_A_BUG"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/About/MC/VC/SectionReportBug"]
 margin_top = 45.0
@@ -666,28 +663,28 @@ __meta__ = {
 [node name="Label2" type="Label" parent="TabContainer/About/MC/VC/SectionReportBug/VBoxContainer"]
 margin_right = 980.0
 margin_bottom = 19.0
-text = "T_000J"
+text = "T_PARTICIPATE_PLEASE_NOTE"
 autowrap = true
 
 [node name="Label3" type="Label" parent="TabContainer/About/MC/VC/SectionReportBug/VBoxContainer"]
 margin_top = 23.0
 margin_right = 980.0
 margin_bottom = 42.0
-text = "T_000K"
+text = "T_PARTICIPATE_PLEASE_NOTE_1"
 autowrap = true
 
 [node name="Label5" type="Label" parent="TabContainer/About/MC/VC/SectionReportBug/VBoxContainer"]
 margin_top = 46.0
 margin_right = 980.0
 margin_bottom = 65.0
-text = "T_000L"
+text = "T_PARTICIPATE_PLEASE_NOTE_2"
 autowrap = true
 
 [node name="Label6" type="Label" parent="TabContainer/About/MC/VC/SectionReportBug/VBoxContainer"]
 margin_top = 69.0
 margin_right = 980.0
 margin_bottom = 88.0
-text = "T_000M"
+text = "T_PARTICIPATE_PLEASE_NOTE_3"
 autowrap = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="TabContainer/About/MC/VC/SectionReportBug/VBoxContainer"]
@@ -703,7 +700,7 @@ __meta__ = {
 margin_top = 113.0
 margin_right = 980.0
 margin_bottom = 132.0
-text = "T_000T"
+text = "T_REPORT_A_BUG_1"
 autowrap = true
 
 [node name="LinkReportBug" type="LinkButton" parent="TabContainer/About/MC/VC/SectionReportBug/VBoxContainer"]
@@ -743,7 +740,7 @@ margin_bottom = 186.0
 margin_right = 992.0
 margin_bottom = 29.0
 custom_fonts/font = SubResource( 21 )
-text = "T_0004"
+text = "T_SETTINGS"
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/Settings/MC/VC"]
 margin_top = 33.0
@@ -773,11 +770,11 @@ margin_bottom = 25.0
 alignment = 2
 
 [node name="ButtonResetDefaults" type="Button" parent="TabContainer/Settings/MC/VC/HC/VC/HC"]
-margin_left = 234.0
+margin_left = 110.0
 margin_right = 300.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
-text = "T_000X"
+text = "T_RESET_TO_DEFAULTS"
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/Settings/MC/VC/HC/VC"]
 margin_top = 33.0
@@ -799,7 +796,7 @@ margin_top = 3.0
 margin_right = 148.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
-text = "T_000U"
+text = "T_LANGUAGE"
 
 [node name="LanguageSelection" type="OptionButton" parent="TabContainer/Settings/MC/VC/HC/VC/HC2"]
 margin_left = 152.0
@@ -817,13 +814,13 @@ margin_bottom = 117.0
 
 [node name="Label" type="Label" parent="TabContainer/Settings/MC/VC/HC/VC/HC4"]
 margin_top = 4.0
-margin_right = 148.0
+margin_right = 176.0
 margin_bottom = 23.0
 size_flags_horizontal = 3
-text = "T_000W"
+text = "T_SMOOTH_SCROLLING"
 
 [node name="CheckBoxSmoothScroll" type="CheckBox" parent="TabContainer/Settings/MC/VC/HC/VC/HC4"]
-margin_left = 152.0
+margin_left = 180.0
 margin_right = 300.0
 margin_bottom = 27.0
 size_flags_horizontal = 3

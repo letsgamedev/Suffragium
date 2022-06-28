@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://shared/fonts/roboto/roboto_regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://app/shader/blur.shader" type="Shader" id=2]
-[ext_resource path="res://app/images/white_square_64.png" type="Texture" id=3]
 [ext_resource path="res://app/pause_menu/pause_menu.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
@@ -32,7 +31,6 @@ __meta__ = {
 material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 3 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -42,9 +40,6 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.501961 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CC" type="CenterContainer" parent="Control"]
 anchor_right = 1.0
@@ -54,34 +49,34 @@ __meta__ = {
 }
 
 [node name="VC" type="VBoxContainer" parent="Control/CC"]
-margin_left = 479.0
+margin_left = 438.0
 margin_top = 247.0
-margin_right = 544.0
+margin_right = 586.0
 margin_bottom = 353.0
 
 [node name="Label" type="Label" parent="Control/CC/VC"]
-margin_right = 65.0
+margin_right = 148.0
 margin_bottom = 19.0
-text = "T_0012"
+text = "T_PAUSED"
 align = 1
 
 [node name="ButtonResume" type="Button" parent="Control/CC/VC"]
 margin_top = 23.0
-margin_right = 65.0
+margin_right = 148.0
 margin_bottom = 48.0
-text = "T_0013"
+text = "T_RESUME"
 
 [node name="ButtonRestart" type="Button" parent="Control/CC/VC"]
 margin_top = 52.0
-margin_right = 65.0
+margin_right = 148.0
 margin_bottom = 77.0
-text = "T_0014"
+text = "T_RESTART"
 
 [node name="ButtonMenu" type="Button" parent="Control/CC/VC"]
 margin_top = 81.0
-margin_right = 65.0
+margin_right = 148.0
 margin_bottom = 106.0
-text = "T_0015"
+text = "T_BACK_TO_MENU"
 
 [connection signal="pressed" from="Control/CC/VC/ButtonResume" to="." method="_on_ButtonResume_pressed"]
 [connection signal="pressed" from="Control/CC/VC/ButtonRestart" to="." method="_on_ButtonRestart_pressed"]
