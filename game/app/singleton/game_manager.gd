@@ -109,7 +109,7 @@ func pause_game():
 		return
 	# save everything except the score
 	_data_manager.game_ended(
-		PlayerManager.get_current_player(), _current_game, _current_game_start_time, {"score": null}
+		PlayerManager.get_current_player(), _current_game, _current_game_start_time, null
 	)
 	_current_game_start_time = null
 
