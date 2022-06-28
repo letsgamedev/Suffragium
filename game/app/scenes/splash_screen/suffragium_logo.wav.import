@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/suffragium_logo.wav-f7ca717f2ac54e847726927f4a5c2711.sample"
+
+[deps]
+
+source_file="res://app/scenes/splash_screen/suffragium_logo.wav"
+dest_files=[ "res://.import/suffragium_logo.wav-f7ca717f2ac54e847726927f4a5c2711.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

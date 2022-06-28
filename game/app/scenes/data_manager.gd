@@ -86,7 +86,7 @@ class ScoreSorter:
 
 
 ## Handle data for the game that ended.
-func game_ended(player: String, game_id: String, start_time, score: Dictionary):
+func game_ended(player: String, game_id: String, start_time, score_or_null):
 	save_game_data(player, game_id)
 
 	var data = _load_data(player, "game_meta_data", game_id)
@@ -100,15 +100,14 @@ func game_ended(player: String, game_id: String, start_time, score: Dictionary):
 			data["played_time"] = 0
 		data["played_time"] += (OS.get_ticks_msec() - start_time) / 1000.0
 
-	if score != null:
-		if not "score" in score:
-			push_error("No 'score' in score Dictionary.")
-		elif score["score"] != null:
-			score["_time"] = current_time
-			if not "scores" in data:
-				data["scores"] = []
-			data["scores"].append(score)
-			data["scores"].sort_custom(ScoreSorter, "sort_scores_descending")
+	if score_or_null != null:
+		assert(score_or_null is int)
+		var score_dict = {"score": score_or_null}
+		score_dict["_time"] = current_time
+		if not "scores" in data:
+			data["scores"] = []
+		data["scores"].append(score_dict)
+		data["scores"].sort_custom(ScoreSorter, "sort_scores_descending")
 
 	Utils.handle_error(_save_data(player, "game_meta_data", data, game_id))
 

@@ -39,8 +39,8 @@ _global_script_class_icons={
 [application]
 
 config/name="Suffragium"
-run/main_scene="res://app/scenes/splashed_menu.tscn"
-boot_splash/image="res://app/images/black_square_100.png"
+run/main_scene="res://app/scenes/splash_screen/splashed_menu.tscn"
+boot_splash/image="res://app/images/alpha_pixel_1.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )

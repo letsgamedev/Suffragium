@@ -38,13 +38,13 @@ func _scroll_to(previous_tab: int, pos_y: float):
 		var max_y = $TabContainer/About/MC.rect_size.y - $TabContainer/About.rect_size.y
 		var scroll_y = clamp(pos_y, 0, max_y)
 		tween.interpolate_property(
-			$TabContainer/About,
-			"scroll_vertical",
-			$TabContainer/About.scroll_vertical,
-			scroll_y,
-			0.4,
-			Tween.TRANS_QUAD,
-			Tween.EASE_IN_OUT
+				$TabContainer/About,
+				"scroll_vertical",
+				$TabContainer/About.scroll_vertical,
+				scroll_y,
+				0.4,
+				Tween.TRANS_QUAD,
+				Tween.EASE_IN_OUT
 		)
 		tween.start()
 	else:

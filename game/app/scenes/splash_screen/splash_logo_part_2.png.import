@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/black_square_100.png-c6ad830dec1b788837d6128f06127216.stex"
+path="res://.import/splash_logo_part_2.png-4502ac2b0817eb221e5b748f4de11331.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://app/images/black_square_100.png"
-dest_files=[ "res://.import/black_square_100.png-c6ad830dec1b788837d6128f06127216.stex" ]
+source_file="res://app/scenes/splash_screen/splash_logo_part_2.png"
+dest_files=[ "res://.import/splash_logo_part_2.png-4502ac2b0817eb221e5b748f4de11331.stex" ]
 
 [params]
 
