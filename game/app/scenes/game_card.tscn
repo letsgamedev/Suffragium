@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://app/scenes/game_card.gd" type="Script" id=1]
 [ext_resource path="res://shared/fonts/roboto/roboto_regular.ttf" type="DynamicFontData" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://shared/fonts/roboto/roboto_black.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://app/images/cross_40.png" type="Texture" id=5]
 [ext_resource path="res://app/shader/blur.shader" type="Shader" id=6]
-[ext_resource path="res://app/images/alpha_pixel_1.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 4 )
@@ -374,15 +373,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BlurShader" type="TextureRect" parent="PopupDialogInfo/VC/PC"]
+[node name="BlurShader" type="ColorRect" parent="PopupDialogInfo/VC/PC"]
 material = SubResource( 20 )
 margin_right = 650.0
 margin_bottom = 96.0
-texture = ExtResource( 7 )
-expand = true
 __meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 
 [node name="MC" type="MarginContainer" parent="PopupDialogInfo/VC/PC"]
