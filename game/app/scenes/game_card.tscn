@@ -6,7 +6,7 @@
 [ext_resource path="res://shared/fonts/roboto/roboto_black.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://app/images/cross_40.png" type="Texture" id=5]
 [ext_resource path="res://app/shader/blur.shader" type="Shader" id=6]
-[ext_resource path="res://app/images/white_square_64.png" type="Texture" id=7]
+[ext_resource path="res://app/images/alpha_pixel_1.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 4 )
@@ -102,6 +102,9 @@ margin_bottom = 180.0
 rect_min_size = Vector2( 320, 180 )
 color = Color( 0.2, 0.2, 0.2, 1 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BackgroundImage" type="TextureRect" parent="."]
 visible = false

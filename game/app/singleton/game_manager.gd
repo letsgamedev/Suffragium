@@ -1,5 +1,9 @@
 extends Node
 
+## first %s is folder_name (same as game_id)
+## second %s is the file path relative to the game folder
+const GAME_FILE_PATH_TEMPLATE = "res://games/%s/%s"
+
 var _menu_path = "res://app/scenes/menu.tscn"
 var _games_folder_path = "res://games"
 var _games = []
@@ -25,28 +29,31 @@ func _notification(what: int):
 		get_tree().quit()
 
 
+func make_game_file_path(game_id: String, file_name: String) -> String:
+	return GAME_FILE_PATH_TEMPLATE % [game_id, file_name]
+
+
 func get_games() -> Array:
 	return _games.duplicate()
 
 
 func load_game(game_config: ConfigFile):
-	var game_folder = game_config.get_meta("folder_path")
+	var game_id = game_config.get_meta("folder_name")
 	var main_scene = game_config.get_value("game", "main_scene")
-	var scene_path = "%s/%s" % [game_folder, main_scene]
+	var scene_path := make_game_file_path(game_id, main_scene)
 	var err = _change_scene(scene_path)
 	if err == OK:
-		_game_started(game_folder, game_config)
+		_game_started(game_config)
 		_pause_menu = res_pause_menu.instance()
 		get_tree().get_root().add_child(_pause_menu)
 
 
-func end_game(message: String = "", score: int = 0):
+func end_game(message: String = "", score = null):
 	if not _current_game:
 		push_error("called end_game, but no game loaded")
 		return
-	var score_dict = {"score": score}
 	_data_manager.game_ended(
-		PlayerManager.get_current_player(), _current_game, _current_game_start_time, score_dict
+			PlayerManager.get_current_player(), _current_game, _current_game_start_time, score
 	)
 	_current_game = null
 	_current_game_config = null
@@ -108,7 +115,7 @@ func pause_game():
 
 
 func unpause_game():
-	_game_started(_current_game, _current_game_config)
+	_game_started(_current_game_config)
 
 
 func restart_game():
@@ -127,19 +134,19 @@ func _load_game_configs():
 	var file_name = dir.get_next()
 	while file_name != "":
 		if dir.current_is_dir():
-			var game_config_path = "%s/%s/game.cfg" % [_games_folder_path, file_name]
-			_load_game_config_file(game_config_path)
+			_load_game_config_file(file_name)
 		file_name = dir.get_next()
 
 
 # load a config file into _games
-func _load_game_config_file(game_config_path: String):
+func _load_game_config_file(folder_name: String):
 	var config_file = ConfigFile.new()
-	var err = config_file.load(game_config_path)
+	var config_path = GameManager.GAME_FILE_PATH_TEMPLATE % [folder_name, "game.cfg"]
+	var err = config_file.load(config_path)
 	if err:
-		push_error("Could not load game config at path '%s'" % game_config_path)
+		push_error("Could not load game config at path '%s'" % config_path)
 		return
-	config_file.set_meta("folder_path", game_config_path.get_base_dir())
+	config_file.set_meta("folder_name", folder_name)
 	_games.push_back(config_file)
 
 
@@ -151,7 +158,7 @@ func _change_scene(scene_path: String):
 	return OK
 
 
-func _game_started(game_folder: String, game_config: ConfigFile):
-	_current_game = game_folder
+func _game_started(game_config: ConfigFile):
+	_current_game = game_config.get_meta("folder_name")
 	_current_game_config = game_config
 	_current_game_start_time = OS.get_ticks_msec()

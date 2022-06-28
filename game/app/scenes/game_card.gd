@@ -2,7 +2,7 @@ extends ColorRect
 
 var _game_config: ConfigFile = null
 var _playtime: float = 0
-var _last_played: int = 0
+var _last_played = null
 
 onready var _label_title := $MC/VC/HC/VC/MC/LabelTitle
 onready var _label_description := $MC/VC/SC/MC/LabelDescription
@@ -22,22 +22,22 @@ onready var _popup_label_highscore := $PopupDialogInfo/VC/PC/MC/HC/VC/LabelHighs
 
 func setup(game_config: ConfigFile):
 	_game_config = game_config
-
-	var game_folder_path = game_config.get_meta("folder_path")
-	_playtime = GameManager.get_playtime(game_folder_path)
-	_last_played = GameManager.get_time_last_played(game_folder_path)
-	var highscore_dict = GameManager.get_highscore(game_folder_path)
-	var highscore = "-"
-	if highscore_dict.has("score"):
-		highscore = str(highscore_dict["score"])
-	_popup_label_highscore.text = highscore
+	var game_id = game_config.get_meta("folder_name")
 
 	var game_name = game_config.get_value("game", "name")
 	var game_description = game_config.get_value("game", "desc")
 
+	_playtime = GameManager.get_playtime(game_id)
 	var playtime_dict = _format_playtime(_playtime)
 	var playtime_number = playtime_dict["number"]
 	var playtime_unit = playtime_dict["unit"]
+
+	var highscore_dict = GameManager.get_highscore(game_id)
+	if highscore_dict.has("score"):
+		_popup_label_highscore.text = str(highscore_dict["score"])
+	else:
+		$PopupDialogInfo/VC/PC/MC/HC/VC/Label.visible = false
+		$PopupDialogInfo/VC/PC/MC/HC/VC/LabelHighscore.visible = false
 
 	_label_title.text = game_name
 	_label_description.text = game_description
@@ -51,8 +51,8 @@ func setup(game_config: ConfigFile):
 	_popup_label_playtime.text = playtime_number
 	_popup_label_playtime_unit.text = playtime_unit
 
-	var file_name_icon = game_config.get_value("game", "icon")
-	var icon_path = "%s/%s" % [game_folder_path, file_name_icon]
+	var icon_file_name = game_config.get_value("game", "icon")
+	var icon_path = GameManager.make_game_file_path(game_id, icon_file_name)
 	var icon: Texture = load(icon_path)
 	if icon != null:
 		_texture_icon_rect.texture = icon
@@ -67,7 +67,7 @@ func get_playtime() -> float:
 	return _playtime
 
 
-func get_last_played() -> int:
+func get_last_played():
 	return _last_played
 
 
