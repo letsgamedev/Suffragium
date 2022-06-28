@@ -78,16 +78,16 @@ func _format_playtime(playtime) -> Dictionary:
 		playtime_dict["unit"] = ""
 	elif playtime < 90:
 		playtime_dict["number"] = "1"
-		playtime_dict["unit"] = "T_0009"
+		playtime_dict["unit"] = "T_MINUTE"
 	elif playtime < 3570:
 		playtime_dict["number"] = str(round(playtime / 60.0))
-		playtime_dict["unit"] = "T_000A"
+		playtime_dict["unit"] = "T_MINUTES"
 	elif playtime < 5400:
 		playtime_dict["number"] = "1"
-		playtime_dict["unit"] = "T_000B"
+		playtime_dict["unit"] = "T_HOUR"
 	else:
 		playtime_dict["number"] = str(round(playtime / 3600.0))
-		playtime_dict["unit"] = "T_000C"
+		playtime_dict["unit"] = "T_HOURS"
 	return playtime_dict
 
 
