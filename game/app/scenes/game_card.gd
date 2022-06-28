@@ -2,7 +2,7 @@ extends ColorRect
 
 var _game_config: ConfigFile = null
 var _playtime: float = 0
-var _last_played = null
+var _last_played = -1
 
 onready var _label_title := $MC/VC/HC/VC/MC/LabelTitle
 onready var _label_description := $MC/VC/SC/MC/LabelDescription
@@ -28,6 +28,7 @@ func setup(game_config: ConfigFile):
 	var game_description = game_config.get_value("game", "desc")
 
 	_playtime = GameManager.get_playtime(game_id)
+	_last_played = GameManager.get_time_last_played(game_id)
 	var playtime_dict = _format_playtime(_playtime)
 	var playtime_number = playtime_dict["number"]
 	var playtime_unit = playtime_dict["unit"]

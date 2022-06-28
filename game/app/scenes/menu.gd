@@ -123,6 +123,7 @@ func _gather_game_card_sort_entries() -> Array:
 			"last_played": game_card.get_last_played(),
 		}
 		game_cards.push_back(card_entry)
+	print(game_cards)
 	return game_cards
 
 
