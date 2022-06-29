@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://games/snake/canvas.gd" type="Script" id=1]
+[ext_resource path="res://shared/fonts/press_start_2p_18px.tres" type="DynamicFont" id=2]
+[ext_resource path="res://games/snake/snake.gd" type="Script" id=3]
+
+[sub_resource type="Theme" id=1]
+default_font = ExtResource( 2 )
+
+[node name="Snake" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 1 )
+color = Color( 0.2, 0.2, 0.2, 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CC" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VC" type="VBoxContainer" parent="CC"]
+margin_left = 388.0
+margin_right = 636.0
+margin_bottom = 600.0
+custom_constants/separation = 0
+
+[node name="MC" type="MarginContainer" parent="CC/VC"]
+margin_right = 248.0
+margin_bottom = 80.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VC" type="VBoxContainer" parent="CC/VC/MC"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 232.0
+margin_bottom = 64.0
+custom_constants/separation = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelHighScore" type="Label" parent="CC/VC/MC/VC"]
+margin_right = 216.0
+margin_bottom = 18.0
+text = "Highscore: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelScore" type="Label" parent="CC/VC/MC/VC"]
+margin_top = 30.0
+margin_right = 216.0
+margin_bottom = 48.0
+text = "Score: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasBackground" type="ColorRect" parent="CC/VC"]
+margin_top = 80.0
+margin_right = 248.0
+margin_bottom = 80.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Canvas" type="Node2D" parent="CC/VC/CanvasBackground"]
+script = ExtResource( 1 )
