@@ -1,0 +1,97 @@
+[gd_resource type="Theme" load_steps=14 format=2]
+
+[ext_resource path="res://shared/fonts/roboto/roboto_regular.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="StyleBoxFlat" id=24]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color( 0.501961, 0.501961, 0.501961, 0.501961 )
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id=25]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color( 0, 0, 0, 0 )
+border_width_left = 2
+border_width_top = 3
+border_width_right = 2
+border_width_bottom = 3
+border_color = Color( 0.25098, 0.627451, 1, 1 )
+border_blend = true
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id=26]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color( 1, 1, 1, 0.12549 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 1, 1, 1, 0.501961 )
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id=35]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.266667, 0.266667, 0.266667, 1 )
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id=27]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color( 0, 0, 0, 0.12549 )
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxEmpty" id=28]
+
+[sub_resource type="StyleBoxEmpty" id=29]
+
+[sub_resource type="StyleBoxEmpty" id=34]
+
+[sub_resource type="StyleBoxEmpty" id=31]
+
+[sub_resource type="StyleBoxEmpty" id=32]
+
+[sub_resource type="StyleBoxEmpty" id=33]
+
+[sub_resource type="DynamicFont" id=21]
+font_data = ExtResource( 1 )
+
+[resource]
+default_font = SubResource( 21 )
+Button/colors/font_color = Color( 1, 1, 1, 1 )
+Button/colors/font_color_focus = Color( 1, 1, 1, 1 )
+Button/colors/font_color_hover = Color( 1, 1, 1, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 6
+Button/styles/disabled = SubResource( 24 )
+Button/styles/focus = SubResource( 25 )
+Button/styles/hover = SubResource( 26 )
+Button/styles/normal = SubResource( 35 )
+Button/styles/pressed = SubResource( 27 )
+CheckBox/colors/font_color = Color( 1, 1, 1, 1 )
+CheckBox/styles/disabled = SubResource( 28 )
+CheckBox/styles/focus = SubResource( 29 )
+CheckBox/styles/hover = SubResource( 34 )
+CheckBox/styles/hover_pressed = SubResource( 31 )
+CheckBox/styles/normal = SubResource( 32 )
+CheckBox/styles/pressed = SubResource( 33 )
+OptionButton/constants/arrow_margin = 9

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://app/scenes/game_card.gd" type="Script" id=1]
 [ext_resource path="res://shared/fonts/roboto/roboto_regular.ttf" type="DynamicFontData" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://shared/fonts/roboto/roboto_black.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://app/images/cross_40.png" type="Texture" id=5]
 [ext_resource path="res://app/shader/blur.shader" type="Shader" id=6]
+[ext_resource path="res://app/style/theme_game_card.tres" type="Theme" id=7]
+[ext_resource path="res://app/style/round_icon_button_theme.tres" type="Theme" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 4 )
@@ -15,50 +17,6 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 2 )
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.266667, 0.266667, 0.266667, 1 )
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 1, 1, 1, 0.12549 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 1, 1, 1, 0.501961 )
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0, 0, 0, 0.12549 )
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 0, 0, 0, 0 )
-border_width_left = 2
-border_width_top = 3
-border_width_right = 2
-border_width_bottom = 3
-border_color = Color( 0.25098, 0.627451, 1, 1 )
-border_blend = true
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxFlat" id=7]
-bg_color = Color( 0.501961, 0.501961, 0.501961, 0.501961 )
-
-[sub_resource type="StyleBoxEmpty" id=8]
 
 [sub_resource type="StyleBoxFlat" id=12]
 bg_color = Color( 0, 0, 0, 0 )
@@ -78,13 +36,6 @@ font_data = ExtResource( 4 )
 [sub_resource type="DynamicFont" id=11]
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxFlat" id=19]
-bg_color = Color( 0, 0, 0, 0 )
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
 [sub_resource type="StyleBoxFlat" id=15]
 bg_color = Color( 0.2, 0.2, 0.2, 1 )
 
@@ -99,11 +50,9 @@ bg_color = Color( 0.164706, 0.164706, 0.164706, 1 )
 margin_right = 320.0
 margin_bottom = 180.0
 rect_min_size = Vector2( 320, 180 )
+theme = ExtResource( 7 )
 color = Color( 0.2, 0.2, 0.2, 1 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BackgroundImage" type="TextureRect" parent="."]
 visible = false
@@ -130,15 +79,12 @@ custom_constants/margin_right = 12
 custom_constants/margin_top = 12
 custom_constants/margin_left = 12
 custom_constants/margin_bottom = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VC" type="VBoxContainer" parent="MC"]
 margin_left = 12.0
 margin_top = 12.0
 margin_right = 308.0
-margin_bottom = 168.0
+margin_bottom = 175.0
 rect_min_size = Vector2( 296, 0 )
 
 [node name="HC" type="HBoxContainer" parent="MC/VC"]
@@ -265,84 +211,24 @@ __meta__ = {
 [node name="HC2" type="HBoxContainer" parent="MC/VC"]
 margin_top = 128.0
 margin_right = 296.0
-margin_bottom = 156.0
+margin_bottom = 163.0
 size_flags_vertical = 3
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FancyButton" type="PanelContainer" parent="MC/VC/HC2"]
-margin_left = 154.0
-margin_right = 224.0
-margin_bottom = 28.0
-custom_styles/panel = SubResource( 3 )
-
-[node name="MarginContainer" type="MarginContainer" parent="MC/VC/HC2/FancyButton"]
-margin_right = 70.0
-margin_bottom = 28.0
-custom_constants/margin_right = 12
-custom_constants/margin_left = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MC/VC/HC2/FancyButton/MarginContainer"]
-margin_left = 12.0
-margin_right = 58.0
-margin_bottom = 28.0
-custom_constants/separation = 6
-
-[node name="Label" type="Label" parent="MC/VC/HC2/FancyButton/MarginContainer/HBoxContainer"]
-margin_top = 7.0
-margin_right = 46.0
-margin_bottom = 21.0
+[node name="ButtonInfo" type="Button" parent="MC/VC/HC2"]
+margin_left = 136.0
+margin_right = 212.0
+margin_bottom = 35.0
 text = "T_INFO"
 
-[node name="ButtonInfo" type="Button" parent="MC/VC/HC2/FancyButton"]
-margin_right = 70.0
-margin_bottom = 28.0
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/disabled = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
-
-[node name="FancyButton2" type="PanelContainer" parent="MC/VC/HC2"]
-margin_left = 228.0
+[node name="ButtonPlay" type="Button" parent="MC/VC/HC2"]
+margin_left = 216.0
 margin_right = 296.0
-margin_bottom = 28.0
-custom_styles/panel = SubResource( 3 )
-
-[node name="MarginContainer" type="MarginContainer" parent="MC/VC/HC2/FancyButton2"]
-margin_right = 68.0
-margin_bottom = 28.0
-custom_constants/margin_right = 12
-custom_constants/margin_left = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MC/VC/HC2/FancyButton2/MarginContainer"]
-margin_left = 12.0
-margin_right = 56.0
-margin_bottom = 28.0
-custom_constants/separation = 6
-
-[node name="Label" type="Label" parent="MC/VC/HC2/FancyButton2/MarginContainer/HBoxContainer"]
-margin_top = 7.0
-margin_right = 44.0
-margin_bottom = 21.0
+margin_bottom = 35.0
 text = "T_PLAY"
-
-[node name="ButtonPlay" type="Button" parent="MC/VC/HC2/FancyButton2"]
-margin_right = 68.0
-margin_bottom = 28.0
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/disabled = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
 
 [node name="PopupDialogInfo" type="PopupDialog" parent="."]
 visible = true
@@ -474,7 +360,7 @@ __meta__ = {
 
 [node name="VC" type="VBoxContainer" parent="PopupDialogInfo/VC/PC/MC/HC"]
 margin_left = 277.0
-margin_right = 578.0
+margin_right = 576.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 alignment = 1
@@ -484,7 +370,7 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="PopupDialogInfo/VC/PC/MC/HC/VC"]
 margin_top = 11.0
-margin_right = 301.0
+margin_right = 299.0
 margin_bottom = 30.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 11 )
@@ -496,7 +382,7 @@ __meta__ = {
 
 [node name="LabelHighscore" type="Label" parent="PopupDialogInfo/VC/PC/MC/HC/VC"]
 margin_top = 34.0
-margin_right = 301.0
+margin_right = 299.0
 margin_bottom = 53.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 11 )
@@ -507,41 +393,20 @@ __meta__ = {
 }
 
 [node name="VC2" type="VBoxContainer" parent="PopupDialogInfo/VC/PC/MC/HC"]
-margin_left = 578.0
+margin_left = 576.0
 margin_right = 618.0
 margin_bottom = 64.0
 
-[node name="FancyButton" type="PanelContainer" parent="PopupDialogInfo/VC/PC/MC/HC/VC2"]
-margin_right = 40.0
-margin_bottom = 40.0
-custom_styles/panel = SubResource( 19 )
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PopupDialogInfo/VC/PC/MC/HC/VC2/FancyButton"]
-margin_right = 40.0
-margin_bottom = 40.0
-custom_constants/separation = 6
-
-[node name="TextureRect" type="TextureRect" parent="PopupDialogInfo/VC/PC/MC/HC/VC2/FancyButton/HBoxContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
-texture = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ButtonClosePopup" type="Button" parent="PopupDialogInfo/VC/PC/MC/HC/VC2/FancyButton"]
-margin_right = 40.0
-margin_bottom = 40.0
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/disabled = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
+[node name="ButtonClosePopup" type="Button" parent="PopupDialogInfo/VC/PC/MC/HC/VC2"]
+margin_right = 42.0
+margin_bottom = 42.0
+theme = ExtResource( 8 )
+icon = ExtResource( 5 )
 
 [node name="PC2" type="PanelContainer" parent="PopupDialogInfo/VC"]
 margin_top = 96.0
 margin_right = 650.0
-margin_bottom = 340.0
+margin_bottom = 333.0
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 15 )
 __meta__ = {
@@ -550,7 +415,7 @@ __meta__ = {
 
 [node name="MC" type="MarginContainer" parent="PopupDialogInfo/VC/PC2"]
 margin_right = 650.0
-margin_bottom = 244.0
+margin_bottom = 237.0
 custom_constants/margin_right = 16
 custom_constants/margin_top = 16
 custom_constants/margin_left = 16
@@ -560,12 +425,12 @@ custom_constants/margin_bottom = 16
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 634.0
-margin_bottom = 228.0
+margin_bottom = 221.0
 custom_constants/separation = 16
 
 [node name="SC" type="ScrollContainer" parent="PopupDialogInfo/VC/PC2/MC/HC"]
 margin_right = 388.0
-margin_bottom = 212.0
+margin_bottom = 205.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
@@ -592,7 +457,7 @@ __meta__ = {
 [node name="VSeparator" type="VSeparator" parent="PopupDialogInfo/VC/PC2/MC/HC"]
 margin_left = 404.0
 margin_right = 408.0
-margin_bottom = 212.0
+margin_bottom = 205.0
 custom_styles/separator = SubResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -601,7 +466,7 @@ __meta__ = {
 [node name="VC" type="VBoxContainer" parent="PopupDialogInfo/VC/PC2/MC/HC"]
 margin_left = 424.0
 margin_right = 618.0
-margin_bottom = 212.0
+margin_bottom = 205.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="PopupDialogInfo/VC/PC2/MC/HC/VC"]
@@ -655,14 +520,14 @@ __meta__ = {
 }
 
 [node name="PC3" type="PanelContainer" parent="PopupDialogInfo/VC"]
-margin_top = 340.0
+margin_top = 333.0
 margin_right = 650.0
 margin_bottom = 400.0
 custom_styles/panel = SubResource( 17 )
 
 [node name="MC" type="MarginContainer" parent="PopupDialogInfo/VC/PC3"]
 margin_right = 650.0
-margin_bottom = 60.0
+margin_bottom = 67.0
 custom_constants/margin_right = 16
 custom_constants/margin_top = 16
 custom_constants/margin_left = 16
@@ -672,47 +537,17 @@ custom_constants/margin_bottom = 16
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 634.0
-margin_bottom = 44.0
+margin_bottom = 51.0
 rect_min_size = Vector2( 0, 28 )
 alignment = 2
 
-[node name="FancyButton" type="PanelContainer" parent="PopupDialogInfo/VC/PC3/MC/HC"]
-margin_left = 550.0
+[node name="ButtonPlay" type="Button" parent="PopupDialogInfo/VC/PC3/MC/HC"]
+margin_left = 538.0
 margin_right = 618.0
-margin_bottom = 28.0
-custom_styles/panel = SubResource( 3 )
-
-[node name="MarginContainer" type="MarginContainer" parent="PopupDialogInfo/VC/PC3/MC/HC/FancyButton"]
-margin_right = 68.0
-margin_bottom = 28.0
-custom_constants/margin_right = 12
-custom_constants/margin_left = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PopupDialogInfo/VC/PC3/MC/HC/FancyButton/MarginContainer"]
-margin_left = 12.0
-margin_right = 56.0
-margin_bottom = 28.0
-custom_constants/separation = 6
-
-[node name="Label" type="Label" parent="PopupDialogInfo/VC/PC3/MC/HC/FancyButton/MarginContainer/HBoxContainer"]
-margin_top = 7.0
-margin_right = 44.0
-margin_bottom = 21.0
+margin_bottom = 35.0
 text = "T_PLAY"
 
-[node name="ButtonPlay" type="Button" parent="PopupDialogInfo/VC/PC3/MC/HC/FancyButton"]
-margin_right = 68.0
-margin_bottom = 28.0
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/disabled = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
-
-[connection signal="pressed" from="MC/VC/HC2/FancyButton/ButtonInfo" to="." method="_on_ButtonInfo_pressed"]
-[connection signal="pressed" from="MC/VC/HC2/FancyButton2/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
-[connection signal="pressed" from="PopupDialogInfo/VC/PC/MC/HC/VC2/FancyButton/ButtonClosePopup" to="." method="_on_ButtonClosePopup_pressed"]
-[connection signal="pressed" from="PopupDialogInfo/VC/PC3/MC/HC/FancyButton/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
+[connection signal="pressed" from="MC/VC/HC2/ButtonInfo" to="." method="_on_ButtonInfo_pressed"]
+[connection signal="pressed" from="MC/VC/HC2/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
+[connection signal="pressed" from="PopupDialogInfo/VC/PC/MC/HC/VC2/ButtonClosePopup" to="." method="_on_ButtonClosePopup_pressed"]
+[connection signal="pressed" from="PopupDialogInfo/VC/PC3/MC/HC/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]

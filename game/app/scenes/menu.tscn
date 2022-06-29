@@ -1,111 +1,14 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://app/images/cogwheel_16.png" type="Texture" id=1]
 [ext_resource path="res://app/images/suffragium_badge_36.png" type="Texture" id=2]
-[ext_resource path="res://shared/fonts/roboto/roboto_regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://app/style/main_theme.tres" type="Theme" id=3]
 [ext_resource path="res://app/scenes/menu.gd" type="Script" id=5]
 [ext_resource path="res://shared/fonts/roboto/roboto_black.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://app/scenes/settings.gd" type="Script" id=7]
 
-[sub_resource type="DynamicFont" id=10]
-font_data = ExtResource( 3 )
-
-[sub_resource type="Theme" id=11]
-default_font = SubResource( 10 )
-
 [sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.133333, 0.133333, 0.133333, 1 )
-
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.2, 0.2, 0.2, 1 )
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="DynamicFont" id=12]
-font_data = ExtResource( 3 )
-
-[sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 1, 1, 1, 0.12549 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 1, 1, 1, 0.501961 )
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 0, 0, 0, 0.12549 )
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0, 0, 0, 0 )
-border_width_left = 2
-border_width_top = 3
-border_width_right = 2
-border_width_bottom = 3
-border_color = Color( 0.25098, 0.627451, 1, 1 )
-border_blend = true
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxFlat" id=7]
-bg_color = Color( 0.501961, 0.501961, 0.501961, 0.501961 )
-
-[sub_resource type="StyleBoxEmpty" id=8]
-
-[sub_resource type="StyleBoxFlat" id=13]
-bg_color = Color( 0.2, 0.2, 0.2, 1 )
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxFlat" id=14]
-bg_color = Color( 1, 1, 1, 0.12549 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 1, 1, 1, 0.501961 )
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxFlat" id=15]
-bg_color = Color( 0, 0, 0, 0.12549 )
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxFlat" id=16]
-bg_color = Color( 0, 0, 0, 0 )
-border_width_left = 2
-border_width_top = 3
-border_width_right = 2
-border_width_bottom = 3
-border_color = Color( 0.25098, 0.627451, 1, 1 )
-border_blend = true
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxFlat" id=17]
-bg_color = Color( 0.501961, 0.501961, 0.501961, 0.501961 )
-
-[sub_resource type="StyleBoxEmpty" id=18]
 
 [sub_resource type="StyleBoxEmpty" id=19]
 
@@ -124,12 +27,9 @@ border_color = Color( 0.266667, 0.266667, 0.266667, 1 )
 [node name="Menu" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = SubResource( 11 )
+theme = ExtResource( 3 )
 custom_constants/separation = 0
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MenuBar" type="PanelContainer" parent="."]
 margin_right = 1024.0
@@ -168,205 +68,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FancyMenuButton4" type="PanelContainer" parent="MenuBar/MC/HC/HC"]
+[node name="ButtonGames" type="Button" parent="MenuBar/MC/HC/HC"]
 margin_left = 44.0
 margin_right = 139.0
 margin_bottom = 36.0
-rect_min_size = Vector2( 0, 36 )
-custom_styles/panel = SubResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="MenuBar/MC/HC/HC/FancyMenuButton4"]
-margin_right = 95.0
-margin_bottom = 36.0
-custom_constants/margin_right = 12
-custom_constants/margin_left = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuBar/MC/HC/HC/FancyMenuButton4/MarginContainer"]
-margin_left = 12.0
-margin_right = 83.0
-margin_bottom = 36.0
-custom_constants/separation = 6
-
-[node name="Label" type="Label" parent="MenuBar/MC/HC/HC/FancyMenuButton4/MarginContainer/HBoxContainer"]
-margin_top = 8.0
-margin_right = 71.0
-margin_bottom = 27.0
-custom_fonts/font = SubResource( 12 )
 text = "T_GAMES"
 
-[node name="ButtonGames" type="Button" parent="MenuBar/MC/HC/HC/FancyMenuButton4"]
-margin_right = 95.0
-margin_bottom = 36.0
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
-
-[node name="FancyMenuButton" type="PanelContainer" parent="MenuBar/MC/HC/HC"]
+[node name="ButtonAbout" type="Button" parent="MenuBar/MC/HC/HC"]
 margin_left = 143.0
 margin_right = 339.0
 margin_bottom = 36.0
-rect_min_size = Vector2( 0, 36 )
-custom_styles/panel = SubResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="MenuBar/MC/HC/HC/FancyMenuButton"]
-margin_right = 196.0
-margin_bottom = 36.0
-custom_constants/margin_right = 12
-custom_constants/margin_left = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuBar/MC/HC/HC/FancyMenuButton/MarginContainer"]
-margin_left = 12.0
-margin_right = 184.0
-margin_bottom = 36.0
-custom_constants/separation = 6
-
-[node name="Label" type="Label" parent="MenuBar/MC/HC/HC/FancyMenuButton/MarginContainer/HBoxContainer"]
-margin_top = 8.0
-margin_right = 172.0
-margin_bottom = 27.0
-custom_fonts/font = SubResource( 12 )
 text = "T_ABOUT_SUFFRAGIUM"
 
-[node name="ButtonAbout" type="Button" parent="MenuBar/MC/HC/HC/FancyMenuButton"]
-margin_right = 196.0
-margin_bottom = 36.0
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
-
-[node name="FancyMenuButton2" type="PanelContainer" parent="MenuBar/MC/HC/HC"]
+[node name="ButtonParticipate" type="Button" parent="MenuBar/MC/HC/HC"]
 margin_left = 343.0
 margin_right = 481.0
 margin_bottom = 36.0
-rect_min_size = Vector2( 0, 36 )
-custom_styles/panel = SubResource( 13 )
-
-[node name="MarginContainer" type="MarginContainer" parent="MenuBar/MC/HC/HC/FancyMenuButton2"]
-margin_right = 138.0
-margin_bottom = 36.0
-custom_constants/margin_right = 12
-custom_constants/margin_left = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuBar/MC/HC/HC/FancyMenuButton2/MarginContainer"]
-margin_left = 12.0
-margin_right = 126.0
-margin_bottom = 36.0
-custom_constants/separation = 6
-
-[node name="Label" type="Label" parent="MenuBar/MC/HC/HC/FancyMenuButton2/MarginContainer/HBoxContainer"]
-margin_top = 8.0
-margin_right = 114.0
-margin_bottom = 27.0
 text = "T_PARTICIPATE"
 
-[node name="ButtonParticipate" type="Button" parent="MenuBar/MC/HC/HC/FancyMenuButton2"]
-margin_right = 138.0
-margin_bottom = 36.0
-custom_styles/hover = SubResource( 14 )
-custom_styles/pressed = SubResource( 15 )
-custom_styles/focus = SubResource( 16 )
-custom_styles/disabled = SubResource( 17 )
-custom_styles/normal = SubResource( 18 )
-
-[node name="FancyMenuButton3" type="PanelContainer" parent="MenuBar/MC/HC/HC"]
+[node name="ButtonReportBug" type="Button" parent="MenuBar/MC/HC/HC"]
 margin_left = 485.0
 margin_right = 641.0
 margin_bottom = 36.0
-rect_min_size = Vector2( 0, 36 )
-custom_styles/panel = SubResource( 13 )
-
-[node name="MarginContainer" type="MarginContainer" parent="MenuBar/MC/HC/HC/FancyMenuButton3"]
-margin_right = 156.0
-margin_bottom = 36.0
-custom_constants/margin_right = 12
-custom_constants/margin_left = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuBar/MC/HC/HC/FancyMenuButton3/MarginContainer"]
-margin_left = 12.0
-margin_right = 144.0
-margin_bottom = 36.0
-custom_constants/separation = 6
-
-[node name="Label" type="Label" parent="MenuBar/MC/HC/HC/FancyMenuButton3/MarginContainer/HBoxContainer"]
-margin_top = 8.0
-margin_right = 132.0
-margin_bottom = 27.0
 text = "T_REPORT_A_BUG"
 
-[node name="ButtonReportBug" type="Button" parent="MenuBar/MC/HC/HC/FancyMenuButton3"]
-margin_right = 156.0
-margin_bottom = 36.0
-custom_styles/hover = SubResource( 14 )
-custom_styles/pressed = SubResource( 15 )
-custom_styles/focus = SubResource( 16 )
-custom_styles/disabled = SubResource( 17 )
-custom_styles/normal = SubResource( 18 )
-
-[node name="FancyMenuButton" type="PanelContainer" parent="MenuBar/MC/HC"]
+[node name="ButtonSettings" type="Button" parent="MenuBar/MC/HC"]
 margin_left = 870.0
 margin_right = 1008.0
 margin_bottom = 36.0
-rect_min_size = Vector2( 0, 36 )
-custom_styles/panel = SubResource( 13 )
-
-[node name="MarginContainer" type="MarginContainer" parent="MenuBar/MC/HC/FancyMenuButton"]
-margin_right = 138.0
-margin_bottom = 36.0
-custom_constants/margin_right = 12
-custom_constants/margin_left = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuBar/MC/HC/FancyMenuButton/MarginContainer"]
-margin_left = 12.0
-margin_right = 126.0
-margin_bottom = 36.0
-custom_constants/separation = 6
-
-[node name="TextureRect" type="TextureRect" parent="MenuBar/MC/HC/FancyMenuButton/MarginContainer/HBoxContainer"]
-margin_right = 16.0
-margin_bottom = 36.0
-texture = ExtResource( 1 )
-stretch_mode = 4
-
-[node name="Label" type="Label" parent="MenuBar/MC/HC/FancyMenuButton/MarginContainer/HBoxContainer"]
-margin_left = 22.0
-margin_top = 8.0
-margin_right = 114.0
-margin_bottom = 27.0
+custom_constants/hseparation = 6
 text = "T_SETTINGS"
-
-[node name="ButtonSettings" type="Button" parent="MenuBar/MC/HC/FancyMenuButton"]
-margin_right = 138.0
-margin_bottom = 36.0
-custom_styles/hover = SubResource( 14 )
-custom_styles/pressed = SubResource( 15 )
-custom_styles/focus = SubResource( 16 )
-custom_styles/disabled = SubResource( 17 )
-custom_styles/normal = SubResource( 18 )
+icon = ExtResource( 1 )
+align = 0
 
 [node name="TabContainer" type="TabContainer" parent="."]
 margin_top = 52.0
@@ -385,7 +118,7 @@ anchor_bottom = 1.0
 
 [node name="MC" type="MarginContainer" parent="TabContainer/Games"]
 margin_right = 1024.0
-margin_bottom = 77.0
+margin_bottom = 83.0
 size_flags_horizontal = 3
 custom_constants/margin_right = 16
 custom_constants/margin_top = 16
@@ -396,43 +129,44 @@ custom_constants/margin_bottom = 16
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 1008.0
-margin_bottom = 61.0
+margin_bottom = 67.0
 custom_constants/separation = 16
 
 [node name="HC" type="HBoxContainer" parent="TabContainer/Games/MC/VC"]
 margin_right = 992.0
-margin_bottom = 29.0
+margin_bottom = 35.0
 alignment = 2
 
 [node name="Label" type="Label" parent="TabContainer/Games/MC/VC/HC"]
-margin_right = 742.0
-margin_bottom = 29.0
+margin_top = 3.0
+margin_right = 729.0
+margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 20 )
 text = "T_GAMES"
 
 [node name="Label2" type="Label" parent="TabContainer/Games/MC/VC/HC"]
-margin_left = 746.0
-margin_top = 5.0
-margin_right = 830.0
-margin_bottom = 24.0
+margin_left = 733.0
+margin_top = 8.0
+margin_right = 817.0
+margin_bottom = 27.0
 text = "T_SORTING"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="OptionButtonSorting" type="OptionButton" parent="TabContainer/Games/MC/VC/HC"]
-margin_left = 834.0
+margin_left = 821.0
 margin_right = 992.0
-margin_bottom = 29.0
+margin_bottom = 35.0
 text = "T_ALPHABETICAL"
 items = [ "T_LONGST_PLAYTIME", null, false, 0, null, "T_ALPHABETICAL", null, false, 1, null, "T_LAST_PLAYED", null, false, 2, null ]
 selected = 1
 
 [node name="HC2" type="HBoxContainer" parent="TabContainer/Games/MC/VC"]
-margin_top = 45.0
+margin_top = 51.0
 margin_right = 992.0
-margin_bottom = 45.0
+margin_bottom = 51.0
 alignment = 1
 
 [node name="GC" type="GridContainer" parent="TabContainer/Games/MC/VC/HC2"]
@@ -464,23 +198,23 @@ margin_bottom = 834.0
 custom_constants/separation = 64
 
 [node name="SectionAbout" type="VBoxContainer" parent="TabContainer/About/MC/VC"]
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 87.0
 custom_constants/separation = 16
 
 [node name="Label" type="Label" parent="TabContainer/About/MC/VC/SectionAbout"]
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 29.0
 custom_fonts/font = SubResource( 21 )
 text = "T_ABOUT_SUFFRAGIUM"
 
 [node name="VC" type="VBoxContainer" parent="TabContainer/About/MC/VC/SectionAbout"]
 margin_top = 45.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 87.0
 
 [node name="Label" type="Label" parent="TabContainer/About/MC/VC/SectionAbout/VC"]
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 19.0
 text = "T_ABOUT_SUFFRAGIUM_1"
 __meta__ = {
@@ -489,7 +223,7 @@ __meta__ = {
 
 [node name="Label2" type="Label" parent="TabContainer/About/MC/VC/SectionAbout/VC"]
 margin_top = 23.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 42.0
 text = "T_ABOUT_SUFFRAGIUM_2"
 __meta__ = {
@@ -498,33 +232,33 @@ __meta__ = {
 
 [node name="SectionParticipate" type="VBoxContainer" parent="TabContainer/About/MC/VC"]
 margin_top = 151.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 554.0
 custom_constants/separation = 16
 
 [node name="Label3" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate"]
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 29.0
 custom_fonts/font = SubResource( 21 )
 text = "T_PARTICIPATE"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/About/MC/VC/SectionParticipate"]
 margin_top = 45.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 403.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 19.0
 text = "T_PARTICIPATE_1"
 autowrap = true
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 23.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 40.0
 custom_constants/margin_top = 17
 __meta__ = {
@@ -533,35 +267,35 @@ __meta__ = {
 
 [node name="Label2" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 44.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 63.0
 text = "T_PARTICIPATE_PLEASE_NOTE"
 autowrap = true
 
 [node name="Label3" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 67.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 86.0
 text = "T_PARTICIPATE_PLEASE_NOTE_1"
 autowrap = true
 
 [node name="Label4" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 90.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 109.0
 text = "T_PARTICIPATE_PLEASE_NOTE_2"
 autowrap = true
 
 [node name="Label5" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 113.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 132.0
 text = "T_PARTICIPATE_PLEASE_NOTE_3"
 autowrap = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 136.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 153.0
 custom_constants/margin_top = 17
 __meta__ = {
@@ -570,42 +304,42 @@ __meta__ = {
 
 [node name="Label6" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 157.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 176.0
 text = "T_PARTICIPATE_POSSIBILITIES"
 autowrap = true
 
 [node name="Label7" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 180.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 199.0
 text = "T_PARTICIPATE_POSSIBILITIES_1"
 autowrap = true
 
 [node name="Label8" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 203.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 222.0
 text = "T_PARTICIPATE_POSSIBILITIES_2"
 autowrap = true
 
 [node name="Label9" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 226.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 245.0
 text = "T_PARTICIPATE_POSSIBILITIES_3"
 autowrap = true
 
 [node name="Label10" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 249.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 268.0
 text = "T_PARTICIPATE_POSSIBILITIES_4"
 autowrap = true
 
 [node name="MarginContainer3" type="MarginContainer" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 272.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 289.0
 custom_constants/margin_top = 17
 __meta__ = {
@@ -614,7 +348,7 @@ __meta__ = {
 
 [node name="Label11" type="Label" parent="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer"]
 margin_top = 293.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 312.0
 text = "T_PARTICIPATE_GUIDES"
 autowrap = true
@@ -645,54 +379,54 @@ __meta__ = {
 
 [node name="SectionReportBug" type="VBoxContainer" parent="TabContainer/About/MC/VC"]
 margin_top = 618.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 818.0
 custom_constants/separation = 16
 
 [node name="Label3" type="Label" parent="TabContainer/About/MC/VC/SectionReportBug"]
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 29.0
 custom_fonts/font = SubResource( 21 )
 text = "T_REPORT_A_BUG"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/About/MC/VC/SectionReportBug"]
 margin_top = 45.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 200.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label2" type="Label" parent="TabContainer/About/MC/VC/SectionReportBug/VBoxContainer"]
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 19.0
 text = "T_PARTICIPATE_PLEASE_NOTE"
 autowrap = true
 
 [node name="Label3" type="Label" parent="TabContainer/About/MC/VC/SectionReportBug/VBoxContainer"]
 margin_top = 23.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 42.0
 text = "T_PARTICIPATE_PLEASE_NOTE_1"
 autowrap = true
 
 [node name="Label5" type="Label" parent="TabContainer/About/MC/VC/SectionReportBug/VBoxContainer"]
 margin_top = 46.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 65.0
 text = "T_PARTICIPATE_PLEASE_NOTE_2"
 autowrap = true
 
 [node name="Label6" type="Label" parent="TabContainer/About/MC/VC/SectionReportBug/VBoxContainer"]
 margin_top = 69.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 88.0
 text = "T_PARTICIPATE_PLEASE_NOTE_3"
 autowrap = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="TabContainer/About/MC/VC/SectionReportBug/VBoxContainer"]
 margin_top = 92.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 109.0
 custom_constants/margin_top = 17
 __meta__ = {
@@ -701,7 +435,7 @@ __meta__ = {
 
 [node name="Label7" type="Label" parent="TabContainer/About/MC/VC/SectionReportBug/VBoxContainer"]
 margin_top = 113.0
-margin_right = 980.0
+margin_right = 982.0
 margin_bottom = 132.0
 text = "T_REPORT_A_BUG_1"
 autowrap = true
@@ -726,7 +460,7 @@ script = ExtResource( 7 )
 
 [node name="MC" type="MarginContainer" parent="TabContainer/Settings"]
 margin_right = 1024.0
-margin_bottom = 202.0
+margin_bottom = 214.0
 size_flags_horizontal = 3
 custom_constants/margin_right = 16
 custom_constants/margin_top = 16
@@ -737,7 +471,7 @@ custom_constants/margin_bottom = 16
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 1008.0
-margin_bottom = 186.0
+margin_bottom = 198.0
 
 [node name="Label" type="Label" parent="TabContainer/Settings/MC/VC"]
 margin_right = 992.0
@@ -757,32 +491,32 @@ __meta__ = {
 [node name="HC" type="HBoxContainer" parent="TabContainer/Settings/MC/VC"]
 margin_top = 53.0
 margin_right = 992.0
-margin_bottom = 170.0
+margin_bottom = 182.0
 alignment = 1
 
 [node name="VC" type="VBoxContainer" parent="TabContainer/Settings/MC/VC/HC"]
 margin_left = 346.0
 margin_right = 646.0
-margin_bottom = 117.0
+margin_bottom = 129.0
 rect_min_size = Vector2( 300, 0 )
 custom_constants/separation = 8
 
 [node name="HC" type="HBoxContainer" parent="TabContainer/Settings/MC/VC/HC/VC"]
 margin_right = 300.0
-margin_bottom = 25.0
+margin_bottom = 35.0
 alignment = 2
 
 [node name="ButtonResetDefaults" type="Button" parent="TabContainer/Settings/MC/VC/HC/VC/HC"]
-margin_left = 110.0
+margin_left = 98.0
 margin_right = 300.0
-margin_bottom = 25.0
+margin_bottom = 35.0
 size_flags_horizontal = 0
 text = "T_RESET_TO_DEFAULTS"
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/Settings/MC/VC/HC/VC"]
-margin_top = 33.0
+margin_top = 43.0
 margin_right = 300.0
-margin_bottom = 49.0
+margin_bottom = 59.0
 custom_constants/separation = 16
 custom_styles/separator = SubResource( 22 )
 __meta__ = {
@@ -790,49 +524,48 @@ __meta__ = {
 }
 
 [node name="HC2" type="HBoxContainer" parent="TabContainer/Settings/MC/VC/HC/VC"]
-margin_top = 57.0
+margin_top = 67.0
 margin_right = 300.0
-margin_bottom = 82.0
+margin_bottom = 102.0
 
 [node name="Label" type="Label" parent="TabContainer/Settings/MC/VC/HC/VC/HC2"]
-margin_top = 3.0
+margin_top = 8.0
 margin_right = 148.0
-margin_bottom = 22.0
+margin_bottom = 27.0
 size_flags_horizontal = 3
 text = "T_LANGUAGE"
 
 [node name="LanguageSelection" type="OptionButton" parent="TabContainer/Settings/MC/VC/HC/VC/HC2"]
 margin_left = 152.0
 margin_right = 300.0
-margin_bottom = 25.0
+margin_bottom = 35.0
 size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HC4" type="HBoxContainer" parent="TabContainer/Settings/MC/VC/HC/VC"]
-margin_top = 90.0
+margin_top = 110.0
 margin_right = 300.0
-margin_bottom = 117.0
+margin_bottom = 129.0
 
 [node name="Label" type="Label" parent="TabContainer/Settings/MC/VC/HC/VC/HC4"]
-margin_top = 4.0
-margin_right = 176.0
-margin_bottom = 23.0
+margin_right = 280.0
+margin_bottom = 19.0
 size_flags_horizontal = 3
 text = "T_SMOOTH_SCROLLING"
 
 [node name="CheckBoxSmoothScroll" type="CheckBox" parent="TabContainer/Settings/MC/VC/HC/VC/HC4"]
-margin_left = 180.0
+margin_left = 284.0
 margin_right = 300.0
-margin_bottom = 27.0
-size_flags_horizontal = 3
+margin_bottom = 19.0
+flat = true
 
-[connection signal="pressed" from="MenuBar/MC/HC/HC/FancyMenuButton4/ButtonGames" to="." method="_on_ButtonGames_pressed"]
-[connection signal="pressed" from="MenuBar/MC/HC/HC/FancyMenuButton/ButtonAbout" to="." method="_on_ButtonAbout_pressed"]
-[connection signal="pressed" from="MenuBar/MC/HC/HC/FancyMenuButton2/ButtonParticipate" to="." method="_on_ButtonParticipate_pressed"]
-[connection signal="pressed" from="MenuBar/MC/HC/HC/FancyMenuButton3/ButtonReportBug" to="." method="_on_ButtonReportBug_pressed"]
-[connection signal="pressed" from="MenuBar/MC/HC/FancyMenuButton/ButtonSettings" to="." method="_on_ButtonSettings_pressed"]
+[connection signal="pressed" from="MenuBar/MC/HC/HC/ButtonGames" to="." method="_on_ButtonGames_pressed"]
+[connection signal="pressed" from="MenuBar/MC/HC/HC/ButtonAbout" to="." method="_on_ButtonAbout_pressed"]
+[connection signal="pressed" from="MenuBar/MC/HC/HC/ButtonParticipate" to="." method="_on_ButtonParticipate_pressed"]
+[connection signal="pressed" from="MenuBar/MC/HC/HC/ButtonReportBug" to="." method="_on_ButtonReportBug_pressed"]
+[connection signal="pressed" from="MenuBar/MC/HC/ButtonSettings" to="." method="_on_ButtonSettings_pressed"]
 [connection signal="item_selected" from="TabContainer/Games/MC/VC/HC/OptionButtonSorting" to="." method="_on_OptionButtonSorting_item_selected"]
 [connection signal="pressed" from="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer/LinkContribute" to="." method="_on_LinkContribute_pressed"]
 [connection signal="pressed" from="TabContainer/About/MC/VC/SectionParticipate/VBoxContainer/LinkAddGame" to="." method="_on_LinkAddGame_pressed"]
