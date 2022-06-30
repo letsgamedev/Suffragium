@@ -1,0 +1,150 @@
+[gd_resource type="Theme" load_steps=21 format=2]
+
+[ext_resource path="res://shared/fonts/roboto/roboto_regular.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="StyleBoxFlat" id=24]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color( 0.501961, 0.501961, 0.501961, 0.501961 )
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id=25]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color( 0, 0, 0, 0 )
+border_width_left = 2
+border_width_top = 3
+border_width_right = 2
+border_width_bottom = 3
+border_color = Color( 0.25098, 0.627451, 1, 1 )
+border_blend = true
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id=26]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color( 1, 1, 1, 0.12549 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 1, 1, 1, 0.501961 )
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id=23]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.2, 0.2, 0.2, 1 )
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id=27]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color( 0, 0, 0, 0.12549 )
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxEmpty" id=28]
+
+[sub_resource type="StyleBoxEmpty" id=29]
+
+[sub_resource type="StyleBoxEmpty" id=34]
+
+[sub_resource type="StyleBoxEmpty" id=31]
+
+[sub_resource type="StyleBoxEmpty" id=32]
+
+[sub_resource type="StyleBoxEmpty" id=33]
+
+[sub_resource type="StyleBoxFlat" id=41]
+bg_color = Color( 0.368627, 0.368627, 0.368627, 1 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id=40]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 0.0
+bg_color = Color( 0.243137, 0.243137, 0.243137, 1 )
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 5.0
+shadow_offset = Vector2( 5, 5 )
+
+[sub_resource type="StyleBoxFlat" id=35]
+bg_color = Color( 0.333333, 0.333333, 0.333333, 1 )
+
+[sub_resource type="StyleBoxFlat" id=36]
+bg_color = Color( 0.25098, 0.627451, 1, 0.803922 )
+
+[sub_resource type="StyleBoxFlat" id=37]
+bg_color = Color( 0.25098, 0.627451, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=38]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color( 0, 0, 0, 0.117647 )
+border_color = Color( 0.258824, 0.258824, 0.258824, 1 )
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id=39]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color( 0, 0, 0, 0.117647 )
+border_color = Color( 0.258824, 0.258824, 0.258824, 1 )
+border_blend = true
+
+[sub_resource type="DynamicFont" id=21]
+font_data = ExtResource( 1 )
+
+[resource]
+default_font = SubResource( 21 )
+Button/colors/font_color = Color( 1, 1, 1, 1 )
+Button/colors/font_color_focus = Color( 1, 1, 1, 1 )
+Button/colors/font_color_hover = Color( 1, 1, 1, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 6
+Button/styles/disabled = SubResource( 24 )
+Button/styles/focus = SubResource( 25 )
+Button/styles/hover = SubResource( 26 )
+Button/styles/normal = SubResource( 23 )
+Button/styles/pressed = SubResource( 27 )
+CheckBox/colors/font_color = Color( 1, 1, 1, 1 )
+CheckBox/styles/disabled = SubResource( 28 )
+CheckBox/styles/focus = SubResource( 29 )
+CheckBox/styles/hover = SubResource( 34 )
+CheckBox/styles/hover_pressed = SubResource( 31 )
+CheckBox/styles/normal = SubResource( 32 )
+CheckBox/styles/pressed = SubResource( 33 )
+OptionButton/constants/arrow_margin = 9
+PopupMenu/styles/hover = SubResource( 41 )
+PopupMenu/styles/panel = SubResource( 40 )
+VScrollBar/styles/grabber = SubResource( 35 )
+VScrollBar/styles/grabber_highlight = SubResource( 36 )
+VScrollBar/styles/grabber_pressed = SubResource( 37 )
+VScrollBar/styles/scroll = SubResource( 38 )
+VScrollBar/styles/scroll_focus = SubResource( 39 )
