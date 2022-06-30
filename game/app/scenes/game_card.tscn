@@ -49,10 +49,13 @@ bg_color = Color( 0.164706, 0.164706, 0.164706, 1 )
 [node name="GameCard" type="ColorRect"]
 margin_right = 320.0
 margin_bottom = 180.0
-rect_min_size = Vector2( 320, 180 )
+rect_min_size = Vector2( 320, 187 )
 theme = ExtResource( 7 )
 color = Color( 0.2, 0.2, 0.2, 1 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BackgroundImage" type="TextureRect" parent="."]
 visible = false
