@@ -9,12 +9,12 @@ func _ready():
 	if highscore_dict.has("score"):
 		var highscore = highscore_dict["score"]
 		if highscore != null:
-			set_highscore(highscore)
+			display_highscore(highscore)
 
 
-func set_score(score: int):
+func display_score(score: int):
 	_label_score.text = "Score: %s" % score
 
 
-func set_highscore(highscore: int):
+func display_highscore(highscore: int):
 	_label_highscore.text = "Highscore: %s" % highscore

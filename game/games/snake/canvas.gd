@@ -2,6 +2,9 @@ extends Node2D
 
 enum Direction { UP, DOWN, LEFT, RIGHT }
 
+const _snake_color = Color(0.016, 1, 0)
+const _apple_color = Color(1, 0, 0)
+
 export var tile_count: int = 22
 export var white_space: float = 80.0
 
@@ -14,7 +17,7 @@ var _apple_pos := Vector2()
 var _score: int = 0
 var _high_score: int = 0
 
-var _tick: int = 0
+var _collected_delta: float = 0.0
 var _game_paused: bool = false
 
 onready var _main = get_parent().get_parent().get_parent().get_parent()
@@ -30,9 +33,9 @@ func _ready():
 
 
 func _process(_delta):
-	_tick += 1
-	if _tick == 4:
-		_tick = 0
+	_collected_delta += _delta
+	while _collected_delta > 0.067:
+		_collected_delta -= 0.067
 		var new_head_pos = _move_snake()
 		var collision = _check_for_collision(new_head_pos)
 		if collision:
@@ -134,10 +137,10 @@ func _game_over():
 	_set_snake()
 	if _score > _high_score:
 		_high_score = _score
+	_main.display_score(_score)
+	_main.display_highscore(_high_score)
+	GameManager.end_game("Ouch! You got a score of %s!" % _score, _score)
 	_score = 0
-	_main.set_score(_score)
-	_main.set_highscore(_high_score)
-	GameManager.end_game("Ouch! You got a score of %s!" % _high_score, _high_score)
 
 
 func _check_for_apple(new_head_pos: Vector2):
@@ -145,20 +148,18 @@ func _check_for_apple(new_head_pos: Vector2):
 	if new_head_pos.is_equal_approx(_apple_pos):
 		_set_apple()
 		_score += 1
-		_main.set_score(_score)
+		_main.display_score(_score)
 	else:
 		_snake.remove(0)
 
 
 func _draw_snake():
-	var color = Color(0.016, 1, 0)
 	for snake_part in _snake:
-		_draw_square(snake_part, color)
+		_draw_square(snake_part, _snake_color)
 
 
 func _draw_apple():
-	var color = Color(1, 0, 0)
-	_draw_square(_apple_pos, color)
+	_draw_square(_apple_pos, _apple_color)
 
 
 func _draw_square(pos: Vector2, color: Color):
