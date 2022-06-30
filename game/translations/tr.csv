@@ -41,3 +41,5 @@ T_PAUSED,PAUSIERT,PAUSED
 T_RESUME,Fortsetzen,Resume
 T_RESTART,Neustarten,Restart
 T_BACK_TO_MENU,Zurück zum Menü,Back to menu
+T_SECOND,Sekunde,second
+T_SECONDS,Sekunden,seconds

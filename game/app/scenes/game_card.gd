@@ -17,6 +17,8 @@ onready var _popup_label_author := $PopupDialogInfo/VC/PC2/MC/HC/VC/LabelAuthor
 onready var _popup_label_version := $PopupDialogInfo/VC/PC2/MC/HC/VC/LabelVersion
 onready var _popup_label_playtime := $PopupDialogInfo/VC/PC/MC/HC/MC/VC/HC/LabelPlaytimeNumber
 onready var _popup_label_playtime_unit := $PopupDialogInfo/VC/PC/MC/HC/MC/VC/HC/LabelPlaytimeUnit
+onready var _popup_label_playtime_2 := $PopupDialogInfo/VC/PC/MC/HC/MC/VC/HC/LabelPlaytimeNumber2
+onready var _popup_label_playtime_unit_2 := $PopupDialogInfo/VC/PC/MC/HC/MC/VC/HC/LabelPlaytimeUnit2
 onready var _popup_label_highscore := $PopupDialogInfo/VC/PC/MC/HC/VC/LabelHighscore
 
 
@@ -32,6 +34,13 @@ func setup(game_config: ConfigFile):
 	var playtime_dict = _format_playtime(_playtime)
 	var playtime_number = playtime_dict["number"]
 	var playtime_unit = playtime_dict["unit"]
+	
+	if playtime_dict.has("another_number"):
+		_popup_label_playtime_2.visible = true
+		_popup_label_playtime_2.text = playtime_dict["another_number"]
+	if playtime_dict.has("another_unit"):
+		_popup_label_playtime_unit_2.visible = true
+		_popup_label_playtime_unit_2.text = playtime_dict["another_unit"]
 
 	var highscore_dict = GameManager.get_highscore(game_id)
 	if highscore_dict.has("score"):
@@ -72,11 +81,17 @@ func get_last_played():
 	return _last_played
 
 
-func _format_playtime(playtime) -> Dictionary:
+func _format_playtime(playtime: float) -> Dictionary:
 	var playtime_dict = {}
 	if playtime == 0:
 		playtime_dict["number"] = "-"
 		playtime_dict["unit"] = ""
+	elif playtime < 1.5:
+		playtime_dict["number"] = "1"
+		playtime_dict["unit"] = "T_SECOND"
+	elif playtime < 59.5:
+		playtime_dict["number"] = str(round(playtime))
+		playtime_dict["unit"] = "T_SECONDS"
 	elif playtime < 90:
 		playtime_dict["number"] = "1"
 		playtime_dict["unit"] = "T_MINUTE"
@@ -89,6 +104,11 @@ func _format_playtime(playtime) -> Dictionary:
 	else:
 		playtime_dict["number"] = str(round(playtime / 3600.0))
 		playtime_dict["unit"] = "T_HOURS"
+	if playtime >= 3630 and playtime < 34200:
+		var time_rest_after_hours = fmod(playtime, 3600.0)
+		var formatted_rest = _format_playtime(time_rest_after_hours)
+		playtime_dict["another_number"] = formatted_rest["number"]
+		playtime_dict["another_unit"] = formatted_rest["unit"]
 	return playtime_dict
 
 

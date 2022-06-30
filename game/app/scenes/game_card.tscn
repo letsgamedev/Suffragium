@@ -361,6 +361,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="LabelPlaytimeNumber2" type="Label" parent="PopupDialogInfo/VC/PC/MC/HC/MC/VC/HC"]
+visible = false
+margin_left = 207.0
+margin_right = 231.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 11 )
+text = "<x>"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelPlaytimeUnit2" type="Label" parent="PopupDialogInfo/VC/PC/MC/HC/MC/VC/HC"]
+visible = false
+margin_left = 235.0
+margin_right = 313.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 11 )
+text = "<time unit>"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="VC" type="VBoxContainer" parent="PopupDialogInfo/VC/PC/MC/HC"]
 margin_left = 277.0
 margin_right = 576.0
