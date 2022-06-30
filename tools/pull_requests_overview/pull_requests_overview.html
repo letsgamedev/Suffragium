@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>PR Overview - Suffragium</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="styles.css">
+	<script src="script.js"></script>
+</head>
+
+<body onload="init()">
+	<h1>Suffragium pull requst overview</h1>
+	<div class="legend">
+		<button type="button" class="right_spacer" onclick="refresh()">Refresh</button>
+		<span class="pr_outer_box">Active</span>
+		<span class="pr_outer_box status_merge">Merge</span>
+		<span class="pr_outer_box status_delete">Close</span>
+	</div>
+	<div id="token_dialog">
+		<div id="token_dialog_msg" class="status_delete"></div>
+		<h2>Authentication required</h2>
+		<p>
+			The remaining request limit is not sufficient to fetch the required data.<br>
+			Please authenticate with a Github personal access token.
+		</p>
+		<p>
+			<a href="https://github.com/settings/tokens" target="_blank">Generate a personal access token!</a>
+			(No scope needs to be selected)
+		</p>
+		<div>
+			<input type="password" maxlength="512" id="input_auth_token"
+				placeholder="ghp_0000X0000X0000X0000X0000X0000X0000X0" />
+			<button type="button" onclick="token_authentication()">Authenticate</button>
+			<button type="button" onclick="refresh()">Continue without Token</button>
+		</div>
+	</div>
+	<div id="entrys"></div>
+</body>
+
+</html>
