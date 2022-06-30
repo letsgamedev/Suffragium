@@ -2,8 +2,8 @@ extends Node2D
 
 enum Direction { UP, DOWN, LEFT, RIGHT }
 
-const _snake_color = Color(0.016, 1, 0)
-const _apple_color = Color(1, 0, 0)
+const SNAKE_COLOR = Color(0.016, 1, 0)
+const APPLE_COLOR = Color(1, 0, 0)
 
 export var tile_count: int = 22
 export var white_space: float = 80.0
@@ -155,11 +155,11 @@ func _check_for_apple(new_head_pos: Vector2):
 
 func _draw_snake():
 	for snake_part in _snake:
-		_draw_square(snake_part, _snake_color)
+		_draw_square(snake_part, SNAKE_COLOR)
 
 
 func _draw_apple():
-	_draw_square(_apple_pos, _apple_color)
+	_draw_square(_apple_pos, APPLE_COLOR)
 
 
 func _draw_square(pos: Vector2, color: Color):
