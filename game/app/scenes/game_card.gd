@@ -34,7 +34,7 @@ func setup(game_config: ConfigFile):
 	var playtime_dict = _format_playtime(_playtime)
 	var playtime_number = playtime_dict["number"]
 	var playtime_unit = playtime_dict["unit"]
-	
+
 	if playtime_dict.has("another_number"):
 		_popup_label_playtime_2.visible = true
 		_popup_label_playtime_2.text = playtime_dict["another_number"]
