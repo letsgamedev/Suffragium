@@ -6,7 +6,8 @@ var _res_game_card = preload("res://app/scenes/game_card.tscn")
 var _res_game_card_add_yours = preload("res://app/scenes/game_card_add_yours.tscn")
 
 onready var _tab_container: TabContainer = $TabContainer
-onready var _games_grid: GridContainer = $TabContainer/Games/MC/VC/HC2/GC
+onready var _games_grid: GridContainer = $TabContainer/Games/SC/MC/CC/GC
+onready var _about_tab: ScrollContainer = $TabContainer/About
 
 
 func _ready():
@@ -26,7 +27,7 @@ func _ready():
 func open_participation_tab():
 	var previous_tab = $TabContainer.current_tab
 	_tab_container.set_current_tab(1)
-	_scroll_to(previous_tab, $TabContainer/About/MC/VC/SectionParticipate.rect_position.y)
+	_scroll_to(previous_tab, _about_tab.get_line_absolute_height("# T_PARTICIPATE"))
 
 
 func _scroll_to(previous_tab: int, pos_y: float):
@@ -62,7 +63,7 @@ func _on_ButtonGames_pressed():
 func _on_ButtonAbout_pressed():
 	var previous_tab = $TabContainer.current_tab
 	_tab_container.set_current_tab(1)
-	_scroll_to(previous_tab, $TabContainer/About/MC/VC/SectionAbout.rect_position.y)
+	_scroll_to(previous_tab, _about_tab.get_line_absolute_height("# T_ABOUT_SUFFRAGIUM"))
 
 
 func _on_ButtonParticipate_pressed():
@@ -72,33 +73,11 @@ func _on_ButtonParticipate_pressed():
 func _on_ButtonReportBug_pressed():
 	var previous_tab = $TabContainer.current_tab
 	_tab_container.set_current_tab(1)
-	_scroll_to(previous_tab, $TabContainer/About/MC/VC/SectionReportBug.rect_position.y)
+	_scroll_to(previous_tab, _about_tab.get_line_absolute_height("T_REPORT_A_BUG"))
 
 
 func _on_ButtonSettings_pressed():
 	_tab_container.set_current_tab(2)
-
-
-func _on_LinkContribute_pressed():
-	# Contributing to Suffragium
-	# used in the Participate section
-	Utils.open_url(
-		"https://github.com/letsgamedev/Suffragium/blob/main/CONTRIBUTING.md#contributing-to-suffragium"
-	)
-
-
-func _on_LinkAddGame_pressed():
-	# How to add a game
-	# used in the Participate section
-	Utils.open_url(
-		"https://github.com/letsgamedev/Suffragium/blob/main/game/games/testgame/README.md"
-	)
-
-
-func _on_LinkReportBug_pressed():
-	# Create an issue on Github
-	# used in ReportBug section
-	Utils.open_url("https://github.com/letsgamedev/Suffragium/issues/new/choose")
 
 
 func _on_OptionButtonSorting_item_selected(index: int):

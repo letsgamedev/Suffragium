@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=21 format=2]
+[gd_resource type="Theme" load_steps=23 format=2]
 
 [ext_resource path="res://shared/fonts/roboto/roboto_regular.ttf" type="DynamicFontData" id=1]
 
@@ -72,6 +72,17 @@ corner_radius_bottom_left = 18
 
 [sub_resource type="StyleBoxEmpty" id=33]
 
+[sub_resource type="StyleBoxFlat" id=43]
+border_width_top = 2
+border_color = Color( 0.266667, 0.266667, 0.266667, 1 )
+
+[sub_resource type="StyleBoxFlat" id=42]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.133333, 0.133333, 0.133333, 1 )
+
 [sub_resource type="StyleBoxFlat" id=41]
 bg_color = Color( 0.368627, 0.368627, 0.368627, 1 )
 corner_radius_top_left = 12
@@ -140,11 +151,22 @@ CheckBox/styles/hover = SubResource( 34 )
 CheckBox/styles/hover_pressed = SubResource( 31 )
 CheckBox/styles/normal = SubResource( 32 )
 CheckBox/styles/pressed = SubResource( 33 )
+HBoxContainer/constants/separation = 5
+HSeparator/constants/separation = 16
+HSeparator/styles/separator = SubResource( 43 )
+MarginContainer/constants/margin_bottom = 15
+MarginContainer/constants/margin_left = 15
+MarginContainer/constants/margin_right = 15
+MarginContainer/constants/margin_top = 15
 OptionButton/constants/arrow_margin = 9
+PanelContainer/styles/panel = SubResource( 42 )
 PopupMenu/styles/hover = SubResource( 41 )
 PopupMenu/styles/panel = SubResource( 40 )
+VBoxContainer/constants/separation = 5
 VScrollBar/styles/grabber = SubResource( 35 )
 VScrollBar/styles/grabber_highlight = SubResource( 36 )
 VScrollBar/styles/grabber_pressed = SubResource( 37 )
 VScrollBar/styles/scroll = SubResource( 38 )
 VScrollBar/styles/scroll_focus = SubResource( 39 )
+VSeparator/constants/separation = 0
+VSeparator/styles/separator = null

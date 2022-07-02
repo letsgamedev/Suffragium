@@ -1,4 +1,4 @@
-extends ColorRect
+extends PanelContainer
 
 var _menu
 
