@@ -60,6 +60,9 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource( 7 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Card" type="VBoxContainer" parent="."]
 margin_left = 12.0
@@ -282,7 +285,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LabelPlaytimeUnit2" type="Label" parent="PopupDialogInfo/VC/TitleSection/HC/Title/HC"]
+[node name="PlaytimeUnit2" type="Label" parent="PopupDialogInfo/VC/TitleSection/HC/Title/HC"]
 visible = false
 margin_left = 207.0
 margin_right = 285.0

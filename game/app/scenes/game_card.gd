@@ -18,7 +18,7 @@ onready var _popup_label_version := $PopupDialogInfo/VC/InfoSection/HC/VC/LabelV
 onready var _popup_playtime := $PopupDialogInfo/VC/TitleSection/HC/Title/HC/LabelPlaytimeNumber
 onready var _popup_playtime_2 := $PopupDialogInfo/VC/TitleSection/HC/Title/HC/LabelPlaytimeNumber2
 onready var _popup_playtime_unit := $PopupDialogInfo/VC/TitleSection/HC/Title/HC/LabelPlaytimeUnit
-onready var _popup_playtime_unit_2 := $PopupDialogInfo/VC/TitleSection/HC/Title/HC/LabelPlaytimeUnit2
+onready var _popup_playtime_unit_2 := $PopupDialogInfo/VC/TitleSection/HC/Title/HC/PlaytimeUnit2
 onready var _popup_label_highscore := $PopupDialogInfo/VC/TitleSection/HC/HighScore/LabelHighscore
 
 
