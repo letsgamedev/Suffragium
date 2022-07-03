@@ -1,0 +1,226 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://games/asecondguy_connect/slow_label.gd" type="Script" id=1]
+[ext_resource path="res://games/asecondguy_connect/connect.gd" type="Script" id=2]
+[ext_resource path="res://games/asecondguy_connect/grid.gd" type="Script" id=3]
+[ext_resource path="res://games/asecondguy_connect/player_select_theme.tres" type="Theme" id=4]
+[ext_resource path="res://games/asecondguy_connect/ui/player_select.gd" type="Script" id=5]
+[ext_resource path="res://games/asecondguy_connect/ui/player_configurator.tscn" type="PackedScene" id=6]
+[ext_resource path="res://games/asecondguy_connect/grid.gdshader" type="Shader" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1124, 155 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 1745, 497.5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 404.5, 39 )
+
+[sub_resource type="ShaderMaterial" id=13]
+shader = ExtResource( 7 )
+shader_param/grid_size = Vector2( 7, 6 )
+shader_param/grid_color = Vector3( 0, 1, 0.976471 )
+shader_param/circle_size = 0.414
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 694, 830 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 10.0
+content_margin_right = 3.0
+content_margin_top = 3.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.682353, 0.611765, 0.611765, 1 )
+corner_radius_bottom_left = 10
+
+[sub_resource type="ButtonGroup" id=6]
+
+[sub_resource type="StyleBoxFlat" id=12]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.403922, 0.403922, 0.403922, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color( 0.847059, 0.811765, 0.431373, 0.6 )
+shadow_size = 30
+
+[sub_resource type="StyleBoxFlat" id=7]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.380392, 0.364706, 0.364706, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Connect" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Bounds" type="StaticBody2D" parent="."]
+
+[node name="Right" type="CollisionShape2D" parent="Bounds"]
+position = Vector2( 1179, 300 )
+rotation = -1.5708
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="Left" type="CollisionShape2D" parent="Bounds"]
+position = Vector2( -155, 300 )
+rotation = 1.5708
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="Bottom" type="CollisionShape2D" parent="Bounds"]
+position = Vector2( 500, 1097.5 )
+shape = SubResource( 2 )
+
+[node name="Top" type="CollisionShape2D" parent="Bounds"]
+position = Vector2( 504, -890 )
+shape = SubResource( 2 )
+
+[node name="RampLeft" type="CollisionShape2D" parent="Bounds"]
+position = Vector2( -323, 433 )
+rotation = 0.626923
+shape = SubResource( 4 )
+
+[node name="RampRight" type="CollisionShape2D" parent="Bounds"]
+position = Vector2( 1318, 399 )
+rotation = -0.735762
+shape = SubResource( 4 )
+
+[node name="Chips" type="Node" parent="."]
+
+[node name="Spawner1" type="Position2D" parent="."]
+position = Vector2( -432, 56 )
+
+[node name="Spawner2" type="Position2D" parent="."]
+position = Vector2( 1255, 160 )
+
+[node name="Grid" type="StaticBody2D" parent="."]
+position = Vector2( 250, 133 )
+z_index = 2
+script = ExtResource( 3 )
+tile_size = Vector2( 80, 78 )
+grid_color = Color( 0, 1, 0.976471, 1 )
+circle_size = 0.414
+
+[node name="MouseBlocker" type="ColorRect" parent="Grid"]
+material = SubResource( 13 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 560.0
+margin_bottom = 468.0
+
+[node name="PlayArea" type="Area2D" parent="."]
+position = Vector2( 527, 117 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea"]
+shape = SubResource( 3 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -13.0
+margin_bottom = 27.0
+grow_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 5 )
+
+[node name="InfoLabel" type="Label" parent="UI/PanelContainer"]
+margin_left = 10.0
+margin_top = 3.0
+margin_right = 10.0
+margin_bottom = 17.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+align = 2
+script = ExtResource( 1 )
+
+[node name="PlayerSelect" type="VBoxContainer" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+alignment = 1
+script = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="UI/PlayerSelect"]
+margin_top = 139.0
+margin_right = 1024.0
+margin_bottom = 175.0
+text = "Player select"
+align = 1
+
+[node name="PC" type="PanelContainer" parent="UI/PlayerSelect"]
+margin_left = 346.0
+margin_top = 179.0
+margin_right = 678.0
+margin_bottom = 410.0
+size_flags_horizontal = 4
+
+[node name="HBox" type="HBoxContainer" parent="UI/PlayerSelect/PC"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 312.0
+margin_bottom = 211.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="P1" parent="UI/PlayerSelect/PC/HBox" instance=ExtResource( 6 )]
+margin_right = 144.0
+margin_bottom = 191.0
+
+[node name="P2" parent="UI/PlayerSelect/PC/HBox" instance=ExtResource( 6 )]
+margin_left = 148.0
+margin_right = 292.0
+margin_bottom = 191.0
+
+[node name="LineEdit" parent="UI/PlayerSelect/PC/HBox/P2" index="0"]
+margin_right = 144.0
+margin_bottom = 41.0
+
+[node name="ColorPickerButton" parent="UI/PlayerSelect/PC/HBox/P2" index="1"]
+margin_top = 45.0
+margin_right = 144.0
+margin_bottom = 91.0
+color = Color( 1, 0, 0, 1 )
+
+[node name="CheckBox" parent="UI/PlayerSelect/PC/HBox/P2" index="2"]
+margin_top = 95.0
+margin_right = 144.0
+margin_bottom = 141.0
+pressed = false
+group = SubResource( 6 )
+
+[node name="CheckBox2" parent="UI/PlayerSelect/PC/HBox/P2" index="3"]
+margin_top = 145.0
+margin_right = 144.0
+margin_bottom = 191.0
+pressed = true
+group = SubResource( 6 )
+
+[node name="Button" type="Button" parent="UI/PlayerSelect"]
+margin_left = 428.0
+margin_top = 414.0
+margin_right = 595.0
+margin_bottom = 460.0
+size_flags_horizontal = 4
+custom_styles/hover = SubResource( 12 )
+custom_styles/normal = SubResource( 7 )
+text = "Start game"
+
+[connection signal="body_exited" from="PlayArea" to="." method="_on_PlayArea_body_exited"]
+[connection signal="tree_exiting" from="PlayArea" to="." method="_on_PlayArea_tree_exiting"]
+[connection signal="pressed" from="UI/PlayerSelect/Button" to="UI/PlayerSelect" method="_on_Button_pressed"]
+
+[editable path="UI/PlayerSelect/PC/HBox/P2"]
