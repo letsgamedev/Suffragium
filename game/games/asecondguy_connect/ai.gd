@@ -14,6 +14,7 @@ onready var _chips_node := $"../Chips"
 onready var _grid := $"../Grid"
 onready var _game: CONNECTSCRIPT = $".."
 onready var _timer := $Timer
+onready var _pickup_timer := $PickupTimer
 
 
 func _ready():
@@ -22,7 +23,7 @@ func _ready():
 
 
 func _process(_delta):
-	if chip.sleeping and !_picked:
+	if _is_chip_stopped() and !_picked:
 		_start_pickup()
 	if _picked:
 		var pos = (
@@ -41,13 +42,14 @@ func _on_chip_spawn(new_chip: CHIPSCRIPT):
 		chip.set_mouse_control(false)
 		_choose_goal()
 		set_process(true)
+		_pickup_timer.start()
 
 
 # drawing the path for debugging
-#func _draw():
-#	var points := _curve.get_baked_points()
-#	for i in range(points.size() - 1):
-#		draw_line(points[i], points[i + 1], Color.red)
+func _draw():
+	var points := _curve.get_baked_points()
+	for i in range(points.size() - 1):
+		draw_line(points[i], points[i + 1], Color.red)
 
 
 func _choose_goal():
@@ -93,7 +95,7 @@ func _start_pickup():
 	_curve.add_point(
 		Vector2(chip.position.x, _grid.global_position.y),
 		Vector2(),
-		Vector2(0, -_grid.tile_size.y * _grid.grid_size.y),
+		Vector2(0, -2 * _grid.tile_size.y),
 		0
 	)
 	_curve.add_point(chip.position, Vector2(), Vector2(), 0)
@@ -110,3 +112,9 @@ func _unpick():
 	set_process(false)
 	_curve.clear_points()
 	update()
+
+
+func _is_chip_stopped():
+	if !_pickup_timer.time_left == 0:
+		return false
+	return chip.linear_velocity.length() < 5 or chip.sleeping

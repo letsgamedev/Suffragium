@@ -7,6 +7,10 @@ var target_position: Vector2
 var _picked := false
 
 
+func _ready():
+	apply_central_impulse(Vector2.DOWN * 500)
+
+
 func _integrate_forces(state):
 	if _picked:
 		var move: Vector2 = target_position - global_position

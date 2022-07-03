@@ -22,6 +22,7 @@ onready var _info_label := $UI/PanelContainer/InfoLabel
 
 
 func _ready():
+	randomize()
 	# setup the code representation of all played chips
 	for _x in range(_grid.grid_size.x):
 		var tmp := []
@@ -82,7 +83,10 @@ func _spawn_chip(player_id := 0):
 	var chip: RigidBody2D = preload("res://games/asecondguy_connect/chip.tscn").instance()
 	chip.player_id = player_id
 	chip.color = player_colors[player_id]
-	chip.global_position = _spawners[player_id].global_position
+	chip.global_position = (
+		_spawners[player_id].global_position
+		+ Vector2(rand_range(-10, 10), rand_range(-10, 10))
+	)
 	if chip.connect("sleeping_state_changed", self, "_on_chip_sleep", [chip]) != OK:
 		GameManager.end_game("A fatal error occured.")
 	_chips.call_deferred("add_child", chip)

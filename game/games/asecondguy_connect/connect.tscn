@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://games/asecondguy_connect/slow_label.gd" type="Script" id=1]
 [ext_resource path="res://games/asecondguy_connect/connect.gd" type="Script" id=2]
@@ -13,6 +13,9 @@ extents = Vector2( 1124, 155 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 1745, 497.5 )
+
+[sub_resource type="PhysicsMaterial" id=14]
+bounce = 100.0
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 404.5, 39 )
@@ -85,23 +88,26 @@ shape = SubResource( 2 )
 position = Vector2( 504, -890 )
 shape = SubResource( 2 )
 
-[node name="RampLeft" type="CollisionShape2D" parent="Bounds"]
+[node name="Ramps" type="StaticBody2D" parent="."]
+physics_material_override = SubResource( 14 )
+
+[node name="RampLeft" type="CollisionShape2D" parent="Ramps"]
 position = Vector2( -323, 433 )
-rotation = 0.626923
+rotation = 0.698132
 shape = SubResource( 4 )
 
-[node name="RampRight" type="CollisionShape2D" parent="Bounds"]
-position = Vector2( 1318, 399 )
-rotation = -0.735762
+[node name="RampRight" type="CollisionShape2D" parent="Ramps"]
+position = Vector2( 1318, 433 )
+rotation = -0.698132
 shape = SubResource( 4 )
 
 [node name="Chips" type="Node" parent="."]
 
 [node name="Spawner1" type="Position2D" parent="."]
-position = Vector2( -432, 56 )
+position = Vector2( -398, 178 )
 
 [node name="Spawner2" type="Position2D" parent="."]
-position = Vector2( 1255, 160 )
+position = Vector2( 1398, 178 )
 
 [node name="Grid" type="StaticBody2D" parent="."]
 position = Vector2( 250, 133 )
