@@ -46,10 +46,10 @@ func _on_chip_spawn(new_chip: CHIPSCRIPT):
 
 
 # drawing the path for debugging
-func _draw():
-	var points := _curve.get_baked_points()
-	for i in range(points.size() - 1):
-		draw_line(points[i], points[i + 1], Color.red)
+#func _draw():
+#	var points := _curve.get_baked_points()
+#	for i in range(points.size() - 1):
+#		draw_line(points[i], points[i + 1], Color.red)
 
 
 func _choose_goal():
