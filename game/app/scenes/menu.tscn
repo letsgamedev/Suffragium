@@ -16,6 +16,9 @@ anchor_bottom = 1.0
 theme = ExtResource( 3 )
 custom_constants/separation = 0
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MenuBar" type="PanelContainer" parent="."]
 margin_right = 1024.0
@@ -81,7 +84,6 @@ __meta__ = {
 }
 
 [node name="Games" type="VBoxContainer" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 0
@@ -127,8 +129,8 @@ margin_right = 992.0
 margin_bottom = 35.0
 size_flags_vertical = 4
 text = "T_ALPHABETICAL"
-items = [ "T_LONGST_PLAYTIME", null, false, 0, null, "T_ALPHABETICAL", null, false, 1, null, "T_LAST_PLAYED", null, false, 2, null ]
-selected = 1
+items = [ "T_ALPHABETICAL", null, false, 0, null, "T_LAST_PLAYED", null, false, 1, null, "T_LONGST_PLAYTIME", null, false, 2, null ]
+selected = 0
 
 [node name="SC" type="ScrollContainer" parent="TabContainer/Games"]
 margin_top = 51.0
@@ -156,6 +158,7 @@ custom_constants/hseparation = 4
 columns = 3
 
 [node name="About" type="ScrollContainer" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -219,6 +222,7 @@ T_ABOUT_SUFFRAGIUM_1
 T_ABOUT_SUFFRAGIUM_2
 
 
+
 T_PARTICIPATE
 
 T_PARTICIPATE_1
@@ -237,6 +241,7 @@ T_PARTICIPATE_POSSIBILITIES_4
 T_PARTICIPATE_GUIDES
 Contributing to Suffragium
 How to add a game
+
 
 
 T_REPORT_A_BUG

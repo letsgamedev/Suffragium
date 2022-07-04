@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-enum Sorting { LONGEST_PLAYTIME, ALPHABETICALLY, LAST_PLAYED }
+enum Sorting { ALPHABETICALLY, LAST_PLAYED, LONGEST_PLAYTIME }
 
 var _res_game_card = preload("res://app/scenes/game_card.tscn")
 var _res_game_card_add_yours = preload("res://app/scenes/game_card_add_yours.tscn")
@@ -21,6 +21,7 @@ func _ready():
 	var game_card_add_yours = _res_game_card_add_yours.instance()
 	game_card_add_yours.set_menu_node(self)
 	_games_grid.add_child(game_card_add_yours)
+	_sort_game_cards(Sorting.ALPHABETICALLY)
 
 
 # this function is also used by GameCardAddYours
@@ -81,13 +82,17 @@ func _on_ButtonSettings_pressed():
 
 
 func _on_OptionButtonSorting_item_selected(index: int):
+	_sort_game_cards(index)
+
+
+func _sort_game_cards(sort_mode):
 	var game_cards = _gather_game_card_sort_entries()
-	if index == Sorting.LONGEST_PLAYTIME:
-		game_cards.sort_custom(self, "_sort_by_longest_playtime")
-	elif index == Sorting.ALPHABETICALLY:
+	if sort_mode == Sorting.ALPHABETICALLY:
 		game_cards.sort_custom(self, "_sort_alphabetically_by_game_title")
-	elif index == Sorting.LAST_PLAYED:
+	elif sort_mode == Sorting.LAST_PLAYED:
 		game_cards.sort_custom(self, "_sort_by_last_played")
+	elif sort_mode == Sorting.LONGEST_PLAYTIME:
+		game_cards.sort_custom(self, "_sort_by_longest_playtime")
 	_rearrange_game_cards(game_cards)
 
 
