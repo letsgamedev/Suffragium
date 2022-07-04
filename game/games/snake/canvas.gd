@@ -158,7 +158,7 @@ func _game_over():
 		_high_score = _score
 	_main.display_score(_score)
 	_main.display_highscore(_high_score)
-	var message =  TranslationServer.translate("T_SNAKE_END_MESSAGE")
+	var message = TranslationServer.translate("T_SNAKE_END_MESSAGE")
 	GameManager.end_game(message % _score, _score)
 	_score = 0
 
