@@ -3,7 +3,7 @@ extends Node2D
 enum Direction { UP, DOWN, LEFT, RIGHT }
 enum ColorScheme { CLASSIC, FIREFLY, MATCHSTICK, RAINBOW }
 
-const Colors = {
+const COLORS = {
 	APPLE_COLOR = Color(1, 0, 0),
 	SNAKE_COLOR = Color(0.016, 1, 0),
 	FIREFLY_START = Color(1, 0.89, 0.35),
@@ -171,6 +171,7 @@ func _check_for_apple(new_head_pos: Vector2):
 	else:
 		_snake.remove(0)
 
+
 func _draw_snake():
 	var snake_size = _snake.size()
 	for i in snake_size:
@@ -184,44 +185,44 @@ func _draw_snake():
 func _draw_colored_snake_part(snake_part, weight):
 	var color: Color
 	if color_scheme == ColorScheme.CLASSIC:
-		color = Colors.SNAKE_COLOR
+		color = COLORS.SNAKE_COLOR
 	elif color_scheme == ColorScheme.FIREFLY:
-		color = Colors.FIREFLY_END.linear_interpolate(Colors.FIREFLY_START, weight)
+		color = COLORS.FIREFLY_END.linear_interpolate(COLORS.FIREFLY_START, weight)
 	elif color_scheme == ColorScheme.MATCHSTICK:
 		if weight == 1:
-			color = Colors.MATCHSTICK_HEAD
+			color = COLORS.MATCHSTICK_HEAD
 		else:
-			color = Colors.MATCHSTICK_STICK
+			color = COLORS.MATCHSTICK_STICK
 	elif color_scheme == ColorScheme.RAINBOW:
 		var color1
 		var color2
 		var sub_weight
 		if weight > 0.75:
-			color1 = Colors.RED
-			color2 = Colors.YELLOW
+			color1 = COLORS.RED
+			color2 = COLORS.YELLOW
 			sub_weight = (weight - 0.75) * 4
 		elif weight > 0.5:
-			color1 = Colors.YELLOW
-			color2 = Colors.GREEN
+			color1 = COLORS.YELLOW
+			color2 = COLORS.GREEN
 			sub_weight = (weight - 0.5) * 4
 		elif weight > 0.375:
-			color1 = Colors.GREEN
-			color2 = Colors.CYAN
+			color1 = COLORS.GREEN
+			color2 = COLORS.CYAN
 			sub_weight = (weight - 0.375) * 8
 		elif weight > 0.25:
-			color1 = Colors.CYAN
-			color2 = Colors.BLUE
+			color1 = COLORS.CYAN
+			color2 = COLORS.BLUE
 			sub_weight = (weight - 0.25) * 8
 		else:
-			color1 = Colors.BLUE
-			color2 = Colors.PURPLE
+			color1 = COLORS.BLUE
+			color2 = COLORS.PURPLE
 			sub_weight = weight * 4
 		color = color2.linear_interpolate(color1, sub_weight)
 	_draw_square(snake_part, color)
 
 
 func _draw_apple():
-	_draw_square(_apple_pos, Colors.APPLE_COLOR)
+	_draw_square(_apple_pos, COLORS.APPLE_COLOR)
 
 
 func _draw_square(pos: Vector2, color: Color):
