@@ -1,0 +1,45 @@
+keys,de,en
+T_GAMES,Spiele,Games
+T_ABOUT_SUFFRAGIUM,Über Suffragium,About Suffragium
+T_PARTICIPATE,Mitmachen,Participate
+T_REPORT_A_BUG,Fehler melden,Report a bug
+T_SETTINGS,Einstellungen,Settings
+T_SORTING,Sortierung:,Sorting:
+T_LONGST_PLAYTIME,Längste Spielzeit,Longst playtime
+T_ALPHABETICAL,Alphabetisch,Alphabetical
+T_PLAYTIME,Spielzeit:,Playtime:
+T_MINUTE,Minute,minute
+T_MINUTES,Minuten,minutes
+T_HOUR,Stunde,hour
+T_HOURS,Stunden,hours
+T_INFO,Info,Info
+T_PLAY,Spielen,Play
+T_ADD_YOUR_GAME,Füge dein Spiel hinzu,Add your game
+T_ABOUT_SUFFRAGIUM_1,"Das Suffragium ist eine Sammlung von Spielen, die in einem demokratischen Zyklus entwickelt werden.","The Suffragium is a collection of games, that are developed in a democratic cycle."
+T_ABOUT_SUFFRAGIUM_2,Jeder kann an diesem Projekt teilnehmen.,Everybody can participate in this project.
+T_PARTICIPATE_1,Auch du kannst am Suffragium teilnehmen!,You can also participate in the Suffragium!
+T_PARTICIPATE_PLEASE_NOTE,Bitte beachten:,Please note:
+T_PARTICIPATE_PLEASE_NOTE_1,"- Die Entwicklung findet über Github statt, deshalb wird ein Github Account benötigt.","- The development happens on Github, therefore a Github account is needed."
+T_PARTICIPATE_PLEASE_NOTE_2,- Es wurde sich auf Englisch als Sprache für die Entwicklung entschieden.,- It was decided that English is used as the language for development.
+T_PARTICIPATE_PLEASE_NOTE_3,"  (Wenn deine Sprachkenntnisse nicht ausreichen, wende dich an einen Teilnehmer der deine Sprache spricht.)","  (If your language skills are not sufficient, contact a participant speaking your language)"
+T_PARTICIPATE_POSSIBILITIES,Folgende Möglichkeiten zur Teilnahme gibt es:,Following possibilities for participation exist:
+T_PARTICIPATE_POSSIBILITIES_1,- Abstimmen (Du und alle anderen Teilnehmer entscheiden demokratisch über neue Spiele und Funktionalitäten),- Vote (You and all other participants decide democraticlly about new games and functionality)
+T_PARTICIPATE_POSSIBILITIES_2,"- Entwickeln (Füge ein neues Spiel, Verbesserungen und neue Funktionen hinzu)","- Develop (Add a new game, improvements and new functions)"
+T_PARTICIPATE_POSSIBILITIES_3,"- Mitreden (Bring deine Meinung ein und hilf ein Plattform zu schaffen, die du magst)",- Have a say (Contribute your opinion and help to shape a platfom you like)
+T_PARTICIPATE_POSSIBILITIES_4,- Übersetzen (Hilf das Suffragium allen zugänglich zu machen),- Translate (Help to make the Suffragium accessible to everyone)
+T_PARTICIPATE_GUIDES,"In diesen Leitfäden erfährst du im Detail, wie du beitragen und ein Spiel hinzufügen kannst:","In these guides you learn in detail, how you can contribute and how to add a game:"
+T_REPORT_A_BUG_1,Hier kannst du einen Fehler melden. Du kannst auch eine Verbesserung oder eine neue Funktion vorschlagen:,Here you can report a mistake. You can also suggest an inprovement or a new functionaliy:
+T_LANGUAGE,Sprache,Language
+T_000V,"Drücke die Leertaste, um über die Mauern zu springen",Press the spacebar to jump over the walls
+T_SMOOTH_SCROLLING,Weicher Bildlauf,Smooth scrolling
+T_RESET_TO_DEFAULTS,Auf Voreinstellungen zurücksetzen,Reset to defaults
+T_AUTHOR,Autor,Author
+T_VERSION,Version,Version
+T_HIGHSCORE,Highscore,Highscore
+T_LAST_PLAYED,Zuletzt gespielt,Last played
+T_PAUSED,PAUSIERT,PAUSED
+T_RESUME,Fortsetzen,Resume
+T_RESTART,Neustarten,Restart
+T_BACK_TO_MENU,Zurück zum Menü,Back to menu
+T_SECOND,Sekunde,second
+T_SECONDS,Sekunden,seconds

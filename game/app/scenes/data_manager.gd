@@ -37,7 +37,7 @@ func _load_data(player: String, file_name: String, game_id: String) -> Dictionar
 		return _game_data_cache[cache_key]
 
 	var directory := SAVE_FILE_DIR % [player, game_id]
-	GameManager.handle_error(Directory.new().make_dir_recursive(directory))
+	Utils.handle_error(Directory.new().make_dir_recursive(directory))
 
 	_game_data_cache[cache_key] = {}  # populate with default
 	# read saved data from a file
@@ -67,7 +67,7 @@ func get_game_data(player: String, game_id: String) -> Dictionary:
 ## Save the changes to the Dictionary returned by get_game_data()
 ## This method is automatically called when a game ends.
 func save_game_data(player: String, game_id: String):
-	GameManager.handle_error(
+	Utils.handle_error(
 		_save_data(player, "game_data", _load_data(player, "game_data", game_id), game_id),
 		"Saving game data for player %s and game %s failed.",
 		[player, game_id]
@@ -86,7 +86,7 @@ class ScoreSorter:
 
 
 ## Handle data for the game that ended.
-func game_ended(player: String, game_id: String, start_time, score: Dictionary):
+func game_ended(player: String, game_id: String, start_time, score_or_null):
 	save_game_data(player, game_id)
 
 	var data = _load_data(player, "game_meta_data", game_id)
@@ -100,17 +100,16 @@ func game_ended(player: String, game_id: String, start_time, score: Dictionary):
 			data["played_time"] = 0
 		data["played_time"] += (OS.get_ticks_msec() - start_time) / 1000.0
 
-	if score != null:
-		if not "score" in score:
-			push_error("No 'score' in score Dictionary.")
-		elif score["score"] != null:
-			score["_time"] = current_time
-			if not "scores" in data:
-				data["scores"] = []
-			data["scores"].append(score)
-			data["scores"].sort_custom(ScoreSorter, "sort_scores_descending")
+	if score_or_null != null:
+		assert(score_or_null is int)
+		var score_dict = {"score": score_or_null}
+		score_dict["_time"] = current_time
+		if not "scores" in data:
+			data["scores"] = []
+		data["scores"].append(score_dict)
+		data["scores"].sort_custom(ScoreSorter, "sort_scores_descending")
 
-	GameManager.handle_error(_save_data(player, "game_meta_data", data, game_id))
+	Utils.handle_error(_save_data(player, "game_meta_data", data, game_id))
 
 
 ## Get the highscore of the player for the game.
