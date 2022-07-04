@@ -1,6 +1,9 @@
 extends ColorRect
 
-var _color_selection = preload("res://games/snake/snake_color_selection.tscn")
+var _res_color_selection = preload("res://games/snake/snake_color_selection.tscn")
+var _res_canvas = preload("res://games/snake/canvas.tscn")
+
+var _selected_color_scheme: int = 0
 
 onready var _label_score = $CC/VC/MC/VC/LabelScore
 onready var _label_highscore = $CC/VC/MC/VC/LabelHighScore
@@ -21,13 +24,20 @@ func display_highscore(highscore: int):
 
 
 func set_color_scheme(color_scheme: int):
-	var canvas = $CC/VC/CanvasBackground/Canvas
-	canvas.color_scheme = color_scheme
+	_selected_color_scheme = color_scheme
+	_start_game()
+
+
+func _start_game():
+	var canvas_bg = $CC/VC/CanvasBackground
+	var canvas = _res_canvas.instance()
+	canvas_bg.add_child(canvas)
+	canvas.color_scheme = _selected_color_scheme
 	canvas.redraw()
 
 
 func _show_color_selection_dialog():
-	var dialog = _color_selection.instance()
+	var dialog = _res_color_selection.instance()
 	get_tree().get_root().add_child(dialog)
 	dialog.set_main(self)
 

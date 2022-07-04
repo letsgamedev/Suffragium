@@ -3,6 +3,10 @@ extends Control
 var _main
 
 
+func _ready():
+	$CenterContainer/VBoxContainer/PanelContainer/ButtonClassic.grab_focus()
+
+
 func set_main(main):
 	_main = main
 

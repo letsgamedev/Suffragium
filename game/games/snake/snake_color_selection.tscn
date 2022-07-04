@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://games/snake/snake_color_selection.gd" type="Script" id=1]
 [ext_resource path="res://games/snake/color_schemes/rainbow.png" type="Texture" id=2]
@@ -6,6 +6,28 @@
 [ext_resource path="res://games/snake/color_schemes/firefly.png" type="Texture" id=4]
 [ext_resource path="res://games/snake/color_schemes/classic.png" type="Texture" id=5]
 [ext_resource path="res://shared/fonts/press_start2p/press_start2p_regular.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0, 0, 0 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0, 0, 0, 0 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0, 0, 0, 1 )
@@ -15,6 +37,11 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="Theme" id=6]
 default_font = SubResource( 5 )
+Button/styles/disabled = SubResource( 9 )
+Button/styles/focus = SubResource( 7 )
+Button/styles/hover = SubResource( 8 )
+Button/styles/normal = SubResource( 10 )
+Button/styles/pressed = SubResource( 11 )
 MarginContainer/constants/margin_bottom = 8
 MarginContainer/constants/margin_left = 8
 MarginContainer/constants/margin_right = 8
@@ -84,7 +111,6 @@ texture = ExtResource( 5 )
 [node name="ButtonClassic" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer"]
 margin_right = 416.0
 margin_bottom = 60.0
-flat = true
 
 [node name="PanelContainer2" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 108.0
@@ -117,7 +143,6 @@ texture = ExtResource( 4 )
 [node name="ButtonFirefly" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer2"]
 margin_right = 416.0
 margin_bottom = 60.0
-flat = true
 
 [node name="PanelContainer3" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 184.0
@@ -150,7 +175,6 @@ texture = ExtResource( 3 )
 [node name="ButtonMatchstick" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer3"]
 margin_right = 416.0
 margin_bottom = 60.0
-flat = true
 
 [node name="PanelContainer4" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 260.0
@@ -183,7 +207,6 @@ texture = ExtResource( 2 )
 [node name="ButtonRainbow" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer4"]
 margin_right = 416.0
 margin_bottom = 60.0
-flat = true
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/ButtonClassic" to="." method="_on_ButtonClassic_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer2/ButtonFirefly" to="." method="_on_ButtonFirefly_pressed"]
