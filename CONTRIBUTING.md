@@ -42,7 +42,6 @@ If one of them is true, the PR will me merged.
 
 ## Close pull request without merging conditions
 
-If one of them is true, the pull request is considered as blocked and will be removed/closed
+If its true, the pull request / draft is considered as blocked and will be closed
 
-- If a pull request is older than 30 days and not in draft mode
-- If a pull request is older than 60 days
+- **Last commit is 20 days or older**
