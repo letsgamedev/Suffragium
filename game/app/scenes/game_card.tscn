@@ -148,12 +148,31 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Description" type="RichTextLabel" parent="Card"]
+[node name="SC" type="ScrollContainer" parent="Card"]
 margin_top = 75.0
 margin_right = 296.0
 margin_bottom = 117.0
 size_flags_vertical = 3
-bbcode_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MC" type="MarginContainer" parent="Card/SC"]
+margin_right = 296.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 8
+custom_constants/margin_top = 0
+custom_constants/margin_left = 0
+custom_constants/margin_bottom = 0
+
+[node name="Description" type="Label" parent="Card/SC/MC"]
+margin_right = 288.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+autowrap = true
 
 [node name="ButtonSection" type="HBoxContainer" parent="Card"]
 margin_top = 128.0
@@ -357,13 +376,13 @@ margin_right = 634.0
 margin_bottom = 229.0
 custom_constants/separation = 16
 
-[node name="Description" type="RichTextLabel" parent="PopupDialogInfo/VC/InfoSection/HC"]
+[node name="Description" type="Label" parent="PopupDialogInfo/VC/InfoSection/HC"]
 margin_right = 388.0
 margin_bottom = 213.0
 size_flags_horizontal = 3
+size_flags_vertical = 1
 size_flags_stretch_ratio = 2.0
-custom_constants/line_separation = 3
-bbcode_enabled = true
+autowrap = true
 
 [node name="VSeparator" type="VSeparator" parent="PopupDialogInfo/VC/InfoSection/HC"]
 margin_left = 404.0
