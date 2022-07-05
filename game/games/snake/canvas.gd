@@ -34,8 +34,8 @@ func _ready():
 
 func _process(_delta):
 	_collected_delta += _delta
-	while _collected_delta >= 0.067:
-		_collected_delta -= 0.067
+	while _collected_delta >= 0.069:
+		_collected_delta -= 0.069
 		var new_head_pos = _move_snake()
 		var collision = _check_for_collision(new_head_pos)
 		if collision:
