@@ -49,12 +49,12 @@ func setup(game_config: ConfigFile):
 		$PopupDialogInfo/VC/TitleSection/HC/HighScore.visible = false
 
 	_label_title.text = game_name
-	_label_description.text = game_description
+	_label_description.bbcode_text = game_description
 	_label_playtime.text = playtime_number
 	_label_playtime_unit.text = playtime_unit
 
 	_popup_label_title.text = game_name
-	_popup_label_description.text = game_description
+	_popup_label_description.bbcode_text = game_description
 	_popup_label_author.text = game_config.get_value("game", "creator")
 	_popup_label_version.text = game_config.get_value("game", "version")
 	_popup_playtime.text = playtime_number
