@@ -1,5 +1,10 @@
 extends ScrollContainer
 
+const LOCALE_NAMES = {
+	"en": "English",
+	"de": "Deutsch",
+}
+
 var languages = []
 
 onready var language_selection: OptionButton = $MC/VC/VC/Language/OptionButton
@@ -19,7 +24,10 @@ func _setup_language_selection():
 	languages.clear()
 	var active_language_code = TranslationServer.get_locale()
 	for language_code in TranslationServer.get_loaded_locales():
-		language_selection.add_item(TranslationServer.get_locale_name(language_code))
+		if LOCALE_NAMES.has(language_code):
+			language_selection.add_item(LOCALE_NAMES[language_code])
+		else:
+			language_selection.add_item(TranslationServer.get_locale_name(language_code))
 		languages.push_back(language_code)
 		if language_code == active_language_code:
 			language_selection.select(language_selection.get_item_count() - 1)
