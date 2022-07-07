@@ -3,7 +3,7 @@
 [ext_resource path="res://games/sortit/ui/player_select.gd" type="Script" id=1]
 [ext_resource path="res://shared/fonts/roboto/roboto_black.ttf" type="DynamicFontData" id=2]
 
-[sub_resource type="StyleBoxEmpty" id=21]
+[sub_resource type="StyleBoxEmpty" id=23]
 
 [sub_resource type="StyleBoxFlat" id=20]
 draw_center = false
@@ -26,7 +26,7 @@ margin_right = 392.0
 margin_bottom = 247.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 21 )
+custom_styles/panel = SubResource( 23 )
 script = ExtResource( 1 )
 get_input_style = SubResource( 20 )
 

@@ -7,9 +7,17 @@ var _player_inputs = []
 onready var _players = $MarginContainer/VBoxContainer/MarginContainer/Players
 onready var _back_button: Button = $MarginContainer/VBoxContainer/Buttons/HBoxContainer/BackButton
 onready var _play_button: Button = $MarginContainer/VBoxContainer/Buttons/HBoxContainer2/PlayButton
+# Path is to long, but cannot cleanly be split into multiple lines to avoid line length limit
+# gdlint: ignore=max-line-length
+onready var _help_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/HelpButton
 
 
 func _ready():
+	# Open help screen, if game has not been played yet
+	var game_data = GameManager.get_game_data()
+	if not game_data.has("played"):
+		_on_help_button_up()
+
 	for i in range(_players.get_child_count()):
 		var player_select = _players.get_children()[i]
 		if i != 0:
@@ -58,8 +66,21 @@ func _on_back_button_up():
 
 
 func _on_play_button_up():
+	# Mark game as played, to not show the help popup again by default
+	var game_data = GameManager.get_game_data()
+	if not game_data.has("played"):
+		game_data["played"] = true
+		GameManager.save_game_data()
+	# Emit the start_game signal with the configured controls to actually start the game
 	emit_signal("start_game", _player_inputs)
 
 
 func _on_help_button_up():
 	$HelpPopup.popup_centered_ratio(0.85)
+	$MarginContainer.modulate.a = 0.4
+	_help_button.disabled = true
+
+
+func _on_help_popup_hide():
+	$MarginContainer.modulate.a = 1.0
+	_help_button.disabled = false

@@ -32,6 +32,11 @@ func get_display() -> bool:
 
 
 func set_get_input(do_get_input: bool):
+	# This check is needed, because the onready vars might not be initialized when the node is created
+	if not is_inside_tree():
+		_get_input = do_get_input
+		return
+
 	if do_get_input:
 		set_process_input(true)
 		self.add_stylebox_override("panel", get_input_style)
@@ -50,7 +55,12 @@ func get_get_input() -> bool:
 
 
 func _ready():
+	if Engine.is_editor_hint():
+		return
 	_player_text.text = name
+	# Update the state once all the onready nodes are initialized
+	set_get_input(_get_input)
+	set_display(_display)
 
 
 func _input(event):

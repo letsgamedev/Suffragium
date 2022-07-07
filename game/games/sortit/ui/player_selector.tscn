@@ -241,6 +241,7 @@ custom_constants/hseparation = 20
 columns = 2
 
 [node name="Player 1" parent="MarginContainer/VBoxContainer/MarginContainer/Players" instance=ExtResource( 2 )]
+get_input = true
 display = true
 
 [node name="Player 2" parent="MarginContainer/VBoxContainer/MarginContainer/Players" instance=ExtResource( 2 )]
@@ -305,3 +306,4 @@ size_flags_vertical = 3
 [connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/HelpButton" to="." method="_on_help_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/Buttons/HBoxContainer/BackButton" to="." method="_on_back_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/Buttons/HBoxContainer2/PlayButton" to="." method="_on_play_button_up"]
+[connection signal="popup_hide" from="HelpPopup" to="." method="_on_help_popup_hide"]
