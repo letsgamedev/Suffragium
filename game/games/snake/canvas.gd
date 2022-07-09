@@ -12,6 +12,7 @@ var _tile_size: int = 0
 
 var _snake: Array = []
 var _direction = Direction.RIGHT
+var _input_stack = []
 var _apple_pos := Vector2()
 
 var _score: int = 0
@@ -34,8 +35,11 @@ func _ready():
 
 func _process(_delta):
 	_collected_delta += _delta
-	while _collected_delta >= 0.067:
-		_collected_delta -= 0.067
+	# Slowly scale the time between steps based on the score
+	var move_time = max(0.025, 0.2 - _score / 500.0)
+	while _collected_delta >= move_time:
+		_collected_delta -= move_time
+		_turn_snake()
 		var new_head_pos = _move_snake()
 		var collision = _check_for_collision(new_head_pos)
 		if collision:
@@ -51,22 +55,24 @@ func _draw():
 
 
 func _input(_event):
+	# Limit the input stack to 2 elements, that's enough for quick turns
+	if _input_stack.size() > 1:
+		return
+
+	# Append current input (if any)
 	if Input.is_action_just_pressed("ui_up"):
-		_set_game_paused(false)
-		if _direction != Direction.DOWN:
-			_direction = Direction.UP
+		_input_stack.append(Direction.UP)
 	elif Input.is_action_just_pressed("ui_down"):
-		_set_game_paused(false)
-		if _direction != Direction.UP:
-			_direction = Direction.DOWN
+		_input_stack.append(Direction.DOWN)
 	elif Input.is_action_just_pressed("ui_left"):
-		_set_game_paused(false)
-		if _direction != Direction.RIGHT:
-			_direction = Direction.LEFT
+		_input_stack.append(Direction.LEFT)
 	elif Input.is_action_just_pressed("ui_right"):
-		_set_game_paused(false)
-		if _direction != Direction.LEFT:
-			_direction = Direction.RIGHT
+		_input_stack.append(Direction.RIGHT)
+	else:
+		return
+
+	# Unpause the game
+	_set_game_paused(false)
 
 
 func _calc_tile_size():
@@ -101,6 +107,26 @@ func _set_apple():
 	var x = randi() % tile_count
 	var y = randi() % tile_count
 	_apple_pos = Vector2(float(x), float(y))
+
+
+func _turn_snake():
+	if _input_stack.empty():
+		return
+	var dir = _input_stack.pop_front()
+	match dir:
+		Direction.UP:
+			if _direction == Direction.DOWN:
+				return
+		Direction.DOWN:
+			if _direction == Direction.UP:
+				return
+		Direction.LEFT:
+			if _direction == Direction.RIGHT:
+				return
+		Direction.RIGHT:
+			if _direction == Direction.LEFT:
+				return
+	_direction = dir
 
 
 func _move_snake() -> Vector2:
