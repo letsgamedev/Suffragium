@@ -3,6 +3,7 @@ signal start_game(player_inputs)
 
 var _current_input_player_selctor_index = 0
 var _player_inputs = []
+var _has_been_played = true
 
 onready var _players = $MarginContainer/VBoxContainer/MarginContainer/Players
 onready var _back_button: Button = $MarginContainer/VBoxContainer/Buttons/HBoxContainer/BackButton
@@ -15,8 +16,9 @@ onready var _help_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/
 func _ready():
 	# Open help screen, if game has not been played yet
 	var game_data = GameManager.get_game_data()
-	if not game_data.has("played"):
+	if not game_data.has("played") or game_data["played"] == false:
 		_on_help_button_up()
+		_has_been_played = false
 
 	for i in range(_players.get_child_count()):
 		var player_select = _players.get_children()[i]
@@ -68,7 +70,7 @@ func _on_back_button_up():
 func _on_play_button_up():
 	# Mark game as played, to not show the help popup again by default
 	var game_data = GameManager.get_game_data()
-	if not game_data.has("played"):
+	if not _has_been_played:
 		game_data["played"] = true
 		GameManager.save_game_data()
 	# Emit the start_game signal with the configured controls to actually start the game
