@@ -32,4 +32,4 @@ func spawn_player():
 
 
 func goal_reached():
-	GameManager.end_game("Best Game Ever. 5/7 Rateing")
+	GameManager.end_game("Best Game Ever. 5/7 Rating")
