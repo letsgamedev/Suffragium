@@ -17,3 +17,11 @@ func _physics_process(delta):
 	movement.do(delta)
 	# warning-ignore:return_value_discarded
 	move_and_slide(movement.velocity, Vector2.UP)
+
+
+func disable():
+	$CollisionShape2D.set_deferred("disabled", true)
+
+
+func enable():
+	$CollisionShape2D.disabled = false

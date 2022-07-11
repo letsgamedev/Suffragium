@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "PixelSideScrollerUtils",
+"language": "GDScript",
+"path": "res://games/pixel_side_scroller/utils.gd"
+}, {
 "base": "RigidBody",
 "class": "SortItBox",
 "language": "GDScript",
@@ -24,12 +29,13 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://games/sortit/player.gd"
 }, {
-"base": "Reference",
+"base": "MarginContainer",
 "class": "SortItRoot",
 "language": "GDScript",
 "path": "res://games/sortit/sort_it.gd"
 } ]
 _global_script_class_icons={
+"PixelSideScrollerUtils": "",
 "SortItBox": "",
 "SortItPedestal": "",
 "SortItPlayer": "",
