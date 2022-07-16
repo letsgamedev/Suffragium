@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/door_close_beep.wav-af9f0074f00e4bfd1cade929d9afa6a1.sample"
+
+[deps]
+
+source_file="res://games/suffro_mania/assets/sfx/door_close_beep.wav"
+dest_files=[ "res://.import/door_close_beep.wav-af9f0074f00e4bfd1cade929d9afa6a1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

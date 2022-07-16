@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Boss Fight Bounce.mp3-d05b6eecc6afa44de3752ee1fdfd9d48.mp3str"
+
+[deps]
+
+source_file="res://games/suffro_mania/assets/music/Boss Fight Bounce.mp3"
+dest_files=[ "res://.import/Boss Fight Bounce.mp3-d05b6eecc6afa44de3752ee1fdfd9d48.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

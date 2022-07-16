@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://games/suffro_mania/scripts/Enemy_explosion_particle.gd" type="Script" id=1]
+[ext_resource path="res://games/suffro_mania/assets/sprites/circles.png" type="Texture" id=2]
+
+[node name="Enemy_explosion_particle" type="Sprite"]
+z_index = 1
+texture = ExtResource( 2 )
+hframes = 9
+script = ExtResource( 1 )

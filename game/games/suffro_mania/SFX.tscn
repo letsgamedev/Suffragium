@@ -1,0 +1,88 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://games/suffro_mania/assets/sfx/laserShoot.wav" type="AudioStream" id=1]
+[ext_resource path="res://games/suffro_mania/scripts/SFX.gd" type="Script" id=2]
+[ext_resource path="res://games/suffro_mania/assets/sfx/damage.wav" type="AudioStream" id=3]
+[ext_resource path="res://games/suffro_mania/assets/sfx/damage_enemies.wav" type="AudioStream" id=4]
+[ext_resource path="res://games/suffro_mania/assets/sfx/explosion.wav" type="AudioStream" id=5]
+[ext_resource path="res://games/suffro_mania/assets/sfx/jump.wav" type="AudioStream" id=6]
+[ext_resource path="res://games/suffro_mania/assets/sfx/laser.mp3" type="AudioStream" id=7]
+[ext_resource path="res://games/suffro_mania/assets/sfx/bing.wav" type="AudioStream" id=8]
+[ext_resource path="res://games/suffro_mania/assets/sfx/powerup.wav" type="AudioStream" id=9]
+[ext_resource path="res://games/suffro_mania/assets/sfx/door_open_beep.mp3" type="AudioStream" id=10]
+[ext_resource path="res://games/suffro_mania/assets/sfx/door_close.wav" type="AudioStream" id=11]
+[ext_resource path="res://games/suffro_mania/assets/sfx/door_open.wav" type="AudioStream" id=12]
+[ext_resource path="res://games/suffro_mania/assets/sfx/door_close_beep.wav" type="AudioStream" id=13]
+[ext_resource path="res://games/suffro_mania/assets/sfx/jumper.wav" type="AudioStream" id=14]
+[ext_resource path="res://games/suffro_mania/assets/sfx/explode.wav" type="AudioStream" id=15]
+
+[node name="SFX" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="laserGun" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource( 7 )
+volume_db = -15.0
+
+[node name="jump" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource( 6 )
+volume_db = -10.0
+
+[node name="damage" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource( 3 )
+volume_db = -15.0
+
+[node name="bing" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource( 8 )
+volume_db = -10.0
+
+[node name="powerup" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource( 9 )
+volume_db = -5.0
+
+[node name="explode" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource( 15 )
+volume_db = -5.0
+
+[node name="Door" type="Node2D" parent="."]
+
+[node name="open" type="AudioStreamPlayer" parent="Door"]
+stream = ExtResource( 12 )
+volume_db = -20.0
+
+[node name="close" type="AudioStreamPlayer" parent="Door"]
+stream = ExtResource( 11 )
+volume_db = -20.0
+
+[node name="closeBeep" type="AudioStreamPlayer" parent="Door"]
+stream = ExtResource( 13 )
+volume_db = -5.0
+
+[node name="openBeep" type="AudioStreamPlayer" parent="Door"]
+stream = ExtResource( 10 )
+volume_db = -5.0
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="damageE" type="AudioStreamPlayer" parent="Enemies"]
+stream = ExtResource( 4 )
+volume_db = -15.0
+
+[node name="jumpE" type="AudioStreamPlayer" parent="Enemies"]
+stream = ExtResource( 14 )
+volume_db = -5.0
+
+[node name="explodeE" type="AudioStreamPlayer" parent="Enemies"]
+stream = ExtResource( 5 )
+volume_db = -18.0
+
+[node name="stompE" type="AudioStreamPlayer" parent="Enemies"]
+stream = ExtResource( 5 )
+volume_db = -18.0
+pitch_scale = 0.7
+
+[node name="shootE" type="AudioStreamPlayer" parent="Enemies"]
+stream = ExtResource( 1 )
+volume_db = -15.0
+pitch_scale = 0.9
