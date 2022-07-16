@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/bg_music.mp3-4a705b2be2df005745c090deedfb4da3.mp3str"
+
+[deps]
+
+source_file="res://games/suffro_mania/assets/music/bg_music.mp3"
+dest_files=[ "res://.import/bg_music.mp3-4a705b2be2df005745c090deedfb4da3.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

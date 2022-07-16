@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/door_open_beep.mp3-cbc3318de86543540aed1cbe1477752d.mp3str"
+
+[deps]
+
+source_file="res://games/suffro_mania/assets/sfx/door_open_beep.mp3"
+dest_files=[ "res://.import/door_open_beep.mp3-cbc3318de86543540aed1cbe1477752d.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

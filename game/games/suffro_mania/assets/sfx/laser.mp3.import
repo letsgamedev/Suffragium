@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/laser.mp3-acb71a08407fb3b4757c60fba7853f02.mp3str"
+
+[deps]
+
+source_file="res://games/suffro_mania/assets/sfx/laser.mp3"
+dest_files=[ "res://.import/laser.mp3-acb71a08407fb3b4757c60fba7853f02.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
