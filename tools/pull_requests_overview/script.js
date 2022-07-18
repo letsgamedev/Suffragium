@@ -211,7 +211,7 @@ function get_status_class(is_draft, votes_up, votes_down, last_commit_days) {
         }
     }
 
-    if (last_commit_days > 30) {
+    if (last_commit_days >= 20) {
         return " status_delete";
     }
     return "";
