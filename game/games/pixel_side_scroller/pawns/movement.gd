@@ -1,18 +1,19 @@
 extends Node
 
-var jumped: bool = false
-var jump_curve: Curve = load("res://games/pixel_side_scroller/pawns/jump_curve.tres")
-var jump_timer: Timer = Timer.new()
-
 var jumping: bool = false
 var direction: Vector2 = Vector2.ZERO setget , _get_direction
 var velocity: Vector2 = Vector2.ZERO
 
-onready var pawn = get_parent()
+var _jumped: bool = false
+var _jump_curve: Curve = load("res://games/pixel_side_scroller/pawns/jump_curve.tres")
+var _jump_timer: Timer = Timer.new()
+
+onready var _main = get_tree().current_scene
+onready var _pawn = get_parent()
 
 
 func _get_direction():
-	return Vector2(pawn.right - pawn.left, 0)
+	return Vector2(_pawn.right - _pawn.left, 0)
 
 
 func _ready():
@@ -23,42 +24,46 @@ func _ready():
 func do(delta):
 	_jump(delta)
 	# Gravity
-	if pawn.is_on_floor() and not jumping:
+	if _pawn.is_on_floor() and not jumping:
 		velocity.y = 0
-	elif not pawn.is_on_floor() and not jumping:
-		velocity.y = min(pawn.max_fall_speed, velocity.y + (pawn.gravity + delta))
+	elif not _pawn.is_on_floor() and not jumping:
+		velocity.y = min(_pawn.max_fall_speed, velocity.y + (_pawn.gravity + delta))
 
-	velocity.x = _get_direction().x * pawn.speed
+	var input_direction: float = _get_direction().x
+	if input_direction != 0.0:
+		_main.ui.help_box.used_feature(PixelSideScrollerUtils.Features.MOVE)
+	velocity.x = input_direction * _pawn.speed
 
 
 # Handle jumps
 func _jump(delta):
 	# Reset state variables on "jump release"
-	if not pawn.jump and jumped:
-		jumped = false
+	if not _pawn.jump and _jumped:
+		_jumped = false
 		jumping = false
 	# Handle "hold jump" in air
-	if not pawn.is_on_floor():
-		if pawn.jump and jumped:
+	if not _pawn.is_on_floor():
+		if _pawn.jump and _jumped:
 			var curve_point: float = (
-				(jump_timer.wait_time - jump_timer.time_left)
-				/ jump_timer.wait_time
+				(_jump_timer.wait_time - _jump_timer.time_left)
+				/ _jump_timer.wait_time
 			)
 			if curve_point < 1.0:
-				var curve_interpolate_value: float = jump_curve.interpolate(curve_point)
-				velocity.y += (-pawn.jump_force * delta) * curve_interpolate_value
+				var curve_interpolate_value: float = _jump_curve.interpolate(curve_point)
+				velocity.y += (-_pawn.jump_force * delta) * curve_interpolate_value
 			else:
 				jumping = false
 	# Do "jump" if on the floor
-	if pawn.is_on_floor() and pawn.jump and not jumped:
+	if _pawn.is_on_floor() and _pawn.jump and not _jumped:
 		jumping = true
-		jumped = true
-		velocity.y = -pawn.jump_force
-		jump_timer.start()
+		_jumped = true
+		velocity.y = -_pawn.jump_force
+		_jump_timer.start()
+		_main.ui.help_box.used_feature(PixelSideScrollerUtils.Features.JUMP)
 
 
 func _init_jump_timer():
-	jump_timer.one_shot = true
-	jump_timer.wait_time = pawn.jump_time
-	jump_timer.name = "JumpTimer"
-	add_child(jump_timer)
+	_jump_timer.one_shot = true
+	_jump_timer.wait_time = _pawn.jump_time
+	_jump_timer.name = "JumpTimer"
+	add_child(_jump_timer)

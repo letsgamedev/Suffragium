@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://shared/fonts/press_start2p/press_start2p_regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://games/pixel_side_scroller/entitys/goal.tscn" type="PackedScene" id=2]
@@ -13,40 +13,36 @@ font_data = ExtResource( 1 )
 extents = Vector2( 7, 44.5 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 89, 4.5 )
+extents = Vector2( 201, 4.5 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 8
 font_data = ExtResource( 1 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 73.5, 6.5 )
-
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 5.5, 12 )
-
-[sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 38.5811, 5 )
+extents = Vector2( 9, 9 )
 
 [node name="Map" type="Node2D"]
 
 [node name="Spawn" parent="." instance=ExtResource( 3 )]
 
 [node name="Goal" parent="." instance=ExtResource( 2 )]
-position = Vector2( 117, -15 )
-trigger_size = Vector2( 10, 15 )
+position = Vector2( 117, -10 )
 
 [node name="Label2" type="Label" parent="Goal"]
 margin_left = -14.0
-margin_top = -36.0
+margin_top = -42.0
 margin_right = 170.0
-margin_bottom = 16.0
+margin_bottom = 10.0
 custom_fonts/font = SubResource( 3 )
 text = "Goal
 ^
 |
 |
 |"
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Ground" type="StaticBody2D" parent="."]
 __meta__ = {
@@ -68,7 +64,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground"]
-position = Vector2( -108, 5.5 )
+position = Vector2( 4, 5.5 )
 shape = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true
@@ -80,56 +76,7 @@ margin_top = -8.5
 margin_right = 198.0
 margin_bottom = 43.5
 custom_fonts/font = SubResource( 4 )
-text = "----------------------"
-align = 1
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Ground"]
-position = Vector2( 127.5, 6.5 )
-shape = SubResource( 7 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Label3" type="Label" parent="Ground/CollisionShape2D4"]
-margin_left = -199.5
-margin_top = -8.5
-margin_right = 200.5
-margin_bottom = 43.5
-custom_fonts/font = SubResource( 4 )
-text = "-------------------"
-align = 1
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="Ground"]
-position = Vector2( 59.5, 15 )
-shape = SubResource( 8 )
-
-[node name="Label3" type="Label" parent="Ground/CollisionShape2D5"]
-margin_left = -205.5
-margin_top = -14.0
-margin_right = 194.5
-margin_bottom = 38.0
-custom_fonts/font = SubResource( 4 )
-text = "|
-|
-|"
-align = 1
-
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="Ground"]
-position = Vector2( 16, 18 )
-rotation = 0.329099
-shape = SubResource( 9 )
-
-[node name="Label3" type="Label" parent="Ground/CollisionShape2D6"]
-margin_left = -202.0
-margin_top = -8.5
-margin_right = 198.0
-margin_bottom = 43.5
-custom_fonts/font = SubResource( 4 )
-text = "----------"
-align = 1
+text = "--------------------------------------------------"
 __meta__ = {
 "_edit_lock_": true
 }
@@ -137,7 +84,33 @@ __meta__ = {
 [node name="HelpTriggerMove" parent="." instance=ExtResource( 4 )]
 position = Vector2( -95, -20 )
 
+[node name="HelpTriggerMove2" parent="." instance=ExtResource( 4 )]
+position = Vector2( -175, -20 )
+
 [node name="HelpTriggerJump" parent="." instance=ExtResource( 4 )]
-position = Vector2( 13, -13 )
+position = Vector2( 23, -20 )
 feature = 1
-trigger_size = Vector2( 40, 30 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 49, -8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 0, -1 )
+shape = SubResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label3" type="Label" parent="StaticBody2D"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -12.0
+margin_top = -10.0
+margin_right = 14.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 4 )
+text = "|-|
+| |"
+__meta__ = {
+"_edit_lock_": true
+}
