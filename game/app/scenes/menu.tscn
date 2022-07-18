@@ -203,7 +203,7 @@ title_font = ExtResource( 4 )
 
 [node name="MC" type="MarginContainer" parent="TabContainer/About"]
 margin_right = 1024.0
-margin_bottom = 858.0
+margin_bottom = 904.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -211,7 +211,7 @@ size_flags_vertical = 3
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 1009.0
-margin_bottom = 843.0
+margin_bottom = 889.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/line_separation = 4

@@ -5,7 +5,7 @@ var _playtime: float = 0
 var _last_played = -1
 
 onready var _label_title := $Card/TitleSection/VC/LabelTitle
-onready var _label_description := $Card/Description
+onready var _label_description := $Card/SC/MC/Description
 onready var _texture_icon_rect := $Card/TitleSection/icon
 onready var _label_playtime := $Card/TitleSection/VC/HC/LabelPlaytimeNumber
 onready var _label_playtime_unit := $Card/TitleSection/VC/HC/LabelPlaytimeUnit

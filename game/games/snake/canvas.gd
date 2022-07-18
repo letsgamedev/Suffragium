@@ -1,12 +1,27 @@
 extends Node2D
 
 enum Direction { UP, DOWN, LEFT, RIGHT }
+enum ColorScheme { CLASSIC, FIREFLY, MATCHSTICK, RAINBOW }
 
-const SNAKE_COLOR = Color(0.016, 1, 0)
-const APPLE_COLOR = Color(1, 0, 0)
+const COLORS = {
+	APPLE_COLOR = Color(1, 0, 0),
+	SNAKE_COLOR = Color(0.016, 1, 0),
+	FIREFLY_START = Color(1, 0.89, 0.35),
+	FIREFLY_END = Color(0.44, 0.4, 0.12),
+	MATCHSTICK_HEAD = Color(0.66, 0.22, 0),
+	MATCHSTICK_STICK = Color(0.86, 0.66, 0.28),
+	RED = Color(1, 0, 0),
+	YELLOW = Color(1, 1, 0),
+	GREEN = Color(0, 1, 0),
+	CYAN = Color(0, 1, 1),
+	BLUE = Color(0, 0, 1),
+	PURPLE = Color(0.2, 0, 0.35),
+}
 
 export var tile_count: int = 22
 export var white_space: float = 80.0
+
+var color_scheme: int = ColorScheme.CLASSIC
 
 var _tile_size: int = 0
 
@@ -32,8 +47,8 @@ func _ready():
 	_set_apple()
 
 
-func _process(_delta):
-	_collected_delta += _delta
+func _process(delta):
+	_collected_delta += delta
 	while _collected_delta >= 0.067:
 		_collected_delta -= 0.067
 		var new_head_pos = _move_snake()
@@ -42,7 +57,7 @@ func _process(_delta):
 			_game_over()
 		else:
 			_check_for_apple(new_head_pos)
-		update()  # triggers NOTIFICATION_DRAW of CanvasItem / _draw()
+		redraw()
 
 
 func _draw():
@@ -69,6 +84,10 @@ func _input(_event):
 			_direction = Direction.RIGHT
 
 
+func redraw():
+	update()  # triggers NOTIFICATION_DRAW of CanvasItem / _draw()
+
+
 func _calc_tile_size():
 	var spacing = Vector2(white_space * 2, white_space * 2)
 	var slice = (OS.get_window_size() - spacing) / tile_count
@@ -92,7 +111,7 @@ func _set_game_paused(value: bool):
 
 func _set_snake():
 	_snake.clear()
-	var center = int(tile_count / 2)
+	var center = int(float(tile_count) / 2.0)
 	_snake.push_back(Vector2(center, center))
 	_direction = null
 
@@ -139,7 +158,8 @@ func _game_over():
 		_high_score = _score
 	_main.display_score(_score)
 	_main.display_highscore(_high_score)
-	GameManager.end_game("Ouch! You got a score of %s!" % _score, _score)
+	var message = TranslationServer.translate("T_SNAKE_END_MESSAGE")
+	GameManager.end_game(message % _score, _score)
 	_score = 0
 
 
@@ -154,12 +174,56 @@ func _check_for_apple(new_head_pos: Vector2):
 
 
 func _draw_snake():
-	for snake_part in _snake:
-		_draw_square(snake_part, SNAKE_COLOR)
+	var snake_size = _snake.size()
+	for i in snake_size:
+		var snake_part = _snake[i]
+		var weight = 1.0
+		if snake_size > 1:
+			weight = float(i) / (float(snake_size - 1))
+		_draw_colored_snake_part(snake_part, weight)
+
+
+func _draw_colored_snake_part(snake_part, weight):
+	var color: Color
+	if color_scheme == ColorScheme.CLASSIC:
+		color = COLORS.SNAKE_COLOR
+	elif color_scheme == ColorScheme.FIREFLY:
+		color = COLORS.FIREFLY_END.linear_interpolate(COLORS.FIREFLY_START, weight)
+	elif color_scheme == ColorScheme.MATCHSTICK:
+		if weight == 1:
+			color = COLORS.MATCHSTICK_HEAD
+		else:
+			color = COLORS.MATCHSTICK_STICK
+	elif color_scheme == ColorScheme.RAINBOW:
+		var color1
+		var color2
+		var sub_weight
+		if weight > 0.75:
+			color1 = COLORS.RED
+			color2 = COLORS.YELLOW
+			sub_weight = (weight - 0.75) * 4
+		elif weight > 0.5:
+			color1 = COLORS.YELLOW
+			color2 = COLORS.GREEN
+			sub_weight = (weight - 0.5) * 4
+		elif weight > 0.375:
+			color1 = COLORS.GREEN
+			color2 = COLORS.CYAN
+			sub_weight = (weight - 0.375) * 8
+		elif weight > 0.25:
+			color1 = COLORS.CYAN
+			color2 = COLORS.BLUE
+			sub_weight = (weight - 0.25) * 8
+		else:
+			color1 = COLORS.BLUE
+			color2 = COLORS.PURPLE
+			sub_weight = weight * 4
+		color = color2.linear_interpolate(color1, sub_weight)
+	_draw_square(snake_part, color)
 
 
 func _draw_apple():
-	_draw_square(_apple_pos, APPLE_COLOR)
+	_draw_square(_apple_pos, COLORS.APPLE_COLOR)
 
 
 func _draw_square(pos: Vector2, color: Color):

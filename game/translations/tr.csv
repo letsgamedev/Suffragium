@@ -30,7 +30,6 @@ T_PARTICIPATE_POSSIBILITIES_4,- Übersetzen (Hilf das Suffragium allen zugängli
 T_PARTICIPATE_GUIDES,"In diesen Leitfäden erfährst du im Detail, wie du beitragen und ein Spiel hinzufügen kannst:","In these guides you learn in detail, how you can contribute and how to add a game:"
 T_REPORT_A_BUG_1,Hier kannst du einen Fehler melden. Du kannst auch eine Verbesserung oder eine neue Funktion vorschlagen:,Here you can report a mistake. You can also suggest an inprovement or a new functionaliy:
 T_LANGUAGE,Sprache,Language
-T_000V,"Drücke die Leertaste, um über die Mauern zu springen",Press the spacebar to jump over the walls
 T_SMOOTH_SCROLLING,Weicher Bildlauf,Smooth scrolling
 T_RESET_TO_DEFAULTS,Auf Voreinstellungen zurücksetzen,Reset to defaults
 T_AUTHOR,Autor,Author
@@ -43,3 +42,11 @@ T_RESTART,Neustarten,Restart
 T_BACK_TO_MENU,Zurück zum Menü,Back to menu
 T_SECOND,Sekunde,second
 T_SECONDS,Sekunden,seconds
+T_SCORE,Punktzahl,Score
+T_SNAKE_COLOR_SCHEME,Wähle dein Farbschema:,Select your color scheme:
+T_SNAKE_COLOR_CLASSIC,klassisch,classic
+T_SNAKE_COLOR_FIREFLY,Glühwürmchen,firefly
+T_SNAKE_COLOR_MATCHSTICK,Streichholz,matchstick
+T_SNAKE_COLOR_RAINBOW,Regenbogen,rainbow
+T_SNAKE_DESCRIPTION,"Sammle die Äpfel und werde die längste Schlange, aber stoß dich nicht an dir oder der Wand","Collect the apples to become the longest snake, but don’t run into yourself or the wall"
+T_SNAKE_END_MESSAGE,Autsch! Du hast %s Punkte erhalten!,Ouch! You got a score of %s!
