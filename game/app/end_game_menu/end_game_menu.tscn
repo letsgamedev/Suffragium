@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://app/style/theme_game_card.tres" type="Theme" id=1]
+[ext_resource path="res://app/shader/blur.shader" type="Shader" id=2]
+[ext_resource path="res://app/end_game_menu/end_game_menu.gd" type="Script" id=3]
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 2 )
+shader_param/amount = 2.0
+
+[node name="EndGameMenu" type="CanvasLayer"]
+pause_mode = 2
+layer = 128
+script = ExtResource( 3 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+
+[node name="BlurShader" type="ColorRect" parent="Control"]
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.501961 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CC" type="CenterContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VC" type="VBoxContainer" parent="Control/CC"]
+margin_left = 432.0
+margin_top = 247.0
+margin_right = 592.0
+margin_bottom = 352.0
+custom_constants/separation = 8
+
+[node name="Label" type="Label" parent="Control/CC/VC"]
+margin_right = 160.0
+margin_bottom = 19.0
+text = "T_PAUSED"
+align = 1
+
+[node name="ButtonRestart" type="Button" parent="Control/CC/VC"]
+margin_top = 27.0
+margin_right = 160.0
+margin_bottom = 62.0
+text = "T_RESTART"
+
+[node name="ButtonMenu" type="Button" parent="Control/CC/VC"]
+margin_top = 70.0
+margin_right = 160.0
+margin_bottom = 105.0
+text = "T_BACK_TO_MENU"
+
+[connection signal="pressed" from="Control/CC/VC/ButtonRestart" to="." method="_on_ButtonRestart_pressed"]
+[connection signal="pressed" from="Control/CC/VC/ButtonMenu" to="." method="_on_ButtonMenu_pressed"]
