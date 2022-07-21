@@ -35,10 +35,14 @@ Place a :+1: or :-1: emoji on the initial post of an pull request. When the merg
 
 ## Merge pull request conditions
 
-If one of them is true, the PR will me merged.
+Necessary conditions:
+- No checks are failing
+- upvotes - downvotes > 2
+- 75% positive votes
 
-- **Last commit is 24h or older** and **has more than 10 votes** and **75% positive votes**
-- **Last commit is 72h or older** and **75% positive votes**
+If **additionally** one of the following conditions is true, the PR will me merged.
+- **Last commit is 24h or older** and **has more than 10 votes**
+- **Last commit is 72h or older**
 
 ## Close pull request without merging conditions
 
