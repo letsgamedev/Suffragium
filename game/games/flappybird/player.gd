@@ -27,7 +27,7 @@ func _physics_process(delta):
 		return
 
 	if position.y > 130:
-		GameManager.end_game(END_MESSAGE % score, score)
+		end_game()
 		return
 
 	if Input.is_action_just_pressed("flap"):
@@ -45,6 +45,11 @@ func start_game():
 	_start_label.visible = false
 	_rng.randomize()
 	started = true
+
+
+func end_game():
+	set_physics_process(false)
+	GameManager.end_game(END_MESSAGE % score, score)
 
 
 # flap when player presses ,,space"
@@ -90,4 +95,4 @@ func _on_Hitbox_body_entered(body):
 	if body.name == "Wall":
 		# here would come a death sound when player dies ($Sound_GameEnd)
 		# when the gamemanager is evolved enough to handle that, ill add it
-		GameManager.end_game(END_MESSAGE % score, score)
+		end_game()
