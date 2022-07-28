@@ -9,11 +9,8 @@
 size = 8
 font_data = ExtResource( 1 )
 
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 7, 44.5 )
-
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 89, 4.5 )
+extents = Vector2( 88, 4.5 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 8
@@ -27,6 +24,9 @@ extents = Vector2( 5.5, 12 )
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 38.5811, 5 )
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 3.0
 
 [node name="Map" type="Node2D"]
 
@@ -53,38 +53,18 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2( -204, -35 )
-shape = SubResource( 6 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground"]
-position = Vector2( 208, -35 )
-shape = SubResource( 6 )
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground"]
-position = Vector2( -108, 5.5 )
+position = Vector2( -110, 3.5 )
 shape = SubResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Label3" type="Label" parent="Ground/CollisionShape2D2"]
 margin_left = -202.0
-margin_top = -8.5
+margin_top = -7.0
 margin_right = 198.0
-margin_bottom = 43.5
+margin_bottom = 45.0
 custom_fonts/font = SubResource( 4 )
 text = "----------------------"
 align = 1
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Ground"]
 position = Vector2( 127.5, 6.5 )
@@ -134,10 +114,14 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2( -21, 2 )
+shape = SubResource( 10 )
+
 [node name="HelpTriggerMove" parent="." instance=ExtResource( 4 )]
 position = Vector2( -95, -20 )
 
 [node name="HelpTriggerJump" parent="." instance=ExtResource( 4 )]
-position = Vector2( 13, -13 )
+position = Vector2( 13, -12 )
 feature = 1
 trigger_size = Vector2( 40, 30 )
