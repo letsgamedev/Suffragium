@@ -37,7 +37,7 @@ Place a :+1: or :-1: emoji on the initial post of an pull request. When the merg
 
 Necessary conditions:
 - No checks are failing
-- upvotes - downvotes > 2
+- at least one upvote, that isn't from the creator of the pr
 - 75% positive votes
 
 If **additionally** one of the following conditions is true, the PR will me merged.
