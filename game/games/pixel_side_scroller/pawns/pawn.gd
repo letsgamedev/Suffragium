@@ -11,9 +11,13 @@ var right: float = 0.0
 var jump: bool = false
 
 onready var movement = $Movement
+onready var _main = get_tree().current_scene
 
 
 func _physics_process(delta):
+	if self.position.y > 100:
+		_main.kill_player()
+		return
 	movement.do(delta)
 	# warning-ignore:return_value_discarded
 	move_and_slide(movement.velocity, Vector2.UP)

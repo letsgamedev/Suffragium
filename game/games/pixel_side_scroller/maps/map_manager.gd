@@ -25,8 +25,7 @@ func find_maps():
 			continue
 		map_names.append(file.split(".")[0])
 	dir.list_dir_end()
-	randomize()
-	map_names.shuffle()
+	map_names.sort()
 	_maps = map_names
 
 
