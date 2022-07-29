@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://games/pixel_side_scroller/entitys/star.tscn" type="PackedScene" id=1]
 [ext_resource path="res://games/pixel_side_scroller/entitys/goal.tscn" type="PackedScene" id=2]
 [ext_resource path="res://games/pixel_side_scroller/entitys/spawn.tscn" type="PackedScene" id=3]
 [ext_resource path="res://games/pixel_side_scroller/entitys/help_trigger.tscn" type="PackedScene" id=4]
@@ -42,3 +43,6 @@ text = "----"
 margin_left = 50.0
 margin_right = 154.0
 text = "--------------"
+
+[node name="Star" parent="." instance=ExtResource( 1 )]
+position = Vector2( -145, -40 )
