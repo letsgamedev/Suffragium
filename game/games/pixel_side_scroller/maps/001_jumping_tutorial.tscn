@@ -12,11 +12,8 @@
 [node name="Goal" parent="." instance=ExtResource( 2 )]
 position = Vector2( 125, 0 )
 
-[node name="HelpTriggerMove" parent="." instance=ExtResource( 4 )]
-position = Vector2( -95, -20 )
-
 [node name="HelpTriggerJump" parent="." instance=ExtResource( 4 )]
-position = Vector2( 13, -12 )
+position = Vector2( 11, -2 )
 feature = 1
 trigger_size = Vector2( 40, 30 )
 
@@ -34,11 +31,11 @@ rect_rotation = 21.0
 text = "----------"
 
 [node name="Ground2" parent="." instance=ExtResource( 5 )]
-margin_left = 55.0
-margin_top = -1.0
-margin_right = 136.0
-margin_bottom = 7.0
-rect_rotation = 90.0
+margin_left = 48.0
+margin_top = 31.0
+margin_right = 129.0
+margin_bottom = 39.0
+rect_rotation = -90.0
 text = "----"
 
 [node name="Ground3" parent="." instance=ExtResource( 5 )]
