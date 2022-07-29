@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://shared/fonts/press_start2p/press_start2p_regular.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=4]
+size = 8
+font_data = ExtResource( 1 )
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	var ground_width = text.length()
+	var collision = get_child(0).get_child(0)
+	collision.position.x = 4 * ground_width
+	collision.shape = RectangleShape2D.new()
+	collision.shape.extents = Vector2(4 * ground_width - 1, 0.5)
+"
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 11, 0.5 )
+
+[node name="Ground" type="Label"]
+margin_left = -1.0
+margin_top = -3.0
+margin_right = 80.0
+margin_bottom = 5.0
+custom_fonts/font = SubResource( 4 )
+text = "---"
+script = SubResource( 5 )
+
+[node name="Body" type="StaticBody2D" parent="."]
+
+[node name="GroundCollision" type="CollisionShape2D" parent="Body"]
+position = Vector2( 12, 3.5 )
+shape = SubResource( 6 )
+one_way_collision_margin = 50.0

@@ -1,122 +1,16 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://shared/fonts/press_start2p/press_start2p_regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://games/pixel_side_scroller/entitys/goal.tscn" type="PackedScene" id=2]
 [ext_resource path="res://games/pixel_side_scroller/entitys/spawn.tscn" type="PackedScene" id=3]
 [ext_resource path="res://games/pixel_side_scroller/entitys/help_trigger.tscn" type="PackedScene" id=4]
-
-[sub_resource type="DynamicFont" id=3]
-size = 8
-font_data = ExtResource( 1 )
-
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 88, 4.5 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 8
-font_data = ExtResource( 1 )
-
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 73.5, 6.5 )
-
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 5.5, 12 )
-
-[sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 38.5811, 5 )
-
-[sub_resource type="CircleShape2D" id=10]
-radius = 3.0
+[ext_resource path="res://games/pixel_side_scroller/objects/ground.tscn" type="PackedScene" id=5]
 
 [node name="Map" type="Node2D"]
 
 [node name="Spawn" parent="." instance=ExtResource( 3 )]
 
 [node name="Goal" parent="." instance=ExtResource( 2 )]
-position = Vector2( 117, -15 )
-trigger_size = Vector2( 10, 15 )
-
-[node name="Label2" type="Label" parent="Goal"]
-margin_left = -14.0
-margin_top = -36.0
-margin_right = 170.0
-margin_bottom = 16.0
-custom_fonts/font = SubResource( 3 )
-text = "Goal
-^
-|
-|
-|"
-
-[node name="Ground" type="StaticBody2D" parent="."]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground"]
-position = Vector2( -110, 3.5 )
-shape = SubResource( 5 )
-
-[node name="Label3" type="Label" parent="Ground/CollisionShape2D2"]
-margin_left = -202.0
-margin_top = -7.0
-margin_right = 198.0
-margin_bottom = 45.0
-custom_fonts/font = SubResource( 4 )
-text = "----------------------"
-align = 1
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Ground"]
-position = Vector2( 127.5, 6.5 )
-shape = SubResource( 7 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Label3" type="Label" parent="Ground/CollisionShape2D4"]
-margin_left = -199.5
-margin_top = -8.5
-margin_right = 200.5
-margin_bottom = 43.5
-custom_fonts/font = SubResource( 4 )
-text = "-------------------"
-align = 1
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="Ground"]
-position = Vector2( 59.5, 15 )
-shape = SubResource( 8 )
-
-[node name="Label3" type="Label" parent="Ground/CollisionShape2D5"]
-margin_left = -205.5
-margin_top = -14.0
-margin_right = 194.5
-margin_bottom = 38.0
-custom_fonts/font = SubResource( 4 )
-text = "|
-|
-|"
-align = 1
-
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="Ground"]
-position = Vector2( 16, 18 )
-rotation = 0.329099
-shape = SubResource( 9 )
-
-[node name="Label3" type="Label" parent="Ground/CollisionShape2D6"]
-margin_left = -202.0
-margin_top = -8.5
-margin_right = 198.0
-margin_bottom = 43.5
-custom_fonts/font = SubResource( 4 )
-text = "----------"
-align = 1
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2( -21, 2 )
-shape = SubResource( 10 )
+position = Vector2( 125, 0 )
 
 [node name="HelpTriggerMove" parent="." instance=ExtResource( 4 )]
 position = Vector2( -95, -20 )
@@ -125,3 +19,29 @@ position = Vector2( -95, -20 )
 position = Vector2( 13, -12 )
 feature = 1
 trigger_size = Vector2( 40, 30 )
+
+[node name="Ground0" parent="." instance=ExtResource( 5 )]
+margin_left = -156.0
+margin_right = -20.0
+text = "-----------------"
+
+[node name="Ground1" parent="." instance=ExtResource( 5 )]
+margin_left = -20.86
+margin_top = -3.16
+margin_right = 59.14
+margin_bottom = 4.84
+rect_rotation = 21.0
+text = "----------"
+
+[node name="Ground2" parent="." instance=ExtResource( 5 )]
+margin_left = 55.0
+margin_top = -1.0
+margin_right = 136.0
+margin_bottom = 7.0
+rect_rotation = 90.0
+text = "----"
+
+[node name="Ground3" parent="." instance=ExtResource( 5 )]
+margin_left = 50.0
+margin_right = 154.0
+text = "--------------"
