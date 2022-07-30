@@ -9,7 +9,6 @@ func _ready() -> void:
 
 
 func _on_Star_body_entered(body: Node) -> void:
-	print(body)
 	if not self.visible:
 		return
 	if body is KinematicBody2D and body.is_in_group("Player"):
