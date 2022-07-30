@@ -3,6 +3,9 @@ extends Node2D
 var player = null
 var levels_finished := 0
 var deaths := 0
+var stars_collected := 0
+var star_count := 0
+
 onready var camera = $Camera
 onready var ui = $UI
 onready var map_manager = $MapManager
@@ -36,13 +39,21 @@ func spawn_player():
 	player.enable()
 
 
+func count_star():
+	star_count += 1
+
+
+func collected_star():
+	stars_collected += 1
+
+
 func goal_reached():
 	levels_finished += 1
 	if not map_manager.load_next_map():
 		GameManager.end_game(
 			(
 				TranslationServer.translate("T_PIXEL_SIDE_SCROLLER_END_MESSAGE")
-				% [levels_finished, deaths]
+				% [levels_finished, deaths, stars_collected, star_count]
 			),
-			levels_finished - deaths
+			stars_collected + levels_finished * 2 - deaths
 		)
