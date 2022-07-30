@@ -14,6 +14,7 @@ shape = SubResource( 1 )
 
 [node name="StarPolygon" type="Polygon2D" parent="."]
 position = Vector2( -1, -1 )
+color = Color( 1, 1, 0, 0.63 )
 texture_scale = Vector2( 2, 2 )
 polygon = PoolVector2Array( 0, 0, 0.476818, -1.43046, 1, -3, 2, 0, 5, 1, 2, 2, 1, 5, 0, 2, -3, 1 )
 
