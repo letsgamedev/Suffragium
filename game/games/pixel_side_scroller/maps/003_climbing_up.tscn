@@ -51,9 +51,9 @@ text = "--------"
 
 [node name="Ground5" parent="." instance=ExtResource( 1 )]
 margin_left = -158.0
-margin_top = -188.0
+margin_top = -190.0
 margin_right = -77.0
-margin_bottom = -180.0
+margin_bottom = -182.0
 text = "-----"
 
 [node name="Ground6" parent="." instance=ExtResource( 1 )]
@@ -66,34 +66,33 @@ text = "-----"
 
 [node name="Ground7" parent="." instance=ExtResource( 1 )]
 margin_left = -207.0
-margin_top = -210.0
+margin_top = -214.0
 margin_right = -126.0
-margin_bottom = -202.0
+margin_bottom = -206.0
 rect_pivot_offset = Vector2( 103, 45 )
 text = "-----"
 
 [node name="Ground8" parent="." instance=ExtResource( 1 )]
-margin_left = -249.0
-margin_top = -235.0
-margin_right = -168.0
-margin_bottom = -227.0
+margin_left = -254.0
+margin_top = -236.0
+margin_right = -173.0
+margin_bottom = -228.0
 text = "-----"
 
 [node name="Ground9" parent="." instance=ExtResource( 1 )]
-margin_left = -187.0
+margin_left = -188.0
 margin_top = -262.0
-margin_right = -106.0
+margin_right = -107.0
 margin_bottom = -254.0
 rect_pivot_offset = Vector2( 27, 4 )
 text = "-----"
 
 [node name="Ground12" parent="." instance=ExtResource( 1 )]
-margin_left = -145.0
-margin_top = -289.0
-margin_right = -64.0
-margin_bottom = -281.0
+margin_left = -134.0
+margin_top = -290.0
+margin_right = -53.0
+margin_bottom = -282.0
 rect_pivot_offset = Vector2( 27, 4 )
-text = "-----"
 
 [node name="Ground10" parent="." instance=ExtResource( 1 )]
 margin_left = -101.0

@@ -1,6 +1,7 @@
 extends Node
 
 var current_map = null
+var map_count := 0
 var _maps: Array = []
 onready var _main = get_tree().current_scene
 
@@ -27,6 +28,7 @@ func find_maps():
 	dir.list_dir_end()
 	map_names.sort()
 	_maps = map_names
+	map_count = map_names.size()
 
 
 func load_next_map() -> bool:
@@ -35,6 +37,7 @@ func load_next_map() -> bool:
 	var valid_map: bool = _load_map(_maps[0])
 	_maps.pop_front()
 	if not valid_map:
+		map_count -= 1
 		return load_next_map()
 	_main.spawn_player()
 	return true

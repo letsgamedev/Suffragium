@@ -14,16 +14,18 @@ onready var map_manager = $MapManager
 
 func _ready():
 	map_manager.find_maps()
+	display_stats()
 # warning-ignore:return_value_discarded
 	map_manager.load_next_map()
 
 
-func kill_player():
+func kill_player() -> void:
 	deaths += 1
+	display_stats()
 	spawn_player()
 
 
-func spawn_player():
+func spawn_player() -> void:
 	var spawn = map_manager.current_map.get_node("Spawn")
 	if not is_instance_valid(spawn):
 		return
@@ -39,16 +41,32 @@ func spawn_player():
 	player.enable()
 
 
-func count_star():
+func count_star() -> void:
 	star_count += 1
+	display_stats()
 
 
-func collected_star():
+func collected_star() -> void:
 	stars_collected += 1
+	display_stats()
 
 
-func goal_reached():
+func display_stats() -> void:
+	ui.stats_label.text = str(
+		(
+			TranslationServer.translate("T_LEVEL_COMPLETED_COUNT")
+			% [levels_finished, map_manager.map_count]
+		),
+		"\n",
+		TranslationServer.translate("T_STARS_COLLECTED") % [stars_collected],
+		"\n",
+		TranslationServer.translate("T_DEATHS") % [deaths]
+	)
+
+
+func goal_reached() -> void:
 	levels_finished += 1
+	display_stats()
 	if not map_manager.load_next_map():
 		GameManager.end_game(
 			(
