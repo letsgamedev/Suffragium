@@ -55,5 +55,5 @@ func _on_ButtonRestart_pressed():
 
 func _on_ButtonMenu_pressed():
 	_unpause()
-	GameManager.end_game()
+	GameManager.end_game(null, null, false)
 	queue_free()

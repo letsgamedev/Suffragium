@@ -3,8 +3,8 @@ extends Node
 ## first %s is folder_name (same as game_id)
 ## second %s is the file path relative to the game folder
 const GAME_FILE_PATH_TEMPLATE = "res://games/%s/%s"
+const MENU_PATH = "res://app/scenes/menu.tscn"
 
-var _menu_path = "res://app/scenes/menu.tscn"
 var _games_folder_path = "res://games"
 var _games = {}
 
@@ -14,6 +14,7 @@ var _current_game_start_time = null
 var _pause_menu = null
 
 onready var res_pause_menu = preload("res://app/pause_menu/pause_menu.tscn")
+onready var res_end_game_menu = preload("res://app/end_game_menu/end_game_menu.tscn")
 
 onready var _data_manager = load("res://app/scenes/data_manager.gd").new()
 
@@ -25,7 +26,7 @@ func _ready():
 func _notification(what: int):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 		if _current_game:
-			end_game()
+			end_game(null, null, false)
 		get_tree().quit()
 
 
@@ -41,30 +42,37 @@ func load_game(game_config: ConfigFile):
 	var game_id = game_config.get_meta("folder_name")
 	var main_scene = game_config.get_value("game", "main_scene")
 	var scene_path := make_game_file_path(game_id, main_scene)
-	var err = _change_scene(scene_path)
+	var err = Utils.change_scene(scene_path)
 	if err == OK:
 		_game_started(game_config)
 		_pause_menu = res_pause_menu.instance()
 		get_tree().get_root().add_child(_pause_menu)
 
 
-func end_game(message: String = "", score = null):
+func end_game(message = null, score = null, show_end_game_menu: bool = true):
 	if not _current_game:
 		push_error("called end_game, but no game loaded")
 		return
+
 	_data_manager.game_ended(
 		PlayerManager.get_current_player(), _current_game, _current_game_start_time, score
 	)
-	_current_game = null
-	_current_game_config = null
-	_current_game_start_time = null
+
 	if is_instance_valid(_pause_menu):
 		_pause_menu.queue_free()
 		_pause_menu = null
-	_change_scene(_menu_path)
+
 	# this behavior is subject to change
-	if message:
-		OS.alert(message)
+	if show_end_game_menu:
+		var end_game_menu = res_end_game_menu.instance()
+		get_tree().get_root().add_child(end_game_menu)
+		end_game_menu.show(message, _current_game_config)
+	else:
+		Utils.change_scene(MENU_PATH)
+
+	_current_game = null
+	_current_game_config = null
+	_current_game_start_time = null
 
 
 ## Save the changes to the Dictionary returned by get_game_data()
@@ -120,7 +128,7 @@ func unpause_game():
 
 func restart_game():
 	var game_config = _current_game_config
-	end_game()
+	end_game(null, null, false)
 	load_game(game_config)
 
 
@@ -148,14 +156,6 @@ func _load_game_config_file(folder_name: String):
 		return
 	config_file.set_meta("folder_name", folder_name)
 	_games[folder_name] = config_file
-
-
-func _change_scene(scene_path: String):
-	var err = get_tree().change_scene(scene_path)
-	if err:
-		push_error("Could not change scene to '%s' (Code: %s)" % [scene_path, err])
-		return err
-	return OK
 
 
 func _game_started(game_config: ConfigFile):
