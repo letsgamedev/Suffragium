@@ -25,7 +25,7 @@ func _input(event: InputEvent):
 		get_tree().set_input_as_handled()
 
 
-func show(text, game_config):
+func open(text, game_config):
 	_game_config = game_config
 
 	if text == null:
@@ -36,16 +36,16 @@ func show(text, game_config):
 	get_tree().paused = true
 
 
-func _close():
+func close():
 	get_tree().paused = false
 	queue_free()
 
 
 func _on_ButtonRestart_pressed():
-	_close()
+	close()
 	GameManager.load_game(_game_config)
 
 
 func _on_ButtonMenu_pressed():
-	_close()
+	close()
 	Utils.change_scene(GameManager.MENU_PATH)

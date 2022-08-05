@@ -39,7 +39,7 @@ T_LAST_PLAYED,Zuletzt gespielt,Last played
 T_PAUSED,PAUSIERT,PAUSED
 T_GAME_ENDED,Spiel vorbei,game over
 T_RESUME,Fortsetzen,Resume
-T_RESTART,Neustarten,Restart
+T_RESTART,Neustart,Restart
 T_BACK_TO_MENU,Zurück zum Menü,Back to menu
 T_SECOND,Sekunde,second
 T_SECONDS,Sekunden,seconds

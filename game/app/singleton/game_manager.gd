@@ -66,7 +66,7 @@ func end_game(message = null, score = null, show_end_game_menu: bool = true):
 	if show_end_game_menu:
 		var end_game_menu = res_end_game_menu.instance()
 		get_tree().get_root().add_child(end_game_menu)
-		end_game_menu.show(message, _current_game_config)
+		end_game_menu.open(message, _current_game_config)
 	else:
 		Utils.change_scene(MENU_PATH)
 
