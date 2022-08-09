@@ -55,7 +55,7 @@ func _on_PlayArea_body_exited(_body):
 		return
 	if _play_area.get_overlapping_bodies().size() == 0:
 		if _end_condition == 0:
-			GameManager.end_game("Draw")
+			GameManager.end_game("T_ASECONDGUY_CONNECT_END_MESSAGE_DRAW")
 		else:
 			GameManager.end_game(
 				tr("T_ASECONDGUY_CONNECT_END_MESSAGE") % player_names[_end_condition - 1]
