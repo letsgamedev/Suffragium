@@ -11,9 +11,7 @@ var _games = {}
 var _current_game = null
 var _current_game_config = null
 var _current_game_start_time = null
-var _pause_menu = null
 
-onready var res_pause_menu = preload("res://app/pause_menu/pause_menu.tscn")
 onready var res_end_game_menu = preload("res://app/end_game_menu/end_game_menu.tscn")
 
 onready var _data_manager = load("res://app/scenes/data_manager.gd").new()
@@ -21,6 +19,12 @@ onready var _data_manager = load("res://app/scenes/data_manager.gd").new()
 
 func _ready():
 	_load_game_configs()
+	# find out if a game is loaded
+	# this enables "Play scene" without crashes
+	if !is_in_main_menu():
+		var cur := get_tree().current_scene.filename
+		var id := cur.get_base_dir().split("/")[-1]
+		load_game(_games[id])
 
 
 func _notification(what: int):
@@ -29,6 +33,9 @@ func _notification(what: int):
 			end_game(null, null, false)
 		get_tree().quit()
 
+func is_in_main_menu():
+	var cur := get_tree().current_scene.filename
+	return cur == ProjectSettings.get("application/run/main_scene") or cur == "res://app/scenes/menu.tscn"
 
 func make_game_file_path(game_id: String, file_name: String) -> String:
 	return GAME_FILE_PATH_TEMPLATE % [game_id, file_name]
@@ -45,8 +52,6 @@ func load_game(game_config: ConfigFile):
 	var err = Utils.change_scene(scene_path)
 	if err == OK:
 		_game_started(game_config)
-		_pause_menu = res_pause_menu.instance()
-		get_tree().get_root().add_child(_pause_menu)
 
 
 func end_game(message = null, score = null, show_end_game_menu: bool = true):
@@ -57,10 +62,6 @@ func end_game(message = null, score = null, show_end_game_menu: bool = true):
 	_data_manager.game_ended(
 		PlayerManager.get_current_player(), _current_game, _current_game_start_time, score
 	)
-
-	if is_instance_valid(_pause_menu):
-		_pause_menu.queue_free()
-		_pause_menu = null
 
 	# this behavior is subject to change
 	if show_end_game_menu:

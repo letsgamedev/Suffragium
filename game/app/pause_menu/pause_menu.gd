@@ -3,6 +3,9 @@ extends CanvasLayer
 signal pause_menu_opened
 signal pause_menu_closed
 
+#const MAIN_MENU_PATH := 
+
+
 onready var _main := $Control
 
 
@@ -17,7 +20,10 @@ func _input(event: InputEvent):
 		return
 	if event.is_echo():
 		return
-
+	if GameManager.is_in_main_menu():
+		return
+	
+	
 	if _is_open():
 		_unpause()
 	else:
@@ -50,10 +56,8 @@ func _on_ButtonResume_pressed():
 func _on_ButtonRestart_pressed():
 	_unpause()
 	GameManager.restart_game()
-	queue_free()
 
 
 func _on_ButtonMenu_pressed():
 	_unpause()
 	GameManager.end_game(null, null, false)
-	queue_free()
