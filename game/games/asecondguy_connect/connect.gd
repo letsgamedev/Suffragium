@@ -2,7 +2,6 @@ extends Node2D
 
 signal chip_spawned(chip)
 
-
 const CHIP_SCRIPT := preload("res://games/asecondguy_connect/chip.gd")
 
 var player_names := []
@@ -58,7 +57,9 @@ func _on_PlayArea_body_exited(_body):
 		if _end_condition == 0:
 			GameManager.end_game("Draw")
 		else:
-			GameManager.end_game(tr("T_ASECONDGUY_CONNECT_END_MESSAGE") % player_names[_end_condition - 1])
+			GameManager.end_game(
+				tr("T_ASECONDGUY_CONNECT_END_MESSAGE") % player_names[_end_condition - 1]
+			)
 
 
 func _on_chip_sleep(chip: RigidBody2D):
