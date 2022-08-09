@@ -35,4 +35,4 @@ func _on_LineEdit_text_changed(_new_text):
 
 func _on_selection_change(button: CheckBox):
 	if !custom_name:
-		_line_edit.text = button.text
+		_line_edit.text = tr(button.text)

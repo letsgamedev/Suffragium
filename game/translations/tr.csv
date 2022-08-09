@@ -56,3 +56,9 @@ T_PIXEL_SIDE_SCROLLER_END_MESSAGE,Du hast %d Level beendet mit %d Toden und %d/%
 T_LEVEL_COMPLETED_COUNT,Level beendet: %d/%d,Levels completed: %d/%d
 T_STARS_COLLECTED,Sterne gesammelt: %d,Stars collected: %d
 T_DEATHS,Tode: %d,Deaths: %d
+T_ASECONDGUY_CONNECT_START,Spiel starten,Start Game
+T_ASECONDGUY_CONNECT_PLAYER,Spieler,Player
+T_ASECONDGUY_CONNECT_AI,KI,AI
+T_ASECONDGUY_CONNECT_END_MESSAGE,%s hat gewonnen,%s won
+T_ASECONDGUY_CONNECT_END_MESSAGE_DRAW,Unentschieden,Draw
+T_ASECONDGUY_CONNECT_STATUS,%s's zug,%s's turn

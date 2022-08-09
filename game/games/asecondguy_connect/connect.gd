@@ -2,7 +2,7 @@ extends Node2D
 
 signal chip_spawned(chip)
 
-const END_MESSAGE := "%s won"
+
 const CHIP_SCRIPT := preload("res://games/asecondguy_connect/chip.gd")
 
 var player_names := []
@@ -46,9 +46,9 @@ func _empty():
 		line.default_color = player_colors[_last_chip.player_id]
 		_grid.add_child(line)
 	if _end_condition == 0:
-		_info_label.start("Draw")
+		_info_label.start("T_ASECONDGUY_CONNECT_END_MESSAGE_DRAW")
 	else:
-		_info_label.start(END_MESSAGE % player_names[_end_condition - 1])
+		_info_label.start(tr("T_ASECONDGUY_CONNECT_END_MESSAGE") % player_names[_end_condition - 1])
 
 
 func _on_PlayArea_body_exited(_body):
@@ -58,7 +58,7 @@ func _on_PlayArea_body_exited(_body):
 		if _end_condition == 0:
 			GameManager.end_game("Draw")
 		else:
-			GameManager.end_game(END_MESSAGE % player_names[_end_condition - 1])
+			GameManager.end_game(tr("T_ASECONDGUY_CONNECT_END_MESSAGE") % player_names[_end_condition - 1])
 
 
 func _on_chip_sleep(chip: RigidBody2D):
@@ -90,7 +90,7 @@ func _spawn_chip(player_id := 0):
 	if chip.connect("sleeping_state_changed", self, "_on_chip_sleep", [chip]) != OK:
 		GameManager.end_game("A fatal error occured.")
 	_chips.call_deferred("add_child", chip)
-	_info_label.start(player_names[player_id] + "'s turn")
+	_info_label.start(tr("T_ASECONDGUY_CONNECT_STATUS") % player_names[player_id])
 	emit_signal("chip_spawned", chip)
 
 

@@ -10,7 +10,7 @@ margin_bottom = 80.0
 script = ExtResource( 1 )
 
 [node name="LineEdit" type="LineEdit" parent="."]
-margin_right = 100.0
+margin_right = 249.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 100, 0 )
 context_menu_enabled = false
@@ -20,26 +20,26 @@ caret_blink = true
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="."]
 margin_top = 28.0
-margin_right = 100.0
+margin_right = 249.0
 margin_bottom = 48.0
 color = Color( 1, 1, 0, 1 )
 edit_alpha = false
 
 [node name="CheckBox" type="CheckBox" parent="."]
 margin_top = 52.0
-margin_right = 100.0
+margin_right = 249.0
 margin_bottom = 76.0
 pressed = true
 group = SubResource( 6 )
-text = "Player"
+text = "T_ASECONDGUY_CONNECT_PLAYER"
 flat = true
 
 [node name="CheckBox2" type="CheckBox" parent="."]
 margin_top = 80.0
-margin_right = 100.0
+margin_right = 249.0
 margin_bottom = 104.0
 group = SubResource( 6 )
-text = "AI"
+text = "T_ASECONDGUY_CONNECT_AI"
 flat = true
 
 [connection signal="text_changed" from="LineEdit" to="." method="_on_LineEdit_text_changed"]
