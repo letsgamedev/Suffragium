@@ -45,7 +45,7 @@ func add_custom_button(text: String, idx := -1) -> Button:
 		_btn_list.add_child(btn)
 	else:
 		_btn_list.add_child_below_node(
-			_btn_list.get_child(min(idx, _btn_list.get_child_count() - 1)), btn
+			_btn_list.get_child(int(min(idx, _btn_list.get_child_count() - 1))), btn
 		)
 	_btn_list.show()
 	return btn
@@ -77,14 +77,16 @@ func remove_custom_page(page_name: String):
 	if !_custom_pages.has(page_name):
 		return
 	_custom_pages[page_name].queue_free()
-	_custom_pages.erase(page_name)
+	if _custom_pages.erase(page_name):
+		pass
 
 
 func remove_custom_button(text: String):
 	if !_custom_btns.has(text):
 		return
 	_custom_btns[text].queue_free()
-	_custom_btns.erase(text)
+	if _custom_btns.erase(text):
+		pass
 	if _custom_btns.size() == 0:
 		_btn_list.hide()
 
