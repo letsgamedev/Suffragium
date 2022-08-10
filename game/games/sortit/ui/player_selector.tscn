@@ -1,9 +1,8 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://shared/fonts/roboto/roboto_black.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://games/sortit/ui/player_select.tscn" type="PackedScene" id=2]
 [ext_resource path="res://games/sortit/ui/player_selector.gd" type="Script" id=3]
-[ext_resource path="res://games/sortit/ui/help.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 25
@@ -241,24 +240,26 @@ custom_constants/hseparation = 20
 columns = 2
 
 [node name="Player 1" parent="MarginContainer/VBoxContainer/MarginContainer/Players" instance=ExtResource( 2 )]
+margin_bottom = 248.0
 get_input = true
 display = true
 
 [node name="Player 2" parent="MarginContainer/VBoxContainer/MarginContainer/Players" instance=ExtResource( 2 )]
 margin_left = 412.0
 margin_right = 804.0
+margin_bottom = 248.0
 custom_styles/panel = SubResource( 29 )
 
 [node name="Player 3" parent="MarginContainer/VBoxContainer/MarginContainer/Players" instance=ExtResource( 2 )]
-margin_top = 267.0
-margin_bottom = 514.0
+margin_top = 268.0
+margin_bottom = 515.0
 custom_styles/panel = SubResource( 30 )
 
 [node name="Player 4" parent="MarginContainer/VBoxContainer/MarginContainer/Players" instance=ExtResource( 2 )]
 margin_left = 412.0
-margin_top = 267.0
+margin_top = 268.0
 margin_right = 804.0
-margin_bottom = 514.0
+margin_bottom = 515.0
 custom_styles/panel = SubResource( 31 )
 
 [node name="Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -295,15 +296,6 @@ rect_min_size = Vector2( 80, 0 )
 disabled = true
 text = "Play"
 
-[node name="HelpPopup" type="Popup" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Help" parent="HelpPopup" instance=ExtResource( 4 )]
-
 [connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/HelpButton" to="." method="_on_help_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/Buttons/HBoxContainer/BackButton" to="." method="_on_back_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/Buttons/HBoxContainer2/PlayButton" to="." method="_on_play_button_up"]
-[connection signal="popup_hide" from="HelpPopup" to="." method="_on_help_popup_hide"]

@@ -13,13 +13,13 @@ onready var _main_content_container: MarginContainer = $MarginContainer
 onready var _players = $MarginContainer/VBoxContainer/MarginContainer/Players
 onready var _back_button: Button = $MarginContainer/VBoxContainer/Buttons/HBoxContainer/BackButton
 onready var _play_button: Button = $MarginContainer/VBoxContainer/Buttons/HBoxContainer2/PlayButton
-onready var _help_popup: Popup = $HelpPopup
 # Path is to long, but cannot cleanly be split into multiple lines to avoid line length limit
 # gdlint: ignore=max-line-length
 onready var _help_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/HelpButton
 
 
 func _ready():
+	PauseMenu.add_custom_page(preload("res://games/sortit/ui/help.tscn").instance(), "T_HELP_PAGE")
 	set_process_input(false)
 	# Open help screen, if game has not been played yet
 	var game_data = GameManager.get_game_data()
@@ -38,7 +38,6 @@ func _ready():
 func _input(event):
 	# Close Help popup, when escape is pressed and prevent pause menu from opening
 	if event is InputEventKey and event.physical_scancode == KEY_ESCAPE:
-		_help_popup.visible = false
 		_main_content_container.modulate.a = 1.0
 		call_deferred("_on_help_popup_hide_and_mouse_release")
 		get_tree().set_input_as_handled()
@@ -106,20 +105,10 @@ func _on_play_button_up():
 
 
 func _on_help_button_up():
-	_help_popup.popup_centered_ratio(0.85)
-	_main_content_container.modulate.a = HELP_POPUP_BACKGROUND_BRIGHTNESS
-	set_process_input(true)
-	# Disable buttons, so that they can not be accidentally pressed, if the popup is open
-	_help_button.disabled = true
-	_play_button.disabled = true
-	_back_button.disabled = true
-	# Disable input processing on all children (To avoid registering players, while in the help menu)
-	# Before disabling the input processing, remember the input state of each player select
-	_selectors_get_input_state_copy.clear()
-	for i in range(_players.get_child_count()):
-		var player_select = _players.get_children()[i]
-		_selectors_get_input_state_copy.push_back(player_select.get_input)
-		player_select.set_process_input(false)
+	var pages := PauseMenu.get_custom_pages()
+	if pages.has("T_HELP_PAGE"):
+		PauseMenu.pause()
+		pages["T_HELP_PAGE"].show()
 
 
 func _on_help_popup_hide():

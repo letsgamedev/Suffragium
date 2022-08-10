@@ -25,16 +25,16 @@ func _input(event: InputEvent):
 	if GameManager.is_in_main_menu():
 		return
 
-	if _is_open():
-		_unpause()
+	if is_open():
+		unpause()
 	else:
-		_pause()
+		pause()
 	get_tree().set_input_as_handled()
 
 
 func add_custom_button(text: String, idx := -1) -> Button:
-	if !_custom_btns.has(text):
-		return null
+	if _custom_btns.has(text):
+		return null  # skip if already exists
 	var btn := Button.new()
 	btn.text = text
 	Utils.handle_error(btn.connect("pressed", self, "_on_custom_btn_pressed", [text]))
@@ -50,9 +50,11 @@ func add_custom_button(text: String, idx := -1) -> Button:
 
 
 func add_custom_page(page: Control, page_name: String):
-	if !_custom_pages.has(page_name):
-		return
+	if _custom_pages.has(page_name):
+		return  # skip if page already exists
 	var btn := add_custom_button(page_name)
+	if !btn is Button:
+		return  # skip if button creation failed
 	Utils.handle_error(btn.connect("pressed", page, "show"))
 	page.hide()
 	_custom_pages[page_name] = page
@@ -85,35 +87,43 @@ func remove_custom_button(text: String):
 		_btn_list.hide()
 
 
-func _pause():
+func pause():
 	_main.show()
 	GameManager.pause_game()
 	emit_signal("pause_menu_opened")
 	get_tree().paused = true
 
 
-func _unpause():
+func unpause():
 	_main.hide()
 	emit_signal("pause_menu_closed")
 	get_tree().paused = false
 	GameManager.unpause_game()
 
 
-func _is_open() -> bool:
+func is_open() -> bool:
 	return _main.visible
 
 
+func get_custom_pages() -> Dictionary:
+	return _custom_pages.duplicate()
+
+
+func get_custom_buttona() -> Dictionary:
+	return _custom_btns.duplicate()
+
+
 func _on_ButtonResume_pressed():
-	_unpause()
+	unpause()
 
 
 func _on_ButtonRestart_pressed():
-	_unpause()
+	unpause()
 	GameManager.restart_game()
 
 
 func _on_ButtonMenu_pressed():
-	_unpause()
+	unpause()
 	GameManager.end_game(null, null, false)
 
 
