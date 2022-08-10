@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://app/style/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://games/testgame/help/help.png" type="Texture" id=2]
+[ext_resource path="res://games/testgame/help/help.gd" type="Script" id=3]
+
+[node name="Help" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+custom_constants/margin_right = 40
+custom_constants/margin_top = 40
+custom_constants/margin_left = 40
+custom_constants/margin_bottom = 40
+script = ExtResource( 3 )
+
+[node name="PC" type="PanelContainer" parent="."]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 984.0
+margin_bottom = 560.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PC"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 936.0
+margin_bottom = 512.0
+
+[node name="TextureRect" type="TextureRect" parent="PC/VBoxContainer"]
+margin_right = 928.0
+margin_bottom = 464.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="Button" type="Button" parent="PC/VBoxContainer"]
+margin_top = 469.0
+margin_right = 90.0
+margin_bottom = 504.0
+size_flags_horizontal = 0
+text = "T_CLOSE"
+
+[connection signal="pressed" from="PC/VBoxContainer/Button" to="." method="_on_Button_pressed"]
