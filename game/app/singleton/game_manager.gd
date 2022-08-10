@@ -26,7 +26,8 @@ func _ready():
 	if !is_in_main_menu():
 		var cur := get_tree().current_scene.filename
 		var id := cur.get_base_dir().split("/")[-1]
-		load_game(_games[id])
+		if _games.has(id):
+			call_deferred("load_game", _games[id])
 
 
 func _notification(what: int):
