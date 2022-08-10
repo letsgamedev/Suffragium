@@ -60,6 +60,13 @@ margin_right = 160.0
 margin_bottom = 105.0
 text = "T_RESTART"
 
+[node name="CustomBtns" type="VBoxContainer" parent="Control/CC/VC"]
+visible = false
+margin_top = 113.0
+margin_right = 160.0
+margin_bottom = 277.0
+custom_constants/separation = 8
+
 [node name="ButtonMenu" type="Button" parent="Control/CC/VC"]
 margin_top = 113.0
 margin_right = 160.0

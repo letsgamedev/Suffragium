@@ -1,5 +1,7 @@
 extends Node
 
+signal game_loaded
+
 ## first %s is folder_name (same as game_id)
 ## second %s is the file path relative to the game folder
 const GAME_FILE_PATH_TEMPLATE = "res://games/%s/%s"
@@ -33,9 +35,14 @@ func _notification(what: int):
 			end_game(null, null, false)
 		get_tree().quit()
 
+
 func is_in_main_menu():
 	var cur := get_tree().current_scene.filename
-	return cur == ProjectSettings.get("application/run/main_scene") or cur == "res://app/scenes/menu.tscn"
+	return (
+		cur == ProjectSettings.get("application/run/main_scene")
+		or cur == "res://app/scenes/menu.tscn"
+	)
+
 
 func make_game_file_path(game_id: String, file_name: String) -> String:
 	return GAME_FILE_PATH_TEMPLATE % [game_id, file_name]
@@ -52,6 +59,7 @@ func load_game(game_config: ConfigFile):
 	var err = Utils.change_scene(scene_path)
 	if err == OK:
 		_game_started(game_config)
+		emit_signal("game_loaded")
 
 
 func end_game(message = null, score = null, show_end_game_menu: bool = true):
