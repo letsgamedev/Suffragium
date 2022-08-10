@@ -26,7 +26,9 @@ func _input(event: InputEvent):
 		return
 
 	if is_open():
-		unpause()
+		# only unpause if no pages were open
+		if !_close_custom_pages():
+			unpause()
 	else:
 		pause()
 	get_tree().set_input_as_handled()
@@ -129,3 +131,14 @@ func _on_ButtonMenu_pressed():
 
 func _on_custom_btn_pressed(text):
 	emit_signal("custom_button_pressed", text)
+
+
+# closes all custom pages and returns false if none were open
+func _close_custom_pages() -> bool:
+	var was_open := false
+	for page in _custom_pages:
+		if _custom_pages[page].visible:
+			was_open = true
+			_custom_pages[page].hide()
+
+	return was_open
