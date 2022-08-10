@@ -19,7 +19,6 @@ onready var _help_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/
 
 
 func _ready():
-	PauseMenu.add_custom_page(preload("res://games/sortit/ui/help.tscn").instance(), "T_HELP")
 	set_process_input(false)
 	# Open help screen, if game has not been played yet
 	var game_data = GameManager.get_game_data()

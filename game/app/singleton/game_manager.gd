@@ -59,6 +59,24 @@ func load_game(game_config: ConfigFile):
 	var err = Utils.change_scene(scene_path)
 	if err == OK:
 		_game_started(game_config)
+		# load pause menu pages
+		if game_config.has_section("page modules"):
+			for key in game_config.get_section_keys("page modules"):
+				# get the file
+				var page_scene = load(
+					make_game_file_path(game_id, game_config.get_value("page modules", key))
+				)
+				# skip if file is invalid
+				if !page_scene is PackedScene:
+					push_error(
+						(
+							"Error %s - %s"
+							% [ERR_INVALID_PARAMETER, "The page %s has an invalid path" % key]
+						)
+					)
+					continue
+				# add node to PauseMenu
+				PauseMenu.add_custom_page(page_scene.instance(), key)
 		emit_signal("game_loaded")
 
 
@@ -79,6 +97,7 @@ func end_game(message = null, score = null, show_end_game_menu: bool = true):
 	else:
 		Utils.change_scene(MENU_PATH)
 
+	PauseMenu.clear_custom_content()
 	_current_game = null
 	_current_game_config = null
 	_current_game_start_time = null
