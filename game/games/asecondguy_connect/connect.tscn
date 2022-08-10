@@ -215,14 +215,14 @@ pressed = true
 group = SubResource( 6 )
 
 [node name="Button" type="Button" parent="UI/PlayerSelect"]
-margin_left = 307.0
+margin_left = 439.0
 margin_top = 414.0
-margin_right = 815.0
+margin_right = 682.0
 margin_bottom = 460.0
 size_flags_horizontal = 4
 custom_styles/hover = SubResource( 12 )
 custom_styles/normal = SubResource( 7 )
-text = "T_ASECONDGUY_CONNECT_START"
+text = "T_START_GAME"
 
 [connection signal="body_exited" from="PlayArea" to="." method="_on_PlayArea_body_exited"]
 [connection signal="tree_exiting" from="PlayArea" to="." method="_on_PlayArea_tree_exiting"]
