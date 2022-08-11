@@ -108,6 +108,7 @@ func _on_help_button_up():
 	if pages.has("T_HELP"):
 		PauseMenu.pause()
 		pages["T_HELP"].show()
+		pages["T_HELP"].close_menu = true
 
 
 func _on_help_popup_hide():
