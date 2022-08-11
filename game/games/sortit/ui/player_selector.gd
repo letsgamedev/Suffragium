@@ -30,7 +30,6 @@ func _ready():
 		player_select.connect("got_input", self, "_on_player_select_got_input")
 
 
-
 func _on_player_select_got_input(input_type: Array):
 	# Don't accept input, if that input type is already used by annother player
 	if _player_inputs.has(input_type):
@@ -88,4 +87,3 @@ func _on_help_button_up():
 		PauseMenu.pause()
 		pages["T_HELP"].show()
 		pages["T_HELP"].close_menu = true
-

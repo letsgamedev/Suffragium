@@ -3,11 +3,14 @@ extends MarginContainer
 var close_menu := false
 onready var _pc := $PC
 
+
 func _ready():
 	set_process_input(false)
 
+
 func _on_ExitBtn_pressed():
 	hide()
+
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -23,5 +26,3 @@ func _on_Help_visibility_changed():
 	if close_menu:
 		close_menu = false
 		PauseMenu.unpause()
-
-
