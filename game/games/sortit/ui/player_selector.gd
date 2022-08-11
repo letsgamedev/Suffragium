@@ -6,8 +6,6 @@ const HELP_POPUP_BACKGROUND_BRIGHTNESS = 0.4
 var _current_input_player_selctor_index = 0
 var _player_inputs = []
 var _has_been_played = true
-var _help_popup_just_closed = false
-var _selectors_get_input_state_copy = []
 
 onready var _main_content_container: MarginContainer = $MarginContainer
 onready var _players = $MarginContainer/VBoxContainer/MarginContainer/Players
