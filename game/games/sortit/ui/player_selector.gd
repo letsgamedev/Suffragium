@@ -19,7 +19,6 @@ onready var _help_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/
 
 
 func _ready():
-	set_process_input(false)
 	# Open help screen, if game has not been played yet
 	var game_data = GameManager.get_game_data()
 	if not game_data.has("played") or game_data["played"] == false:
@@ -28,28 +27,8 @@ func _ready():
 
 	for i in range(_players.get_child_count()):
 		var player_select = _players.get_children()[i]
-		if i != 0:
-			player_select.set_process_input(false)
 		player_select.connect("got_input", self, "_on_player_select_got_input")
 
-
-# This function is only enabled if the help popup is open
-func _input(event):
-	# Close Help popup, when escape is pressed and prevent pause menu from opening
-	if event is InputEventKey and event.physical_scancode == KEY_ESCAPE:
-		_main_content_container.modulate.a = 1.0
-		call_deferred("_on_help_popup_hide_and_mouse_release")
-		get_tree().set_input_as_handled()
-	# Call _on_help_popup_hide_and_mouse_release on mouse release when the popup is just closed
-	elif (
-		event is InputEventMouseButton
-		and event.button_index == BUTTON_LEFT
-		and not event.pressed
-		and _help_popup_just_closed
-	):
-		_help_popup_just_closed = false
-		set_process_input(false)
-		call_deferred("_on_help_popup_hide_and_mouse_release")
 
 
 func _on_player_select_got_input(input_type: Array):
@@ -110,19 +89,3 @@ func _on_help_button_up():
 		pages["T_HELP"].show()
 		pages["T_HELP"].close_menu = true
 
-
-func _on_help_popup_hide():
-	_main_content_container.modulate.a = 1.0
-	# Call _on_help_popup_hide_and_mouse_release on next mouse release
-	_help_popup_just_closed = true
-
-
-func _on_help_popup_hide_and_mouse_release():
-	# Re enable buttons
-	_help_button.disabled = false
-	_play_button.disabled = _current_input_player_selctor_index == 0
-	_back_button.disabled = false
-	# Enable processing on the correct children again
-	# (Based on what the input state was before the popup was open)
-	for i in range(_players.get_child_count()):
-		_players.get_children()[i].set_process_input(_selectors_get_input_state_copy[i])
