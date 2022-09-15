@@ -31,7 +31,7 @@ margin_right = 100.0
 margin_bottom = 76.0
 pressed = true
 group = SubResource( 6 )
-text = "Player"
+text = "T_PLAYER"
 flat = true
 
 [node name="CheckBox2" type="CheckBox" parent="."]
@@ -39,7 +39,7 @@ margin_top = 80.0
 margin_right = 100.0
 margin_bottom = 104.0
 group = SubResource( 6 )
-text = "AI"
+text = "T_AI"
 flat = true
 
 [connection signal="text_changed" from="LineEdit" to="." method="_on_LineEdit_text_changed"]

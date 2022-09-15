@@ -8,7 +8,7 @@ var _full_text: String
 func start(new_text: String, time := 1.0):
 	_time_left = time
 	_time = time
-	_full_text = new_text
+	_full_text = tr(new_text)
 	set_process(true)
 
 

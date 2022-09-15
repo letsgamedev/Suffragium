@@ -58,3 +58,9 @@ T_STARS_COLLECTED,Sterne gesammelt: %d,Stars collected: %d
 T_DEATHS,Tode: %d,Deaths: %d
 T_HELP,Hilfe,Help
 T_CLOSE,Schließen,Close
+T_START_GAME,Spiel starten,Start Game
+T_PLAYER,Spieler,Player
+T_AI,KI,AI
+T_RESULT_PLAYER_WON,%s hat gewonnen,%s won
+T_RESULT_DRAW,Unentschieden,Draw
+T_PLAYERS_TURN,%s's zug,%s's turn

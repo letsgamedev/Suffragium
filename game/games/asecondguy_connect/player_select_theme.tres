@@ -2,6 +2,10 @@
 
 [ext_resource path="res://shared/fonts/roboto/roboto_bold.ttf" type="DynamicFontData" id=1]
 
+[sub_resource type="DynamicFont" id=10]
+size = 30
+font_data = ExtResource( 1 )
+
 [sub_resource type="StyleBoxFlat" id=7]
 content_margin_left = 10.0
 content_margin_right = 10.0
@@ -64,19 +68,15 @@ corner_radius_bottom_left = 18
 shadow_size = 20
 shadow_offset = Vector2( -20, 20 )
 
-[sub_resource type="DynamicFont" id=10]
-size = 30
-font_data = ExtResource( 1 )
-
 [resource]
 default_font = SubResource( 10 )
 Button/constants/hseparation = 0
-Button/fonts/font = null
+Button/fonts/font = SubResource( 10 )
 Button/styles/disabled = SubResource( 7 )
 Button/styles/hover = SubResource( 15 )
 Button/styles/normal = SubResource( 7 )
 Button/styles/pressed = SubResource( 13 )
-CheckButton/fonts/font = null
+CheckButton/fonts/font = SubResource( 10 )
 CheckButton/icons/off = null
 CheckButton/icons/off_disabled = null
 CheckButton/icons/on = null
@@ -104,7 +104,7 @@ ColorPickerButton/colors/font_color_focus = Color( 0, 0, 0, 1 )
 ColorPickerButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
 ColorPickerButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
 ColorPickerButton/constants/hseparation = 0
-ColorPickerButton/fonts/font = null
+ColorPickerButton/fonts/font = SubResource( 10 )
 ColorPickerButton/icons/bg = null
 ColorPickerButton/styles/disabled = null
 ColorPickerButton/styles/focus = null
@@ -119,7 +119,7 @@ LineEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
 LineEdit/colors/font_color_uneditable = Color( 0, 0, 0, 1 )
 LineEdit/colors/selection_color = Color( 0, 0, 0, 1 )
 LineEdit/constants/minimum_spaces = 20
-LineEdit/fonts/font = null
+LineEdit/fonts/font = SubResource( 10 )
 LineEdit/icons/clear = null
 LineEdit/styles/focus = null
 LineEdit/styles/normal = SubResource( 14 )

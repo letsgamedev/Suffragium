@@ -16,7 +16,7 @@ float circle(vec2 position, float radius, float feather)
 void fragment() {
 	vec2 grid = grid(UV, grid_size.x, grid_size.y);
 	if (circle(grid, circle_size, 0.005) < .5) {
-		return;
+		discard;
 	}
 //	COLOR = vec4(grid.r, gr.id.g, 0.0, 1.0);
 	COLOR.rgb = grid_color;
