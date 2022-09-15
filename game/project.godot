@@ -57,6 +57,7 @@ config/icon="res://icon.png"
 GameManager="*res://app/singleton/game_manager.gd"
 UserSettings="*res://app/singleton/user_settings.gd"
 Utils="*res://app/singleton/utils.gd"
+PauseMenu="*res://app/pause_menu/pause_menu.tscn"
 PlayerManager="*res://app/singleton/player_manager.gd"
 
 [global]

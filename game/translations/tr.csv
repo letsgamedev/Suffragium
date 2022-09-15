@@ -56,6 +56,8 @@ T_PIXEL_SIDE_SCROLLER_END_MESSAGE,Du hast %d Level beendet mit %d Toden und %d/%
 T_LEVEL_COMPLETED_COUNT,Level beendet: %d/%d,Levels completed: %d/%d
 T_STARS_COLLECTED,Sterne gesammelt: %d,Stars collected: %d
 T_DEATHS,Tode: %d,Deaths: %d
+T_HELP,Hilfe,Help
+T_CLOSE,Schließen,Close
 T_START_GAME,Spiel starten,Start Game
 T_PLAYER,Spieler,Player
 T_AI,KI,AI
