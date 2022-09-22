@@ -1,0 +1,34 @@
+name: Emoji
+on: [ push, pull_request ]
+env:
+  PIP_DISABLE_PIP_VERSION_CHECK: yes
+
+jobs:
+
+  check_emoji:
+    name: Look for Emoji in commit message
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install required library
+        run: pip install "emoji==2.*"
+      - name: Run the check
+        shell: python
+        run: |
+          import os
+          import emoji
+          if "${{ github.event_name }}".startswith("pull_request"):
+            commit = "${{ github.event.pull_request.head.sha }}"
+            print(os.popen(f"git fetch origin {commit}").read())
+          else:
+            commit = "${{ github.sha }}"
+          commit_message = os.popen(f"git show -s --format=%B {commit}").read()
+          if not emoji.emoji_count(commit_message):
+            exit("No Emoji found. 👎")
