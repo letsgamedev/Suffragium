@@ -21,6 +21,8 @@ func _ready():
 
 func kill_player() -> void:
 	deaths += 1
+	if player:
+		player.on_kill()
 	display_stats()
 	spawn_player()
 

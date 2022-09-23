@@ -9,7 +9,7 @@ func _process(_delta):
 
 
 func _animation() -> void:
-	if movement.direction.x == 0:
+	if movement.direction.x == 0 || is_on_floor() == false:
 		animation_player.play("stand")
 	else:
 		animation_player.play("run")
@@ -20,3 +20,12 @@ func _flip() -> void:
 		$Sprite.flip_h = false
 	elif movement.direction.x < 0:
 		$Sprite.flip_h = true
+
+func on_ground_hit() -> void:
+	$Sounds/LandSound.play()
+
+func on_jump() -> void:
+	$Sounds/JumpSound.play()
+
+func on_kill() -> void:
+	$Sounds/HitSound.play()

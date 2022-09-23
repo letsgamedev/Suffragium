@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hit.wav-663018b0f6540dca29f1b018435439af.sample"
+
+[deps]
+
+source_file="res://games/pixel_side_scroller/sounds/sfx/hit.wav"
+dest_files=[ "res://.import/hit.wav-663018b0f6540dca29f1b018435439af.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
