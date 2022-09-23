@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://shared/fonts/press_start2p/press_start2p_regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://games/pixel_side_scroller/entitys/damage_trigger.tscn" type="PackedScene" id=2]
+[ext_resource path="res://games/pixel_side_scroller/sounds/sfx/trap_activate.wav" type="AudioStream" id=3]
+
+[sub_resource type="DynamicFont" id=4]
+size = 8
+font_data = ExtResource( 1 )
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Label
+
+export(bool) var toggle_spikes = false
+export(bool) var initial_state = false
+export(float) var toggle_time_on = 1
+export(float) var toggle_time_off = 1
+export(float) var start_offset_time = 0
+
+
+# var _triggered: bool = false
+var _toggle_state = false
+var _last_state_changed = 0
+var _collision = null 
+var _damage_zone = null
+var _toggle_timer = 0
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	_collision = get_child(0).get_child(0)
+	_damage_zone = get_child(1).get_child(0)
+	PixelSideScrollerUtils.initialize_ground_collider_size(_collision, text)
+	PixelSideScrollerUtils.initialize_ground_collider_size(_damage_zone, text)
+	
+	if toggle_spikes:
+		set_toggle_state(initial_state)
+		_toggle_timer += start_offset_time
+	else:
+		set_toggle_state(true)
+	
+func _process(delta):
+	if toggle_spikes == false:
+		return
+	
+	_toggle_timer -= delta
+	if _toggle_timer <= 0:
+		set_toggle_state(!_toggle_state)
+	
+func set_toggle_state(value) -> void:
+	_toggle_state = value
+	if _toggle_state:
+		_play_trap_sound()
+		_toggle_timer = toggle_time_off
+	else:
+		_toggle_timer = toggle_time_on
+
+	_update_ground_presentation()
+	_update_collision_state()
+
+func _update_ground_presentation() -> void:
+	if _toggle_state:
+		text = PixelSideScrollerUtils.SPIKE_CHARACTER.repeat(text.length())
+	else:
+		text = PixelSideScrollerUtils.GROUND_CHARACTER.repeat(text.length())
+
+func _update_collision_state() -> void:
+	_collision.disabled = _toggle_state
+	_damage_zone.disabled = !_toggle_state
+
+func _play_trap_sound() -> void:
+	if $VisibilityNotifier2D.is_on_screen():
+		$TrapActivate.play()
+"
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 11, 0.5 )
+
+[node name="Spikes" type="Label"]
+margin_left = -1.0
+margin_top = -3.0
+margin_right = 80.0
+margin_bottom = 5.0
+custom_fonts/font = SubResource( 4 )
+text = "^^^"
+script = SubResource( 5 )
+
+[node name="Body" type="StaticBody2D" parent="."]
+
+[node name="GroundCollision" type="CollisionShape2D" parent="Body"]
+position = Vector2( 12, 3.5 )
+shape = SubResource( 6 )
+one_way_collision = true
+one_way_collision_margin = 50.0
+
+[node name="DamageTrigger" parent="." instance=ExtResource( 2 )]
+
+[node name="TrapActivate" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 12, 2 )
+scale = Vector2( 0.8, 0.15 )
