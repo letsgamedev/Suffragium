@@ -99,10 +99,11 @@ shape = SubResource( 4 )
 
 [node name="LandSound" type="AudioStreamPlayer" parent="Sounds" index="0"]
 stream = ExtResource( 6 )
+volume_db = -2.0
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="Sounds" index="1"]
 stream = ExtResource( 7 )
-volume_db = -4.0
+volume_db = -8.0
 
 [node name="HitSound" type="AudioStreamPlayer" parent="Sounds" index="2"]
 stream = ExtResource( 4 )

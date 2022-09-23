@@ -21,11 +21,14 @@ func _flip() -> void:
 	elif movement.direction.x < 0:
 		$Sprite.flip_h = true
 
+
 func on_ground_hit() -> void:
 	$Sounds/LandSound.play()
 
+
 func on_jump() -> void:
 	$Sounds/JumpSound.play()
+
 
 func on_kill() -> void:
 	$Sounds/HitSound.play()

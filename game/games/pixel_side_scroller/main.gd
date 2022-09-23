@@ -69,6 +69,7 @@ func display_stats() -> void:
 func goal_reached() -> void:
 	levels_finished += 1
 	display_stats()
+	$LevelUp.play()
 	if not map_manager.load_next_map():
 		GameManager.end_game(
 			(
