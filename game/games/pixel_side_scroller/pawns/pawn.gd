@@ -4,10 +4,12 @@ var speed: float = 80
 var gravity: float = 9.8
 var jump_force: float = 100.0
 var jump_time: float = 0.2
+var coyote_time: float = 0.15
 var max_fall_speed: float = 2000
 
 var left: float = 0.0
 var right: float = 0.0
+var fall_time: float = 0.0
 var jump: bool = false
 
 onready var movement = $Movement
