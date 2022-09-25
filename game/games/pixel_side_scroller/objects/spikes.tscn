@@ -18,8 +18,7 @@ export(float) var toggle_time_off = 1
 export(float) var start_offset_time = 0
 
 
-# var _triggered: bool = false
-var _toggle_state = false
+var _active = false
 var _last_state_changed = 0
 var _collision = null 
 var _damage_zone = null
@@ -33,10 +32,10 @@ func _ready() -> void:
 	PixelSideScrollerUtils.initialize_ground_collider_size(_damage_zone, text)
 	
 	if toggle_spikes:
-		set_toggle_state(initial_state)
+		set_active(initial_state)
 		_toggle_timer += start_offset_time
 	else:
-		set_toggle_state(true)
+		set_active(true)
 	
 func _process(delta):
 	if toggle_spikes == false:
@@ -44,11 +43,11 @@ func _process(delta):
 	
 	_toggle_timer -= delta
 	if _toggle_timer <= 0:
-		set_toggle_state(!_toggle_state)
+		set_active(!_active)
 	
-func set_toggle_state(value) -> void:
-	_toggle_state = value
-	if _toggle_state:
+func set_active(value) -> void:
+	_active = value
+	if _active:
 		_play_trap_sound()
 		_toggle_timer = toggle_time_off
 	else:
@@ -58,14 +57,14 @@ func set_toggle_state(value) -> void:
 	_update_collision_state()
 
 func _update_ground_presentation() -> void:
-	if _toggle_state:
+	if _active:
 		text = PixelSideScrollerUtils.SPIKE_CHARACTER.repeat(text.length())
 	else:
 		text = PixelSideScrollerUtils.GROUND_CHARACTER.repeat(text.length())
 
 func _update_collision_state() -> void:
-	_collision.disabled = _toggle_state
-	_damage_zone.disabled = !_toggle_state
+	_collision.disabled = _active
+	_damage_zone.disabled = !_active
 
 func _play_trap_sound() -> void:
 	if $VisibilityNotifier2D.is_on_screen():
