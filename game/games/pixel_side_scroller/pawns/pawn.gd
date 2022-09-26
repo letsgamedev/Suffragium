@@ -9,7 +9,7 @@ var max_fall_speed: float = 2000
 
 var left: float = 0.0
 var right: float = 0.0
-var fall_time: float = 0.0
+var air_time: float = 0.0
 var jump: bool = false
 
 onready var movement = $Movement
