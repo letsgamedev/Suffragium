@@ -2,7 +2,9 @@ extends Node
 
 var current_map = null
 var map_count := 0
+var map_boundary: Dictionary
 var _maps: Array = []
+
 onready var _main = get_tree().current_scene
 
 
@@ -58,5 +60,44 @@ func _load_map(name_name: String) -> bool:
 		push_error("ERROR: map '%s' is not valid! missing spawn or goal" % name_name)
 		return false
 	current_map = new_map
+	map_boundary = _calculate_map_boundary(new_map)
 	call_deferred("add_child", new_map)
 	return true
+
+
+func out_of_bound(object) -> bool:
+	var boundary: Dictionary = map_boundary
+	if (
+		object.position.x < boundary.x_min
+		or object.position.x > boundary.x_max
+		or object.position.y < boundary.y_min
+		or object.position.y > boundary.y_max
+	):
+		return true
+	return false
+
+
+func _calculate_map_boundary(map) -> Dictionary:
+	var boundary: Dictionary = {}
+	boundary["x_min"] = 0.0
+	boundary["x_max"] = 0.0
+	boundary["y_min"] = 0.0
+	boundary["y_max"] = 0.0
+	for child in map.get_children():
+		var child_position: Vector2
+		if child is Node2D:
+			child_position = child.position
+		if child is Label:
+			child_position = child.rect_position
+		if child_position == null:
+			continue
+		boundary["x_min"] = min(boundary["x_min"], child_position.x)
+		boundary["x_max"] = max(boundary["x_max"], child_position.x)
+		boundary["y_min"] = min(boundary["y_min"], child_position.y)
+		boundary["y_max"] = max(boundary["y_max"], child_position.y)
+	var boundary_margin: int = 100
+	boundary["x_min"] = boundary["x_min"] - boundary_margin
+	boundary["x_max"] = boundary["x_max"] + boundary_margin
+	boundary["y_min"] = boundary["y_min"] - boundary_margin
+	boundary["y_max"] = boundary["y_max"] + boundary_margin
+	return boundary
