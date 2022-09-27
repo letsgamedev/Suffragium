@@ -9,7 +9,7 @@ Look into [CONTRIBUTING](https://github.com/letsgamedev/Suffragium/blob/main/CON
 for more informations.
 
 Learn how to add a minigame [here](game/games/testgame/README.md).  
-Learn more about the minigame framework [here](game/menu/README.md).  
+Learn more about the minigame framework [here](game/app/README.md).  
 
 For more information please watch this *german* video on youtube.
 Trust me, it's not a rick roll. Or is it?
