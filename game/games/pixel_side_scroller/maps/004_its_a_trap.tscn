@@ -1,0 +1,106 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://games/pixel_side_scroller/objects/ground.tscn" type="PackedScene" id=1]
+[ext_resource path="res://games/pixel_side_scroller/entitys/spawn.tscn" type="PackedScene" id=2]
+[ext_resource path="res://games/pixel_side_scroller/objects/box.tscn" type="PackedScene" id=3]
+[ext_resource path="res://games/pixel_side_scroller/objects/tower.tscn" type="PackedScene" id=4]
+[ext_resource path="res://games/pixel_side_scroller/entitys/goal.tscn" type="PackedScene" id=5]
+[ext_resource path="res://games/pixel_side_scroller/entitys/star.tscn" type="PackedScene" id=6]
+[ext_resource path="res://games/pixel_side_scroller/objects/spikes.tscn" type="PackedScene" id=7]
+
+[node name="Map" type="Node2D"]
+
+[node name="Spawn" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 0 )
+
+[node name="Goal" parent="." instance=ExtResource( 5 )]
+position = Vector2( 393, 0 )
+
+[node name="Ground" parent="." instance=ExtResource( 1 )]
+margin_left = -28.0
+margin_right = 108.0
+rect_pivot_offset = Vector2( 126, 8 )
+text = "-----------------"
+
+[node name="Ground3" parent="." instance=ExtResource( 1 )]
+margin_left = 106.0
+margin_top = -76.0
+margin_right = 242.0
+margin_bottom = -68.0
+rect_pivot_offset = Vector2( 126, 8 )
+text = "----"
+
+[node name="Ground4" parent="." instance=ExtResource( 1 )]
+margin_left = 151.0
+margin_top = -99.0
+margin_right = 287.0
+margin_bottom = -91.0
+rect_pivot_offset = Vector2( 126, 8 )
+text = "----"
+
+[node name="Ground5" parent="." instance=ExtResource( 1 )]
+margin_left = 193.0
+margin_top = -116.0
+margin_right = 329.0
+margin_bottom = -108.0
+rect_pivot_offset = Vector2( 126, 8 )
+text = "----"
+
+[node name="Ground2" parent="." instance=ExtResource( 1 )]
+margin_left = 225.0
+margin_right = 361.0
+rect_pivot_offset = Vector2( 126, 8 )
+text = "----------------------"
+
+[node name="Spikes" parent="." instance=ExtResource( 7 )]
+margin_left = 108.0
+margin_right = 189.0
+rect_pivot_offset = Vector2( 61, 0 )
+text = "^^^^^"
+toggle_spikes = true
+toggle_time_on = 2.0
+toggle_time_off = 0.5
+
+[node name="Spikes2" parent="." instance=ExtResource( 7 )]
+margin_left = 147.0
+margin_right = 228.0
+rect_pivot_offset = Vector2( 23, 5 )
+text = "^^^^^"
+toggle_spikes = true
+toggle_time_on = 2.0
+toggle_time_off = 0.5
+start_offset_time = 0.5
+
+[node name="Spikes4" parent="." instance=ExtResource( 7 )]
+margin_left = 169.0
+margin_top = -139.0
+margin_right = 250.0
+margin_bottom = -131.0
+rect_pivot_offset = Vector2( 23, 5 )
+text = "^^^^"
+toggle_spikes = true
+toggle_time_on = 2.0
+toggle_time_off = 0.5
+start_offset_time = 1.5
+
+[node name="Spikes3" parent="." instance=ExtResource( 7 )]
+margin_left = 186.0
+margin_right = 267.0
+rect_pivot_offset = Vector2( 61, 0 )
+text = "^^^^^"
+toggle_spikes = true
+toggle_time_on = 2.0
+toggle_time_off = 0.5
+start_offset_time = 1.0
+
+[node name="Box" parent="." instance=ExtResource( 3 )]
+position = Vector2( 164, -24 )
+
+[node name="Box2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 228, 0 )
+
+[node name="Star" parent="." instance=ExtResource( 6 )]
+position = Vector2( 184, -162 )
+
+[node name="Tower" parent="." instance=ExtResource( 4 )]
+position = Vector2( 291, -8 )

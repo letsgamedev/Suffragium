@@ -29,3 +29,4 @@ func _on_Star_body_entered(body: Node) -> void:
 	if body is KinematicBody2D and body.is_in_group("Player"):
 		self.visible = false
 		_main.collected_star()
+		$CollectStar.play()

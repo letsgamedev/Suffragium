@@ -21,6 +21,8 @@ func _ready():
 
 func kill_player() -> void:
 	deaths += 1
+	if player:
+		player.on_kill()
 	display_stats()
 	spawn_player()
 
@@ -67,6 +69,7 @@ func display_stats() -> void:
 func goal_reached() -> void:
 	levels_finished += 1
 	display_stats()
+	$LevelUp.play()
 	if not map_manager.load_next_map():
 		GameManager.end_game(
 			(

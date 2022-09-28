@@ -1,5 +1,7 @@
 extends Node
 
+const FALL_TIME_THRESHOLD = 0.2
+
 var jumping: bool = false
 var direction: Vector2 = Vector2.ZERO setget , _get_direction
 var velocity: Vector2 = Vector2.ZERO
@@ -7,6 +9,9 @@ var velocity: Vector2 = Vector2.ZERO
 var _jumped: bool = false
 var _jump_curve: Curve = load("res://games/pixel_side_scroller/pawns/jump_curve.tres")
 var _jump_timer: Timer = Timer.new()
+
+var _is_falling = false
+var _fall_timer = 0
 
 onready var _main = get_tree().current_scene
 onready var _pawn = get_parent()
@@ -25,7 +30,7 @@ func do(delta):
 	_jump(delta)
 	# Gravity
 	if _pawn.is_on_floor() and not jumping:
-		velocity.y = 0
+		velocity.y = 1
 	elif not _pawn.is_on_floor() and not jumping:
 		velocity.y = min(_pawn.max_fall_speed, velocity.y + (_pawn.gravity + delta))
 
@@ -33,6 +38,9 @@ func do(delta):
 	if input_direction != 0.0:
 		_main.ui.help_box.used_feature(PixelSideScrollerUtils.Features.MOVE)
 	velocity.x = input_direction * _pawn.speed
+	if _is_falling and _pawn.is_on_floor():
+		_pawn.on_ground_hit()
+	_update_falling_state(delta)
 
 
 # Handle jumps
@@ -67,6 +75,15 @@ func _jump(delta):
 		velocity.y = -_pawn.jump_force
 		_jump_timer.start()
 		_main.ui.help_box.used_feature(PixelSideScrollerUtils.Features.JUMP)
+		_pawn.on_jump()
+
+
+func _update_falling_state(delta):
+	if velocity.y <= 0 or _pawn.is_on_floor():
+		_fall_timer = 0
+	else:
+		_fall_timer += delta
+	_is_falling = _fall_timer > FALL_TIME_THRESHOLD
 
 
 func _init_jump_timer():
