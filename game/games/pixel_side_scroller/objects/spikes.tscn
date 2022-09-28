@@ -13,9 +13,9 @@ script/source = "extends Label
 
 export(bool) var toggle_spikes = false
 export(bool) var initial_state = false
-export(float) var toggle_time_on = 1
-export(float) var toggle_time_off = 1
-export(float) var start_offset_time = 0
+export(float) var toggle_time_on = 1.0
+export(float) var toggle_time_off = 1.0
+export(float) var start_offset_time = 0.0
 
 
 var _active = false
