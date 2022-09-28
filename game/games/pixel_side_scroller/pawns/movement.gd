@@ -41,8 +41,14 @@ func _jump(delta):
 	if not _pawn.jump and _jumped:
 		_jumped = false
 		jumping = false
-	# Handle "hold jump" in air
-	if not _pawn.is_on_floor():
+
+	if _pawn.is_on_floor():
+		# Reset time falling
+		_pawn.air_time = 0.0
+	else:
+		# Add time falling
+		_pawn.air_time += delta
+		# Handle "hold jump" in air
 		if _pawn.jump and _jumped:
 			var curve_point: float = (
 				(_jump_timer.wait_time - _jump_timer.time_left)
@@ -53,8 +59,9 @@ func _jump(delta):
 				velocity.y += (-_pawn.jump_force * delta) * curve_interpolate_value
 			else:
 				jumping = false
-	# Do "jump" if on the floor
-	if _pawn.is_on_floor() and _pawn.jump and not _jumped:
+
+	# Do "jump" if on the floor (or still in coyote time)
+	if _pawn.jump and not _jumped and _pawn.air_time <= _pawn.coyote_time:
 		jumping = true
 		_jumped = true
 		velocity.y = -_pawn.jump_force
