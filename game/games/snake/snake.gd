@@ -38,7 +38,7 @@ func _start_game():
 
 func _show_color_selection_dialog():
 	var dialog = _res_color_selection.instance()
-	get_tree().get_root().add_child(dialog)
+	add_child(dialog)
 	dialog.set_main(self)
 
 
