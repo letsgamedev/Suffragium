@@ -14,6 +14,20 @@ export(float) var number_scale = 0.8
 
 var number: int = 0
 var is_black: bool = false
+var force_sleep: bool = false
+
+
+func _process(_delta):
+	if translation.y < -10:
+		print("box dropped throw ground!")
+		_on_despawn_timer_timeout()
+
+	if force_sleep:
+		sleeping = true
+		$CollisionShape.disabled = true
+	else:
+		sleeping = false
+		$CollisionShape.disabled = false
 
 
 func stop_despawn():

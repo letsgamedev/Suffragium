@@ -69,11 +69,13 @@ func _input(_event):
 		left_box.linear_velocity = Vector3.ZERO
 		left_box.angular_velocity = Vector3.ZERO
 		(left_box as SortItBox).reset_despawn()
+		left_box.force_sleep = false
 		left_box = null
 	if last_right_magnet_active and not right_magnet_active and right_box != null:
 		right_box.linear_velocity = Vector3.ZERO
 		right_box.angular_velocity = Vector3.ZERO
 		(right_box as SortItBox).reset_despawn()
+		right_box.force_sleep = false
 		right_box = null
 
 	$LeftMagnet/Particles.emitting = left_magnet_active
@@ -182,6 +184,7 @@ func _attract_block(magnet: Spatial, delta: float):
 		# If the box is close enougth attach it
 		if (min_distance <= attracted_distance) == true:
 			(nearest as SortItBox).stop_despawn()
+			nearest.force_sleep = true
 			return nearest
 
 
