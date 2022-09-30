@@ -18,8 +18,9 @@ var force_sleep: bool = false
 
 
 func _process(_delta):
+	# Handle boxes falling through the ground (Should not happen)
 	if translation.y < -10:
-		print("box dropped throw ground!")
+		push_warning("SortIt: Box dropped through the ground")
 		_on_despawn_timer_timeout()
 
 	if force_sleep:
