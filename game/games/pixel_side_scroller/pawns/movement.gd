@@ -1,6 +1,14 @@
 extends Node
 
-const FALL_TIME_THRESHOLD = 0.2
+const FALL_TIME_THRESHOLD: float = 0.2
+var coyote_time: float = 0.15
+var air_time: float = 0.0
+
+var speed: float = 80
+var gravity: float = 9.8
+var jump_force: float = 100.0
+var jump_time: float = 0.2
+var max_fall_speed: float = 2000
 
 var jumping: bool = false
 var direction: Vector2 = Vector2.ZERO setget , _get_direction
@@ -18,7 +26,7 @@ onready var _pawn = get_parent()
 
 
 func _get_direction():
-	return Vector2(_pawn.right - _pawn.left, 0)
+	return Vector2(_pawn.input.right - _pawn.input.left, 0)
 
 
 func _ready():
@@ -32,47 +40,50 @@ func do(delta):
 	if _pawn.is_on_floor() and not jumping:
 		velocity.y = 1
 	elif not _pawn.is_on_floor() and not jumping:
-		velocity.y = min(_pawn.max_fall_speed, velocity.y + (_pawn.gravity + delta))
+		velocity.y = min(max_fall_speed, velocity.y + (gravity + delta))
 
 	var input_direction: float = _get_direction().x
 	if input_direction != 0.0:
 		_main.ui.help_box.used_feature(PixelSideScrollerUtils.Features.MOVE)
-	velocity.x = input_direction * _pawn.speed
+	velocity.x = input_direction * speed
 	if _is_falling and _pawn.is_on_floor():
 		_pawn.on_ground_hit()
 	_update_falling_state(delta)
+
+	# warning-ignore:return_value_discarded
+	_pawn.move_and_slide(velocity, Vector2.UP)
 
 
 # Handle jumps
 func _jump(delta):
 	# Reset state variables on "jump release"
-	if not _pawn.jump and _jumped:
+	if not _pawn.input.jump and _jumped:
 		_jumped = false
 		jumping = false
 
 	if _pawn.is_on_floor():
 		# Reset time falling
-		_pawn.air_time = 0.0
+		air_time = 0.0
 	else:
 		# Add time falling
-		_pawn.air_time += delta
+		air_time += delta
 		# Handle "hold jump" in air
-		if _pawn.jump and _jumped:
+		if _pawn.input.jump and _jumped:
 			var curve_point: float = (
 				(_jump_timer.wait_time - _jump_timer.time_left)
 				/ _jump_timer.wait_time
 			)
 			if curve_point < 1.0:
 				var curve_interpolate_value: float = _jump_curve.interpolate(curve_point)
-				velocity.y += (-_pawn.jump_force * delta) * curve_interpolate_value
+				velocity.y += (-jump_force * delta) * curve_interpolate_value
 			else:
 				jumping = false
 
 	# Do "jump" if on the floor (or still in coyote time)
-	if _pawn.jump and not _jumped and _pawn.air_time <= _pawn.coyote_time:
+	if _pawn.input.jump and not _jumped and air_time <= coyote_time:
 		jumping = true
 		_jumped = true
-		velocity.y = -_pawn.jump_force
+		velocity.y = -jump_force
 		_jump_timer.start()
 		_main.ui.help_box.used_feature(PixelSideScrollerUtils.Features.JUMP)
 		_pawn.on_jump()
@@ -88,6 +99,6 @@ func _update_falling_state(delta):
 
 func _init_jump_timer():
 	_jump_timer.one_shot = true
-	_jump_timer.wait_time = _pawn.jump_time
+	_jump_timer.wait_time = jump_time
 	_jump_timer.name = "JumpTimer"
 	add_child(_jump_timer)
