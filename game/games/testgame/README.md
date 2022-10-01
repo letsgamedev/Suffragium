@@ -30,6 +30,11 @@ It will always contain all required and optional settings clearly marked.
     `version="1.0"`
   * Put your name here. Has no effect.  
     `creator="ASecondGuy"`
+* Section: `page modules`
+  * Any key here will add a page of the same name to the pause menu.  
+    If the name is a translation key it will be translated automatically.  
+    ex: `T_HELP="help_page.tscn"`  
+    You can add as many as you want ore none at all.
 
 # Useful functions
 * **`end_game(message: String = "", score = null)`**  

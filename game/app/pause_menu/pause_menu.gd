@@ -113,7 +113,7 @@ func get_custom_pages() -> Dictionary:
 	return _custom_pages.duplicate()
 
 
-func get_custom_buttona() -> Dictionary:
+func get_custom_buttons() -> Dictionary:
 	return _custom_btns.duplicate()
 
 
