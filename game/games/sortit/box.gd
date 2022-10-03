@@ -14,21 +14,15 @@ export(float) var number_scale = 0.8
 
 var number: int = 0
 var is_black: bool = false
-var force_sleep: bool = false
+
+onready var _collision_shape: CollisionShape = $CollisionShape
 
 
 func _process(_delta):
 	# Handle boxes falling through the ground (Should not happen)
 	if translation.y < -10:
 		push_warning("SortIt: Box dropped through the ground")
-		_on_despawn_timer_timeout()
-
-	if force_sleep:
-		sleeping = true
-		$CollisionShape.disabled = true
-	else:
-		sleeping = false
-		$CollisionShape.disabled = false
+		despawn()
 
 
 func stop_despawn():
@@ -115,6 +109,18 @@ func _ready():
 		_add_number_at(mesh_instance, $Backward.transform.origin)
 
 
+func disable_physics(disable: bool) -> void:
+	_collision_shape.disabled = disable
+	if disable:
+		mode = RigidBody.MODE_STATIC
+	else:
+		mode = RigidBody.MODE_RIGID
+
+
 func _on_despawn_timer_timeout():
+	despawn()
+
+
+func despawn() -> void:
 	emit_signal("despawn", number)
 	queue_free()  # kys
