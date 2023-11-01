@@ -3,7 +3,7 @@ extends Node
 const PLAYER_SCENE = preload("res://games/sortit/player.tscn")
 const MIN_JOY_STRENGTH = 0.05
 
-export(Array, Color) var player_colors
+@export var player_colors # (Array, Color)
 
 var player_count = 2
 var player_inputs = []
@@ -11,8 +11,8 @@ var player_inputs = []
 var _pressed = {}
 var _just_pressed = {}
 
-onready var input_map = $"../../".input_map as Dictionary
-onready var _pedestals = $"../Pedestals"
+@onready var input_map = $"../../".input_map as Dictionary
+@onready var _pedestals = $"../Pedestals"
 
 
 func set_player_colors_on_ground_plane():
@@ -27,7 +27,7 @@ func set_player_colors_on_ground_plane():
 		else:
 			# Slightly desaturate grid lines to avoid drawing to much attention away
 			color = Color.from_hsv(color.h, color.s * 0.8, color.v, color.a)
-		ground_material.set_shader_param("player_color_" + str(i), color)
+		ground_material.set_shader_parameter("player_color_" + str(i), color)
 
 
 func spawn_players():
@@ -36,7 +36,7 @@ func spawn_players():
 		pedestal.dissable()
 	for i in range(player_count):
 		# Instance new player
-		var player = PLAYER_SCENE.instance(PackedScene.GEN_EDIT_STATE_INSTANCE)
+		var player = PLAYER_SCENE.instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
 		add_child(player)
 		# Set player position next to assigned pedestals
 		var player_pedestals = _pedestals.get_child(i)
@@ -144,7 +144,7 @@ func is_action_pressed(action: String, player_index: int) -> bool:
 func _input(event: InputEvent):
 	_just_pressed.clear()
 	if event is InputEventKey and not event.echo:
-		var key = ["keyboard", event.scancode, -1]
+		var key = ["keyboard", event.keycode, -1]
 		if event.pressed:
 			_pressed[key] = 1.0
 			_just_pressed[key] = true

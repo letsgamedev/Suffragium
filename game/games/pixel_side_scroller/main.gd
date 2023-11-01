@@ -6,9 +6,9 @@ var deaths := 0
 var stars_collected := 0
 var star_count := 0
 
-onready var camera = $Camera
-onready var ui = $UI
-onready var map_manager = $MapManager
+@onready var camera = $Camera3D
+@onready var ui = $UI
+@onready var map_manager = $MapManager
 # onready var score_label = $score_label
 
 
@@ -32,14 +32,14 @@ func spawn_player() -> void:
 	if not is_instance_valid(spawn):
 		return
 	if not player:
-		var new_player = load("res://games/pixel_side_scroller/pawns/character/character.tscn").instance()
+		var new_player = load("res://games/pixel_side_scroller/pawns/character/character.tscn").instantiate()
 		player = new_player
 		player.position = spawn.position
 		camera.target = player
 		add_child(new_player)
 	else:
 		player.position = spawn.position
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	player.enable()
 
 

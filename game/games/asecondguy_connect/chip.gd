@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var color := Color.green
+var color := Color.GREEN
 var player_id := -1
 
 var target_position: Vector2
@@ -15,7 +15,7 @@ func _integrate_forces(state):
 	if _picked:
 		var move: Vector2 = target_position - global_position
 
-		var result := Physics2DTestMotionResult.new()
+		var result := PhysicsTestMotionResult2D.new()
 		if !test_motion(move, true, 0.08, result):
 			state.linear_velocity = move / state.step
 		else:
@@ -34,7 +34,7 @@ func _on_chip_input_event(_viewport, event, _shape_idx):
 
 
 func _input(event):
-	if mode == MODE_STATIC:
+	if mode == FREEZE_MODE_STATIC:
 		return
 	if event is InputEventMouseButton:
 		if !event.pressed:

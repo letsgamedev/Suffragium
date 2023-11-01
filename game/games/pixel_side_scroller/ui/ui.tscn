@@ -13,16 +13,16 @@ anchor_bottom = 1.0
 [node name="HelpBox" parent="Control" instance=ExtResource( 2 )]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -216.0
-margin_top = 16.0
-margin_right = -16.0
-margin_bottom = 216.0
+offset_left = -216.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 216.0
 
 [node name="Label" type="Label" parent="Control"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 210.0
-margin_bottom = 90.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 210.0
+offset_bottom = 90.0
 text = "Levels completed: 0/4
 Stars collected: 0
 Deaths: 0"

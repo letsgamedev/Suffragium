@@ -1,8 +1,8 @@
 [gd_resource type="Theme" load_steps=8 format=2]
 
-[ext_resource path="res://shared/fonts/roboto/roboto_bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://shared/fonts/roboto/roboto_bold.ttf" type="FontFile" id=1]
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="FontFile" id=10]
 size = 30
 font_data = ExtResource( 1 )
 

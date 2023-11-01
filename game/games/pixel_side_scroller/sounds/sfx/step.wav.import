@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/step.wav-ce4850f2719b823acafc7375a5bd6cef.sample"
+type="AudioStreamWAV"
+uid="uid://bqdrye8gdo3ya"
+path="res://.godot/imported/step.wav-ce4850f2719b823acafc7375a5bd6cef.sample"
 
 [deps]
 
 source_file="res://games/pixel_side_scroller/sounds/sfx/step.wav"
-dest_files=[ "res://.import/step.wav-ce4850f2719b823acafc7375a5bd6cef.sample" ]
+dest_files=["res://.godot/imported/step.wav-ce4850f2719b823acafc7375a5bd6cef.sample"]
 
 [params]
 

@@ -1,18 +1,18 @@
 class_name SortItPedestal
-extends StaticBody
+extends StaticBody3D
 
 signal box_held(index, box_number)
 signal box_dropped(index, box_number)
 
-export(float) var hold_strength = 1300
-export(float) var attract_strength = 800
-export(float) var attracted_distance = 0.2
-export(Material) var particle_wrong_material
-export(Material) var particle_right_material
+@export var hold_strength: float = 1300
+@export var attract_strength: float = 800
+@export var attracted_distance: float = 0.2
+@export var particle_wrong_material: Material
+@export var particle_right_material: Material
 
-export(float) var p_gain = 0.8
-export(float) var i_gain = 0.004
-export(float) var d_gain = 2.0
+@export var p_gain: float = 0.8
+@export var i_gain: float = 0.004
+@export var d_gain: float = 2.0
 
 var box
 
@@ -21,15 +21,15 @@ var _current_attract_total_error = Vector3.ZERO
 var _current_attract_last_error = Vector3.ZERO
 var _players = []
 
-onready var index = int(name)
-onready var _box_anchor: Spatial = $BoxAnchor
-onready var _particels: Particles = $Particles
-onready var _mesh_instance = $Mesh
+@onready var index = int(name)
+@onready var _box_anchor: Node3D = $BoxAnchor
+@onready var _particels: Particles = $Particles
+@onready var _mesh_instance = $Mesh
 
 
 func set_color(color: Color):
 	var mesh = _mesh_instance.mesh
-	var material: SpatialMaterial = mesh.surface_get_material(2).duplicate()  # Get accent material
+	var material: StandardMaterial3D = mesh.surface_get_material(2).duplicate()  # Get accent material
 	material.albedo_color = color
 	_mesh_instance.mesh.surface_set_material(2, material)
 
@@ -70,7 +70,7 @@ func _attract_box(to_attract_box: SortItBox, strength: float, delta: float):
 	)
 	# Apply force
 	var strength_vector = Vector3(strength, strength, strength)
-	to_attract_box.add_force(action_vector * strength_vector * delta, Vector3(0, 0, 0))
+	to_attract_box.apply_force(Vector3(0, 0, 0), action_vector * strength_vector * delta)
 	_current_attract_last_error = proportional_error
 	_current_attract_total_error += proportional_error
 
@@ -81,7 +81,7 @@ func _physics_process(delta):
 		$Particles.emitting = true
 		return
 	$Particles.emitting = false
-	for body in $Area.get_overlapping_bodies():
+	for body in $Area3D.get_overlapping_bodies():
 		# Ensure that the box is not currently grabbed by a player
 		var body_instance_id = body.get_instance_id()
 		for player in _players:

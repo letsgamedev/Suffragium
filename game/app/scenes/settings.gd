@@ -7,7 +7,7 @@ const LOCALE_NAMES = {
 
 var languages = []
 
-onready var language_selection: OptionButton = $MC/VC/VC/Language/OptionButton
+@onready var language_selection: OptionButton = $MC/VC/VC/Language/OptionButton
 
 
 func _ready():
@@ -35,7 +35,7 @@ func _setup_language_selection():
 
 func _setup_smooth_scroll_setting():
 	var smooth_scroll = UserSettings.get_setting("smooth_scroll")
-	$MC/VC/VC/SmoothScroll/CheckBox.pressed = smooth_scroll
+	$MC/VC/VC/SmoothScroll/CheckBox.button_pressed = smooth_scroll
 
 
 func _on_ButtonResetDefaults_pressed():

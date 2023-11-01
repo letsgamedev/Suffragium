@@ -1,28 +1,28 @@
-tool
+@tool
 extends StaticBody2D
 
-export var tile_size := Vector2(25, 25) setget set_tile_size
-export var grid_size := Vector2(7, 6) setget set_grid_size
-export var grid_color := Color.black setget set_grid_color
-export var circle_size := .4 setget set_circle_size
+@export var tile_size := Vector2(25, 25): set = set_tile_size
+@export var grid_size := Vector2(7, 6): set = set_grid_size
+@export var grid_color := Color.BLACK: set = set_grid_color
+@export var circle_size := .4: set = set_circle_size
 
 # helper for global_to_grid_pos()
 var _bounds := Rect2(Vector2(), grid_size)
 
-onready var _mouse_blocker := $MouseBlocker
+@onready var _mouse_blocker := $MouseBlocker
 
 
 func _ready():
 	var shape := RectangleShape2D.new()
-	shape.extents.x = 1
-	shape.extents.y = grid_size.y * tile_size.y / 2
+	shape.size.x = 1
+	shape.size.y = grid_size.y * tile_size.y / 2
 	for x in range(grid_size.x + 1):
 		var node := CollisionShape2D.new()
 		node.shape = shape
 		node.position.x = x * tile_size.x
-		node.position.y = shape.extents.y
+		node.position.y = shape.size.y
 		add_child(node)
-	_mouse_blocker.rect_size = grid_size * tile_size
+	_mouse_blocker.size = grid_size * tile_size
 
 
 func set_tile_size(val: Vector2):
@@ -47,11 +47,11 @@ func set_grid_color(val: Color):
 
 
 func _draw():
-	_mouse_blocker.material.set_shader_param("grid_size", grid_size)
-	_mouse_blocker.material.set_shader_param(
+	_mouse_blocker.material.set_shader_parameter("grid_size", grid_size)
+	_mouse_blocker.material.set_shader_parameter(
 		"grid_color", Vector3(grid_color.r, grid_color.g, grid_color.b)
 	)
-	_mouse_blocker.material.set_shader_param("circle_size", circle_size)
+	_mouse_blocker.material.set_shader_parameter("circle_size", circle_size)
 
 
 func global_to_grid_pos(pos: Vector2):

@@ -41,12 +41,13 @@ func _set_defaults():
 
 
 func _load_settings_from_file():
-	var save_file = File.new()
-	if not save_file.file_exists(SETTINGS_FILENAME):
+	var save_file = FileAccess.open(SETTINGS_FILENAME, FileAccess.READ)
+	if not save_file:
 		_save_settings_to_file()
 		return
-	save_file.open(SETTINGS_FILENAME, File.READ)
-	var save_dict = parse_json(save_file.get_line())
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(save_file.get_line())
+	var save_dict = test_json_conv.get_data()
 	for setting_key in save_dict:
 		if settings.has(setting_key):
 			settings[setting_key] = save_dict[setting_key]
@@ -61,9 +62,8 @@ func _apply_loaded_settings():
 
 func _save_settings_to_file():
 	var save_dict = settings.duplicate()
-	var save_file = File.new()
-	save_file.open(SETTINGS_FILENAME, File.WRITE)
-	save_file.store_line(to_json(save_dict))
+	var save_file = FileAccess.open(SETTINGS_FILENAME, FileAccess.WRITE)
+	save_file.store_line(JSON.stringify(save_dict))
 	save_file.close()
 
 

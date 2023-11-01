@@ -9,16 +9,16 @@
 [ext_resource path="res://games/asecondguy_connect/grid.gdshader" type="Shader" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 1124, 155 )
+size = Vector2( 1124, 155 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 1745, 497.5 )
+size = Vector2( 1745, 497.5 )
 
 [sub_resource type="PhysicsMaterial" id=14]
 bounce = 100.0
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 404.5, 39 )
+size = Vector2( 404.5, 39 )
 
 [sub_resource type="ShaderMaterial" id=13]
 shader = ExtResource( 7 )
@@ -27,7 +27,7 @@ shader_param/grid_color = Vector3( 0, 1, 0.976471 )
 shader_param/circle_size = 0.414
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 694, 830 )
+size = Vector2( 694, 830 )
 
 [sub_resource type="StyleBoxFlat" id=5]
 content_margin_left = 10.0
@@ -103,10 +103,10 @@ shape = SubResource( 4 )
 
 [node name="Chips" type="Node" parent="."]
 
-[node name="Spawner1" type="Position2D" parent="."]
+[node name="Spawner1" type="Marker2D" parent="."]
 position = Vector2( -398, 178 )
 
-[node name="Spawner2" type="Position2D" parent="."]
+[node name="Spawner2" type="Marker2D" parent="."]
 position = Vector2( 1398, 178 )
 
 [node name="Grid" type="StaticBody2D" parent="."]
@@ -121,8 +121,8 @@ circle_size = 0.414
 material = SubResource( 13 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 560.0
-margin_bottom = 468.0
+offset_right = 560.0
+offset_bottom = 468.0
 
 [node name="PlayArea" type="Area2D" parent="."]
 position = Vector2( 527, 117 )
@@ -137,17 +137,17 @@ shape = SubResource( 3 )
 [node name="PanelContainer" type="PanelContainer" parent="UI"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -13.0
-margin_bottom = 27.0
+offset_left = -13.0
+offset_bottom = 27.0
 grow_horizontal = 0
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 5 )
+theme_override_styles/panel = SubResource( 5 )
 
 [node name="InfoLabel" type="Label" parent="UI/PanelContainer"]
-margin_left = 10.0
-margin_top = 3.0
-margin_right = 10.0
-margin_bottom = 17.0
+offset_left = 10.0
+offset_top = 3.0
+offset_right = 10.0
+offset_bottom = 17.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 align = 2
@@ -161,67 +161,67 @@ alignment = 1
 script = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="UI/PlayerSelect"]
-margin_top = 139.0
-margin_right = 1122.0
-margin_bottom = 175.0
+offset_top = 139.0
+offset_right = 1122.0
+offset_bottom = 175.0
 text = "Player select"
 align = 1
 
 [node name="PC" type="PanelContainer" parent="UI/PlayerSelect"]
-margin_top = 179.0
-margin_right = 1122.0
-margin_bottom = 410.0
+offset_top = 179.0
+offset_right = 1122.0
+offset_bottom = 410.0
 size_flags_horizontal = 4
 
 [node name="HBox" type="HBoxContainer" parent="UI/PlayerSelect/PC"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 1102.0
-margin_bottom = 211.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1102.0
+offset_bottom = 211.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="P1" parent="UI/PlayerSelect/PC/HBox" instance=ExtResource( 6 )]
-margin_right = 539.0
-margin_bottom = 191.0
+offset_right = 539.0
+offset_bottom = 191.0
 
 [node name="P2" parent="UI/PlayerSelect/PC/HBox" instance=ExtResource( 6 )]
-margin_left = 543.0
-margin_right = 1082.0
-margin_bottom = 191.0
+offset_left = 543.0
+offset_right = 1082.0
+offset_bottom = 191.0
 
 [node name="LineEdit" parent="UI/PlayerSelect/PC/HBox/P2" index="0"]
-margin_right = 539.0
-margin_bottom = 41.0
+offset_right = 539.0
+offset_bottom = 41.0
 
 [node name="ColorPickerButton" parent="UI/PlayerSelect/PC/HBox/P2" index="1"]
-margin_top = 45.0
-margin_right = 539.0
-margin_bottom = 91.0
+offset_top = 45.0
+offset_right = 539.0
+offset_bottom = 91.0
 color = Color( 1, 0, 0, 1 )
 
 [node name="CheckBox" parent="UI/PlayerSelect/PC/HBox/P2" index="2"]
-margin_top = 95.0
-margin_right = 539.0
-margin_bottom = 141.0
+offset_top = 95.0
+offset_right = 539.0
+offset_bottom = 141.0
 pressed = false
 group = SubResource( 6 )
 
 [node name="CheckBox2" parent="UI/PlayerSelect/PC/HBox/P2" index="3"]
-margin_top = 145.0
-margin_right = 539.0
-margin_bottom = 191.0
+offset_top = 145.0
+offset_right = 539.0
+offset_bottom = 191.0
 pressed = true
 group = SubResource( 6 )
 
 [node name="Button" type="Button" parent="UI/PlayerSelect"]
-margin_left = 439.0
-margin_top = 414.0
-margin_right = 682.0
-margin_bottom = 460.0
+offset_left = 439.0
+offset_top = 414.0
+offset_right = 682.0
+offset_bottom = 460.0
 size_flags_horizontal = 4
-custom_styles/hover = SubResource( 12 )
-custom_styles/normal = SubResource( 7 )
+theme_override_styles/hover = SubResource( 12 )
+theme_override_styles/normal = SubResource( 7 )
 text = "T_START_GAME"
 
 [connection signal="body_exited" from="PlayArea" to="." method="_on_PlayArea_body_exited"]

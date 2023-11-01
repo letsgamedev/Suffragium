@@ -11,7 +11,7 @@ var jump_time: float = 0.2
 var max_fall_speed: float = 2000
 
 var jumping: bool = false
-var direction: Vector2 = Vector2.ZERO setget , _get_direction
+var direction: Vector2 = Vector2.ZERO: get = _get_direction
 var velocity: Vector2 = Vector2.ZERO
 
 var _jumped: bool = false
@@ -21,8 +21,8 @@ var _jump_timer: Timer = Timer.new()
 var _is_falling = false
 var _fall_timer = 0
 
-onready var _main = get_tree().current_scene
-onready var _pawn = get_parent()
+@onready var _main = get_tree().current_scene
+@onready var _pawn = get_parent()
 
 
 func _get_direction():
@@ -51,7 +51,10 @@ func do(delta):
 	_update_falling_state(delta)
 
 	# warning-ignore:return_value_discarded
-	_pawn.move_and_slide(velocity, Vector2.UP)
+	_pawn.set_velocity(velocity)
+	_pawn.set_up_direction(Vector2.UP)
+	_pawn.move_and_slide()
+	_pawn.velocity
 
 
 # Handle jumps
@@ -74,7 +77,7 @@ func _jump(delta):
 				/ _jump_timer.wait_time
 			)
 			if curve_point < 1.0:
-				var curve_interpolate_value: float = _jump_curve.interpolate(curve_point)
+				var curve_interpolate_value: float = _jump_curve.sample(curve_point)
 				velocity.y += (-jump_force * delta) * curve_interpolate_value
 			else:
 				jumping = false

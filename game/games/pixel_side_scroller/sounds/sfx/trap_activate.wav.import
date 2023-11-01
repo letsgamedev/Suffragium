@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/trap_activate.wav-e3244032b0567464e6add6281d80b4b9.sample"
+type="AudioStreamWAV"
+uid="uid://c3pvmdts242w5"
+path="res://.godot/imported/trap_activate.wav-e3244032b0567464e6add6281d80b4b9.sample"
 
 [deps]
 
 source_file="res://games/pixel_side_scroller/sounds/sfx/trap_activate.wav"
-dest_files=[ "res://.import/trap_activate.wav-e3244032b0567464e6add6281d80b4b9.sample" ]
+dest_files=["res://.godot/imported/trap_activate.wav-e3244032b0567464e6add6281d80b4b9.sample"]
 
 [params]
 

@@ -19,29 +19,29 @@ feature = 1
 trigger_size = Vector2( 40, 30 )
 
 [node name="Ground0" parent="." instance=ExtResource( 5 )]
-margin_left = -156.0
-margin_right = -20.0
+offset_left = -156.0
+offset_right = -20.0
 text = "-----------------"
 
 [node name="Ground1" parent="." instance=ExtResource( 5 )]
-margin_left = -20.86
-margin_top = -3.16
-margin_right = 59.14
-margin_bottom = 4.84
-rect_rotation = 21.0
+offset_left = -20.86
+offset_top = -3.16
+offset_right = 59.14
+offset_bottom = 4.84
+rotation = 21.0
 text = "----------"
 
 [node name="Ground2" parent="." instance=ExtResource( 5 )]
-margin_left = 48.0
-margin_top = 31.0
-margin_right = 129.0
-margin_bottom = 39.0
-rect_rotation = -90.0
+offset_left = 48.0
+offset_top = 31.0
+offset_right = 129.0
+offset_bottom = 39.0
+rotation = -90.0
 text = "----"
 
 [node name="Ground3" parent="." instance=ExtResource( 5 )]
-margin_left = 50.0
-margin_right = 154.0
+offset_left = 50.0
+offset_right = 154.0
 text = "--------------"
 
 [node name="Star" parent="." instance=ExtResource( 1 )]

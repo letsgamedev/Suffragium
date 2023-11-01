@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 const UP: Vector2 = Vector2(0, -1)
 const FLAP_HEIGHT: float = 200.0  # flap time
@@ -14,9 +14,9 @@ var wall: PackedScene = preload("res://games/flappybird/wall_node.tscn")
 var score: int = 0
 var started: bool = false
 
-onready var _score_label: Label = $"../../CanvasLayer/ScoreLabel"
-onready var _start_label: Label = $"../../CanvasLayer/StartLabel"
-onready var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
+@onready var _score_label: Label = $"../../CanvasLayer/ScoreLabel"
+@onready var _start_label: Label = $"../../CanvasLayer/StartLabel"
+@onready var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 
 func _physics_process(delta):
@@ -37,7 +37,10 @@ func _physics_process(delta):
 	motion.y += GRAVITY
 	if motion.y > MAXFALLSPEED:
 		motion.y = MAXFALLSPEED
-	motion = move_and_slide(delta * 60 * motion, UP)
+	set_velocity(delta * 60 * motion)
+	set_up_direction(UP)
+	move_and_slide()
+	motion = velocity
 
 
 # start the game
@@ -70,7 +73,7 @@ func add_to_timer(delta):
 
 # spawn a new wall when timer hits 1.2
 func spawn_wall():
-	var instance = wall.instance()
+	var instance = wall.instantiate()
 
 	instance.position = Vector2(300, _rng.randi_range(-60, 60))
 	get_parent().call_deferred("add_child", instance)

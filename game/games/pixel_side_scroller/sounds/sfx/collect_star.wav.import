@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/collect_star.wav-a1e68242a214b902e6066bca9d64670e.sample"
+type="AudioStreamWAV"
+uid="uid://ca4b8tw1ikd6n"
+path="res://.godot/imported/collect_star.wav-a1e68242a214b902e6066bca9d64670e.sample"
 
 [deps]
 
 source_file="res://games/pixel_side_scroller/sounds/sfx/collect_star.wav"
-dest_files=[ "res://.import/collect_star.wav-a1e68242a214b902e6066bca9d64670e.sample" ]
+dest_files=["res://.godot/imported/collect_star.wav-a1e68242a214b902e6066bca9d64670e.sample"]
 
 [params]
 

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/jump.wav-3d9701898b3111b7d0156f6149d0c931.sample"
+type="AudioStreamWAV"
+uid="uid://befmmwsuuqeva"
+path="res://.godot/imported/jump.wav-3d9701898b3111b7d0156f6149d0c931.sample"
 
 [deps]
 
 source_file="res://games/pixel_side_scroller/sounds/sfx/jump.wav"
-dest_files=[ "res://.import/jump.wav-3d9701898b3111b7d0156f6149d0c931.sample" ]
+dest_files=["res://.godot/imported/jump.wav-3d9701898b3111b7d0156f6149d0c931.sample"]
 
 [params]
 

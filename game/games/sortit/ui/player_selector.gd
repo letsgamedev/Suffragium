@@ -7,13 +7,13 @@ var _current_input_player_selctor_index = 0
 var _player_inputs = []
 var _has_been_played = true
 
-onready var _main_content_container: MarginContainer = $MarginContainer
-onready var _players = $MarginContainer/VBoxContainer/MarginContainer/Players
-onready var _back_button: Button = $MarginContainer/VBoxContainer/Buttons/HBoxContainer/BackButton
-onready var _play_button: Button = $MarginContainer/VBoxContainer/Buttons/HBoxContainer2/PlayButton
+@onready var _main_content_container: MarginContainer = $MarginContainer
+@onready var _players = $MarginContainer/VBoxContainer/MarginContainer/Players
+@onready var _back_button: Button = $MarginContainer/VBoxContainer/Buttons/HBoxContainer/BackButton
+@onready var _play_button: Button = $MarginContainer/VBoxContainer/Buttons/HBoxContainer2/PlayButton
 # Path is to long, but cannot cleanly be split into multiple lines to avoid line length limit
 # gdlint: ignore=max-line-length
-onready var _help_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/HelpButton
+@onready var _help_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/HelpButton
 
 
 func _ready():
@@ -25,7 +25,7 @@ func _ready():
 
 	for i in range(_players.get_child_count()):
 		var player_select = _players.get_children()[i]
-		player_select.connect("got_input", self, "_on_player_select_got_input")
+		player_select.connect("got_input", Callable(self, "_on_player_select_got_input"))
 
 
 func _on_player_select_got_input(input_type: Array):

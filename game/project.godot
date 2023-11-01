@@ -6,50 +6,17 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "Reference",
-"class": "PixelSideScrollerUtils",
-"language": "GDScript",
-"path": "res://games/pixel_side_scroller/utils.gd"
-}, {
-"base": "RigidBody",
-"class": "SortItBox",
-"language": "GDScript",
-"path": "res://games/sortit/box.gd"
-}, {
-"base": "StaticBody",
-"class": "SortItPedestal",
-"language": "GDScript",
-"path": "res://games/sortit/pedestal.gd"
-}, {
-"base": "KinematicBody",
-"class": "SortItPlayer",
-"language": "GDScript",
-"path": "res://games/sortit/player.gd"
-}, {
-"base": "MarginContainer",
-"class": "SortItRoot",
-"language": "GDScript",
-"path": "res://games/sortit/sort_it.gd"
-} ]
-_global_script_class_icons={
-"PixelSideScrollerUtils": "",
-"SortItBox": "",
-"SortItPedestal": "",
-"SortItPlayer": "",
-"SortItRoot": ""
-}
+config_version=5
 
 [application]
 
 config/name="Suffragium"
 run/main_scene="res://app/scenes/splash_screen/splashed_menu.tscn"
+config/features=PackedStringArray("4.1")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://app/images/alpha_pixel_1.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 
 [autoload]
@@ -68,13 +35,17 @@ control=false
 
 flap={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":32,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
 }
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://translations/tr.de.translation", "res://translations/tr.en.translation")
 
 [locale]
 
-translations=PoolStringArray( "res://translations/tr.de.translation", "res://translations/tr.en.translation" )
+translations=PackedStringArray("res://translations/tr.de.translation", "res://translations/tr.en.translation")
 
 [physics]
 
@@ -82,5 +53,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+environment/defaults/default_environment="res://default_env.tres"
 2d/snapping/use_gpu_pixel_snap=true
-environment/default_environment="res://default_env.tres"

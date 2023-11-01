@@ -1,19 +1,19 @@
 extends GridContainer
 
 const STATUS_DISPLAY_SCENE = preload("res://games/sortit/ui/status_display.tscn")
-onready var _players: Node = $"../Players"
-onready var _minimap = $MiniMap
+@onready var _players: Node = $"../Players"
+@onready var _minimap = $MiniMap
 
 
-func _add_viewport_container() -> Viewport:
+func _add_viewport_container() -> SubViewport:
 	# Create viewport and viewport container
-	var viewport_container = ViewportContainer.new()
+	var viewport_container = SubViewportContainer.new()
 	viewport_container.stretch = true
 	viewport_container.size_flags_horizontal = SIZE_EXPAND_FILL
 	viewport_container.size_flags_vertical = SIZE_EXPAND_FILL
-	var viewport = Viewport.new()
+	var viewport = SubViewport.new()
 	viewport.shadow_atlas_size = 1
-	viewport.msaa = Viewport.MSAA_4X
+	viewport.msaa = SubViewport.MSAA_4X
 	viewport_container.add_child(viewport)
 	# Add viewport container
 	add_child(viewport_container)
@@ -27,13 +27,13 @@ func create_viewports():
 	for i in range(player_count):
 		var viewport = _add_viewport_container()
 		# Create camerea and status display for player
-		var camera = Camera.new()
+		var camera = Camera3D.new()
 		camera.fov = 50
 		camera.rotation_degrees.x = -70
 		camera.rotation_degrees.y = -90
-		camera.set_cull_mask_bit(2, false)
+		camera.set_cull_mask_value(2, false)
 		viewport.add_child(camera)
-		var status_display = STATUS_DISPLAY_SCENE.instance()
+		var status_display = STATUS_DISPLAY_SCENE.instantiate()
 		viewport.add_child(status_display)
 		# Assign camerea and status display to player
 		var player = _players.get_child(i)

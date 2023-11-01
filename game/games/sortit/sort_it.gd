@@ -83,7 +83,7 @@ var input_map = {
 
 func _on_player_selector_start_game(player_inputs: Array):
 	$PlayerSelector.hide()
-	var game = game_scene.instance()
+	var game = game_scene.instantiate()
 	var players_node = game.get_node("Players")
 	players_node.player_inputs = player_inputs
 	players_node.player_count = len(player_inputs)

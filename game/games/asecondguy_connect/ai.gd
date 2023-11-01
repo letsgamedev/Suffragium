@@ -3,23 +3,23 @@ extends Node2D
 const CHIPSCRIPT := preload("res://games/asecondguy_connect/chip.gd")
 const CONNECTSCRIPT := preload("res://games/asecondguy_connect/connect.gd")
 
-export var player_id := 1
+@export var player_id := 1
 
 var chip: CHIPSCRIPT
 var _curve := Curve2D.new()
 var _goal_position := Vector2()
 var _picked := false
 
-onready var _chips_node := $"../Chips"
-onready var _grid := $"../Grid"
-onready var _game: CONNECTSCRIPT = $".."
-onready var _timer := $Timer
-onready var _pickup_timer := $PickupTimer
+@onready var _chips_node := $"../Chips"
+@onready var _grid := $"../Grid"
+@onready var _game: CONNECTSCRIPT = $".."
+@onready var _timer := $Timer
+@onready var _pickup_timer := $PickupTimer
 
 
 func _ready():
 	set_process(false)
-	seed(hash(str(OS.get_unix_time(), get_instance_id())))
+	seed(hash(str(Time.get_unix_time_from_system(), get_instance_id())))
 
 
 func _process(_delta):

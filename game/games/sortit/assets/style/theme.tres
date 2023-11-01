@@ -1,8 +1,8 @@
 [gd_resource type="Theme" load_steps=16 format=2]
 
-[ext_resource path="res://shared/fonts/roboto/roboto_black.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://shared/fonts/roboto/roboto_black.ttf" type="FontFile" id=1]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 25
 font_data = ExtResource( 1 )
 
@@ -57,7 +57,7 @@ border_color = Color( 1, 1, 1, 1 )
 expand_margin_left = 9.0
 expand_margin_right = 9.0
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="FontFile" id=11]
 size = 25
 font_data = ExtResource( 1 )
 
@@ -74,11 +74,11 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
-[sub_resource type="DynamicFont" id=27]
+[sub_resource type="FontFile" id=27]
 size = 17
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=23]
+[sub_resource type="FontFile" id=23]
 font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxEmpty" id=24]

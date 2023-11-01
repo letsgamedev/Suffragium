@@ -2,15 +2,15 @@ extends VBoxContainer
 
 var custom_name := false
 
-onready var _button_group: ButtonGroup = $CheckBox.group
-onready var _line_edit := $LineEdit
-onready var _color_picker := $ColorPickerButton
-onready var _first_button := $CheckBox
+@onready var _button_group: ButtonGroup = $CheckBox.group
+@onready var _line_edit := $LineEdit
+@onready var _color_picker := $ColorPickerButton
+@onready var _first_button := $CheckBox
 
 
 func _ready():
 # warning-ignore:return_value_discarded
-	_button_group.connect("pressed", self, "_on_selection_change")
+	_button_group.connect("pressed", Callable(self, "_on_selection_change"))
 	_on_selection_change(_button_group.get_pressed_button())
 	#setup color picker
 	var pick: ColorPicker = _color_picker.get_picker()

@@ -7,8 +7,8 @@ signal custom_button_pressed(text)
 var _custom_btns := {}
 var _custom_pages := {}
 
-onready var _main := $Control
-onready var _btn_list: VBoxContainer = $Control/CC/VC/CustomBtns
+@onready var _main := $Control
+@onready var _btn_list: VBoxContainer = $Control/CC/VC/CustomBtns
 
 
 func _ready():
@@ -31,7 +31,7 @@ func _input(event: InputEvent):
 			unpause()
 	else:
 		pause()
-	get_tree().set_input_as_handled()
+	get_viewport().set_input_as_handled()
 
 
 func add_custom_button(text: String, idx := -1) -> Button:
@@ -39,14 +39,13 @@ func add_custom_button(text: String, idx := -1) -> Button:
 		return null  # skip if already exists
 	var btn := Button.new()
 	btn.text = text
-	Utils.handle_error(btn.connect("pressed", self, "_on_custom_btn_pressed", [text]))
+	Utils.handle_error(btn.connect("pressed", Callable(self, "_on_custom_btn_pressed").bind(text)))
 	_custom_btns[text] = btn
 	if idx < 0 or _btn_list.get_child_count() == 0:
 		_btn_list.add_child(btn)
 	else:
-		_btn_list.add_child_below_node(
-			_btn_list.get_child(int(min(idx, _btn_list.get_child_count() - 1))), btn
-		)
+		var this_is_a_node: Node = _btn_list.get_child(int(min(idx, _btn_list.get_child_count() - 1)))
+		this_is_a_node.add_sibling(btn)
 	_btn_list.show()
 	return btn
 
@@ -57,7 +56,7 @@ func add_custom_page(page: Control, page_name: String):
 	var btn := add_custom_button(page_name)
 	if !btn is Button:
 		return  # skip if button creation failed
-	Utils.handle_error(btn.connect("pressed", page, "show"))
+	Utils.handle_error(btn.connect("pressed", Callable(page, "show")))
 	page.hide()
 	_custom_pages[page_name] = page
 	add_child(page)

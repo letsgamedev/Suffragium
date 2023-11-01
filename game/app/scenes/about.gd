@@ -1,4 +1,4 @@
-tool
+@tool
 extends ScrollContainer
 # This script translates a simplified syntax into bbcode for the RichTextLabel to display.
 # It can also calculate the position of specific lines. This is used by menu to smooth scroll.
@@ -11,12 +11,12 @@ extends ScrollContainer
 # 	-Any [url] tag will be treated like a link. If you add one color it the same as the others.
 # 		(specific color is subject to change)
 
-export(String) var title_key := "# "
+@export var title_key := "# "
 # This is the About text. To add a Title use the title key
-export(String, MULTILINE) var text := "" setget set_text
-export(Font) var title_font: Font
+@export var text := "": set = set_text
+@export var title_font: Font
 
-onready var _label := $MC/RichTextLabel
+@onready var _label := $MC/RichTextLabel
 
 
 # this is needed to ract to any language changes that might need retranslating
@@ -33,7 +33,7 @@ func set_text(val: String):
 	text = val
 	# updating this is only needed in editor
 	# In-game it is updated by other sources
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		_write_def()
 
 
@@ -48,7 +48,7 @@ func _write_to_label():
 		var is_title: bool = line.begins_with(title_key)
 		line = line.trim_prefix(title_key)
 		if is_title:
-			_label.push_font(title_font)
+			_label.push_font(title_font, 10)
 
 		# first refers to the first part of the line
 		var first := true
@@ -65,9 +65,9 @@ func _write_to_label():
 				# tr("[color=blue]") = "[color=blue]"
 				if first:
 					# the first part of the line shouldn't have a seperating " " infront of it
-					_label.append_bbcode(tr(key))
+					_label.append_text(tr(key))
 				else:
-					_label.append_bbcode(" " + tr(key))
+					_label.append_text(" " + tr(key))
 			first = false
 		# close the [font] tag for the title font
 		if is_title:
@@ -80,8 +80,8 @@ func _write_to_label():
 func get_line_absolute_height(line: String):
 	var pos: float = 0
 	var lines: Array = text.split("\n")
-	var font_height: int = _label.get_font("normal_font").get_height()
-	var line_spacing: float = _label.get_constant("line_separation")
+	var font_height: int = 6  #_label.get_font("normal_font").get_height()
+	var line_spacing: float = 2  #_label.get_constant("line_separation")
 
 	var line_location := text.find(line)
 	# count won't work if location is 0. If it is the height is also 0

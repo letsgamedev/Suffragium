@@ -1,7 +1,7 @@
-tool
-extends Spatial
+@tool
+extends Node3D
 
-export(float) var spacing setget set_spacing, get_spacing
+@export var spacing: float: get = get_spacing, set = set_spacing
 
 var pedestal_numbers = []
 var correct_count = 0
@@ -28,10 +28,10 @@ func dissable():
 		propagate_call("set_process", [false])
 		propagate_call("set_physics_process", [false])
 		propagate_call("set_process_internal", [false])
-		pedestal.set_collision_layer_bit(0, false)
-		pedestal.set_collision_mask_bit(0, false)
-		pedestal.set_collision_mask_bit(1, false)
-		pedestal.set_collision_mask_bit(2, false)
+		pedestal.set_collision_layer_value(0, false)
+		pedestal.set_collision_mask_value(0, false)
+		pedestal.set_collision_mask_value(1, false)
+		pedestal.set_collision_mask_value(2, false)
 
 
 func enable():
@@ -40,10 +40,10 @@ func enable():
 		propagate_call("set_process", [true])
 		propagate_call("set_physics_process", [true])
 		propagate_call("set_process_internal", [true])
-		pedestal.set_collision_layer_bit(0, true)
-		pedestal.set_collision_mask_bit(0, true)
-		pedestal.set_collision_mask_bit(1, true)
-		pedestal.set_collision_mask_bit(2, true)
+		pedestal.set_collision_layer_value(0, true)
+		pedestal.set_collision_mask_value(0, true)
+		pedestal.set_collision_mask_value(1, true)
+		pedestal.set_collision_mask_value(2, true)
 
 
 func set_color(color: Color):
@@ -63,8 +63,8 @@ func _ready():
 	if Engine.is_editor_hint():
 		return
 	for pedestal in get_children():
-		(pedestal as SortItPedestal).connect("box_held", self, "_on_box_held")
-		(pedestal as SortItPedestal).connect("box_dropped", self, "_on_box_dropped")
+		(pedestal as SortItPedestal).connect("box_held", Callable(self, "_on_box_held"))
+		(pedestal as SortItPedestal).connect("box_dropped", Callable(self, "_on_box_dropped"))
 		pedestal_numbers.push_back(-1)
 
 

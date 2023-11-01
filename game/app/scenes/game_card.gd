@@ -4,22 +4,22 @@ var _game_config: ConfigFile = null
 var _playtime: float = 0
 var _last_played = -1
 
-onready var _label_title := $Card/TitleSection/VC/LabelTitle
-onready var _label_description := $Card/SC/MC/Description
-onready var _texture_icon_rect := $Card/TitleSection/icon
-onready var _label_playtime := $Card/TitleSection/VC/HC/LabelPlaytimeNumber
-onready var _label_playtime_unit := $Card/TitleSection/VC/HC/LabelPlaytimeUnit
+@onready var _label_title := $Card/TitleSection/VC/LabelTitle
+@onready var _label_description := $Card/SC/MC/Description
+@onready var _texture_icon_rect := $Card/TitleSection/icon
+@onready var _label_playtime := $Card/TitleSection/VC/HC/LabelPlaytimeNumber
+@onready var _label_playtime_unit := $Card/TitleSection/VC/HC/LabelPlaytimeUnit
 
-onready var _popup_label_title := $PopupDialogInfo/VC/TitleSection/HC/Title/LabelTitle
-onready var _popup_label_description := $PopupDialogInfo/VC/InfoSection/HC/Description
-onready var _popup_icon_rect := $PopupDialogInfo/VC/TitleSection/HC/TextureRectIcon
-onready var _popup_label_author := $PopupDialogInfo/VC/InfoSection/HC/VC/LabelAuthor
-onready var _popup_label_version := $PopupDialogInfo/VC/InfoSection/HC/VC/LabelVersion
-onready var _popup_playtime := $PopupDialogInfo/VC/TitleSection/HC/Title/HC/LabelPlaytimeNumber
-onready var _popup_playtime_2 := $PopupDialogInfo/VC/TitleSection/HC/Title/HC/LabelPlaytimeNumber2
-onready var _popup_playtime_unit := $PopupDialogInfo/VC/TitleSection/HC/Title/HC/LabelPlaytimeUnit
-onready var _popup_playtime_unit_2 := $PopupDialogInfo/VC/TitleSection/HC/Title/HC/PlaytimeUnit2
-onready var _popup_label_highscore := $PopupDialogInfo/VC/TitleSection/HC/HighScore/LabelHighscore
+@onready var _popup_label_title := $PopupDialogInfo/VC/TitleSection/HC/Title/LabelTitle
+@onready var _popup_label_description := $PopupDialogInfo/VC/InfoSection/HC/Description
+@onready var _popup_icon_rect := $PopupDialogInfo/VC/TitleSection/HC/TextureRectIcon
+@onready var _popup_label_author := $PopupDialogInfo/VC/InfoSection/HC/VC/LabelAuthor
+@onready var _popup_label_version := $PopupDialogInfo/VC/InfoSection/HC/VC/LabelVersion
+@onready var _popup_playtime := $PopupDialogInfo/VC/TitleSection/HC/Title/HC/LabelPlaytimeNumber
+@onready var _popup_playtime_2 := $PopupDialogInfo/VC/TitleSection/HC/Title/HC/LabelPlaytimeNumber2
+@onready var _popup_playtime_unit := $PopupDialogInfo/VC/TitleSection/HC/Title/HC/LabelPlaytimeUnit
+@onready var _popup_playtime_unit_2 := $PopupDialogInfo/VC/TitleSection/HC/Title/HC/PlaytimeUnit2
+@onready var _popup_label_highscore := $PopupDialogInfo/VC/TitleSection/HC/HighScore/LabelHighscore
 
 
 func setup(game_config: ConfigFile):
@@ -62,7 +62,7 @@ func setup(game_config: ConfigFile):
 
 	var icon_file_name = game_config.get_value("game", "icon")
 	var icon_path = GameManager.make_game_file_path(game_id, icon_file_name)
-	var icon: Texture = load(icon_path)
+	var icon: Texture2D = load(icon_path)
 	if icon != null:
 		_texture_icon_rect.texture = icon
 		_popup_icon_rect.texture = icon
@@ -112,7 +112,7 @@ func _format_playtime(playtime: float) -> Dictionary:
 
 
 func _on_ButtonInfo_pressed():
-	$PopupDialogInfo.popup_centered($PopupDialogInfo/VC.rect_size)
+	$PopupDialogInfo.popup_centered($PopupDialogInfo/VC.size)
 
 
 func _on_ButtonPlay_pressed():

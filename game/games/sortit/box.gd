@@ -1,26 +1,26 @@
 class_name SortItBox
-extends RigidBody
+extends RigidBody3D
 
 signal despawn(number)
 
 const NUMBERS: MeshLibrary = preload("res://games/sortit/assets/numbers.tres")
 
-export(int) var max_number = 20
-export(float) var black_box_chance = 0.1
-export(Material) var normal_material
-export(Material) var black_material
-export(float) var number_spacing = 0.1
-export(float) var number_scale = 0.8
+@export var max_number: int = 20
+@export var black_box_chance: float = 0.1
+@export var normal_material: Material
+@export var black_material: Material
+@export var number_spacing: float = 0.1
+@export var number_scale: float = 0.8
 
 var number: int = 0
 var is_black: bool = false
 
-onready var _collision_shape: CollisionShape = $CollisionShape
+@onready var _collision_shape: CollisionShape3D = $CollisionShape3D
 
 
 func _process(_delta):
 	# Handle boxes falling through the ground (Should not happen)
-	if translation.y < -10:
+	if position.y < -10:
 		push_warning("SortIt: Box dropped through the ground")
 		despawn()
 
@@ -33,7 +33,7 @@ func reset_despawn():
 	$"DespawnTimer".start()
 
 
-func _get_number_mesh_instance() -> MeshInstance:
+func _get_number_mesh_instance() -> MeshInstance3D:
 	var number_string = str(number)
 	var mesh = ArrayMesh.new()
 	var x_offset = 0
@@ -61,7 +61,7 @@ func _get_number_mesh_instance() -> MeshInstance:
 		mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, diget_mesh_arrays)
 		mesh.surface_set_material(i, black_material)
 	# Create mesh instance with number mesh
-	var mesh_instance = MeshInstance.new()
+	var mesh_instance = MeshInstance3D.new()
 	mesh_instance.mesh = mesh
 	# Center mesh instance
 	var new_scale = $mesh.scale.x / max(last_x_offset, $mesh.scale.x) * number_scale
@@ -70,9 +70,9 @@ func _get_number_mesh_instance() -> MeshInstance:
 	return mesh_instance
 
 
-func _add_number_at(mesh_instance: MeshInstance, pos: Vector3):
+func _add_number_at(mesh_instance: MeshInstance3D, pos: Vector3):
 	# Create parent node to act as a centered pivot point
-	var parent = Spatial.new()
+	var parent = Node3D.new()
 	parent.transform.origin = pos
 	# Add number mesh to pivot with offset position
 	mesh_instance.transform.origin = -mesh_instance.transform.origin
@@ -92,12 +92,12 @@ func _add_number_at(mesh_instance: MeshInstance, pos: Vector3):
 
 
 func _ready():
-	self.number = int(floor(rand_range(0, max_number + 1)))
+	self.number = int(floor(randf_range(0, max_number + 1)))
 	self.is_black = randf() < black_box_chance
 	if self.is_black:
-		$mesh.set_surface_material(0, black_material)
+		$mesh.set_surface_override_material(0, black_material)
 	else:
-		$mesh.set_surface_material(0, normal_material)
+		$mesh.set_surface_override_material(0, normal_material)
 	if not is_black:
 		var mesh_instance = _get_number_mesh_instance()
 		# Add other rotations too (non trival with current version of _get_number_mesh_instance)
@@ -112,9 +112,9 @@ func _ready():
 func disable_physics(disable: bool) -> void:
 	_collision_shape.disabled = disable
 	if disable:
-		mode = RigidBody.MODE_STATIC
+		mode = RigidBody3D.FREEZE_MODE_STATIC
 	else:
-		mode = RigidBody.MODE_RIGID
+		mode = RigidBody3D.MODE_RIGID
 
 
 func _on_despawn_timer_timeout():

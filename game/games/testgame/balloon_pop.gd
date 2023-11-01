@@ -7,25 +7,25 @@ const STATUS_MESSAGE := "You're in stage %d/10 and have %s points! (Your highsco
 var balloon_scene := preload("res://games/testgame/balloon.tscn")
 
 var colors := {
-	"Red": Color.red,
-	"Green": Color.green,
-	"Yellow": Color.yellow,
-	"Blue": Color.blue,
-	"Purple": Color.purple,
-	"Orange": Color.orange,
+	"Red": Color.RED,
+	"Green": Color.GREEN,
+	"Yellow": Color.YELLOW,
+	"Blue": Color.BLUE,
+	"Purple": Color.PURPLE,
+	"Orange": Color.ORANGE,
 }
 
 var points := 0
 var stage := 0
 var search_color: Color
 
-onready var _timer := $Timer
-onready var _respawn_timer := $RespawnTimer
-onready var _color_label := $VBoxContainer/HBoxContainer/ColorLabel
-onready var _status_label := $VBoxContainer/HBoxContainer/StatusLabel
-onready var _area := $VBoxContainer/balloonArea
-onready var _rng := RandomNumberGenerator.new()
-onready var _particles := $VBoxContainer/Particles2D
+@onready var _timer := $Timer
+@onready var _respawn_timer := $RespawnTimer
+@onready var _color_label := $VBoxContainer/HBoxContainer/ColorLabel
+@onready var _status_label := $VBoxContainer/HBoxContainer/StatusLabel
+@onready var _area := $VBoxContainer/balloonArea
+@onready var _rng := RandomNumberGenerator.new()
+@onready var _particles := $VBoxContainer/GPUParticles2D
 
 
 func _ready():
@@ -51,7 +51,7 @@ func start():
 func _process(_delta):
 	var offset := sin(_timer.time_left * 2 * PI)
 	for balloon in _area.get_children():
-		balloon.rect_position.y += offset
+		balloon.position.y += offset
 
 
 # spawns all balloons per round
@@ -73,16 +73,16 @@ func _spawn():
 
 # spawns one balloon of the given color
 func _spawn_color(color: Color):
-	var b: TextureButton = balloon_scene.instance()
+	var b: TextureButton = balloon_scene.instantiate()
 	_area.add_child(b)
 	# position
-	var max_pos: Vector2 = _area.rect_size - b.rect_size * b.rect_scale
-	b.rect_position.x = _rng.randf_range(0, max_pos.x)
-	b.rect_position.y = _rng.randf_range(0, max_pos.y)
+	var max_pos: Vector2 = _area.size - b.size * b.scale
+	b.position.x = _rng.randf_range(0, max_pos.x)
+	b.position.y = _rng.randf_range(0, max_pos.y)
 
 	# signals
-	Utils.handle_error(b.connect("pressed", self, "_on_destroy", [color, b]))
-	Utils.handle_error(b.connect("pressed", b, "queue_free"))
+	Utils.handle_error(b.connect("pressed", Callable(self, "_on_destroy").bind(color, b)))
+	Utils.handle_error(b.connect("pressed", Callable(b, "queue_free")))
 	# modulate
 	b.self_modulate = color
 
@@ -93,8 +93,8 @@ func _on_destroy(color: Color, button = null):
 		_delete_all()
 		if button is TextureButton:
 			_particles.global_position = (
-				button.rect_global_position
-				+ button.rect_size / 2 * button.rect_scale
+				button.global_position
+				+ button.size / 2 * button.scale
 			)
 			_particles.restart()
 		_respawn_timer.start()

@@ -7,7 +7,7 @@ var target
 
 func _ready():
 	# warning-ignore:return_value_discarded
-	get_tree().get_root().connect("size_changed", self, "_on_resize")
+	get_tree().get_root().connect("size_changed", Callable(self, "_on_resize"))
 	_on_resize()
 
 

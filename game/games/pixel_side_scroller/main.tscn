@@ -14,7 +14,7 @@ script = ExtResource( 2 )
 [node name="MapManager" type="Node" parent="."]
 script = ExtResource( 3 )
 
-[node name="Camera" parent="." instance=ExtResource( 4 )]
+[node name="Camera3D" parent="." instance=ExtResource( 4 )]
 
 [node name="LevelUp" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
