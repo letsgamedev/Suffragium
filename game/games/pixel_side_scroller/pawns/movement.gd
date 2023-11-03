@@ -54,7 +54,7 @@ func do(delta):
 	_pawn.set_velocity(velocity)
 	_pawn.set_up_direction(Vector2.UP)
 	_pawn.move_and_slide()
-	_pawn.velocity
+	#_pawn.velocity
 
 
 # Handle jumps

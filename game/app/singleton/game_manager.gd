@@ -167,7 +167,7 @@ func _load_game_configs():
 	if not dir:
 		push_error("Could not open directory %s" % _games_folder_path)
 		return
-	dir.list_dir_begin() # TODOConverter3To4 fill missing arguments https://github.com/godotengine/godot/pull/40547
+	dir.list_dir_begin()
 	var file_name = dir.get_next()
 	while file_name != "":
 		if dir.current_is_dir():

@@ -32,7 +32,8 @@ func spawn_player() -> void:
 	if not is_instance_valid(spawn):
 		return
 	if not player:
-		var new_player = load("res://games/pixel_side_scroller/pawns/character/character.tscn").instantiate()
+		var player_path: String = "res://games/pixel_side_scroller/pawns/character/character.tscn"
+		var new_player = load(player_path).instantiate()
 		player = new_player
 		player.position = spawn.position
 		camera.target = player

@@ -15,7 +15,8 @@ func find_maps():
 	if dir.open(path) != OK:
 		push_error("Could not open directory %s" % path)
 		return
-	if dir.list_dir_begin()  != OK:# TODOConverter3To4 fill missing arguments https://github.com/godotengine/godot/pull/40547
+	if dir.list_dir_begin()  != OK:# TODOConverter3To4 fill missing arguments
+		# https://github.com/godotengine/godot/pull/40547
 		push_error("Could list_dir_begin directory %s" % path)
 		return
 	while true:
