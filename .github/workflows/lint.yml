@@ -27,7 +27,7 @@ jobs:
 
       # Install godot-gdscript-toolkit
       - name: Install godot-gdscript-toolkit
-        run: pip3 install 'gdtoolkit==3.*'
+        run: pip3 install 'gdtoolkit==4.*'
 
       # lint all gd files
       - name: Lint all the gd files with gdtoolkit
