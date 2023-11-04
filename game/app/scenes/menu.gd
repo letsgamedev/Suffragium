@@ -28,33 +28,7 @@ func _ready():
 func open_participation_tab():
 	var previous_tab = $TabContainer.current_tab
 	_tab_container.set_current_tab(1)
-	_scroll_to(previous_tab, _about_tab.get_line_absolute_height("# T_PARTICIPATE"))
-
-
-func _scroll_to(previous_tab: int, pos_y: float):
-	var smooth_scroll = UserSettings.get_setting("smooth_scroll")
-	if previous_tab == 1 and smooth_scroll:
-		var tween = Tween.new()
-		tween.connect("tween_completed", Callable(self, "_on_scroll_to_tween_completed").bind(tween))
-		get_tree().get_root().add_child(tween)
-		var max_y = $TabContainer/About/MC.size.y - $TabContainer/About.size.y
-		var scroll_y = clamp(pos_y, 0, max_y)
-		tween.interpolate_property(
-			$TabContainer/About,
-			"scroll_vertical",
-			$TabContainer/About.scroll_vertical,
-			scroll_y,
-			0.4,
-			Tween.TRANS_QUAD,
-			Tween.EASE_IN_OUT
-		)
-		tween.start()
-	else:
-		$TabContainer/About.call_deferred("set", "scroll_vertical", pos_y)
-
-
-func _on_scroll_to_tween_completed(_scroll_container, _property, tween_node: Tween):
-	tween_node.queue_free()
+	_about_tab.scroll_to(previous_tab, _about_tab.Section.PARTICIPATE)
 
 
 func _on_ButtonGames_pressed():
@@ -64,7 +38,7 @@ func _on_ButtonGames_pressed():
 func _on_ButtonAbout_pressed():
 	var previous_tab = $TabContainer.current_tab
 	_tab_container.set_current_tab(1)
-	_scroll_to(previous_tab, _about_tab.get_line_absolute_height("# T_ABOUT_SUFFRAGIUM"))
+	_about_tab.scroll_to(previous_tab, _about_tab.Section.ABOUT)
 
 
 func _on_ButtonParticipate_pressed():
@@ -74,7 +48,7 @@ func _on_ButtonParticipate_pressed():
 func _on_ButtonReportBug_pressed():
 	var previous_tab = $TabContainer.current_tab
 	_tab_container.set_current_tab(1)
-	_scroll_to(previous_tab, _about_tab.get_line_absolute_height("T_REPORT_A_BUG"))
+	_about_tab.scroll_to(previous_tab, _about_tab.Section.REPORT_A_BUG)
 
 
 func _on_ButtonSettings_pressed():

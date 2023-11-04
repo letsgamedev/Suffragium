@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://d2yw5b0fmnmkv"]
 
-[ext_resource type="Script" path="res://app/scenes/about.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://3svksbdfj53l" path="res://app/images/suffragium_badge_36.png" id="2"]
 [ext_resource type="Theme" uid="uid://ctnqtb0r41guf" path="res://app/style/main_theme.tres" id="3"]
-[ext_resource type="FontFile" path="res://app/style/title_font.tres" id="4"]
 [ext_resource type="Script" path="res://app/scenes/menu.gd" id="5"]
+[ext_resource type="Theme" uid="uid://c0mv23lcspr7u" path="res://app/scenes/title_font_theme.tres" id="5_nxett"]
 [ext_resource type="Texture2D" uid="uid://hbkfur2u0e05" path="res://app/images/cogwheel_16.png" id="6"]
+[ext_resource type="Script" path="res://app/scenes/about.gd" id="6_lt6p3"]
 [ext_resource type="Script" path="res://app/scenes/settings.gd" id="7"]
 
 [sub_resource type="StyleBoxEmpty" id="19"]
@@ -78,7 +78,7 @@ alignment = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("4")
+theme = ExtResource("5_nxett")
 text = "T_GAMES"
 
 [node name="Label2" type="Label" parent="TabContainer/Games/MC/Toolbar"]
@@ -121,100 +121,20 @@ columns = 3
 [node name="About" type="ScrollContainer" parent="TabContainer"]
 visible = false
 layout_mode = 2
-script = ExtResource("1")
-text = "# T_ABOUT_SUFFRAGIUM
-
-T_ABOUT_SUFFRAGIUM_1
-T_ABOUT_SUFFRAGIUM_2
-
-
-
-# T_PARTICIPATE
-
-T_PARTICIPATE_1
-
-T_PARTICIPATE_PLEASE_NOTE
-T_PARTICIPATE_PLEASE_NOTE_1
-T_PARTICIPATE_PLEASE_NOTE_2
-T_PARTICIPATE_PLEASE_NOTE_3
-
-T_PARTICIPATE_POSSIBILITIES
-T_PARTICIPATE_POSSIBILITIES_1
-T_PARTICIPATE_POSSIBILITIES_2
-T_PARTICIPATE_POSSIBILITIES_3
-T_PARTICIPATE_POSSIBILITIES_4
-
-T_PARTICIPATE_GUIDES
-[color=#649bff][url=https://github.com/letsgamedev/Suffragium/blob/main/CONTRIBUTING.md#contributing-to-suffragium]Contributing to Suffragium [/url][/color]
-[color=#649bff][url=https://github.com/letsgamedev/Suffragium/blob/main/game/games/testgame/README.md]How to add a game [/url][/color]
-
-
-
-# T_REPORT_A_BUG
-
-T_PARTICIPATE_PLEASE_NOTE
-T_PARTICIPATE_PLEASE_NOTE_1
-T_PARTICIPATE_PLEASE_NOTE_2
-T_PARTICIPATE_PLEASE_NOTE_3
-
-T_REPORT_A_BUG_1
-[color=#649bff][url=https://github.com/letsgamedev/Suffragium/issues/new/choose]Create an issue on Github [/url][/color]"
-title_font = ExtResource("4")
+horizontal_scroll_mode = 0
+script = ExtResource("6_lt6p3")
 
 [node name="MC" type="MarginContainer" parent="TabContainer/About"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/About/MC"]
+[node name="VC" type="VBoxContainer" parent="TabContainer/About/MC"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/line_separation = 4
-bbcode_enabled = true
-text = "T_ABOUT_SUFFRAGIUM
-
-T_ABOUT_SUFFRAGIUM_1
-T_ABOUT_SUFFRAGIUM_2
-
-
-
-T_PARTICIPATE
-
-T_PARTICIPATE_1
-
-T_PARTICIPATE_PLEASE_NOTE
-T_PARTICIPATE_PLEASE_NOTE_1
-T_PARTICIPATE_PLEASE_NOTE_2
-T_PARTICIPATE_PLEASE_NOTE_3
-
-T_PARTICIPATE_POSSIBILITIES
-T_PARTICIPATE_POSSIBILITIES_1
-T_PARTICIPATE_POSSIBILITIES_2
-T_PARTICIPATE_POSSIBILITIES_3
-T_PARTICIPATE_POSSIBILITIES_4
-
-T_PARTICIPATE_GUIDES
-Contributing to Suffragium
-How to add a game
-
-
-
-T_REPORT_A_BUG
-
-T_PARTICIPATE_PLEASE_NOTE
-T_PARTICIPATE_PLEASE_NOTE_1
-T_PARTICIPATE_PLEASE_NOTE_2
-T_PARTICIPATE_PLEASE_NOTE_3
-
-T_REPORT_A_BUG_1
-Create an issue on Github
-"
-scroll_active = false
 
 [node name="Settings" type="ScrollContainer" parent="TabContainer"]
 visible = false
 layout_mode = 2
+horizontal_scroll_mode = 0
 script = ExtResource("7")
 
 [node name="MC" type="MarginContainer" parent="TabContainer/Settings"]
@@ -226,7 +146,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="TabContainer/Settings/MC/VC"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4")
+theme = ExtResource("5_nxett")
 text = "T_SETTINGS"
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/Settings/MC/VC"]
@@ -278,7 +198,6 @@ flat = true
 [connection signal="pressed" from="MenuBar/HC/ButtonReportBug" to="." method="_on_ButtonReportBug_pressed"]
 [connection signal="pressed" from="MenuBar/HC/ButtonSettings" to="." method="_on_ButtonSettings_pressed"]
 [connection signal="item_selected" from="TabContainer/Games/MC/Toolbar/OptionButtonSorting" to="." method="_on_OptionButtonSorting_item_selected"]
-[connection signal="meta_clicked" from="TabContainer/About/MC/RichTextLabel" to="TabContainer/About" method="_on_RichTextLabel_meta_clicked"]
 [connection signal="pressed" from="TabContainer/Settings/MC/VC/VC/ButtonResetDefaults" to="TabContainer/Settings" method="_on_ButtonResetDefaults_pressed"]
 [connection signal="item_selected" from="TabContainer/Settings/MC/VC/VC/Language/OptionButton" to="TabContainer/Settings" method="_on_LanguageSelection_item_selected"]
 [connection signal="toggled" from="TabContainer/Settings/MC/VC/VC/SmoothScroll/CheckBox" to="TabContainer/Settings" method="_on_CheckBoxSmoothScroll_toggled"]

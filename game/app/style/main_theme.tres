@@ -136,6 +136,11 @@ cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/16/0/glyphs/0/advance = Vector2(0, 0)
+cache/0/16/0/glyphs/0/offset = Vector2(0, 0)
+cache/0/16/0/glyphs/0/size = Vector2(0, 0)
+cache/0/16/0/glyphs/0/uv_rect = Rect2(0, 0, 0, 0)
+cache/0/16/0/glyphs/0/texture_idx = -1
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [resource]
@@ -144,7 +149,7 @@ Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_color_focus = Color(1, 1, 1, 1)
 Button/colors/font_color_hover = Color(1, 1, 1, 1)
 Button/colors/font_color_pressed = Color(1, 1, 1, 1)
-Button/constants/hseparation = 6
+Button/constants/h_separation = 6
 Button/styles/disabled = SubResource("24")
 Button/styles/focus = SubResource("25")
 Button/styles/hover = SubResource("26")
