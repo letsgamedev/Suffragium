@@ -7,13 +7,9 @@ var _current_input_player_selctor_index = 0
 var _player_inputs = []
 var _has_been_played = true
 
-@onready var _main_content_container: MarginContainer = $MarginContainer
 @onready var _players = $MarginContainer/VBoxContainer/MarginContainer/Players
 @onready var _back_button: Button = $MarginContainer/VBoxContainer/Buttons/HBoxContainer/BackButton
 @onready var _play_button: Button = $MarginContainer/VBoxContainer/Buttons/HBoxContainer2/PlayButton
-# Path is to long, but cannot cleanly be split into multiple lines to avoid line length limit
-# gdlint: ignore=max-line-length
-@onready var _help_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/HelpButton
 
 
 func _ready():

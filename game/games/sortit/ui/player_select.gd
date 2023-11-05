@@ -19,7 +19,7 @@ var _get_input = false
 
 func set_display(do_display: bool):
 	if do_display:
-		self.add_theme_stylebox_override("panel", null)
+		self.remove_theme_stylebox_override("panel")
 		$CenterContainer.show()
 	else:
 		self.add_theme_stylebox_override("panel", StyleBoxEmpty.new())
@@ -44,7 +44,7 @@ func set_get_input(do_get_input: bool):
 		_controll_detail_text.text = ""
 	else:
 		set_process_input(false)
-		self.add_theme_stylebox_override("panel", null)
+		self.remove_theme_stylebox_override("panel")
 		_description_text.text = _control_scheme_name
 		_controll_detail_text.text = _control_scheme_detail
 	_get_input = do_get_input

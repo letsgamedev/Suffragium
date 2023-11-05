@@ -3,7 +3,7 @@ extends Node
 const PLAYER_SCENE = preload("res://games/sortit/player.tscn")
 const MIN_JOY_STRENGTH = 0.05
 
-@export var player_colors # (Array, Color)
+@export var player_colors: PackedColorArray
 
 var player_count = 2
 var player_inputs = []

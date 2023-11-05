@@ -17,11 +17,11 @@ func set_players(players: Array):
 		for mesh in player.get_node("Mesh").get_children():
 			# Duplicate mesh and only show it on the mini map
 			var impostor_mesh = mesh.duplicate()
-			(impostor_mesh as MeshInstance3D).set_layer_mask_value(0, false)
 			(impostor_mesh as MeshInstance3D).set_layer_mask_value(1, false)
-			(impostor_mesh as MeshInstance3D).set_layer_mask_value(2, true)
+			(impostor_mesh as MeshInstance3D).set_layer_mask_value(2, false)
+			(impostor_mesh as MeshInstance3D).set_layer_mask_value(3, true)
 			impostor_mesh.cast_shadow = MeshInstance3D.SHADOW_CASTING_SETTING_OFF
-			impostor_mesh.generate_lightmap = false
+			#impostor_mesh.generate_lightmap = false
 			impostor.add_child(impostor_mesh)
 		# Offset impostor to be at correct height
 		impostor.scale *= player_size

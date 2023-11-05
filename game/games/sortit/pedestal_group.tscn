@@ -1,38 +1,38 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://dmqwrol7x1f63"]
 
-[ext_resource path="res://games/sortit/pedestal_group.gd" type="Script" id=1]
-[ext_resource path="res://games/sortit/pedestal.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" path="res://games/sortit/pedestal_group.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://w4e4n1b32yg5" path="res://games/sortit/pedestal.tscn" id="2"]
 
 [node name="PedestalGroup" type="Node3D"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 spacing = 3.0
 
-[node name="0" parent="." instance=ExtResource( 2 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.054, 0 )
+[node name="0" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.054, 0)
 
-[node name="1" parent="." instance=ExtResource( 2 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -1.054, 0 )
+[node name="1" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -1.054, 0)
 
-[node name="2" parent="." instance=ExtResource( 2 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -1.054, 0 )
+[node name="2" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -1.054, 0)
 
-[node name="3" parent="." instance=ExtResource( 2 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -1.054, 0 )
+[node name="3" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -1.054, 0)
 
-[node name="4" parent="." instance=ExtResource( 2 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -1.054, 0 )
+[node name="4" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -1.054, 0)
 
-[node name="5" parent="." instance=ExtResource( 2 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -1.054, 0 )
+[node name="5" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -1.054, 0)
 
-[node name="6" parent="." instance=ExtResource( 2 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, -1.054, 0 )
+[node name="6" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, -1.054, 0)
 
-[node name="7" parent="." instance=ExtResource( 2 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -1.054, 0 )
+[node name="7" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -1.054, 0)
 
-[node name="8" parent="." instance=ExtResource( 2 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -1.054, 0 )
+[node name="8" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -1.054, 0)
 
-[node name="9" parent="." instance=ExtResource( 2 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, -1.054, 0 )
+[node name="9" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, -1.054, 0)

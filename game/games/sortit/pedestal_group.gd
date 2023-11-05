@@ -28,10 +28,10 @@ func dissable():
 		propagate_call("set_process", [false])
 		propagate_call("set_physics_process", [false])
 		propagate_call("set_process_internal", [false])
-		pedestal.set_collision_layer_value(0, false)
-		pedestal.set_collision_mask_value(0, false)
+		pedestal.set_collision_layer_value(1, false)
 		pedestal.set_collision_mask_value(1, false)
 		pedestal.set_collision_mask_value(2, false)
+		pedestal.set_collision_mask_value(3, false)
 
 
 func enable():
@@ -40,10 +40,10 @@ func enable():
 		propagate_call("set_process", [true])
 		propagate_call("set_physics_process", [true])
 		propagate_call("set_process_internal", [true])
-		pedestal.set_collision_layer_value(0, true)
-		pedestal.set_collision_mask_value(0, true)
+		pedestal.set_collision_layer_value(1, true)
 		pedestal.set_collision_mask_value(1, true)
 		pedestal.set_collision_mask_value(2, true)
+		pedestal.set_collision_mask_value(3, true)
 
 
 func set_color(color: Color):

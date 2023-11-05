@@ -7,7 +7,7 @@ const SQRT2 = sqrt(2)
 @export var direction_change_speed: float = 4
 @export var move_speed: int = 1000
 @export var max_speed: float = 5
-@export var atrract_speed: float = 500
+@export var attract_speed: float = 500
 @export var friction: float = 0.7
 @export var angular_friction: float = 0.5
 @export var max_box_distance: float = 5.0
@@ -18,7 +18,7 @@ const SQRT2 = sqrt(2)
 @export var greater_compare_material: Material
 @export var normal_compare_material: Material
 
-# Needs to be set by parrent class
+# Needs to be set by parent class
 var player_index : get = get_player_index, set = set_player_index
 var camera: Camera3D
 var status_display: Control
@@ -64,7 +64,7 @@ func _input(_event):
 	elif _players.is_action_just_pressed("right_magnet", _player_index):
 		right_magnet_active = !right_magnet_active
 
-	# Handel dropping off attached boxes, when dissabeling magnets
+	# Handle dropping off attached boxes, when disabling magnets
 	if last_left_magnet_active and not left_magnet_active and left_box != null:
 		left_box.linear_velocity = Vector3.ZERO
 		left_box.angular_velocity = Vector3.ZERO
@@ -146,7 +146,7 @@ func _move_and_rotate(delta):
 			global_transform.origin.distance_squared_to(_pedestal_position)
 			> pedestal_arrow_display_distance
 		)
-		&& (left_box != null or right_box != null)
+		and (left_box != null or right_box != null)
 	):
 		var pedestal_angle = _get_pedestal_direction_angle()
 		status_display.set_pedestal_direction_angle(pedestal_angle)
@@ -177,7 +177,7 @@ func _attract_block(magnet: Node3D, delta: float):
 		nearest.apply_force(
 			(
 				(anchor - nearest.global_transform.origin)
-				* Vector3(atrract_speed, atrract_speed * 2, atrract_speed)
+				* Vector3(attract_speed, attract_speed * 2, attract_speed)
 				* delta
 			),
 			Vector3(0, 0, 0)

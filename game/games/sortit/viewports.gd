@@ -12,8 +12,8 @@ func _add_viewport_container() -> SubViewport:
 	viewport_container.size_flags_horizontal = SIZE_EXPAND_FILL
 	viewport_container.size_flags_vertical = SIZE_EXPAND_FILL
 	var viewport = SubViewport.new()
-	viewport.shadow_atlas_size = 1
-	viewport.msaa = SubViewport.MSAA_4X
+	viewport.positional_shadow_atlas_size = 1
+	viewport.msaa_3d = SubViewport.MSAA_4X
 	viewport_container.add_child(viewport)
 	# Add viewport container
 	add_child(viewport_container)
@@ -42,7 +42,7 @@ func create_viewports():
 	if player_count == 3:
 		# Move minimap camera into new viewport to fill empty spot
 		var viewport = _add_viewport_container()
-		viewport.shadow_atlas_size = 0  # Disable shadows for mini map
+		viewport.positional_shadow_atlas_size = 0  # Disable shadows for mini map
 		remove_child(_minimap)
 		_minimap.set_players($"../Players".get_children())
 		viewport.add_child(_minimap)

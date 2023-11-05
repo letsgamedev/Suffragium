@@ -22,7 +22,7 @@ func _process(_delta):
 	# Handle boxes falling through the ground (Should not happen)
 	if position.y < -10:
 		push_warning("SortIt: Box dropped through the ground")
-		despawn()
+		_despawn()
 
 
 func stop_despawn():
@@ -101,26 +101,26 @@ func _ready():
 	if not is_black:
 		var mesh_instance = _get_number_mesh_instance()
 		# Add other rotations too (non trival with current version of _get_number_mesh_instance)
-		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANCING), $Up.transform.origin)
-		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANCING), $Down.transform.origin)
-		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANCING), $Left.transform.origin)
-		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANCING), $Right.transform.origin)
-		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANCING), $Forward.transform.origin)
+		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANTIATION), $Up.transform.origin)
+		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANTIATION), $Down.transform.origin)
+		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANTIATION), $Left.transform.origin)
+		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANTIATION), $Right.transform.origin)
+		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANTIATION), $Forward.transform.origin)
 		_add_number_at(mesh_instance, $Backward.transform.origin)
 
 
 func disable_physics(disable: bool) -> void:
 	_collision_shape.disabled = disable
 	if disable:
-		mode = RigidBody3D.FREEZE_MODE_STATIC
+		PhysicsServer3D.body_set_mode(self, PhysicsServer3D.BODY_MODE_STATIC)
 	else:
-		mode = RigidBody3D.MODE_RIGID
+		PhysicsServer3D.body_set_mode(self, PhysicsServer3D.BODY_MODE_RIGID)
 
 
 func _on_despawn_timer_timeout():
-	despawn()
+	_despawn()
 
 
-func despawn() -> void:
+func _despawn() -> void:
 	emit_signal("despawn", number)
 	queue_free()  # kys
