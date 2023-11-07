@@ -83,8 +83,7 @@ func _spawn_chip(player_id := 0):
 	chip.player_id = player_id
 	chip.color = player_colors[player_id]
 	chip.global_position = (
-		_spawners[player_id].global_position
-		+ Vector2(randf_range(-10, 10), randf_range(-10, 10))
+		_spawners[player_id].global_position + Vector2(randf_range(-10, 10), randf_range(-10, 10))
 	)
 	if chip.connect("sleeping_state_changed", Callable(self, "_on_chip_sleep").bind(chip)) != OK:
 		GameManager.end_game("A fatal error occured.")

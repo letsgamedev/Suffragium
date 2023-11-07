@@ -4,8 +4,12 @@ extends PanelContainer
 signal got_input(input_type)
 
 @export var get_input_style: StyleBoxFlat
-@export var get_input: bool: get = get_get_input, set = set_get_input
-@export var display: bool: get = get_display, set = set_display
+@export var get_input: bool:
+	get = get_get_input,
+	set = set_get_input
+@export var display: bool:
+	get = get_display,
+	set = set_display
 
 var _control_scheme_name = ""
 var _control_scheme_detail = ""
@@ -86,9 +90,7 @@ func _input(event):
 	if event is InputEventJoypadButton:
 		if not event.pressed:
 			_control_scheme_name = (
-				input_map[SortItRoot.InputType.JOY]["name"]
-				+ " "
-				+ str(event.device)
+				input_map[SortItRoot.InputType.JOY]["name"] + " " + str(event.device)
 			)
 			_control_scheme_detail = input_map[SortItRoot.InputType.JOY]["control_detail"]
 			emit_signal("got_input", [SortItRoot.InputType.JOY, event.device])

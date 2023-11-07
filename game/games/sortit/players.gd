@@ -42,8 +42,7 @@ func spawn_players():
 		var player_pedestals = _pedestals.get_child(i)
 		var pedestal_position = player_pedestals.global_transform.origin
 		player.global_transform.origin = (
-			Vector3(pedestal_position.x, 1, pedestal_position.z)
-			- Vector3(0, 0, -4)
+			Vector3(pedestal_position.x, 1, pedestal_position.z) - Vector3(0, 0, -4)
 		)
 		# Set player index and color
 		player.player_index = i
@@ -105,9 +104,7 @@ func get_action_strength(action: String, player_index: int) -> float:
 				var negative_button = player_mapping[negative_action]
 				var negative_key = ["keyboard", negative_button, -1]
 				var negative_value = (
-					0.0
-					if not _pressed.has(negative_key)
-					else _pressed[negative_key]
+					0.0 if not _pressed.has(negative_key) else _pressed[negative_key]
 				)
 				# Subtract negative action from positive action, so
 				# that getting the strength of "right" will return -1, if the "left" action is held

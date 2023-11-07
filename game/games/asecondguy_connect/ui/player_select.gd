@@ -18,7 +18,9 @@ func _on_Button_pressed():
 				ai.player_id = player_id
 				_game.add_child(ai)
 # warning-ignore:return_value_discarded
-				_game.connect("chip_spawned", Callable(ai, "_on_chip_spawn").bind(), CONNECT_DEFERRED)
+				_game.connect(
+					"chip_spawned", Callable(ai, "_on_chip_spawn").bind(), CONNECT_DEFERRED
+				)
 		#setup name
 		_game.player_names.push_back(conf.get_name())
 		_game.player_colors.push_back(conf.get_player_color())

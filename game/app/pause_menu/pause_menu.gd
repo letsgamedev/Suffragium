@@ -44,7 +44,9 @@ func add_custom_button(text: String, idx := -1) -> Button:
 	if idx < 0 or _btn_list.get_child_count() == 0:
 		_btn_list.add_child(btn)
 	else:
-		var this_is_a_node: Node = _btn_list.get_child(int(min(idx, _btn_list.get_child_count() - 1)))
+		var this_is_a_node: Node = _btn_list.get_child(
+			int(min(idx, _btn_list.get_child_count() - 1))
+		)
 		this_is_a_node.add_sibling(btn)
 	_btn_list.show()
 	return btn

@@ -27,9 +27,7 @@ func _process(_delta):
 		_start_pickup()
 	if _picked:
 		var pos = (
-			(_timer.wait_time - _timer.time_left)
-			/ _timer.wait_time
-			* _curve.get_baked_length()
+			(_timer.wait_time - _timer.time_left) / _timer.wait_time * _curve.get_baked_length()
 		)
 		chip.target_position = _curve.interpolate_baked(pos, true)
 		if is_equal_approx(pos, _curve.get_baked_length()):

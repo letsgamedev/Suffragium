@@ -61,23 +61,23 @@ var input_map = {
 		"name": "Arrow keys",
 		"control_detail": "Left Magnet: Delete\nRight Magnet: Page Down"
 	},
-#	InputType.JOY:
-#	{
-#		"actions":
-#		{
-#			"left": JOY_AXIS_0,
-#			"right": JOY_AXIS_0,
-#			"up": JOY_AXIS_1,
-#			"down": JOY_AXIS_1,
-#			"left_magnet": JOY_L,
-#			"right_magnet": JOY_R,
-#		},
-#		"name": "Controller",
-#		"control_detail":
-#		"""Joystick to move
-#		Left Magnet: Left Shoulder Button
-#		Right Magnet: Right Shoulder Button"""
-#	}
+	#	InputType.JOY:
+	#	{
+	#		"actions":
+	#		{
+	#			"left": JOY_AXIS_0,
+	#			"right": JOY_AXIS_0,
+	#			"up": JOY_AXIS_1,
+	#			"down": JOY_AXIS_1,
+	#			"left_magnet": JOY_L,
+	#			"right_magnet": JOY_R,
+	#		},
+	#		"name": "Controller",
+	#		"control_detail":
+	#		"""Joystick to move
+	#		Left Magnet: Left Shoulder Button
+	#		Right Magnet: Right Shoulder Button"""
+	#	}
 }
 
 

@@ -104,8 +104,12 @@ func _ready():
 		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANTIATION), $Up.transform.origin)
 		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANTIATION), $Down.transform.origin)
 		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANTIATION), $Left.transform.origin)
-		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANTIATION), $Right.transform.origin)
-		_add_number_at(mesh_instance.duplicate(DUPLICATE_USE_INSTANTIATION), $Forward.transform.origin)
+		_add_number_at(
+			mesh_instance.duplicate(DUPLICATE_USE_INSTANTIATION), $Right.transform.origin
+		)
+		_add_number_at(
+			mesh_instance.duplicate(DUPLICATE_USE_INSTANTIATION), $Forward.transform.origin
+		)
 		_add_number_at(mesh_instance, $Backward.transform.origin)
 
 

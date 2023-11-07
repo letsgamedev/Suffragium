@@ -64,9 +64,7 @@ func _attract_box(to_attract_box: SortItBox, strength: float, delta: float):
 	var integral_error = _current_attract_total_error + proportional_error
 	var derivatve_error = proportional_error - _current_attract_last_error
 	var action_vector = (
-		p_gain * proportional_error
-		+ i_gain * integral_error
-		+ d_gain * derivatve_error
+		p_gain * proportional_error + i_gain * integral_error + d_gain * derivatve_error
 	)
 	# Apply force
 	var strength_vector = Vector3(strength, strength, strength)

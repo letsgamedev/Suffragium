@@ -1,10 +1,14 @@
 @tool
 extends StaticBody2D
 
-@export var tile_size := Vector2(25, 25): set = set_tile_size
-@export var grid_size := Vector2(7, 6): set = set_grid_size
-@export var grid_color := Color.BLACK: set = set_grid_color
-@export var circle_size := .4: set = set_circle_size
+@export var tile_size := Vector2(25, 25):
+	set = set_tile_size
+@export var grid_size := Vector2(7, 6):
+	set = set_grid_size
+@export var grid_color := Color.BLACK:
+	set = set_grid_color
+@export var circle_size := .4:
+	set = set_circle_size
 
 # helper for global_to_grid_pos()
 var _bounds := Rect2(Vector2(), grid_size)

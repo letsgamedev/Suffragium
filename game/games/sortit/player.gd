@@ -19,7 +19,9 @@ const SQRT2 = sqrt(2)
 @export var normal_compare_material: Material
 
 # Needs to be set by parent class
-var player_index : get = get_player_index, set = set_player_index
+var player_index:
+	get = get_player_index,
+	set = set_player_index
 var camera: Camera3D
 var status_display: Control
 
@@ -155,8 +157,7 @@ func _move_and_rotate(delta):
 		status_display.set_display_pointing_arrow(false)
 	# Update camera position with correctly rotated offset
 	camera.transform.origin = (
-		transform.origin
-		+ camera_offset.rotated(Vector3.UP, camera.rotation.y + PI / 2)
+		transform.origin + camera_offset.rotated(Vector3.UP, camera.rotation.y + PI / 2)
 	)
 	_last_direction = actual_direction
 

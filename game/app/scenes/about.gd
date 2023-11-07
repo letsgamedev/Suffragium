@@ -38,12 +38,12 @@ func scroll_to(previous_tab: int, section: Section) -> void:
 		var max_y = $MC.size.y - size.y
 		var pos_y: float = _section_titles[section].position.y
 		var scroll_y = clamp(pos_y, 0, max_y)
-		tween.tween_property(
-			self,
-			"scroll_vertical",
-			scroll_y,
-			0.4
-		).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+		(
+			tween
+			. tween_property(self, "scroll_vertical", scroll_y, 0.4)
+			. set_trans(Tween.TRANS_QUAD)
+			. set_ease(Tween.EASE_IN_OUT)
+		)
 	else:
 		# workaround: when node was not visible yet, position.y is 0
 		await get_tree().process_frame
@@ -90,7 +90,7 @@ func _write_title(txt: String) -> void:
 
 func _get_link_info(txt: String) -> Dictionary:
 	var regex: RegEx = RegEx.new()
-	regex.compile("\\[([\\w ]+)\\]\\((https?:\\/\\/[\\w\\/.\\-#]+) ?(\"[\\w ,-äöüÄÖÜ]+\")?\\)")
+	regex.compile('\\[([\\w ]+)\\]\\((https?:\\/\\/[\\w\\/.\\-#]+) ?("[\\w ,-äöüÄÖÜ]+")?\\)')
 	var regex_match: RegExMatch = regex.search(txt)
 	var is_link: bool = regex_match != null
 	return {

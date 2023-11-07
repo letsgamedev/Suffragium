@@ -1,7 +1,9 @@
 @tool
 extends Node3D
 
-@export var spacing: float: get = get_spacing, set = set_spacing
+@export var spacing: float:
+	get = get_spacing,
+	set = set_spacing
 
 var pedestal_numbers = []
 var correct_count = 0

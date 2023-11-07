@@ -92,10 +92,7 @@ func _on_destroy(color: Color, button = null):
 		points += 1
 		_delete_all()
 		if button is TextureButton:
-			_particles.global_position = (
-				button.global_position
-				+ button.size / 2 * button.scale
-			)
+			_particles.global_position = (button.global_position + button.size / 2 * button.scale)
 			_particles.restart()
 		_respawn_timer.start()
 	else:

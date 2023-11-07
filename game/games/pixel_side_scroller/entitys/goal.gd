@@ -1,7 +1,8 @@
 @tool
 extends Area2D
 
-@export var trigger_size: Vector2 = Vector2(10, 10): set = _set_trigger_size
+@export var trigger_size: Vector2 = Vector2(10, 10):
+	set = _set_trigger_size
 var _triggered: bool = false
 @onready var _main = get_tree().current_scene
 
