@@ -1,5 +1,5 @@
 build-base:
-    FROM barichello/godot-ci:3.4.4
+    FROM barichello/godot-ci:4.1.2
 
     WORKDIR game
     COPY ./game .

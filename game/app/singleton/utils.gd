@@ -5,9 +5,9 @@ func open_url(url: String):
 	Utils.handle_error(OS.shell_open(url))
 
 
-func change_scene(scene_path: String):
+func change_scene_to_file(scene_path: String):
 	return print_error(
-		get_tree().change_scene(scene_path), "Could not change scene to '%s'", [scene_path]
+		get_tree().change_scene_to_file(scene_path), "Could not change scene to '%s'", [scene_path]
 	)
 
 

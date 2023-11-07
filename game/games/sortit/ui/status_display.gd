@@ -2,14 +2,14 @@ extends VBoxContainer
 
 const STATUS_TEXT = "%d points"
 
-export(float) var arrow_corner_separation = 10
-export(float) var arrow_screen_size_fraction = 0.3
+@export var arrow_corner_separation: float = 10
+@export var arrow_screen_size_fraction: float = 0.3
 
 var _display_pointing_arrow = false
 var _last_viewport_height = 0
 
-onready var _pointing_arrow: Sprite = $PoinitingArrow
-onready var _screen_height: int = OS.get_screen_size().y
+@onready var _pointing_arrow: Sprite2D = $PoinitingArrow
+@onready var _screen_height: int = DisplayServer.screen_get_size().y
 
 
 func display_score(score: int):

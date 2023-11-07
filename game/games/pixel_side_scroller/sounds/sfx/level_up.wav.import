@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/level_up.wav-32031db045238f9a8a20085414257281.sample"
+type="AudioStreamWAV"
+uid="uid://crb4655mkcmce"
+path="res://.godot/imported/level_up.wav-32031db045238f9a8a20085414257281.sample"
 
 [deps]
 
 source_file="res://games/pixel_side_scroller/sounds/sfx/level_up.wav"
-dest_files=[ "res://.import/level_up.wav-32031db045238f9a8a20085414257281.sample" ]
+dest_files=["res://.godot/imported/level_up.wav-32031db045238f9a8a20085414257281.sample"]
 
 [params]
 

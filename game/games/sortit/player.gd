@@ -1,26 +1,28 @@
 class_name SortItPlayer
-extends KinematicBody
+extends CharacterBody3D
 
 const SQRT2 = sqrt(2)
 
-export(bool) var old_rotational_controls = false
-export(float) var direction_change_speed = 4
-export(int) var move_speed = 1000
-export(float) var max_speed = 5
-export(float) var atrract_speed = 500
-export(float) var friction = 0.7
-export(float) var angular_friction = 0.5
-export(float) var max_box_distance = 5.0
-export(float) var attracted_distance = 2.7
-export(float) var camera_rotate_speed = 0.8
-export(float) var pedestal_arrow_display_distance = 200
-export(Vector3) var camera_offset = Vector3(-8, 20, 0)
-export(Material) var greater_compare_material
-export(Material) var normal_compare_material
+@export var old_rotational_controls: bool = false
+@export var direction_change_speed: float = 4
+@export var move_speed: int = 1000
+@export var max_speed: float = 5
+@export var attract_speed: float = 500
+@export var friction: float = 0.7
+@export var angular_friction: float = 0.5
+@export var max_box_distance: float = 5.0
+@export var attracted_distance: float = 2.7
+@export var camera_rotate_speed: float = 0.8
+@export var pedestal_arrow_display_distance: float = 200
+@export var camera_offset: Vector3 = Vector3(-8, 20, 0)
+@export var greater_compare_material: Material
+@export var normal_compare_material: Material
 
-# Needs to be set by parrent class
-var player_index setget set_player_index, get_player_index
-var camera: Camera
+# Needs to be set by parent class
+var player_index:
+	get = get_player_index,
+	set = set_player_index
+var camera: Camera3D
 var status_display: Control
 
 var left_magnet_active = false
@@ -34,10 +36,10 @@ var _last_direction = Vector3.ZERO
 var _velocity = Vector3.ZERO
 var _angular_velocity = 0.0
 var _pedestal_position: Vector3
-onready var _left_anchor = $LeftMagnet/Anchor
-onready var _right_anchor = $RightMagnet/Anchor
-onready var _players = get_parent()
-onready var _main_body_mesh = $Mesh/MainBody
+@onready var _left_anchor = $LeftMagnet/Anchor
+@onready var _right_anchor = $RightMagnet/Anchor
+@onready var _players = get_parent()
+@onready var _main_body_mesh = $Mesh/MainBody
 
 
 func set_player_index(new_player_index: int):
@@ -51,7 +53,7 @@ func get_player_index() -> int:
 
 
 func set_color(color: Color):
-	var material: SpatialMaterial = _main_body_mesh.mesh.surface_get_material(0).duplicate()
+	var material: StandardMaterial3D = _main_body_mesh.mesh.surface_get_material(0).duplicate()
 	material.albedo_color = color
 	_main_body_mesh.mesh.surface_set_material(0, material)
 
@@ -64,7 +66,7 @@ func _input(_event):
 	elif _players.is_action_just_pressed("right_magnet", _player_index):
 		right_magnet_active = !right_magnet_active
 
-	# Handel dropping off attached boxes, when dissabeling magnets
+	# Handle dropping off attached boxes, when disabling magnets
 	if last_left_magnet_active and not left_magnet_active and left_box != null:
 		left_box.linear_velocity = Vector3.ZERO
 		left_box.angular_velocity = Vector3.ZERO
@@ -135,7 +137,8 @@ func _move_and_rotate(delta):
 		0,
 		clamp(actual_direction.z + _velocity.z, -max_speed, max_speed)
 	)
-	move_and_slide(Vector3(-_velocity.z, -0.5, _velocity.x) * delta * move_speed)
+	set_velocity(Vector3(-_velocity.z, -0.5, _velocity.x) * delta * move_speed)
+	move_and_slide()
 	# Look in movement direction (old controls only)
 	if direction != Vector3.ZERO and old_rotational_controls:
 		rotation.y = atan2(-_velocity.x, -_velocity.z)
@@ -145,7 +148,7 @@ func _move_and_rotate(delta):
 			global_transform.origin.distance_squared_to(_pedestal_position)
 			> pedestal_arrow_display_distance
 		)
-		&& (left_box != null or right_box != null)
+		and (left_box != null or right_box != null)
 	):
 		var pedestal_angle = _get_pedestal_direction_angle()
 		status_display.set_pedestal_direction_angle(pedestal_angle)
@@ -154,14 +157,13 @@ func _move_and_rotate(delta):
 		status_display.set_display_pointing_arrow(false)
 	# Update camera position with correctly rotated offset
 	camera.transform.origin = (
-		transform.origin
-		+ camera_offset.rotated(Vector3.UP, camera.rotation.y + PI / 2)
+		transform.origin + camera_offset.rotated(Vector3.UP, camera.rotation.y + PI / 2)
 	)
 	_last_direction = actual_direction
 
 
-func _attract_block(magnet: Spatial, delta: float):
-	var area: Area = magnet.get_node("Area")
+func _attract_block(magnet: Node3D, delta: float):
+	var area: Area3D = magnet.get_node("Area3D")
 	var anchor: Vector3 = magnet.get_node("Anchor").global_transform.origin
 	# Get nearest box in area
 	var nearest = null
@@ -173,10 +175,10 @@ func _attract_block(magnet: Spatial, delta: float):
 			nearest = box
 	if nearest != null:
 		# Apply force to move nearest box towards the magnet anchor
-		nearest.add_force(
+		nearest.apply_force(
 			(
 				(anchor - nearest.global_transform.origin)
-				* Vector3(atrract_speed, atrract_speed * 2, atrract_speed)
+				* Vector3(attract_speed, attract_speed * 2, attract_speed)
 				* delta
 			),
 			Vector3(0, 0, 0)
@@ -195,7 +197,7 @@ func _attract_boxes(delta: float):
 		right_box = _attract_block($RightMagnet, delta)
 
 
-func _stick_box(box: RigidBody, anchor: Vector3):
+func _stick_box(box: RigidBody3D, anchor: Vector3):
 	box.global_transform.origin = anchor  # Keep box at anchor position
 	# Keep box rotation in line with the magnet direction (1, 0, 0)
 	box.look_at(anchor - (Vector3(-1, 0, 0)).rotated(Vector3.UP, rotation.y), Vector3.UP)
@@ -212,18 +214,18 @@ func _stick_boxes():
 # (important for sorting black boxes)
 func _update_comperators():
 	if left_box == null or right_box == null:
-		_main_body_mesh.set_surface_material(2, normal_compare_material)
-		_main_body_mesh.set_surface_material(1, normal_compare_material)
+		_main_body_mesh.set_surface_override_material(2, normal_compare_material)
+		_main_body_mesh.set_surface_override_material(1, normal_compare_material)
 		return
 	if (left_box as SortItBox).number > (right_box as SortItBox).number:
-		_main_body_mesh.set_surface_material(2, greater_compare_material)
-		_main_body_mesh.set_surface_material(1, normal_compare_material)
+		_main_body_mesh.set_surface_override_material(2, greater_compare_material)
+		_main_body_mesh.set_surface_override_material(1, normal_compare_material)
 	elif (left_box as SortItBox).number < (right_box as SortItBox).number:
-		_main_body_mesh.set_surface_material(2, normal_compare_material)
-		_main_body_mesh.set_surface_material(1, greater_compare_material)
+		_main_body_mesh.set_surface_override_material(2, normal_compare_material)
+		_main_body_mesh.set_surface_override_material(1, greater_compare_material)
 	else:
-		_main_body_mesh.set_surface_material(2, greater_compare_material)
-		_main_body_mesh.set_surface_material(1, greater_compare_material)
+		_main_body_mesh.set_surface_override_material(2, greater_compare_material)
+		_main_body_mesh.set_surface_override_material(1, greater_compare_material)
 
 
 func _physics_process(delta):

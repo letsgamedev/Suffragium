@@ -1,7 +1,7 @@
 extends MarginContainer
 
 var close_menu := false
-onready var _pc := $PC
+@onready var _pc := $PC
 
 
 func _ready():
@@ -16,7 +16,7 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if !_pc.get_rect().has_point(event.position):
 			hide()
-			get_tree().set_input_as_handled()
+			get_viewport().set_input_as_handled()
 
 
 func _on_Help_visibility_changed():

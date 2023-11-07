@@ -3,7 +3,7 @@ extends Node
 const PLAYER_SCENE = preload("res://games/sortit/player.tscn")
 const MIN_JOY_STRENGTH = 0.05
 
-export(Array, Color) var player_colors
+@export var player_colors: PackedColorArray
 
 var player_count = 2
 var player_inputs = []
@@ -11,8 +11,8 @@ var player_inputs = []
 var _pressed = {}
 var _just_pressed = {}
 
-onready var input_map = $"../../".input_map as Dictionary
-onready var _pedestals = $"../Pedestals"
+@onready var input_map = $"../../".input_map as Dictionary
+@onready var _pedestals = $"../Pedestals"
 
 
 func set_player_colors_on_ground_plane():
@@ -27,7 +27,7 @@ func set_player_colors_on_ground_plane():
 		else:
 			# Slightly desaturate grid lines to avoid drawing to much attention away
 			color = Color.from_hsv(color.h, color.s * 0.8, color.v, color.a)
-		ground_material.set_shader_param("player_color_" + str(i), color)
+		ground_material.set_shader_parameter("player_color_" + str(i), color)
 
 
 func spawn_players():
@@ -36,14 +36,13 @@ func spawn_players():
 		pedestal.dissable()
 	for i in range(player_count):
 		# Instance new player
-		var player = PLAYER_SCENE.instance(PackedScene.GEN_EDIT_STATE_INSTANCE)
+		var player = PLAYER_SCENE.instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
 		add_child(player)
 		# Set player position next to assigned pedestals
 		var player_pedestals = _pedestals.get_child(i)
 		var pedestal_position = player_pedestals.global_transform.origin
 		player.global_transform.origin = (
-			Vector3(pedestal_position.x, 1, pedestal_position.z)
-			- Vector3(0, 0, -4)
+			Vector3(pedestal_position.x, 1, pedestal_position.z) - Vector3(0, 0, -4)
 		)
 		# Set player index and color
 		player.player_index = i
@@ -105,9 +104,7 @@ func get_action_strength(action: String, player_index: int) -> float:
 				var negative_button = player_mapping[negative_action]
 				var negative_key = ["keyboard", negative_button, -1]
 				var negative_value = (
-					0.0
-					if not _pressed.has(negative_key)
-					else _pressed[negative_key]
+					0.0 if not _pressed.has(negative_key) else _pressed[negative_key]
 				)
 				# Subtract negative action from positive action, so
 				# that getting the strength of "right" will return -1, if the "left" action is held
@@ -144,7 +141,7 @@ func is_action_pressed(action: String, player_index: int) -> bool:
 func _input(event: InputEvent):
 	_just_pressed.clear()
 	if event is InputEventKey and not event.echo:
-		var key = ["keyboard", event.scancode, -1]
+		var key = ["keyboard", event.keycode, -1]
 		if event.pressed:
 			_pressed[key] = 1.0
 			_just_pressed[key] = true

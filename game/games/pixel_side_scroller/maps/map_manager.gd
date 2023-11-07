@@ -5,17 +5,18 @@ var map_count := 0
 var map_boundary: Dictionary
 var _maps: Array = []
 
-onready var _main = get_tree().current_scene
+@onready var _main = get_tree().current_scene
 
 
 func find_maps():
 	var path: String = "res://games/pixel_side_scroller/maps"
 	var map_names: Array = []
-	var dir: Directory = Directory.new()
+	var dir: DirAccess = DirAccess.new()
 	if dir.open(path) != OK:
 		push_error("Could not open directory %s" % path)
 		return
-	if dir.list_dir_begin(true, true) != OK:
+	if dir.list_dir_begin() != OK:  # TODOConverter3To4 fill missing arguments
+		# https://github.com/godotengine/godot/pull/40547
 		push_error("Could list_dir_begin directory %s" % path)
 		return
 	while true:
@@ -51,7 +52,7 @@ func _load_map(name_name: String) -> bool:
 	var new_map_load = load("res://games/pixel_side_scroller/maps/" + name_name + ".tscn")
 	if not new_map_load:
 		return false
-	var new_map = new_map_load.instance()
+	var new_map = new_map_load.instantiate()
 	# Check for spawn and goal
 	if (
 		not is_instance_valid(new_map.get_node("Spawn"))
@@ -88,7 +89,7 @@ func _calculate_map_boundary(map) -> Dictionary:
 		if child is Node2D:
 			child_position = child.position
 		if child is Label:
-			child_position = child.rect_position
+			child_position = child.position
 		if child_position == null:
 			continue
 		boundary["x_min"] = min(boundary["x_min"], child_position.x)

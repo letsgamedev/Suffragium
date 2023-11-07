@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cbvb5lv2ivxnl"]
 
-[ext_resource path="res://app/scenes/splash_screen/logo_splash.tscn" type="PackedScene" id=2]
-[ext_resource path="res://app/scenes/menu.tscn" type="PackedScene" id=3]
+[ext_resource type="PackedScene" uid="uid://jtmtl7rqfkcf" path="res://app/scenes/splash_screen/logo_splash.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://d2yw5b0fmnmkv" path="res://app/scenes/menu.tscn" id="3"]
 
 [node name="SplashedMenu" type="Node"]
 
-[node name="Menu" parent="." instance=ExtResource( 3 )]
+[node name="Menu" parent="." instance=ExtResource("3")]
 
-[node name="LogoSplash" parent="." instance=ExtResource( 2 )]
+[node name="LogoSplash" parent="." instance=ExtResource("2")]

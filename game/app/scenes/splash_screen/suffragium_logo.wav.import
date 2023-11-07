@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/suffragium_logo.wav-f7ca717f2ac54e847726927f4a5c2711.sample"
+type="AudioStreamWAV"
+uid="uid://dhxlgs4syw6fn"
+path="res://.godot/imported/suffragium_logo.wav-f7ca717f2ac54e847726927f4a5c2711.sample"
 
 [deps]
 
 source_file="res://app/scenes/splash_screen/suffragium_logo.wav"
-dest_files=[ "res://.import/suffragium_logo.wav-f7ca717f2ac54e847726927f4a5c2711.sample" ]
+dest_files=["res://.godot/imported/suffragium_logo.wav-f7ca717f2ac54e847726927f4a5c2711.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

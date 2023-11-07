@@ -18,8 +18,8 @@ const COLORS = {
 	PURPLE = Color(0.2, 0, 0.35),
 }
 
-export var tile_count: int = 22
-export var white_space: float = 80.0
+@export var tile_count: int = 22
+@export var white_space: int = 80
 
 var color_scheme: int = ColorScheme.CLASSIC
 
@@ -36,7 +36,7 @@ var _high_score: int = 0
 var _collected_delta: float = 0.0
 var _game_paused: bool = false
 
-onready var _main = get_tree().get_current_scene()
+@onready var _main = get_tree().get_current_scene()
 
 
 func _ready():
@@ -91,12 +91,12 @@ func _input(_event):
 
 
 func redraw():
-	update()  # triggers NOTIFICATION_DRAW of CanvasItem / _draw()
+	queue_redraw()  # triggers NOTIFICATION_DRAW of CanvasItem / _draw()
 
 
 func _calc_tile_size():
-	var spacing = Vector2(white_space * 2, white_space * 2)
-	var slice = (OS.get_window_size() - spacing) / tile_count
+	var spacing = Vector2i(white_space * 2, white_space * 2)
+	var slice = (get_window().get_size() - spacing) / tile_count
 	var size = 0
 	if slice.x > slice.y:
 		size = slice.y
@@ -107,7 +107,7 @@ func _calc_tile_size():
 
 func _set_playfield():
 	var size = _tile_size * tile_count
-	get_parent().rect_min_size = Vector2(size, size)
+	get_parent().custom_minimum_size = Vector2(size, size)
 
 
 func _set_game_paused(value: bool):
@@ -129,7 +129,7 @@ func _set_apple():
 
 
 func _turn_snake():
-	if _input_stack.empty():
+	if _input_stack.is_empty():
 		return
 	var dir = _input_stack.pop_front()
 	match dir:
@@ -184,8 +184,8 @@ func _game_over():
 		_high_score = _score
 	_main.display_score(_score)
 	_main.display_highscore(_high_score)
-	var message = TranslationServer.translate("T_SNAKE_END_MESSAGE")
-	GameManager.end_game(message % _score, _score)
+	var message = TranslationServer.translate("T_SNAKE_END_MESSAGE") % _score
+	GameManager.end_game(message, _score)
 	_score = 0
 
 
@@ -196,7 +196,7 @@ func _check_for_apple(new_head_pos: Vector2):
 		_score += 1
 		_main.display_score(_score)
 	else:
-		_snake.remove(0)
+		_snake.remove_at(0)
 
 
 func _draw_snake():
@@ -214,7 +214,7 @@ func _draw_colored_snake_part(snake_part, weight):
 	if color_scheme == ColorScheme.CLASSIC:
 		color = COLORS.SNAKE_COLOR
 	elif color_scheme == ColorScheme.FIREFLY:
-		color = COLORS.FIREFLY_END.linear_interpolate(COLORS.FIREFLY_START, weight)
+		color = COLORS.FIREFLY_END.lerp(COLORS.FIREFLY_START, weight)
 	elif color_scheme == ColorScheme.MATCHSTICK:
 		if weight == 1:
 			color = COLORS.MATCHSTICK_HEAD
@@ -244,7 +244,7 @@ func _draw_colored_snake_part(snake_part, weight):
 			color1 = COLORS.BLUE
 			color2 = COLORS.PURPLE
 			sub_weight = weight * 4
-		color = color2.linear_interpolate(color1, sub_weight)
+		color = color2.lerp(color1, sub_weight)
 	_draw_square(snake_part, color)
 
 

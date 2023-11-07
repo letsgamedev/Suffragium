@@ -2,8 +2,8 @@ extends Area2D
 
 var time := 0.0
 
-onready var _main = get_tree().current_scene
-onready var _polygon = $StarPolygon
+@onready var _main = get_tree().current_scene
+@onready var _polygon = $StarPolygon
 
 
 # Called when the node enters the scene tree for the first time.
@@ -26,7 +26,7 @@ func _process(delta) -> void:
 func _on_Star_body_entered(body: Node) -> void:
 	if not self.visible:
 		return
-	if body is KinematicBody2D and body.is_in_group("Player"):
+	if body is CharacterBody2D and body.is_in_group("Player"):
 		self.visible = false
 		_main.collected_star()
 		$CollectStar.play()

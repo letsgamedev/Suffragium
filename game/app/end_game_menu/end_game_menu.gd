@@ -2,8 +2,7 @@ extends CanvasLayer
 
 var _game_config = null
 
-onready var _main := $Control
-onready var _label := $Control/CC/VC/Label
+@onready var _label := $Control/CC/VC/Label
 
 
 func _ready():
@@ -18,11 +17,11 @@ func _input(event: InputEvent):
 		return
 
 	if event.is_action_pressed("ui_cancel"):
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 		_on_ButtonMenu_pressed()
 	elif event.is_action_pressed("ui_accept"):
 		_on_ButtonRestart_pressed()
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 
 
 func open(text, game_config):
@@ -48,4 +47,4 @@ func _on_ButtonRestart_pressed():
 
 func _on_ButtonMenu_pressed():
 	close()
-	Utils.change_scene(GameManager.MENU_PATH)
+	Utils.change_scene_to_file(GameManager.MENU_PATH)

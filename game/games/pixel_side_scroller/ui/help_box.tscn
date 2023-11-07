@@ -1,21 +1,21 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://games/pixel_side_scroller/ui/help_box.gd" type="Script" id=1]
-[ext_resource path="res://shared/fonts/press_start2p/press_start2p_regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://shared/fonts/press_start2p/press_start2p_regular.ttf" type="FontFile" id=2]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 size = 8
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="FontFile" id=3]
 size = 8
 font_data = ExtResource( 2 )
 
 [node name="HelpBox" type="Control"]
-margin_right = 200.0
-margin_bottom = 200.0
+offset_right = 200.0
+offset_bottom = 200.0
 grow_horizontal = 0
 script = ExtResource( 1 )
 
@@ -23,7 +23,7 @@ script = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 1 )
+theme_override_styles/panel = SubResource( 1 )
 tabs_visible = false
 
 [node name="MOVE" type="Control" parent="TabContainer"]
@@ -33,7 +33,7 @@ anchor_bottom = 1.0
 [node name="Label" type="Label" parent="TabContainer/MOVE"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 2 )
+theme_override_fonts/font = SubResource( 2 )
 text = "press <A> or <D> to move"
 align = 1
 valign = 1
@@ -46,7 +46,7 @@ anchor_bottom = 1.0
 [node name="Label" type="Label" parent="TabContainer/JUMP"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource( 3 )
 text = "press <SPACE> to jump"
 align = 1
 valign = 1

@@ -1,13 +1,18 @@
-[gd_resource type="Theme" load_steps=16 format=2]
+[gd_resource type="Theme" load_steps=16 format=3 uid="uid://chx3m12bb6mw7"]
 
-[ext_resource path="res://shared/fonts/roboto/roboto_black.ttf" type="DynamicFontData" id=1]
+[ext_resource type="FontFile" uid="uid://mxmtthgx84lh" path="res://shared/fonts/roboto/roboto_black.ttf" id="1"]
 
-[sub_resource type="DynamicFont" id=1]
-size = 25
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="1"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.156863, 0.176471, 0.239216, 1 )
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(0.156863, 0.176471, 0.239216, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -15,15 +20,15 @@ corner_radius_bottom_left = 8
 expand_margin_left = 5.0
 expand_margin_right = 5.0
 
-[sub_resource type="StyleBoxEmpty" id=17]
+[sub_resource type="StyleBoxEmpty" id="17"]
 
-[sub_resource type="StyleBoxFlat" id=18]
-bg_color = Color( 0.419608, 0.537255, 0.894118, 1 )
+[sub_resource type="StyleBoxFlat" id="18"]
+bg_color = Color(0.419608, 0.537255, 0.894118, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 1, 1, 1, 1 )
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -31,9 +36,9 @@ corner_radius_bottom_left = 8
 expand_margin_left = 5.0
 expand_margin_right = 5.0
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id="5"]
 content_margin_left = 0.0
-bg_color = Color( 0.419608, 0.537255, 0.894118, 1 )
+bg_color = Color(0.419608, 0.537255, 0.894118, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -41,8 +46,8 @@ corner_radius_bottom_left = 8
 expand_margin_left = 5.0
 expand_margin_right = 5.0
 
-[sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 0.219608, 0.392157, 0.909804, 1 )
+[sub_resource type="StyleBoxFlat" id="6"]
+bg_color = Color(0.219608, 0.392157, 0.909804, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -50,73 +55,89 @@ corner_radius_bottom_left = 8
 expand_margin_left = 3.0
 expand_margin_right = 3.0
 
-[sub_resource type="StyleBoxFlat" id=28]
+[sub_resource type="StyleBoxFlat" id="28"]
 border_width_top = 2
 border_width_bottom = 2
-border_color = Color( 1, 1, 1, 1 )
+border_color = Color(1, 1, 1, 1)
 expand_margin_left = 9.0
 expand_margin_right = 9.0
 
-[sub_resource type="DynamicFont" id=11]
-size = 25
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="11"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="StyleBoxFlat" id=13]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
+[sub_resource type="StyleBoxFlat" id="13"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 draw_center = false
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color( 1, 1, 1, 1 )
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
-[sub_resource type="DynamicFont" id=27]
-size = 17
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="27"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="DynamicFont" id=23]
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="23"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="StyleBoxEmpty" id=24]
+[sub_resource type="StyleBoxEmpty" id="24"]
 
-[sub_resource type="StyleBoxFlat" id=25]
+[sub_resource type="StyleBoxFlat" id="25"]
 
-[sub_resource type="StyleBoxFlat" id=26]
-bg_color = Color( 0.160784, 0.160784, 0.196078, 1 )
+[sub_resource type="StyleBoxFlat" id="26"]
+bg_color = Color(0.160784, 0.160784, 0.196078, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 1, 1, 1, 1 )
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [resource]
-Button/colors/font_color = Color( 1, 1, 1, 1 )
-Button/colors/font_color_focus = Color( 1, 1, 1, 1 )
-Button/colors/font_color_hover = Color( 1, 1, 1, 1 )
-Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
-Button/fonts/font = SubResource( 1 )
-Button/styles/disabled = SubResource( 2 )
-Button/styles/focus = SubResource( 17 )
-Button/styles/hover = SubResource( 18 )
-Button/styles/normal = SubResource( 5 )
-Button/styles/pressed = SubResource( 6 )
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_color_focus = Color(1, 1, 1, 1)
+Button/colors/font_color_hover = Color(1, 1, 1, 1)
+Button/colors/font_color_pressed = Color(1, 1, 1, 1)
+Button/fonts/font = SubResource("1")
+Button/styles/disabled = SubResource("2")
+Button/styles/focus = SubResource("17")
+Button/styles/hover = SubResource("18")
+Button/styles/normal = SubResource("5")
+Button/styles/pressed = SubResource("6")
 HSeparator/constants/separation = 5
-HSeparator/styles/separator = SubResource( 28 )
-Label/fonts/font = SubResource( 11 )
-PanelContainer/styles/panel = SubResource( 13 )
-RichTextLabel/fonts/normal_font = SubResource( 27 )
-TabContainer/colors/font_color_bg = Color( 0.0509804, 0.0509804, 0.0509804, 1 )
-TabContainer/colors/font_color_fg = Color( 1, 1, 1, 1 )
+HSeparator/styles/separator = SubResource("28")
+Label/fonts/font = SubResource("11")
+PanelContainer/styles/panel = SubResource("13")
+RichTextLabel/fonts/normal_font = SubResource("27")
+TabContainer/colors/font_color_bg = Color(0.0509804, 0.0509804, 0.0509804, 1)
+TabContainer/colors/font_color_fg = Color(1, 1, 1, 1)
 TabContainer/constants/side_margin = 0
-TabContainer/fonts/font = SubResource( 23 )
-TabContainer/styles/panel = SubResource( 24 )
-TabContainer/styles/tab_bg = SubResource( 25 )
-TabContainer/styles/tab_fg = SubResource( 26 )
+TabContainer/fonts/font = SubResource("23")
+TabContainer/styles/panel = SubResource("24")
+TabContainer/styles/tab_bg = SubResource("25")
+TabContainer/styles/tab_fg = SubResource("26")

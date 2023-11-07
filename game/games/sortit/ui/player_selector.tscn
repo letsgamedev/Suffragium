@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://shared/fonts/roboto/roboto_black.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://shared/fonts/roboto/roboto_black.ttf" type="FontFile" id=1]
 [ext_resource path="res://games/sortit/ui/player_select.tscn" type="PackedScene" id=2]
 [ext_resource path="res://games/sortit/ui/player_selector.gd" type="Script" id=3]
 [ext_resource path="res://games/sortit/assets/style/theme.tres" type="Theme" id=4]
@@ -8,7 +8,7 @@
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.117647, 0.117647, 0.141176, 1 )
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="FontFile" id=12]
 size = 30
 font_data = ExtResource( 1 )
 
@@ -27,7 +27,7 @@ expand_margin_right = 5.0
 
 [sub_resource type="StyleBoxEmpty" id=31]
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="FontFile" id=9]
 size = 20
 font_data = ExtResource( 1 )
 
@@ -41,140 +41,140 @@ expand_margin_left = 3.0
 expand_margin_right = 3.0
 
 [node name="PlayerSelector" type="PanelContainer"]
-margin_right = 1024.0
-margin_bottom = 600.0
+offset_right = 1024.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 4 )
-custom_styles/panel = SubResource( 8 )
+theme_override_styles/panel = SubResource( 8 )
 script = ExtResource( 3 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+offset_right = 1024.0
+offset_bottom = 600.0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 1014.0
-margin_bottom = 590.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 1014.0
+offset_bottom = 590.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 1004.0
-margin_bottom = 36.0
+offset_right = 1004.0
+offset_bottom = 36.0
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="Placeholder" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 404.0
-margin_bottom = 36.0
+offset_right = 404.0
+offset_bottom = 36.0
 size_flags_horizontal = 3
 alignment = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 408.0
-margin_right = 596.0
-margin_bottom = 36.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 12 )
+offset_left = 408.0
+offset_right = 596.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color( 1, 1, 1, 1 )
+theme_override_fonts/font = SubResource( 12 )
 text = "Setup Players"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 600.0
-margin_right = 1004.0
-margin_bottom = 36.0
+offset_left = 600.0
+offset_right = 1004.0
+offset_bottom = 36.0
 size_flags_horizontal = 3
 alignment = 2
 
 [node name="HelpButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
-margin_left = 391.0
-margin_right = 404.0
-margin_bottom = 36.0
+offset_left = 391.0
+offset_right = 404.0
+offset_bottom = 36.0
 size_flags_horizontal = 0
-custom_styles/normal = SubResource( 22 )
+theme_override_styles/normal = SubResource( 22 )
 text = "?"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 40.0
-margin_right = 1004.0
-margin_bottom = 545.0
+offset_top = 40.0
+offset_right = 1004.0
+offset_bottom = 545.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 100
-custom_constants/margin_top = 10
-custom_constants/margin_left = 100
-custom_constants/margin_bottom = -20
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_bottom = -20
 
 [node name="Players" type="GridContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
-margin_left = 100.0
-margin_top = 10.0
-margin_right = 904.0
-margin_bottom = 525.0
+offset_left = 100.0
+offset_top = 10.0
+offset_right = 904.0
+offset_bottom = 525.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/vseparation = 20
-custom_constants/hseparation = 20
+theme_override_constants/v_separation = 20
+theme_override_constants/h_separation = 20
 columns = 2
 
 [node name="Player 1" parent="MarginContainer/VBoxContainer/MarginContainer/Players" instance=ExtResource( 2 )]
-margin_bottom = 248.0
+offset_bottom = 248.0
 get_input = true
 display = true
 
 [node name="Player 2" parent="MarginContainer/VBoxContainer/MarginContainer/Players" instance=ExtResource( 2 )]
-margin_left = 412.0
-margin_right = 804.0
-margin_bottom = 248.0
-custom_styles/panel = SubResource( 29 )
+offset_left = 412.0
+offset_right = 804.0
+offset_bottom = 248.0
+theme_override_styles/panel = SubResource( 29 )
 
 [node name="Player 3" parent="MarginContainer/VBoxContainer/MarginContainer/Players" instance=ExtResource( 2 )]
-margin_top = 268.0
-margin_bottom = 515.0
-custom_styles/panel = SubResource( 30 )
+offset_top = 268.0
+offset_bottom = 515.0
+theme_override_styles/panel = SubResource( 30 )
 
 [node name="Player 4" parent="MarginContainer/VBoxContainer/MarginContainer/Players" instance=ExtResource( 2 )]
-margin_left = 412.0
-margin_top = 268.0
-margin_right = 804.0
-margin_bottom = 515.0
-custom_styles/panel = SubResource( 31 )
+offset_left = 412.0
+offset_top = 268.0
+offset_right = 804.0
+offset_bottom = 515.0
+theme_override_styles/panel = SubResource( 31 )
 
 [node name="Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 549.0
-margin_right = 1004.0
-margin_bottom = 580.0
+offset_top = 549.0
+offset_right = 1004.0
+offset_bottom = 580.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Buttons"]
-margin_right = 500.0
-margin_bottom = 31.0
+offset_right = 500.0
+offset_bottom = 31.0
 size_flags_horizontal = 3
 
 [node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer"]
 visible = false
-margin_right = 45.0
-margin_bottom = 31.0
-rect_min_size = Vector2( 80, 0 )
-custom_fonts/font = SubResource( 9 )
-custom_styles/normal = SubResource( 10 )
+offset_right = 45.0
+offset_bottom = 31.0
+custom_minimum_size = Vector2( 80, 0 )
+theme_override_fonts/font = SubResource( 9 )
+theme_override_styles/normal = SubResource( 10 )
 text = "Back"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Buttons"]
-margin_left = 504.0
-margin_right = 1004.0
-margin_bottom = 31.0
+offset_left = 504.0
+offset_right = 1004.0
+offset_bottom = 31.0
 size_flags_horizontal = 3
 alignment = 2
 
 [node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer2"]
-margin_left = 420.0
-margin_right = 500.0
-margin_bottom = 31.0
-rect_min_size = Vector2( 80, 0 )
+offset_left = 420.0
+offset_right = 500.0
+offset_bottom = 31.0
+custom_minimum_size = Vector2( 80, 0 )
 disabled = true
 text = "Play"
 

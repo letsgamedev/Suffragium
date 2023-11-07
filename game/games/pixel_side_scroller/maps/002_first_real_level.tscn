@@ -25,18 +25,18 @@ position = Vector2( 109, -8 )
 position = Vector2( 163, -8 )
 
 [node name="Ground0" parent="." instance=ExtResource( 6 )]
-margin_left = -214.0
-margin_right = -46.0
+offset_left = -214.0
+offset_right = -46.0
 text = "---------------------"
 
 [node name="Ground1" parent="." instance=ExtResource( 6 )]
-margin_left = -17.0
-margin_right = 271.0
+offset_left = -17.0
+offset_right = 271.0
 text = "-----------------"
 
 [node name="Ground2" parent="." instance=ExtResource( 6 )]
-margin_left = 153.0
-margin_right = 234.0
+offset_left = 153.0
+offset_right = 234.0
 text = "----------------------"
 
 [node name="Star" parent="." instance=ExtResource( 1 )]

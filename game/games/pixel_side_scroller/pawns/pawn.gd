@@ -1,8 +1,8 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
-onready var input = $Input
-onready var movement = $Movement
-onready var _main = get_tree().current_scene
+@onready var input = $Input
+@onready var movement = $Movement
+@onready var _main = get_tree().current_scene
 
 
 func _physics_process(delta):

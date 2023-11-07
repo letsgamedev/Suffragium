@@ -61,29 +61,29 @@ var input_map = {
 		"name": "Arrow keys",
 		"control_detail": "Left Magnet: Delete\nRight Magnet: Page Down"
 	},
-	InputType.JOY:
-	{
-		"actions":
-		{
-			"left": JOY_AXIS_0,
-			"right": JOY_AXIS_0,
-			"up": JOY_AXIS_1,
-			"down": JOY_AXIS_1,
-			"left_magnet": JOY_L,
-			"right_magnet": JOY_R,
-		},
-		"name": "Controller",
-		"control_detail":
-		"""Joystick to move
-		Left Magnet: Left Shoulder Button
-		Right Magnet: Right Shoulder Button"""
-	}
+	#	InputType.JOY:
+	#	{
+	#		"actions":
+	#		{
+	#			"left": JOY_AXIS_0,
+	#			"right": JOY_AXIS_0,
+	#			"up": JOY_AXIS_1,
+	#			"down": JOY_AXIS_1,
+	#			"left_magnet": JOY_L,
+	#			"right_magnet": JOY_R,
+	#		},
+	#		"name": "Controller",
+	#		"control_detail":
+	#		"""Joystick to move
+	#		Left Magnet: Left Shoulder Button
+	#		Right Magnet: Right Shoulder Button"""
+	#	}
 }
 
 
 func _on_player_selector_start_game(player_inputs: Array):
 	$PlayerSelector.hide()
-	var game = game_scene.instance()
+	var game = game_scene.instantiate()
 	var players_node = game.get_node("Players")
 	players_node.player_inputs = player_inputs
 	players_node.player_count = len(player_inputs)

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://shared/fonts/press_start2p/press_start2p_regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://shared/fonts/press_start2p/press_start2p_regular.ttf" type="FontFile" id=1]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="FontFile" id=4]
 size = 8
 font_data = ExtResource( 1 )
 
@@ -16,18 +16,18 @@ func _ready() -> void:
 	var collision = get_child(0).get_child(0)
 	collision.position.x = 4 * ground_width
 	collision.shape = RectangleShape2D.new()
-	collision.shape.extents = Vector2(4 * ground_width - 1, 0.5)
+	collision.shape.size = Vector2(4 * ground_width - 1, 0.5)
 "
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 11, 0.5 )
+size = Vector2( 11, 0.5 )
 
 [node name="Ground" type="Label"]
-margin_left = -1.0
-margin_top = -3.0
-margin_right = 80.0
-margin_bottom = 5.0
-custom_fonts/font = SubResource( 4 )
+offset_left = -1.0
+offset_top = -3.0
+offset_right = 80.0
+offset_bottom = 5.0
+theme_override_fonts/font = SubResource( 4 )
 text = "---"
 script = SubResource( 5 )
 

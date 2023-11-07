@@ -3,14 +3,14 @@ extends MarginContainer
 const BLOCK_SCENE: PackedScene = preload("res://games/sortit/box.tscn")
 const MAX_SCORE = 10
 
-export(Vector2) var spawn_height = Vector2(40, 100)
-export(int) var max_box_count = 50
+@export var spawn_height: Vector2 = Vector2(40, 100)
+@export var max_box_count: int = 50
 
 var _box_count = 0
 
-onready var _rng := RandomNumberGenerator.new()
-onready var _spaw_areas = $BoxSpawnAreas.get_children()
-onready var _players = $Players
+@onready var _rng := RandomNumberGenerator.new()
+@onready var _spaw_areas = $BoxSpawnAreas.get_children()
+@onready var _players = $Players
 
 
 func _ready():
@@ -28,13 +28,13 @@ func _spawn_box():
 		return
 	# Get random spawn area
 	var spawn_area_index = _rng.randi_range(0, len(_spaw_areas) - 1)
-	var spawn_area = _spaw_areas[spawn_area_index] as Spatial
+	var spawn_area = _spaw_areas[spawn_area_index] as Node3D
 	var spawn_origin = spawn_area.global_transform.origin
 	var spawn_scale = spawn_area.scale
 	# Spawn block inside picked spawn area
-	var block: RigidBody = BLOCK_SCENE.instance()
+	var block: RigidBody3D = BLOCK_SCENE.instantiate()
 	$Boxes.add_child(block)
-	block.connect("despawn", self, "_on_box_despawn")
+	block.connect("despawn", Callable(self, "_on_box_despawn"))
 	var block_position = Vector3.ZERO
 	block_position.x = _rng.randf_range(
 		spawn_origin.x - spawn_scale.x, spawn_origin.x + spawn_scale.x

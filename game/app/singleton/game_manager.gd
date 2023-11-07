@@ -14,9 +14,9 @@ var _current_game = null
 var _current_game_config = null
 var _current_game_start_time = null
 
-onready var res_end_game_menu = preload("res://app/end_game_menu/end_game_menu.tscn")
+@onready var res_end_game_menu = preload("res://app/end_game_menu/end_game_menu.tscn")
 
-onready var _data_manager = load("res://app/scenes/data_manager.gd").new()
+@onready var _data_manager = load("res://app/scenes/data_manager.gd").new()
 
 
 func _ready():
@@ -24,24 +24,24 @@ func _ready():
 	# find out if a game is loaded
 	# this enables "Play scene" without crashes
 	if !is_in_main_menu():
-		var cur := get_tree().current_scene.filename
-		var id := cur.get_base_dir().split("/")[-1]
+		var current: String = get_tree().current_scene.scene_file_path
+		var id := current.get_base_dir().split("/")[-1]
 		if _games.has(id):
 			call_deferred("load_game", _games[id])
 
 
 func _notification(what: int):
-	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		if _current_game:
 			end_game(null, null, false)
 		get_tree().quit()
 
 
 func is_in_main_menu():
-	var cur := get_tree().current_scene.filename
+	var current: String = get_tree().current_scene.scene_file_path
 	return (
-		cur == ProjectSettings.get("application/run/main_scene")
-		or cur == "res://app/scenes/menu.tscn"
+		current == ProjectSettings.get("application/run/main_scene")
+		or current == "res://app/scenes/menu.tscn"
 	)
 
 
@@ -57,7 +57,7 @@ func load_game(game_config: ConfigFile):
 	var game_id = game_config.get_meta("folder_name")
 	var main_scene = game_config.get_value("game", "main_scene")
 	var scene_path := make_game_file_path(game_id, main_scene)
-	var err = Utils.change_scene(scene_path)
+	var err = Utils.change_scene_to_file(scene_path)
 	if err == OK:
 		_game_started(game_config)
 		# load pause menu pages
@@ -77,7 +77,7 @@ func load_game(game_config: ConfigFile):
 					)
 					continue
 				# add node to PauseMenu
-				PauseMenu.add_custom_page(page_scene.instance(), key)
+				PauseMenu.add_custom_page(page_scene.instantiate(), key)
 		emit_signal("game_loaded")
 
 
@@ -92,11 +92,11 @@ func end_game(message = null, score = null, show_end_game_menu: bool = true):
 
 	# this behavior is subject to change
 	if show_end_game_menu:
-		var end_game_menu = res_end_game_menu.instance()
+		var end_game_menu = res_end_game_menu.instantiate()
 		get_tree().get_root().add_child(end_game_menu)
 		end_game_menu.open(message, _current_game_config)
 	else:
-		Utils.change_scene(MENU_PATH)
+		Utils.change_scene_to_file(MENU_PATH)
 
 	PauseMenu.clear_custom_content()
 	_current_game = null
@@ -163,11 +163,11 @@ func restart_game():
 
 # loads the game.cfg for every folder in _games_folder_path and adds it to _games
 func _load_game_configs():
-	var dir = Directory.new()
-	if dir.open(_games_folder_path) != OK:
+	var dir = DirAccess.open(_games_folder_path)
+	if not dir:
 		push_error("Could not open directory %s" % _games_folder_path)
 		return
-	dir.list_dir_begin(true)
+	dir.list_dir_begin()
 	var file_name = dir.get_next()
 	while file_name != "":
 		if dir.current_is_dir():
@@ -190,4 +190,4 @@ func _load_game_config_file(folder_name: String):
 func _game_started(game_config: ConfigFile):
 	_current_game = game_config.get_meta("folder_name")
 	_current_game_config = game_config
-	_current_game_start_time = OS.get_ticks_msec()
+	_current_game_start_time = Time.get_ticks_msec()

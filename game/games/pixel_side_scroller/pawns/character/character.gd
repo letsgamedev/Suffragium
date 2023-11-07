@@ -1,6 +1,6 @@
 extends "res://games/pixel_side_scroller/pawns/pawn.gd"
 
-onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _process(_delta):
@@ -17,9 +17,9 @@ func _animation() -> void:
 
 func _flip() -> void:
 	if movement.direction.x > 0:
-		$Sprite.flip_h = false
+		$Sprite2D.flip_h = false
 	elif movement.direction.x < 0:
-		$Sprite.flip_h = true
+		$Sprite2D.flip_h = true
 
 
 func on_ground_hit() -> void:

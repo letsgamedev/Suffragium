@@ -1,21 +1,21 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://shared/fonts/press_start2p/press_start2p_regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://shared/fonts/press_start2p/press_start2p_regular.ttf" type="FontFile" id=1]
 [ext_resource path="res://games/pixel_side_scroller/entitys/damage_trigger.tscn" type="PackedScene" id=2]
 [ext_resource path="res://games/pixel_side_scroller/sounds/sfx/trap_activate.wav" type="AudioStream" id=3]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="FontFile" id=4]
 size = 8
 font_data = ExtResource( 1 )
 
 [sub_resource type="GDScript" id=5]
 script/source = "extends Label
 
-export(bool) var toggle_spikes = false
-export(bool) var initial_state = false
-export(float) var toggle_time_on = 1.0
-export(float) var toggle_time_off = 1.0
-export(float) var start_offset_time = 0.0
+@export var toggle_spikes: bool = false
+@export var initial_state: bool = false
+@export var toggle_time_on: float = 1.0
+@export var toggle_time_off: float = 1.0
+@export var start_offset_time: float = 0.0
 
 
 var _active = false
@@ -67,19 +67,19 @@ func _update_collision_state() -> void:
 	_damage_zone.disabled = !_active
 
 func _play_trap_sound() -> void:
-	if $VisibilityNotifier2D.is_on_screen():
+	if $VisibleOnScreenNotifier2D.is_on_screen():
 		$TrapActivate.play()
 "
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 11, 0.5 )
+size = Vector2( 11, 0.5 )
 
 [node name="Spikes" type="Label"]
-margin_left = -1.0
-margin_top = -3.0
-margin_right = 80.0
-margin_bottom = 5.0
-custom_fonts/font = SubResource( 4 )
+offset_left = -1.0
+offset_top = -3.0
+offset_right = 80.0
+offset_bottom = 5.0
+theme_override_fonts/font = SubResource( 4 )
 text = "^^^"
 script = SubResource( 5 )
 
@@ -96,6 +96,6 @@ one_way_collision_margin = 50.0
 [node name="TrapActivate" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2( 12, 2 )
 scale = Vector2( 0.8, 0.15 )

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/game_end.wav-cd3623a9689433d32303d6dc9a5d8201.sample"
+type="AudioStreamWAV"
+uid="uid://b7nb3d1rnjowc"
+path="res://.godot/imported/game_end.wav-cd3623a9689433d32303d6dc9a5d8201.sample"
 
 [deps]
 
 source_file="res://games/flappybird/sounds/sfx/game_end.wav"
-dest_files=[ "res://.import/game_end.wav-cd3623a9689433d32303d6dc9a5d8201.sample" ]
+dest_files=["res://.godot/imported/game_end.wav-cd3623a9689433d32303d6dc9a5d8201.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

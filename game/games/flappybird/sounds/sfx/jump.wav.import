@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/jump.wav-2ee27a721f22ba0cc2bf9e4b496d601c.sample"
+type="AudioStreamWAV"
+uid="uid://bvq74h7kxnt8u"
+path="res://.godot/imported/jump.wav-2ee27a721f22ba0cc2bf9e4b496d601c.sample"
 
 [deps]
 
 source_file="res://games/flappybird/sounds/sfx/jump.wav"
-dest_files=[ "res://.import/jump.wav-2ee27a721f22ba0cc2bf9e4b496d601c.sample" ]
+dest_files=["res://.godot/imported/jump.wav-2ee27a721f22ba0cc2bf9e4b496d601c.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

@@ -1,10 +1,10 @@
 extends Label
 
-export(NodePath) var root_game_path
-export(Gradient) var color_gradient
-onready var _end_timer = get_node(root_game_path).get_node("EndTimer")
-onready var _hbox_container = $"../../../"
-onready var _vbox_container = $"../../../.."
+@export var root_game_path: NodePath
+@export var color_gradient: Gradient
+@onready var _end_timer = get_node(root_game_path).get_node("EndTimer")
+@onready var _hbox_container = $"../../../"
+@onready var _vbox_container = $"../../../.."
 
 
 func _ready():
@@ -16,16 +16,16 @@ func _ready():
 func set_timer_location(player_count: int):
 	if player_count == 1:
 		# Top Left
-		_hbox_container.alignment = BoxContainer.ALIGN_BEGIN
+		_hbox_container.alignment = BoxContainer.ALIGNMENT_BEGIN
 	else:
-		_hbox_container.alignment = BoxContainer.ALIGN_CENTER
+		_hbox_container.alignment = BoxContainer.ALIGNMENT_CENTER
 
 	if player_count > 2:
 		# Top middel
-		_vbox_container.alignment = BoxContainer.ALIGN_CENTER
+		_vbox_container.alignment = BoxContainer.ALIGNMENT_CENTER
 	else:
 		# Center
-		_vbox_container.alignment = BoxContainer.ALIGN_BEGIN
+		_vbox_container.alignment = BoxContainer.ALIGNMENT_BEGIN
 
 
 func _process(_delta):
@@ -34,6 +34,6 @@ func _process(_delta):
 	var seconds = fposmod(minutes, 1) * 60
 	if minutes < 1:
 		text = str(floor(seconds))
-		add_color_override("font_color", color_gradient.interpolate(1 - seconds / 60.0))
+		add_theme_color_override("font_color", color_gradient.sample(1 - seconds / 60.0))
 	else:
 		text = "%02d:%02d" % [minutes, seconds]

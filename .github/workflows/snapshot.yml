@@ -1,45 +1,114 @@
+# inspired by https://github.com/abarichello/godot-ci/blob/31ec75f1ad6adeed9bb7ff5d2cd10504cad21386/.github/workflows/godot-ci.yml
 name: Builds a Snapshot
-
 on:
   # Triggers the workflow on push or pull request
   push:
   pull_request:
 
+env:
+  GODOT_VERSION: 4.1.2
+  EXPORT_NAME: Suffragium
+  PROJECT_PATH: game
+  # pack, debug, release
+  MODE: release
+  
 jobs:
-  build:
+  export-windows:
+    name: Windows Export
     runs-on: ubuntu-latest
-
+    container:
+      image: barichello/godot-ci:4.1.2
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Download latest earthly
-        run: "sudo /bin/sh -c 'wget https://github.com/earthly/earthly/releases/latest/download/earthly-linux-amd64 -O /usr/local/bin/earthly && chmod +x /usr/local/bin/earthly'"
-
-      - name: Earthly version
-        run: earthly --version
-
-      - name: Run build
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup
         run: |
-            cd game
-            mv export_presets.snapshot.cfg export_presets.cfg
-            cd ..
-            earthly +build
-
-        # Publish Artifacts for download
-      - name: Publish Windows
-        uses: actions/upload-artifact@v3
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Windows Build
+        run: |
+          mkdir -v -p build/windows
+          cd $PROJECT_PATH
+          godot -v --headless --export-$MODE "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
         with:
           name: windows
-          path: builds/windows
+          path: build/windows
 
-      - name: Publish Linux
-        uses: actions/upload-artifact@v3
+  export-linux:
+    name: Linux Export
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.1.2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Linux Build
+        run: |
+          mkdir -v -p build/linux
+          cd $PROJECT_PATH
+          godot -v --headless --export-$MODE "Linux/X11" ../build/linux/$EXPORT_NAME.x86_64
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
         with:
           name: linux
-          path: builds/linux
+          path: build/linux
 
-      - name: Publish HTMl5
-        uses: actions/upload-artifact@v3
+  export-web:
+    name: Web Export
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.1.2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Web Build
+        run: |
+          mkdir -v -p build/web
+          cd $PROJECT_PATH
+          godot -v --headless --export-$MODE "HTML5" ../build/web/index.html
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
         with:
-          name: html5
-          path: builds/html5
+          name: web
+          path: build/web
+#       - name: Install rsync 📚
+#         run: |
+#           apt-get update && apt-get install -y rsync
+#       - name: Deploy to GitHub Pages 🚀
+#         uses: JamesIves/github-pages-deploy-action@releases/v4
+#         with:
+#           branch: gh-pages # The branch the action should deploy to.
+#           folder: build/web # The folder the action should deploy.
+
+  export-mac:
+    name: Mac Export
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.1.2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Mac Build
+        run: |
+          mkdir -v -p build/mac
+          cd $PROJECT_PATH
+          godot -v --headless --export-$MODE "Mac OSX" ../build/mac/$EXPORT_NAME.zip
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: mac
+          path: build/mac

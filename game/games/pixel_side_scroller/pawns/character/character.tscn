@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://games/pixel_side_scroller/pawns/pawn.tscn" type="PackedScene" id=1]
-[ext_resource path="res://games/pixel_side_scroller/pawns/character/character.png" type="Texture" id=2]
+[ext_resource path="res://games/pixel_side_scroller/pawns/character/character.png" type="Texture2D" id=2]
 [ext_resource path="res://games/pixel_side_scroller/pawns/character/character.gd" type="Script" id=3]
 [ext_resource path="res://games/pixel_side_scroller/sounds/sfx/hit.wav" type="AudioStream" id=4]
 [ext_resource path="res://games/pixel_side_scroller/sounds/sfx/step.wav" type="AudioStream" id=5]
@@ -11,14 +11,14 @@
 [sub_resource type="Animation" id=1]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Rect2( 0, 0, 16, 16 ) ]
 }
@@ -29,14 +29,14 @@ length = 0.8
 loop = true
 step = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2, 0.4, 0.6 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ Rect2( 16, 0, 16, 16 ), Rect2( 32, 0, 16, 16 ), Rect2( 48, 0, 16, 16 ), Rect2( 64, 0, 16, 16 ) ]
 }
@@ -56,31 +56,31 @@ tracks/1/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 5 )
 } ],
-"times": PoolRealArray( 0, 0.4 )
+"times": PackedFloat32Array( 0, 0.4 )
 }
 
 [sub_resource type="Animation" id=3]
 resource_name = "stand"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Rect2( 0, 0, 16, 16 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 3.94, 7.5 )
+size = Vector2( 3.94, 7.5 )
 
 [node name="Character" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="." index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
 position = Vector2( 0, -8 )
 texture = ExtResource( 2 )
 region_enabled = true

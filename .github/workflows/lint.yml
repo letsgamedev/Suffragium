@@ -23,11 +23,15 @@ jobs:
       - uses: actions/checkout@v3
       # set-up python (required for godot-gdscript-toolkit)
       - name: Setup Python
-        uses: actions/setup-python@v3.1.2
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+      - name: Install setuptools
+        run: pip3 install setuptools
 
       # Install godot-gdscript-toolkit
       - name: Install godot-gdscript-toolkit
-        run: pip3 install 'gdtoolkit==3.*'
+        run: pip3 install 'gdtoolkit==4.*'
 
       # lint all gd files
       - name: Lint all the gd files with gdtoolkit

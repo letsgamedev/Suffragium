@@ -1,4 +1,4 @@
-tool
+@tool
 extends ScrollContainer
 # This script translates a simplified syntax into bbcode for the RichTextLabel to display.
 # It can also calculate the position of specific lines. This is used by menu to smooth scroll.
@@ -11,100 +11,122 @@ extends ScrollContainer
 # 	-Any [url] tag will be treated like a link. If you add one color it the same as the others.
 # 		(specific color is subject to change)
 
-export(String) var title_key := "# "
-# This is the About text. To add a Title use the title key
-export(String, MULTILINE) var text := "" setget set_text
-export(Font) var title_font: Font
+enum Section { ABOUT, PARTICIPATE, REPORT_A_BUG }
 
-onready var _label := $MC/RichTextLabel
+const TITLE_KEY: String = "# "
+const ABOUT_PATH: String = "res://app/scenes/about.md"
 
+var _title_theme: Theme = preload("res://app/scenes/title_font_theme.tres")
+var _text: String
 
-# this is needed to ract to any language changes that might need retranslating
-func _notification(what):
-	if what == NOTIFICATION_TRANSLATION_CHANGED:
-		_write_def()
+var _tab_index: int
+var _section_titles: Array = []
 
-
-func _ready():
-	_write_to_label()
+@onready var _txt_container: VBoxContainer = $MC/VC
 
 
-func set_text(val: String):
-	text = val
-	# updating this is only needed in editor
-	# In-game it is updated by other sources
-	if Engine.editor_hint:
-		_write_def()
+func _ready() -> void:
+	_load_text()
+	_write_text()
+	_get_own_tab_index()
 
 
-func _write_to_label():
-	# Fails in Editor when you edit the script.
-	if !is_instance_valid(_label):
+func scroll_to(previous_tab: int, section: Section) -> void:
+	var smooth_scroll = UserSettings.get_setting("smooth_scroll")
+	if previous_tab == _tab_index and smooth_scroll:
+		var tween: Tween = get_tree().create_tween()
+		var max_y = $MC.size.y - size.y
+		var pos_y: float = _section_titles[section].position.y
+		var scroll_y = clamp(pos_y, 0, max_y)
+		(
+			tween
+			. tween_property(self, "scroll_vertical", scroll_y, 0.4)
+			. set_trans(Tween.TRANS_QUAD)
+			. set_ease(Tween.EASE_IN_OUT)
+		)
+	else:
+		# workaround: when node was not visible yet, position.y is 0
+		await get_tree().process_frame
+		var pos_y: float = _section_titles[section].position.y
+		set_v_scroll(int(pos_y))
+
+
+func _load_text() -> void:
+	var file = FileAccess.open(ABOUT_PATH, FileAccess.READ)
+	if file == null:
+		push_error("Could not read ABOUT file.")
 		return
-	# this part might need a refactor
-	_label.clear()
-	for line in text.split("\n"):
-		# this loop treats every line in sequence
-		var is_title: bool = line.begins_with(title_key)
-		line = line.trim_prefix(title_key)
-		if is_title:
-			_label.push_font(title_font)
-
-		# first refers to the first part of the line
-		var first := true
-		for key in line.split(" "):
-			# each part of this might be a translation key, one or more bb tags,
-			# one or more closing tags, or just text
-			if key.match("[/*]"):
-				# RichTextLabel requires pop() when closing tag from previus append_bbcode()
-				for _i in range(key.count("[")):
-					_label.pop()
-			else:
-				# append the translation of whatever key is
-				# anything not a key will be returned unchanged
-				# tr("[color=blue]") = "[color=blue]"
-				if first:
-					# the first part of the line shouldn't have a seperating " " infront of it
-					_label.append_bbcode(tr(key))
-				else:
-					_label.append_bbcode(" " + tr(key))
-			first = false
-		# close the [font] tag for the title font
-		if is_title:
-			_label.pop()
-		_label.newline()
+	_text = file.get_as_text()
 
 
-# determines how far down to scroll until the line is found
-# !this is searched in the untranslated text
-func get_line_absolute_height(line: String):
-	var pos: float = 0
-	var lines: Array = text.split("\n")
-	var font_height: int = _label.get_font("normal_font").get_height()
-	var line_spacing: float = _label.get_constant("line_separation")
-
-	var line_location := text.find(line)
-	# count won't work if location is 0. If it is the height is also 0
-	if line_location == 0:
-		return 0
-	# go over every line and add its height
-	for i in text.count("\n", 0, line_location):
-		# i is the line to add the size of
-		if lines[i].begins_with(title_key):
-			pos += title_font.get_height()
+func _write_text() -> void:
+	_clear()
+	for line in _text.split("\n"):
+		if _is_title(line):
+			_write_title(line)
 		else:
-			pos += font_height
-		pos += line_spacing
-	return pos
+			var link_info: Dictionary = _get_link_info(line)
+			if link_info["is_link"]:
+				_write_link(link_info["text"], link_info["url"])
+			else:
+				_write_line(line)
 
 
-# helper to call _write_to_label deferred
-# (_write_to_label will be called at the end of the frame after everything else)
-func _write_def():
-	call_deferred("_write_to_label")
+func _clear() -> void:
+	for child in _txt_container.get_children():
+		child.queue_free()
 
 
-# This is called when the user clicks on a [url] tag in the label.
-# Utils.open_url() actually supports more than just urls
-func _on_RichTextLabel_meta_clicked(meta):
-	Utils.open_url(meta)
+func _is_title(txt: String) -> bool:
+	return txt.begins_with(TITLE_KEY)
+
+
+func _write_title(txt: String) -> void:
+	txt = txt.trim_prefix(TITLE_KEY)
+	var label: Label = _make_label(txt, _title_theme)
+	_section_titles.push_back(label)
+	_txt_container.add_child(label)
+
+
+func _get_link_info(txt: String) -> Dictionary:
+	var regex: RegEx = RegEx.new()
+	regex.compile('\\[([\\w ]+)\\]\\((https?:\\/\\/[\\w\\/.\\-#]+) ?("[\\w ,-äöüÄÖÜ]+")?\\)')
+	var regex_match: RegExMatch = regex.search(txt)
+	var is_link: bool = regex_match != null
+	return {
+		"is_link": is_link,
+		"text": "" if not is_link else regex_match.get_string(1),
+		"url": "" if not is_link else regex_match.get_string(2),
+		"alt": "" if not is_link else regex_match.get_string(3)
+	}
+
+
+func _write_link(text: String, url: String) -> void:
+	var r_label: RichTextLabel = RichTextLabel.new()
+	var link_as_bbcode: String = "[color=#649bff][url=%s]%s[/url][/color]" % [url, text]
+	r_label.set_use_bbcode(true)
+	r_label.set_fit_content(true)
+	r_label.append_text(link_as_bbcode)
+	r_label.set_autowrap_mode(TextServer.AUTOWRAP_WORD_SMART)
+	r_label.connect("meta_clicked", Utils.open_url)
+	_txt_container.add_child(r_label)
+
+
+func _write_line(txt: String) -> void:
+	_txt_container.add_child(_make_label(txt, null))
+
+
+func _make_label(txt: String, font_theme: Theme) -> Label:
+	var label: Label = Label.new()
+	label.set_text(txt)
+	label.set_theme(font_theme)
+	label.set_autowrap_mode(TextServer.AUTOWRAP_WORD_SMART)
+	return label
+
+
+func _get_own_tab_index() -> void:
+	var tab_container: TabContainer = get_parent()
+	for tab_index in tab_container.get_tab_count():
+		if tab_container.get_tab_title(tab_index) == name:
+			_tab_index = tab_index
+			return

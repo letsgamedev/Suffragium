@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://games/pixel_side_scroller/entitys/goal.gd" type="Script" id=1]
-[ext_resource path="res://shared/fonts/press_start2p/press_start2p_regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://shared/fonts/press_start2p/press_start2p_regular.ttf" type="FontFile" id=2]
 
 [sub_resource type="RectangleShape2D" id=2]
 resource_local_to_scene = true
-extents = Vector2( 1, 14.5 )
+size = Vector2( 1, 14.5 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="FontFile" id=3]
 size = 8
 font_data = ExtResource( 2 )
 
@@ -19,11 +19,11 @@ position = Vector2( 1, -15 )
 shape = SubResource( 2 )
 
 [node name="Label2" type="Label" parent="."]
-margin_left = -3.0
-margin_top = -51.0
-margin_right = 181.0
-margin_bottom = 1.0
-custom_fonts/font = SubResource( 3 )
+offset_left = -3.0
+offset_top = -51.0
+offset_right = 181.0
+offset_bottom = 1.0
+theme_override_fonts/font = SubResource( 3 )
 text = "Goal
 ^
 |

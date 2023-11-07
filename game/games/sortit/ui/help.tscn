@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://games/sortit/assets/images/black_boxes.png" type="Texture" id=1]
-[ext_resource path="res://games/sortit/assets/images/wrong_order.png" type="Texture" id=2]
-[ext_resource path="res://games/sortit/assets/images/correct_order.png" type="Texture" id=3]
-[ext_resource path="res://games/sortit/assets/images/attract_boxes.png" type="Texture" id=4]
-[ext_resource path="res://games/sortit/assets/images/activate_magnets.png" type="Texture" id=5]
-[ext_resource path="res://games/sortit/assets/images/attracted_box.png" type="Texture" id=6]
-[ext_resource path="res://games/sortit/assets/images/compare_boxes.png" type="Texture" id=7]
-[ext_resource path="res://games/sortit/assets/images/start.png" type="Texture" id=8]
-[ext_resource path="res://games/sortit/assets/images/place_boxes.png" type="Texture" id=9]
+[ext_resource path="res://games/sortit/assets/images/black_boxes.png" type="Texture2D" id=1]
+[ext_resource path="res://games/sortit/assets/images/wrong_order.png" type="Texture2D" id=2]
+[ext_resource path="res://games/sortit/assets/images/correct_order.png" type="Texture2D" id=3]
+[ext_resource path="res://games/sortit/assets/images/attract_boxes.png" type="Texture2D" id=4]
+[ext_resource path="res://games/sortit/assets/images/activate_magnets.png" type="Texture2D" id=5]
+[ext_resource path="res://games/sortit/assets/images/attracted_box.png" type="Texture2D" id=6]
+[ext_resource path="res://games/sortit/assets/images/compare_boxes.png" type="Texture2D" id=7]
+[ext_resource path="res://games/sortit/assets/images/start.png" type="Texture2D" id=8]
+[ext_resource path="res://games/sortit/assets/images/place_boxes.png" type="Texture2D" id=9]
 [ext_resource path="res://games/sortit/ui/help.gd" type="Script" id=10]
 [ext_resource path="res://games/sortit/assets/style/theme.tres" type="Theme" id=11]
 
@@ -36,199 +36,199 @@ expand_margin_bottom = 4.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 11 )
-custom_constants/margin_right = 50
-custom_constants/margin_top = 50
-custom_constants/margin_left = 50
-custom_constants/margin_bottom = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_bottom = 50
 script = ExtResource( 10 )
 
 [node name="PC" type="PanelContainer" parent="."]
-margin_left = 50.0
-margin_top = 50.0
-margin_right = 974.0
-margin_bottom = 550.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 974.0
+offset_bottom = 550.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 29 )
+theme_override_styles/panel = SubResource( 29 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PC"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 916.0
-margin_bottom = 492.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 916.0
+offset_bottom = 492.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Pedestals" type="HBoxContainer" parent="PC/VBoxContainer"]
-margin_right = 908.0
-margin_bottom = 198.0
+offset_right = 908.0
+offset_bottom = 198.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 20
+theme_override_constants/separation = 20
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PC/VBoxContainer/Pedestals"]
-margin_right = 165.0
-margin_bottom = 198.0
+offset_right = 165.0
+offset_bottom = 198.0
 size_flags_horizontal = 3
-custom_colors/default_color = Color( 1, 1, 1, 1 )
+theme_override_colors/default_color = Color( 1, 1, 1, 1 )
 text = "You start the game next to your pedestals.
 Only these pedals will give you points, when placing boxes on them."
 fit_content_height = true
 
 [node name="TextureRect" type="TextureRect" parent="PC/VBoxContainer/Pedestals"]
-margin_left = 185.0
-margin_right = 351.0
-margin_bottom = 198.0
+offset_left = 185.0
+offset_right = 351.0
+offset_bottom = 198.0
 size_flags_horizontal = 3
 texture = ExtResource( 8 )
 expand = true
 stretch_mode = 7
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="PC/VBoxContainer/Pedestals"]
-margin_left = 371.0
-margin_right = 536.0
-margin_bottom = 198.0
+offset_left = 371.0
+offset_right = 536.0
+offset_bottom = 198.0
 size_flags_horizontal = 3
-custom_colors/default_color = Color( 1, 1, 1, 1 )
+theme_override_colors/default_color = Color( 1, 1, 1, 1 )
 text = "The pedestals will light up green, if the order of boxes is correct and yellow, if the order is wrong.
 Every correct box will count as one point.
 "
 fit_content_height = true
 
 [node name="TextureRect2" type="TextureRect" parent="PC/VBoxContainer/Pedestals"]
-margin_left = 556.0
-margin_right = 722.0
-margin_bottom = 198.0
+offset_left = 556.0
+offset_right = 722.0
+offset_bottom = 198.0
 size_flags_horizontal = 3
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
 
 [node name="TextureRect3" type="TextureRect" parent="PC/VBoxContainer/Pedestals"]
-margin_left = 742.0
-margin_right = 908.0
-margin_bottom = 198.0
+offset_left = 742.0
+offset_right = 908.0
+offset_bottom = 198.0
 size_flags_horizontal = 3
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6
 
 [node name="HSeparator" type="HSeparator" parent="PC/VBoxContainer"]
-margin_top = 202.0
-margin_right = 908.0
-margin_bottom = 207.0
+offset_top = 202.0
+offset_right = 908.0
+offset_bottom = 207.0
 
 [node name="MagnetActivation" type="HBoxContainer" parent="PC/VBoxContainer"]
-margin_top = 211.0
-margin_right = 908.0
-margin_bottom = 341.0
+offset_top = 211.0
+offset_right = 908.0
+offset_bottom = 341.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PC/VBoxContainer/MagnetActivation"]
-margin_right = 148.0
-margin_bottom = 130.0
+offset_right = 148.0
+offset_bottom = 130.0
 size_flags_horizontal = 3
-custom_colors/default_color = Color( 1, 1, 1, 1 )
+theme_override_colors/default_color = Color( 1, 1, 1, 1 )
 text = "You have 2 buttons to toggle the activation, of your magnets."
 fit_content_height = true
 
 [node name="TextureRect" type="TextureRect" parent="PC/VBoxContainer/MagnetActivation"]
-margin_left = 152.0
-margin_right = 300.0
-margin_bottom = 130.0
+offset_left = 152.0
+offset_right = 300.0
+offset_bottom = 130.0
 size_flags_horizontal = 3
 texture = ExtResource( 5 )
 expand = true
 stretch_mode = 7
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="PC/VBoxContainer/MagnetActivation"]
-margin_left = 304.0
-margin_right = 452.0
-margin_bottom = 130.0
+offset_left = 304.0
+offset_right = 452.0
+offset_bottom = 130.0
 size_flags_horizontal = 3
-custom_colors/default_color = Color( 1, 1, 1, 1 )
+theme_override_colors/default_color = Color( 1, 1, 1, 1 )
 text = "Active magnets will attract nearby boxes, allowing you to carry them around."
 fit_content_height = true
 
 [node name="TextureRect2" type="TextureRect" parent="PC/VBoxContainer/MagnetActivation"]
-margin_left = 456.0
-margin_right = 604.0
-margin_bottom = 130.0
+offset_left = 456.0
+offset_right = 604.0
+offset_bottom = 130.0
 size_flags_horizontal = 3
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 7
 
 [node name="TextureRect3" type="TextureRect" parent="PC/VBoxContainer/MagnetActivation"]
-margin_left = 608.0
-margin_right = 756.0
-margin_bottom = 130.0
+offset_left = 608.0
+offset_right = 756.0
+offset_bottom = 130.0
 size_flags_horizontal = 3
 texture = ExtResource( 6 )
 expand = true
 stretch_mode = 7
 
 [node name="TextureRect4" type="TextureRect" parent="PC/VBoxContainer/MagnetActivation"]
-margin_left = 760.0
-margin_right = 908.0
-margin_bottom = 130.0
+offset_left = 760.0
+offset_right = 908.0
+offset_bottom = 130.0
 size_flags_horizontal = 3
 texture = ExtResource( 9 )
 expand = true
 stretch_mode = 7
 
 [node name="HSeparator2" type="HSeparator" parent="PC/VBoxContainer"]
-margin_top = 345.0
-margin_right = 908.0
-margin_bottom = 350.0
+offset_top = 345.0
+offset_right = 908.0
+offset_bottom = 350.0
 
 [node name="Comparator" type="HBoxContainer" parent="PC/VBoxContainer"]
-margin_top = 354.0
-margin_right = 908.0
-margin_bottom = 484.0
+offset_top = 354.0
+offset_right = 908.0
+offset_bottom = 484.0
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="VBoxContainer" parent="PC/VBoxContainer/Comparator"]
-margin_right = 300.0
-margin_bottom = 130.0
+offset_right = 300.0
+offset_bottom = 130.0
 size_flags_horizontal = 3
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PC/VBoxContainer/Comparator/HBoxContainer"]
-margin_right = 300.0
-margin_bottom = 95.0
+offset_right = 300.0
+offset_bottom = 95.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_colors/default_color = Color( 1, 1, 1, 1 )
+theme_override_colors/default_color = Color( 1, 1, 1, 1 )
 text = "When holding two boxes, the triangles on the top of your player, indicates the larger number."
 fit_content_height = true
 
 [node name="MC" type="MarginContainer" parent="PC/VBoxContainer/Comparator/HBoxContainer"]
-margin_top = 99.0
-margin_right = 300.0
-margin_bottom = 130.0
-custom_constants/margin_left = 4
+offset_top = 99.0
+offset_right = 300.0
+offset_bottom = 130.0
+theme_override_constants/margin_left = 4
 
 [node name="ExitBtn" type="Button" parent="PC/VBoxContainer/Comparator/HBoxContainer/MC"]
-margin_left = 4.0
-margin_right = 108.0
-margin_bottom = 31.0
+offset_left = 4.0
+offset_right = 108.0
+offset_bottom = 31.0
 size_flags_horizontal = 0
 text = "T_CLOSE"
 
 [node name="TextureRect" type="TextureRect" parent="PC/VBoxContainer/Comparator"]
-margin_left = 304.0
-margin_right = 604.0
-margin_bottom = 130.0
+offset_left = 304.0
+offset_right = 604.0
+offset_bottom = 130.0
 size_flags_horizontal = 3
 texture = ExtResource( 7 )
 expand = true
 stretch_mode = 6
 
 [node name="TextureRect2" type="TextureRect" parent="PC/VBoxContainer/Comparator"]
-margin_left = 608.0
-margin_right = 908.0
-margin_bottom = 130.0
+offset_left = 608.0
+offset_right = 908.0
+offset_bottom = 130.0
 size_flags_horizontal = 3
 texture = ExtResource( 1 )
 expand = true

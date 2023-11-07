@@ -12,17 +12,17 @@ var _game_data_cache := {}  # NEVER MODIFY THIS, IF YOU DON'T KNOW WHAT YOU ARE 
 func _save_data(player: String, file_name: String, data, game_id: String) -> int:
 	var cache_key := player + "/" + game_id + "/" + file_name
 	var directory := SAVE_FILE_DIR % [player, game_id]
-	var err := Directory.new().make_dir_recursive(directory)
+	var dir_access = DirAccess.open("user://")
+	var err: int = dir_access.make_dir_recursive(directory)
 	if err != OK:
 		return err
 	if not cache_key in _game_data_cache:
 		return OK
 	_game_data_cache[cache_key] = data
-	var file := File.new()
-	err = file.open(directory + file_name + ".json", File.WRITE)
-	if err != OK:
-		return err
-	file.store_string(JSON.print(_game_data_cache[cache_key]))
+	var file = FileAccess.open(directory + file_name + ".json", FileAccess.WRITE)
+	if file == null:
+		return FileAccess.get_open_error()
+	file.store_string(JSON.stringify(_game_data_cache[cache_key]))
 	file.close()
 	return OK
 
@@ -37,23 +37,25 @@ func _load_data(player: String, file_name: String, game_id: String) -> Dictionar
 		return _game_data_cache[cache_key]
 
 	var directory := SAVE_FILE_DIR % [player, game_id]
-	Utils.handle_error(Directory.new().make_dir_recursive(directory))
+	var dir = DirAccess.open("user://")
+	Utils.handle_error(dir.make_dir_recursive(directory))
 
 	_game_data_cache[cache_key] = {}  # populate with default
 	# read saved data from a file
-	var file := File.new()
-	var err := file.open(directory + file_name + ".json", File.READ)
+	var file = FileAccess.open(directory + file_name + ".json", FileAccess.READ)
 
-	if err != OK or not file.is_open():
+	if file == null:
 		return _game_data_cache[cache_key]
 
 	var content = file.get_as_text()
 	file.close()
 
-	var parse_result = JSON.parse(content)
-	if not parse_result.error:
+	var json_converter = JSON.new()
+	var parse_status: int = json_converter.parse(content)
+	var parse_result = json_converter.get_data()
+	if parse_status == OK:
 		# put contents from file in the cache
-		_game_data_cache[cache_key] = parse_result.result
+		_game_data_cache[cache_key] = parse_result
 
 	return _game_data_cache[cache_key]
 
@@ -91,14 +93,14 @@ func game_ended(player: String, game_id: String, start_time, score_or_null):
 
 	var data = _load_data(player, "game_meta_data", game_id)
 
-	var current_time := OS.get_unix_time()
+	var current_time := Time.get_unix_time_from_system()
 
 	data["last_played"] = current_time
 
 	if start_time != null:
 		if not "played_time" in data:
 			data["played_time"] = 0
-		data["played_time"] += (OS.get_ticks_msec() - start_time) / 1000.0
+		data["played_time"] += (Time.get_ticks_msec() - start_time) / 1000.0
 
 	if score_or_null != null:
 		assert(score_or_null is int)
@@ -107,7 +109,7 @@ func game_ended(player: String, game_id: String, start_time, score_or_null):
 		if not "scores" in data:
 			data["scores"] = []
 		data["scores"].append(score_dict)
-		data["scores"].sort_custom(ScoreSorter, "sort_scores_descending")
+		data["scores"].sort_custom(Callable(ScoreSorter, "sort_scores_descending"))
 
 	Utils.handle_error(_save_data(player, "game_meta_data", data, game_id))
 

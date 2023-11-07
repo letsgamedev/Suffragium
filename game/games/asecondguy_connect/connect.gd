@@ -13,11 +13,11 @@ var _end_condition := 0
 var _chips_played := 0
 var _win_chip_pos := []
 
-onready var _play_area := $PlayArea
-onready var _grid := $Grid
-onready var _chips := $Chips
-onready var _spawners := [$Spawner1, $Spawner2]
-onready var _info_label := $UI/PanelContainer/InfoLabel
+@onready var _play_area := $PlayArea
+@onready var _grid := $Grid
+@onready var _chips := $Chips
+@onready var _spawners := [$Spawner1, $Spawner2]
+@onready var _info_label := $UI/PanelContainer/InfoLabel
 
 
 func _ready():
@@ -39,8 +39,8 @@ func _empty():
 	for c in _chips.get_children():
 		# set all chips back to rigid mode
 		c.set_deferred("mode", 0)
-	if !_win_chip_pos.empty():
-		var line: Line2D = preload("res://games/asecondguy_connect/win_line.tscn").instance()
+	if !_win_chip_pos.is_empty():
+		var line: Line2D = preload("res://games/asecondguy_connect/win_line.tscn").instantiate()
 		line.grid_points = _win_chip_pos
 		line.default_color = player_colors[_last_chip.player_id]
 		_grid.add_child(line)
@@ -66,7 +66,7 @@ func _on_chip_sleep(chip: RigidBody2D):
 	_last_chip = chip
 	var grid_pos: Vector2 = _grid.global_to_grid_pos(chip.position)
 	if _grid.is_in_grid(grid_pos):
-		chip.set_deferred("mode", chip.MODE_STATIC)
+		chip.set_deferred("mode", chip.FREEZE_MODE_STATIC)
 		_chips_played += 1
 		fallen_chips[grid_pos.x][grid_pos.y] = chip.player_id
 		_check_game_end_from_chip(grid_pos, chip.player_id)
@@ -79,14 +79,13 @@ func _on_chip_sleep(chip: RigidBody2D):
 
 
 func _spawn_chip(player_id := 0):
-	var chip: RigidBody2D = preload("res://games/asecondguy_connect/chip.tscn").instance()
+	var chip: RigidBody2D = preload("res://games/asecondguy_connect/chip.tscn").instantiate()
 	chip.player_id = player_id
 	chip.color = player_colors[player_id]
 	chip.global_position = (
-		_spawners[player_id].global_position
-		+ Vector2(rand_range(-10, 10), rand_range(-10, 10))
+		_spawners[player_id].global_position + Vector2(randf_range(-10, 10), randf_range(-10, 10))
 	)
-	if chip.connect("sleeping_state_changed", self, "_on_chip_sleep", [chip]) != OK:
+	if chip.connect("sleeping_state_changed", Callable(self, "_on_chip_sleep").bind(chip)) != OK:
 		GameManager.end_game("A fatal error occured.")
 	_chips.call_deferred("add_child", chip)
 	_info_label.start(tr("T_PLAYERS_TURN") % player_names[player_id])
