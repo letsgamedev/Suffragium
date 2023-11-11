@@ -1,16 +1,19 @@
-![Suffragium logo](branding/suffragium_logo_sp.png)
+![Suffragium vision](branding/Suffragium_vision.png)
 # Suffragium
 A game developed in a democratic cycle.
 
-Everyone can participate in this project. Just open a pull request
-with a feature you'd like to be added.
-Maybe your PR gets merged, or maybe not. The community decides. 
+We are building a grid-based online multiplayer 3d platformer. You will be able
+to build parts of the world, jump, run, vote in democratic polls, explore,
+collect, talk to villagers and have fun!
+
+## Contribute
+Everyone can participate in this project. Just open a pull request for a feature
+you’d like to be added. The community decides, if your PR gets merged.
+
 Look into [CONTRIBUTING](https://github.com/letsgamedev/Suffragium/blob/main/CONTRIBUTING.md#contributing-to-suffragium)
-for more informations.
+for more information.
 
-Learn how to add a minigame [here](game/games/testgame/README.md).  
-Learn more about the minigame framework [here](game/app/README.md).  
-
-For more information please watch this *german* video on youtube.
+## Background
+If you want to find out, how things started, you can watch watch
+[this *german* video on YouTube](https://www.youtube.com/watch?v=IyOwaiQkkic).
 Trust me, it's not a rick roll. Or is it?
-https://www.youtube.com/watch?v=IyOwaiQkkic
